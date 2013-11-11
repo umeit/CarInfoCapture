@@ -20,6 +20,8 @@
 		034E6977182C83D400BD5612 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 034E6975182C83D400BD5612 /* InfoPlist.strings */; };
 		034E6979182C83D400BD5612 /* CarInfoCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */; };
 		034E6983182C842700BD5612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034E6982182C842700BD5612 /* Main.storyboard */; };
+		03646F7F1830B216005A81D9 /* CICCarFirstReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F7E1830B216005A81D9 /* CICCarFirstReportViewController.m */; };
+		03646F821830CE28005A81D9 /* CICMyCaptureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,10 @@
 		034E6976182C83D400BD5612 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarInfoCaptureTests.m; sourceTree = "<group>"; };
 		034E6982182C842700BD5612 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		03646F7D1830B216005A81D9 /* CICCarFirstReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarFirstReportViewController.h; sourceTree = "<group>"; };
+		03646F7E1830B216005A81D9 /* CICCarFirstReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarFirstReportViewController.m; sourceTree = "<group>"; };
+		03646F801830CE28005A81D9 /* CICMyCaptureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICMyCaptureListViewController.h; sourceTree = "<group>"; };
+		03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICMyCaptureListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,10 @@
 				034E6965182C83D400BD5612 /* Images.xcassets */,
 				034E695A182C83D400BD5612 /* Supporting Files */,
 				034E6982182C842700BD5612 /* Main.storyboard */,
+				03646F7D1830B216005A81D9 /* CICCarFirstReportViewController.h */,
+				03646F7E1830B216005A81D9 /* CICCarFirstReportViewController.m */,
+				03646F801830CE28005A81D9 /* CICMyCaptureListViewController.h */,
+				03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */,
 			);
 			path = CarInfoCapture;
 			sourceTree = "<group>";
@@ -249,6 +259,8 @@
 			files = (
 				034E6964182C83D400BD5612 /* CICAppDelegate.m in Sources */,
 				034E6960182C83D400BD5612 /* main.m in Sources */,
+				03646F821830CE28005A81D9 /* CICMyCaptureListViewController.m in Sources */,
+				03646F7F1830B216005A81D9 /* CICCarFirstReportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +465,7 @@
 				034E697E182C83D400BD5612 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		034E697F182C83D400BD5612 /* Build configuration list for PBXNativeTarget "CarInfoCaptureTests" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +474,7 @@
 				034E6981182C83D400BD5612 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
