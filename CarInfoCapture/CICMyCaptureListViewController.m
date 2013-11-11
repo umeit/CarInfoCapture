@@ -15,16 +15,16 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSArray *carInfoList;
-
-@property (strong, nonatomic) CICCarInfoService *carInfoService;
-
 @property (weak, nonatomic) IBOutlet UILabel *captureSum;
 
 @property (weak, nonatomic) IBOutlet UILabel *noUploadNumber;
 
+@property (strong, nonatomic) NSArray *carInfoList;
+
+@property (strong, nonatomic) CICCarInfoService *carInfoService;
 
 - (IBAction)uploadButtonPress:(id)sender;
+
 @end
 
 @implementation CICMyCaptureListViewController
@@ -98,6 +98,10 @@
                  infoStatus:infoStatus];
 }
 
-- (IBAction)uploadButtonPress:(id)sender {
+#pragma mark - Action
+
+- (IBAction)uploadButtonPress:(id)sender
+{
+    
 }
 @end
