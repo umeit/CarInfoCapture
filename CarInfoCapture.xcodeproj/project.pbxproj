@@ -22,6 +22,8 @@
 		034E6983182C842700BD5612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034E6982182C842700BD5612 /* Main.storyboard */; };
 		03646F7F1830B216005A81D9 /* CICCarFirstReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F7E1830B216005A81D9 /* CICCarFirstReportViewController.m */; };
 		03646F821830CE28005A81D9 /* CICMyCaptureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */; };
+		03646F851830D66D005A81D9 /* CICCarInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F841830D66D005A81D9 /* CICCarInfoService.m */; };
+		03646F881830DB8A005A81D9 /* CICCarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F871830DB8A005A81D9 /* CICCarInfoCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,10 @@
 		03646F7E1830B216005A81D9 /* CICCarFirstReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarFirstReportViewController.m; sourceTree = "<group>"; };
 		03646F801830CE28005A81D9 /* CICMyCaptureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICMyCaptureListViewController.h; sourceTree = "<group>"; };
 		03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICMyCaptureListViewController.m; sourceTree = "<group>"; };
+		03646F831830D66D005A81D9 /* CICCarInfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoService.h; sourceTree = "<group>"; };
+		03646F841830D66D005A81D9 /* CICCarInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoService.m; sourceTree = "<group>"; };
+		03646F861830DB8A005A81D9 /* CICCarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoCell.h; sourceTree = "<group>"; };
+		03646F871830DB8A005A81D9 /* CICCarInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,10 @@
 				03646F7E1830B216005A81D9 /* CICCarFirstReportViewController.m */,
 				03646F801830CE28005A81D9 /* CICMyCaptureListViewController.h */,
 				03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */,
+				03646F831830D66D005A81D9 /* CICCarInfoService.h */,
+				03646F841830D66D005A81D9 /* CICCarInfoService.m */,
+				03646F861830DB8A005A81D9 /* CICCarInfoCell.h */,
+				03646F871830DB8A005A81D9 /* CICCarInfoCell.m */,
 			);
 			path = CarInfoCapture;
 			sourceTree = "<group>";
@@ -259,7 +269,9 @@
 			files = (
 				034E6964182C83D400BD5612 /* CICAppDelegate.m in Sources */,
 				034E6960182C83D400BD5612 /* main.m in Sources */,
+				03646F851830D66D005A81D9 /* CICCarInfoService.m in Sources */,
 				03646F821830CE28005A81D9 /* CICMyCaptureListViewController.m in Sources */,
+				03646F881830DB8A005A81D9 /* CICCarInfoCell.m in Sources */,
 				03646F7F1830B216005A81D9 /* CICCarFirstReportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
