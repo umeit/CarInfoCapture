@@ -24,6 +24,7 @@
 		03646F821830CE28005A81D9 /* CICMyCaptureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */; };
 		03646F851830D66D005A81D9 /* CICCarInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F841830D66D005A81D9 /* CICCarInfoService.m */; };
 		03646F881830DB8A005A81D9 /* CICCarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F871830DB8A005A81D9 /* CICCarInfoCell.m */; };
+		03D8102A1830ECD400264735 /* CICCarInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D810291830ECD400264735 /* CICCarInfoEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		03646F841830D66D005A81D9 /* CICCarInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoService.m; sourceTree = "<group>"; };
 		03646F861830DB8A005A81D9 /* CICCarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoCell.h; sourceTree = "<group>"; };
 		03646F871830DB8A005A81D9 /* CICCarInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoCell.m; sourceTree = "<group>"; };
+		03D810281830ECD400264735 /* CICCarInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoEntity.h; sourceTree = "<group>"; };
+		03D810291830ECD400264735 /* CICCarInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				03646F841830D66D005A81D9 /* CICCarInfoService.m */,
 				03646F861830DB8A005A81D9 /* CICCarInfoCell.h */,
 				03646F871830DB8A005A81D9 /* CICCarInfoCell.m */,
+				03D810281830ECD400264735 /* CICCarInfoEntity.h */,
+				03D810291830ECD400264735 /* CICCarInfoEntity.m */,
 			);
 			path = CarInfoCapture;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				03646F851830D66D005A81D9 /* CICCarInfoService.m in Sources */,
 				03646F821830CE28005A81D9 /* CICMyCaptureListViewController.m in Sources */,
 				03646F881830DB8A005A81D9 /* CICCarInfoCell.m in Sources */,
+				03D8102A1830ECD400264735 /* CICCarInfoEntity.m in Sources */,
 				03646F7F1830B216005A81D9 /* CICCarFirstReportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

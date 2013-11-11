@@ -9,6 +9,7 @@
 #import "CICMyCaptureListViewController.h"
 #import "CICCarInfoService.h"
 #import "CICCarInfoCell.h"
+#import "CICCarInfoEntity.h"
 
 @interface CICMyCaptureListViewController () <UITableViewDataSource>
 
@@ -18,6 +19,12 @@
 
 @property (strong, nonatomic) CICCarInfoService *carInfoService;
 
+@property (weak, nonatomic) IBOutlet UILabel *captureSum;
+
+@property (weak, nonatomic) IBOutlet UILabel *noUploadNumber;
+
+
+- (IBAction)uploadButtonPress:(id)sender;
 @end
 
 @implementation CICMyCaptureListViewController
@@ -47,8 +54,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return [self.carInfoList count];
-    return 1;
+    return [self.carInfoList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,7 +72,32 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     CICCarInfoCell *carInfoCell = (CICCarInfoCell *)cell;
+    CICCarInfoEntity *carInfoEntity = self.carInfoList[indexPath.row];
     
+    NSString *infoStatus;
+    
+    switch (carInfoEntity.status) {
+        case 0:
+            infoStatus = @"已上传";
+            break;
+            
+        case 1:
+            infoStatus = @"未上传";
+            break;
+            
+        default:
+            infoStatus = @"异常状态";
+            break;
+    }
+    
+    [carInfoCell setCarName:carInfoEntity.carName
+                    mileage:[NSString stringWithFormat:@"%d", carInfoEntity.mileage]
+               firstRegTime:carInfoEntity.firstRegTime
+                  salePrice:[NSString stringWithFormat:@"%f", carInfoEntity.salePrice]
+                   carImage:carInfoEntity.carImage
+                 infoStatus:infoStatus];
 }
 
+- (IBAction)uploadButtonPress:(id)sender {
+}
 @end
