@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0339EF781831FD500082A35E /* CICCarFirstReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF521831FD500082A35E /* CICCarFirstReportViewController.m */; };
+		0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF541831FD500082A35E /* CICMyCaptureListViewController.m */; };
+		0339EF7A1831FD500082A35E /* CICCarInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF571831FD500082A35E /* CICCarInfoEntity.m */; };
+		0339EF7B1831FD500082A35E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF5B1831FD500082A35E /* AFHTTPRequestOperation.m */; };
+		0339EF7C1831FD500082A35E /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF5D1831FD500082A35E /* AFHTTPRequestOperationManager.m */; };
+		0339EF7D1831FD500082A35E /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF5F1831FD500082A35E /* AFHTTPSessionManager.m */; };
+		0339EF7E1831FD500082A35E /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF621831FD500082A35E /* AFNetworkReachabilityManager.m */; };
+		0339EF7F1831FD500082A35E /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF641831FD500082A35E /* AFSecurityPolicy.m */; };
+		0339EF801831FD500082A35E /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF661831FD500082A35E /* AFURLConnectionOperation.m */; };
+		0339EF811831FD500082A35E /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF681831FD500082A35E /* AFURLRequestSerialization.m */; };
+		0339EF821831FD500082A35E /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF6A1831FD500082A35E /* AFURLResponseSerialization.m */; };
+		0339EF831831FD500082A35E /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF6C1831FD500082A35E /* AFURLSessionManager.m */; };
+		0339EF841831FD500082A35E /* CICCarInfoDBLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF6F1831FD500082A35E /* CICCarInfoDBLogic.m */; };
+		0339EF851831FD500082A35E /* CICCarInfoHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF711831FD500082A35E /* CICCarInfoHTTPLogic.m */; };
+		0339EF861831FD500082A35E /* CICCarInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF741831FD500082A35E /* CICCarInfoService.m */; };
+		0339EF871831FD500082A35E /* CICCarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF771831FD500082A35E /* CICCarInfoCell.m */; };
 		034E6954182C83D400BD5612 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E6953182C83D400BD5612 /* Foundation.framework */; };
 		034E6956182C83D400BD5612 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E6955182C83D400BD5612 /* CoreGraphics.framework */; };
 		034E6958182C83D400BD5612 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E6957182C83D400BD5612 /* UIKit.framework */; };
@@ -20,13 +36,6 @@
 		034E6977182C83D400BD5612 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 034E6975182C83D400BD5612 /* InfoPlist.strings */; };
 		034E6979182C83D400BD5612 /* CarInfoCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */; };
 		034E6983182C842700BD5612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034E6982182C842700BD5612 /* Main.storyboard */; };
-		03646F7F1830B216005A81D9 /* CICCarFirstReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F7E1830B216005A81D9 /* CICCarFirstReportViewController.m */; };
-		03646F821830CE28005A81D9 /* CICMyCaptureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */; };
-		03646F851830D66D005A81D9 /* CICCarInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F841830D66D005A81D9 /* CICCarInfoService.m */; };
-		03646F881830DB8A005A81D9 /* CICCarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03646F871830DB8A005A81D9 /* CICCarInfoCell.m */; };
-		03D8102A1830ECD400264735 /* CICCarInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D810291830ECD400264735 /* CICCarInfoEntity.m */; };
-		03D8102D1830F5BC00264735 /* CICCarInfoHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D8102C1830F5BC00264735 /* CICCarInfoHTTPLogic.m */; };
-		03D810301830F5CE00264735 /* CICCarInfoDBLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D8102F1830F5CE00264735 /* CICCarInfoDBLogic.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +49,39 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0339EF511831FD500082A35E /* CICCarFirstReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarFirstReportViewController.h; sourceTree = "<group>"; };
+		0339EF521831FD500082A35E /* CICCarFirstReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarFirstReportViewController.m; sourceTree = "<group>"; };
+		0339EF531831FD500082A35E /* CICMyCaptureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICMyCaptureListViewController.h; sourceTree = "<group>"; };
+		0339EF541831FD500082A35E /* CICMyCaptureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICMyCaptureListViewController.m; sourceTree = "<group>"; };
+		0339EF561831FD500082A35E /* CICCarInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoEntity.h; sourceTree = "<group>"; };
+		0339EF571831FD500082A35E /* CICCarInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoEntity.m; sourceTree = "<group>"; };
+		0339EF5A1831FD500082A35E /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		0339EF5B1831FD500082A35E /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		0339EF5C1831FD500082A35E /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		0339EF5D1831FD500082A35E /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		0339EF5E1831FD500082A35E /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		0339EF5F1831FD500082A35E /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		0339EF601831FD500082A35E /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		0339EF611831FD500082A35E /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		0339EF621831FD500082A35E /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		0339EF631831FD500082A35E /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		0339EF641831FD500082A35E /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		0339EF651831FD500082A35E /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		0339EF661831FD500082A35E /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		0339EF671831FD500082A35E /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		0339EF681831FD500082A35E /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		0339EF691831FD500082A35E /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		0339EF6A1831FD500082A35E /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		0339EF6B1831FD500082A35E /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		0339EF6C1831FD500082A35E /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		0339EF6E1831FD500082A35E /* CICCarInfoDBLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoDBLogic.h; sourceTree = "<group>"; };
+		0339EF6F1831FD500082A35E /* CICCarInfoDBLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoDBLogic.m; sourceTree = "<group>"; };
+		0339EF701831FD500082A35E /* CICCarInfoHTTPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoHTTPLogic.h; sourceTree = "<group>"; };
+		0339EF711831FD500082A35E /* CICCarInfoHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoHTTPLogic.m; sourceTree = "<group>"; };
+		0339EF731831FD500082A35E /* CICCarInfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoService.h; sourceTree = "<group>"; };
+		0339EF741831FD500082A35E /* CICCarInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoService.m; sourceTree = "<group>"; };
+		0339EF761831FD500082A35E /* CICCarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoCell.h; sourceTree = "<group>"; };
+		0339EF771831FD500082A35E /* CICCarInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoCell.m; sourceTree = "<group>"; };
 		034E6950182C83D400BD5612 /* CarInfoCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarInfoCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		034E6953182C83D400BD5612 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		034E6955182C83D400BD5612 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,20 +99,6 @@
 		034E6976182C83D400BD5612 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarInfoCaptureTests.m; sourceTree = "<group>"; };
 		034E6982182C842700BD5612 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		03646F7D1830B216005A81D9 /* CICCarFirstReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarFirstReportViewController.h; sourceTree = "<group>"; };
-		03646F7E1830B216005A81D9 /* CICCarFirstReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarFirstReportViewController.m; sourceTree = "<group>"; };
-		03646F801830CE28005A81D9 /* CICMyCaptureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICMyCaptureListViewController.h; sourceTree = "<group>"; };
-		03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICMyCaptureListViewController.m; sourceTree = "<group>"; };
-		03646F831830D66D005A81D9 /* CICCarInfoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoService.h; sourceTree = "<group>"; };
-		03646F841830D66D005A81D9 /* CICCarInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoService.m; sourceTree = "<group>"; };
-		03646F861830DB8A005A81D9 /* CICCarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoCell.h; sourceTree = "<group>"; };
-		03646F871830DB8A005A81D9 /* CICCarInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoCell.m; sourceTree = "<group>"; };
-		03D810281830ECD400264735 /* CICCarInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoEntity.h; sourceTree = "<group>"; };
-		03D810291830ECD400264735 /* CICCarInfoEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoEntity.m; sourceTree = "<group>"; };
-		03D8102B1830F5BC00264735 /* CICCarInfoHTTPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoHTTPLogic.h; sourceTree = "<group>"; };
-		03D8102C1830F5BC00264735 /* CICCarInfoHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoHTTPLogic.m; sourceTree = "<group>"; };
-		03D8102E1830F5CE00264735 /* CICCarInfoDBLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoDBLogic.h; sourceTree = "<group>"; };
-		03D8102F1830F5CE00264735 /* CICCarInfoDBLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoDBLogic.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +125,89 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0339EF501831FD500082A35E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0339EF511831FD500082A35E /* CICCarFirstReportViewController.h */,
+				0339EF521831FD500082A35E /* CICCarFirstReportViewController.m */,
+				0339EF531831FD500082A35E /* CICMyCaptureListViewController.h */,
+				0339EF541831FD500082A35E /* CICMyCaptureListViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0339EF551831FD500082A35E /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				0339EF561831FD500082A35E /* CICCarInfoEntity.h */,
+				0339EF571831FD500082A35E /* CICCarInfoEntity.m */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		0339EF581831FD500082A35E /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				0339EF591831FD500082A35E /* AFNetworking */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		0339EF591831FD500082A35E /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				0339EF5A1831FD500082A35E /* AFHTTPRequestOperation.h */,
+				0339EF5B1831FD500082A35E /* AFHTTPRequestOperation.m */,
+				0339EF5C1831FD500082A35E /* AFHTTPRequestOperationManager.h */,
+				0339EF5D1831FD500082A35E /* AFHTTPRequestOperationManager.m */,
+				0339EF5E1831FD500082A35E /* AFHTTPSessionManager.h */,
+				0339EF5F1831FD500082A35E /* AFHTTPSessionManager.m */,
+				0339EF601831FD500082A35E /* AFNetworking.h */,
+				0339EF611831FD500082A35E /* AFNetworkReachabilityManager.h */,
+				0339EF621831FD500082A35E /* AFNetworkReachabilityManager.m */,
+				0339EF631831FD500082A35E /* AFSecurityPolicy.h */,
+				0339EF641831FD500082A35E /* AFSecurityPolicy.m */,
+				0339EF651831FD500082A35E /* AFURLConnectionOperation.h */,
+				0339EF661831FD500082A35E /* AFURLConnectionOperation.m */,
+				0339EF671831FD500082A35E /* AFURLRequestSerialization.h */,
+				0339EF681831FD500082A35E /* AFURLRequestSerialization.m */,
+				0339EF691831FD500082A35E /* AFURLResponseSerialization.h */,
+				0339EF6A1831FD500082A35E /* AFURLResponseSerialization.m */,
+				0339EF6B1831FD500082A35E /* AFURLSessionManager.h */,
+				0339EF6C1831FD500082A35E /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		0339EF6D1831FD500082A35E /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				0339EF6E1831FD500082A35E /* CICCarInfoDBLogic.h */,
+				0339EF6F1831FD500082A35E /* CICCarInfoDBLogic.m */,
+				0339EF701831FD500082A35E /* CICCarInfoHTTPLogic.h */,
+				0339EF711831FD500082A35E /* CICCarInfoHTTPLogic.m */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		0339EF721831FD500082A35E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0339EF731831FD500082A35E /* CICCarInfoService.h */,
+				0339EF741831FD500082A35E /* CICCarInfoService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		0339EF751831FD500082A35E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0339EF761831FD500082A35E /* CICCarInfoCell.h */,
+				0339EF771831FD500082A35E /* CICCarInfoCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		034E6947182C83D400BD5612 = {
 			isa = PBXGroup;
 			children = (
@@ -130,25 +241,17 @@
 		034E6959182C83D400BD5612 /* CarInfoCapture */ = {
 			isa = PBXGroup;
 			children = (
+				0339EF501831FD500082A35E /* Controller */,
+				0339EF551831FD500082A35E /* Entity */,
+				0339EF581831FD500082A35E /* Lib */,
+				0339EF6D1831FD500082A35E /* Logic */,
+				0339EF721831FD500082A35E /* Service */,
+				0339EF751831FD500082A35E /* View */,
 				034E6962182C83D400BD5612 /* CICAppDelegate.h */,
 				034E6963182C83D400BD5612 /* CICAppDelegate.m */,
 				034E6965182C83D400BD5612 /* Images.xcassets */,
 				034E695A182C83D400BD5612 /* Supporting Files */,
 				034E6982182C842700BD5612 /* Main.storyboard */,
-				03646F7D1830B216005A81D9 /* CICCarFirstReportViewController.h */,
-				03646F7E1830B216005A81D9 /* CICCarFirstReportViewController.m */,
-				03646F801830CE28005A81D9 /* CICMyCaptureListViewController.h */,
-				03646F811830CE28005A81D9 /* CICMyCaptureListViewController.m */,
-				03646F831830D66D005A81D9 /* CICCarInfoService.h */,
-				03646F841830D66D005A81D9 /* CICCarInfoService.m */,
-				03646F861830DB8A005A81D9 /* CICCarInfoCell.h */,
-				03646F871830DB8A005A81D9 /* CICCarInfoCell.m */,
-				03D810281830ECD400264735 /* CICCarInfoEntity.h */,
-				03D810291830ECD400264735 /* CICCarInfoEntity.m */,
-				03D8102B1830F5BC00264735 /* CICCarInfoHTTPLogic.h */,
-				03D8102C1830F5BC00264735 /* CICCarInfoHTTPLogic.m */,
-				03D8102E1830F5CE00264735 /* CICCarInfoDBLogic.h */,
-				03D8102F1830F5CE00264735 /* CICCarInfoDBLogic.m */,
 			);
 			path = CarInfoCapture;
 			sourceTree = "<group>";
@@ -282,15 +385,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D810301830F5CE00264735 /* CICCarInfoDBLogic.m in Sources */,
+				0339EF801831FD500082A35E /* AFURLConnectionOperation.m in Sources */,
+				0339EF7B1831FD500082A35E /* AFHTTPRequestOperation.m in Sources */,
+				0339EF7E1831FD500082A35E /* AFNetworkReachabilityManager.m in Sources */,
+				0339EF831831FD500082A35E /* AFURLSessionManager.m in Sources */,
+				0339EF871831FD500082A35E /* CICCarInfoCell.m in Sources */,
+				0339EF811831FD500082A35E /* AFURLRequestSerialization.m in Sources */,
+				0339EF7A1831FD500082A35E /* CICCarInfoEntity.m in Sources */,
+				0339EF841831FD500082A35E /* CICCarInfoDBLogic.m in Sources */,
+				0339EF821831FD500082A35E /* AFURLResponseSerialization.m in Sources */,
 				034E6964182C83D400BD5612 /* CICAppDelegate.m in Sources */,
 				034E6960182C83D400BD5612 /* main.m in Sources */,
-				03646F851830D66D005A81D9 /* CICCarInfoService.m in Sources */,
-				03646F821830CE28005A81D9 /* CICMyCaptureListViewController.m in Sources */,
-				03646F881830DB8A005A81D9 /* CICCarInfoCell.m in Sources */,
-				03D8102A1830ECD400264735 /* CICCarInfoEntity.m in Sources */,
-				03646F7F1830B216005A81D9 /* CICCarFirstReportViewController.m in Sources */,
-				03D8102D1830F5BC00264735 /* CICCarInfoHTTPLogic.m in Sources */,
+				0339EF7C1831FD500082A35E /* AFHTTPRequestOperationManager.m in Sources */,
+				0339EF7F1831FD500082A35E /* AFSecurityPolicy.m in Sources */,
+				0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */,
+				0339EF781831FD500082A35E /* CICCarFirstReportViewController.m in Sources */,
+				0339EF861831FD500082A35E /* CICCarInfoService.m in Sources */,
+				0339EF7D1831FD500082A35E /* AFHTTPSessionManager.m in Sources */,
+				0339EF851831FD500082A35E /* CICCarInfoHTTPLogic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
