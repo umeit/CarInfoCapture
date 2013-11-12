@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CICCarFirstReportViewController : UITableViewController
+@interface CICCarBaseCheckReportViewController : UITableViewController
 
 @end

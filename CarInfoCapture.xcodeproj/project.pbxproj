@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0339EF781831FD500082A35E /* CICCarFirstReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF521831FD500082A35E /* CICCarFirstReportViewController.m */; };
+		0339EF781831FD500082A35E /* CICCarBaseCheckReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF521831FD500082A35E /* CICCarBaseCheckReportViewController.m */; };
 		0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF541831FD500082A35E /* CICMyCaptureListViewController.m */; };
 		0339EF7A1831FD500082A35E /* CICCarInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF571831FD500082A35E /* CICCarInfoEntity.m */; };
 		0339EF7B1831FD500082A35E /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF5B1831FD500082A35E /* AFHTTPRequestOperation.m */; };
@@ -37,6 +37,7 @@
 		034E6979182C83D400BD5612 /* CarInfoCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */; };
 		034E6983182C842700BD5612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034E6982182C842700BD5612 /* Main.storyboard */; };
 		03680CD918322137006A201A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BC019418321DE3000BDAF3 /* libsqlite3.dylib */; };
+		03680CDC18322E9E006A201A /* CICCarBaseCheckDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */; };
 		03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC017E1832134A000BDAF3 /* CICGlobalService.m */; };
 		03BC018C18321714000BDAF3 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018218321714000BDAF3 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		03BC018D18321714000BDAF3 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018418321714000BDAF3 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -56,8 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0339EF511831FD500082A35E /* CICCarFirstReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarFirstReportViewController.h; sourceTree = "<group>"; };
-		0339EF521831FD500082A35E /* CICCarFirstReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarFirstReportViewController.m; sourceTree = "<group>"; };
+		0339EF511831FD500082A35E /* CICCarBaseCheckReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBaseCheckReportViewController.h; sourceTree = "<group>"; };
+		0339EF521831FD500082A35E /* CICCarBaseCheckReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseCheckReportViewController.m; sourceTree = "<group>"; };
 		0339EF531831FD500082A35E /* CICMyCaptureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICMyCaptureListViewController.h; sourceTree = "<group>"; };
 		0339EF541831FD500082A35E /* CICMyCaptureListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICMyCaptureListViewController.m; sourceTree = "<group>"; };
 		0339EF561831FD500082A35E /* CICCarInfoEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoEntity.h; sourceTree = "<group>"; };
@@ -106,6 +107,8 @@
 		034E6976182C83D400BD5612 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarInfoCaptureTests.m; sourceTree = "<group>"; };
 		034E6982182C842700BD5612 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		03680CDA18322E9E006A201A /* CICCarBaseCheckDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBaseCheckDetailViewController.h; sourceTree = "<group>"; };
+		03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseCheckDetailViewController.m; sourceTree = "<group>"; };
 		03BC017D1832134A000BDAF3 /* CICGlobalService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICGlobalService.h; sourceTree = "<group>"; };
 		03BC017E1832134A000BDAF3 /* CICGlobalService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICGlobalService.m; sourceTree = "<group>"; };
 		03BC018118321714000BDAF3 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -149,10 +152,12 @@
 		0339EF501831FD500082A35E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0339EF511831FD500082A35E /* CICCarFirstReportViewController.h */,
-				0339EF521831FD500082A35E /* CICCarFirstReportViewController.m */,
+				0339EF511831FD500082A35E /* CICCarBaseCheckReportViewController.h */,
+				0339EF521831FD500082A35E /* CICCarBaseCheckReportViewController.m */,
 				0339EF531831FD500082A35E /* CICMyCaptureListViewController.h */,
 				0339EF541831FD500082A35E /* CICMyCaptureListViewController.m */,
+				03680CDA18322E9E006A201A /* CICCarBaseCheckDetailViewController.h */,
+				03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0339EF801831FD500082A35E /* AFURLConnectionOperation.m in Sources */,
+				03680CDC18322E9E006A201A /* CICCarBaseCheckDetailViewController.m in Sources */,
 				0339EF7B1831FD500082A35E /* AFHTTPRequestOperation.m in Sources */,
 				0339EF7E1831FD500082A35E /* AFNetworkReachabilityManager.m in Sources */,
 				03BC018C18321714000BDAF3 /* FMDatabase.m in Sources */,
@@ -447,7 +453,7 @@
 				0339EF7F1831FD500082A35E /* AFSecurityPolicy.m in Sources */,
 				03BC019118321714000BDAF3 /* FMResultSet.m in Sources */,
 				0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */,
-				0339EF781831FD500082A35E /* CICCarFirstReportViewController.m in Sources */,
+				0339EF781831FD500082A35E /* CICCarBaseCheckReportViewController.m in Sources */,
 				0339EF861831FD500082A35E /* CICCarInfoService.m in Sources */,
 				0339EF7D1831FD500082A35E /* AFHTTPSessionManager.m in Sources */,
 				0339EF851831FD500082A35E /* CICCarInfoHTTPLogic.m in Sources */,

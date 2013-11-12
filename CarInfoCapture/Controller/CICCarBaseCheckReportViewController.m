@@ -6,13 +6,13 @@
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
-#import "CICCarFirstReportViewController.h"
+#import "CICCarBaseCheckReportViewController.h"
 
-@interface CICCarFirstReportViewController ()
+@interface CICCarBaseCheckReportViewController ()
 
 @end
 
-@implementation CICCarFirstReportViewController
+@implementation CICCarBaseCheckReportViewController
 
 - (void)viewDidLoad
 {
