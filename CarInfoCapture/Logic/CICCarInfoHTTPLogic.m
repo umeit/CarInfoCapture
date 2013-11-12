@@ -7,7 +7,22 @@
 //
 
 #import "CICCarInfoHTTPLogic.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @implementation CICCarInfoHTTPLogic
+
++ (void)carInfoHistoryListWithBlock:(CarInfoHistoryListBlock)block
+{
+    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
+    
+    [httpManager GET:@"path"
+          parameters:nil
+             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 
+             }
+             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 block(nil, error);
+             }];
+}
 
 @end

@@ -10,4 +10,9 @@
 
 @implementation CICCarInfoDBLogic
 
++ (void)carInfoListWithBlock:(CarInfoListBlock)block
+{
+    
+}
+
 @end

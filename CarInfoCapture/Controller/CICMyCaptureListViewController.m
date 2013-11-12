@@ -42,7 +42,11 @@
 {
     [super viewDidLoad];
     
-    self.carInfoList = [self.carInfoService carInfoList];
+    [self.carInfoService carInfoListWithBlock:^(NSArray *list, NSError *error) {
+        if (!error && list && [list count] > 0) {
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 #pragma mark - Table view data source

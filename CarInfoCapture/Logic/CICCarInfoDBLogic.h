@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^CarInfoListBlock)(NSArray *list, NSError *error);
+
 @interface CICCarInfoDBLogic : NSObject
+
++ (void)carInfoListWithBlock:(CarInfoListBlock)block;
 
 @end

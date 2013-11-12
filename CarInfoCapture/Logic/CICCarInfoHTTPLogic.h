@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^CarInfoHistoryListBlock)(NSArray *list, NSError *error);
+
 @interface CICCarInfoHTTPLogic : NSObject
+
++ (void)carInfoHistoryListWithBlock:(CarInfoHistoryListBlock)block;
 
 @end

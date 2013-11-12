@@ -7,34 +7,43 @@
 //
 
 #import "CICCarInfoService.h"
-
+#import "CICCarInfoHTTPLogic.h"
+#import "CICCarInfoDBLogic.h"
+#import "CICGlobalService.h"
 
 @implementation CICCarInfoService
 
-- (NSArray *)carInfoList
+- (void)carInfoListWithBlock:(CarInfoListBlock)block
 {
-    // 对于第一次打开 app 的情况，先从服务器拉去用户的采集记录
-    if ([self isFirstOpenThisApp]) {
-        [self markUsed];
+    // 对于第一次打开 app 的情况
+    // 只从服务器拉去用户的采集记录
+    if ([CICGlobalService isFirstOpenThisApp]) {
+        [CICGlobalService markUsed];
         
+        NSLog(@"First open the app, Load Car-Info by networking.");
         
+        [CICCarInfoHTTPLogic carInfoHistoryListWithBlock:^(NSArray *list, NSError *error) {
+            if (!error) {
+                
+            }
+            else {
+                block(list, nil);
+            }
+        }];
     }
     else {
+        NSLog(@"Not first open the app, Load Car-Info by networking.");
         
+        [CICCarInfoDBLogic carInfoListWithBlock:^(NSArray *list, NSError *error) {
+            if (!error) {
+                
+            }
+            else {
+                block(list, nil);
+            }
+        }];
     }
-    
-    return nil;
 }
 
-- (BOOL)isFirstOpenThisApp
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return ![userDefaults boolForKey:@"used"];
-}
 
-- (void)markUsed
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:YES forKey:@"used"];
-}
 @end

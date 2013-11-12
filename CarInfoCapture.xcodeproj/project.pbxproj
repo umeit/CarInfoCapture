@@ -36,6 +36,13 @@
 		034E6977182C83D400BD5612 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 034E6975182C83D400BD5612 /* InfoPlist.strings */; };
 		034E6979182C83D400BD5612 /* CarInfoCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */; };
 		034E6983182C842700BD5612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034E6982182C842700BD5612 /* Main.storyboard */; };
+		03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC017E1832134A000BDAF3 /* CICGlobalService.m */; };
+		03BC018C18321714000BDAF3 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018218321714000BDAF3 /* FMDatabase.m */; };
+		03BC018D18321714000BDAF3 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018418321714000BDAF3 /* FMDatabaseAdditions.m */; };
+		03BC018E18321714000BDAF3 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018618321714000BDAF3 /* FMDatabasePool.m */; };
+		03BC018F18321714000BDAF3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018818321714000BDAF3 /* FMDatabaseQueue.m */; };
+		03BC019018321714000BDAF3 /* fmdb.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018918321714000BDAF3 /* fmdb.m */; };
+		03BC019118321714000BDAF3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018B18321714000BDAF3 /* FMResultSet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +106,19 @@
 		034E6976182C83D400BD5612 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarInfoCaptureTests.m; sourceTree = "<group>"; };
 		034E6982182C842700BD5612 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		03BC017D1832134A000BDAF3 /* CICGlobalService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICGlobalService.h; sourceTree = "<group>"; };
+		03BC017E1832134A000BDAF3 /* CICGlobalService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICGlobalService.m; sourceTree = "<group>"; };
+		03BC018118321714000BDAF3 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		03BC018218321714000BDAF3 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		03BC018318321714000BDAF3 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		03BC018418321714000BDAF3 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		03BC018518321714000BDAF3 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		03BC018618321714000BDAF3 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		03BC018718321714000BDAF3 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		03BC018818321714000BDAF3 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		03BC018918321714000BDAF3 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
+		03BC018A18321714000BDAF3 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		03BC018B18321714000BDAF3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +168,7 @@
 		0339EF581831FD500082A35E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				03BC018018321714000BDAF3 /* FMDB */,
 				0339EF591831FD500082A35E /* AFNetworking */,
 			);
 			path = Lib;
@@ -195,6 +216,8 @@
 			children = (
 				0339EF731831FD500082A35E /* CICCarInfoService.h */,
 				0339EF741831FD500082A35E /* CICCarInfoService.m */,
+				03BC017D1832134A000BDAF3 /* CICGlobalService.h */,
+				03BC017E1832134A000BDAF3 /* CICGlobalService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -283,6 +306,24 @@
 				034E6975182C83D400BD5612 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		03BC018018321714000BDAF3 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				03BC018118321714000BDAF3 /* FMDatabase.h */,
+				03BC018218321714000BDAF3 /* FMDatabase.m */,
+				03BC018318321714000BDAF3 /* FMDatabaseAdditions.h */,
+				03BC018418321714000BDAF3 /* FMDatabaseAdditions.m */,
+				03BC018518321714000BDAF3 /* FMDatabasePool.h */,
+				03BC018618321714000BDAF3 /* FMDatabasePool.m */,
+				03BC018718321714000BDAF3 /* FMDatabaseQueue.h */,
+				03BC018818321714000BDAF3 /* FMDatabaseQueue.m */,
+				03BC018918321714000BDAF3 /* fmdb.m */,
+				03BC018A18321714000BDAF3 /* FMResultSet.h */,
+				03BC018B18321714000BDAF3 /* FMResultSet.m */,
+			);
+			path = FMDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,16 +429,23 @@
 				0339EF801831FD500082A35E /* AFURLConnectionOperation.m in Sources */,
 				0339EF7B1831FD500082A35E /* AFHTTPRequestOperation.m in Sources */,
 				0339EF7E1831FD500082A35E /* AFNetworkReachabilityManager.m in Sources */,
+				03BC018C18321714000BDAF3 /* FMDatabase.m in Sources */,
 				0339EF831831FD500082A35E /* AFURLSessionManager.m in Sources */,
+				03BC018E18321714000BDAF3 /* FMDatabasePool.m in Sources */,
+				03BC018D18321714000BDAF3 /* FMDatabaseAdditions.m in Sources */,
 				0339EF871831FD500082A35E /* CICCarInfoCell.m in Sources */,
 				0339EF811831FD500082A35E /* AFURLRequestSerialization.m in Sources */,
 				0339EF7A1831FD500082A35E /* CICCarInfoEntity.m in Sources */,
+				03BC019018321714000BDAF3 /* fmdb.m in Sources */,
+				03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */,
 				0339EF841831FD500082A35E /* CICCarInfoDBLogic.m in Sources */,
+				03BC018F18321714000BDAF3 /* FMDatabaseQueue.m in Sources */,
 				0339EF821831FD500082A35E /* AFURLResponseSerialization.m in Sources */,
 				034E6964182C83D400BD5612 /* CICAppDelegate.m in Sources */,
 				034E6960182C83D400BD5612 /* main.m in Sources */,
 				0339EF7C1831FD500082A35E /* AFHTTPRequestOperationManager.m in Sources */,
 				0339EF7F1831FD500082A35E /* AFSecurityPolicy.m in Sources */,
+				03BC019118321714000BDAF3 /* FMResultSet.m in Sources */,
 				0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */,
 				0339EF781831FD500082A35E /* CICCarFirstReportViewController.m in Sources */,
 				0339EF861831FD500082A35E /* CICCarInfoService.m in Sources */,

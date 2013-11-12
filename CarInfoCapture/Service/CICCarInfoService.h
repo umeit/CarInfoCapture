@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^CarInfoListBlock)(NSArray *list, NSError *error);
+
 @interface CICCarInfoService : NSObject
 
-- (NSArray *)carInfoList;
+- (void)carInfoListWithBlock:(CarInfoListBlock)block;
 
 @end
