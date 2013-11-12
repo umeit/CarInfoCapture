@@ -7,8 +7,14 @@
 //
 
 #import "CICCarInfoDBLogic.h"
+#import "FMDatabase.h"
 
 @implementation CICCarInfoDBLogic
+
++ (void)initCarInfoDB
+{
+    
+}
 
 + (void)carInfoListWithBlock:(CarInfoListBlock)block
 {

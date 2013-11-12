@@ -7,12 +7,19 @@
 //
 
 #import "CICAppDelegate.h"
+#import "CICGlobalService.h"
+#import "CICCarInfoDBLogic.h"
 
 @implementation CICAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    if ([CICGlobalService isFirstOpenThisApp]) {
+        NSLog(@"First open the app, init Car-Info DB.");
+        
+        [CICCarInfoDBLogic initCarInfoDB];
+    }
+    
     return YES;
 }
 

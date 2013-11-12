@@ -36,13 +36,13 @@
 		034E6977182C83D400BD5612 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 034E6975182C83D400BD5612 /* InfoPlist.strings */; };
 		034E6979182C83D400BD5612 /* CarInfoCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */; };
 		034E6983182C842700BD5612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034E6982182C842700BD5612 /* Main.storyboard */; };
+		03680CD918322137006A201A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BC019418321DE3000BDAF3 /* libsqlite3.dylib */; };
 		03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC017E1832134A000BDAF3 /* CICGlobalService.m */; };
-		03BC018C18321714000BDAF3 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018218321714000BDAF3 /* FMDatabase.m */; };
-		03BC018D18321714000BDAF3 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018418321714000BDAF3 /* FMDatabaseAdditions.m */; };
-		03BC018E18321714000BDAF3 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018618321714000BDAF3 /* FMDatabasePool.m */; };
-		03BC018F18321714000BDAF3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018818321714000BDAF3 /* FMDatabaseQueue.m */; };
-		03BC019018321714000BDAF3 /* fmdb.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018918321714000BDAF3 /* fmdb.m */; };
-		03BC019118321714000BDAF3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018B18321714000BDAF3 /* FMResultSet.m */; };
+		03BC018C18321714000BDAF3 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018218321714000BDAF3 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		03BC018D18321714000BDAF3 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018418321714000BDAF3 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		03BC018E18321714000BDAF3 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018618321714000BDAF3 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		03BC018F18321714000BDAF3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018818321714000BDAF3 /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		03BC019118321714000BDAF3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018B18321714000BDAF3 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,9 +116,9 @@
 		03BC018618321714000BDAF3 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
 		03BC018718321714000BDAF3 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
 		03BC018818321714000BDAF3 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
-		03BC018918321714000BDAF3 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
 		03BC018A18321714000BDAF3 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		03BC018B18321714000BDAF3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		03BC019418321DE3000BDAF3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03680CD918322137006A201A /* libsqlite3.dylib in Frameworks */,
 				034E6956182C83D400BD5612 /* CoreGraphics.framework in Frameworks */,
 				034E6958182C83D400BD5612 /* UIKit.framework in Frameworks */,
 				034E6954182C83D400BD5612 /* Foundation.framework in Frameworks */,
@@ -253,6 +254,7 @@
 		034E6952182C83D400BD5612 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03BC019418321DE3000BDAF3 /* libsqlite3.dylib */,
 				034E6953182C83D400BD5612 /* Foundation.framework */,
 				034E6955182C83D400BD5612 /* CoreGraphics.framework */,
 				034E6957182C83D400BD5612 /* UIKit.framework */,
@@ -319,7 +321,6 @@
 				03BC018618321714000BDAF3 /* FMDatabasePool.m */,
 				03BC018718321714000BDAF3 /* FMDatabaseQueue.h */,
 				03BC018818321714000BDAF3 /* FMDatabaseQueue.m */,
-				03BC018918321714000BDAF3 /* fmdb.m */,
 				03BC018A18321714000BDAF3 /* FMResultSet.h */,
 				03BC018B18321714000BDAF3 /* FMResultSet.m */,
 			);
@@ -436,7 +437,6 @@
 				0339EF871831FD500082A35E /* CICCarInfoCell.m in Sources */,
 				0339EF811831FD500082A35E /* AFURLRequestSerialization.m in Sources */,
 				0339EF7A1831FD500082A35E /* CICCarInfoEntity.m in Sources */,
-				03BC019018321714000BDAF3 /* fmdb.m in Sources */,
 				03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */,
 				0339EF841831FD500082A35E /* CICCarInfoDBLogic.m in Sources */,
 				03BC018F18321714000BDAF3 /* FMDatabaseQueue.m in Sources */,

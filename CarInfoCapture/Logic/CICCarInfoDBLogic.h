@@ -12,6 +12,8 @@ typedef void(^CarInfoListBlock)(NSArray *list, NSError *error);
 
 @interface CICCarInfoDBLogic : NSObject
 
++ (void)initCarInfoDB;
+
 + (void)carInfoListWithBlock:(CarInfoListBlock)block;
 
 @end
