@@ -47,6 +47,7 @@
             self.itemList = [self checkItemWithType:@"Facade"];
             self.title = @"外观";
             break;
+            
         default:
             break;
     }

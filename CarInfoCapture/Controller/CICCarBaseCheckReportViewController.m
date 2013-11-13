@@ -17,6 +17,8 @@
 
 @implementation CICCarBaseCheckReportViewController
 
+#pragma mark - Navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     self.selectedCell = sender;

@@ -7,114 +7,58 @@
 //
 
 #import "CICMainCaptureViewController.h"
+#import "CICCarInfoEntity.h"
 
 @interface CICMainCaptureViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *firstCheckCompleteImage;
+@property (weak, nonatomic) IBOutlet UIImageView *secondCheckCompleteImage;
+@property (weak, nonatomic) IBOutlet UIImageView *thirdCheckCompleteImage;
+@property (weak, nonatomic) IBOutlet UIImageView *fourthCheckCompleteImage;
 
+@property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
 @end
 
 @implementation CICMainCaptureViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    // 检查是否有上次未保存的采集信息
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.carInfoEntity = [userDefaults objectForKey:@"UnsaveCarInfoEntity"];
     
-    // Configure the cell...
-    
-    return cell;
+    if (self.carInfoEntity) {
+        
+    }
+    else {
+        self.carInfoEntity = [[CICCarInfoEntity alloc] init];
+    }
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    // 第一导航到其他的视图，表示用户开始采集信息
+    // 将 self.carInfoEntity 保存到 userDefaults 暂存起来
+    // 用于用户在没有「保存」的情况下退出应用后，下次打开时还能看到上次编辑的信息
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if (![userDefaults objectForKey:@"UnsaveCarInfoEntity"]) {
+#warning 需要对 carInfoEntity 类做序列化处理
+        [userDefaults setObject:self.carInfoEntity forKey:@"UnsaveCarInfoEntity"];
+    }
+    
+    
 }
 
- */
+#pragma mark - Action
 
+- (IBAction)saveButtonPress:(id)sender
+{
+}
+
+- (IBAction)clearButtonPress:(id)sender
+{
+}
 @end
