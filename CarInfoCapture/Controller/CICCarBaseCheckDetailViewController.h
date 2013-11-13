@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum CheckType : NSInteger {
+    Underpan,
+    Engine,
+    Paint,
+    Inside,
+    Facade
+} CheckType;
+
+typedef void(^SelectCheckItemFinishBlock)(NSArray *itemNameList, NSMutableArray *markedItemIndexPath);
+
 @interface CICCarBaseCheckDetailViewController : UITableViewController
+
+@property (nonatomic) CheckType checkType;
+
+@property (strong, nonatomic) SelectCheckItemFinishBlock selectCheckItemFinishBlock;
 
 @end

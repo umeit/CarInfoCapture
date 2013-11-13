@@ -10,111 +10,165 @@
 
 @interface CICCarBaseCheckDetailViewController ()
 
+@property (strong, nonatomic) NSMutableArray *itemList;
+
+@property (strong, nonatomic) NSMutableArray *markedItemIndexPath;
+
 @end
 
 @implementation CICCarBaseCheckDetailViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    switch (self.checkType) {
+        case Underpan:
+            self.itemList = [self checkItemWithType:@"Underpan"];
+            self.title = @"底盘";
+            break;
+            
+        case Engine:
+            self.itemList = [self checkItemWithType:@"Engine"];
+            self.title = @"发动机";
+            break;
+            
+        case Paint:
+            self.itemList = [self checkItemWithType:@"Paint"];
+            self.title = @"漆面";
+            break;
+        
+        case Inside:
+            self.itemList = [self checkItemWithType:@"Inside"];
+            self.title = @"内饰";
+            break;
+        
+        case Facade:
+            self.itemList = [self checkItemWithType:@"Facade"];
+            self.title = @"外观";
+            break;
+        default:
+            break;
+    }
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSMutableArray *itemNameList = [[NSMutableArray alloc] init];
+    
+    for (NSIndexPath *indexPath in self.markedItemIndexPath) {
+        [itemNameList addObject:self.itemList[indexPath.row]];
+    }
+    
+    self.selectCheckItemFinishBlock(itemNameList, self.markedItemIndexPath);
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.itemList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"CheckItemCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                            forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.textLabel.text = self.itemList[indexPath.row];
+    if ([self isMarkedItemIndexPath:indexPath]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - TableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        [self removeMarkedItemIndexPath:indexPath];
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [self addMarkedItemIndexPath:indexPath];
+    }
+//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+#pragma mark - Private
+
+- (NSMutableArray *)checkItemWithType:(NSString *)typeStr
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+#warning typeStr + userID
+    NSMutableArray *itemList = (NSMutableArray *)[userDefaults arrayForKey:typeStr];
+    if (!itemList) {
+        switch (self.checkType) {
+            case Underpan:
+                itemList = [NSMutableArray arrayWithArray:@[@"事故导致底盘变形", @"悬挂系统异常",
+                                                            @"传动轴异常", @"漏油"]];
+                break;
+                
+            case Engine:
+                itemList = [NSMutableArray arrayWithArray:@[@"有进水记录", @"有大修记录",
+                                                            @"发动机更换过", @"有异响", @"加速无力"]];
+                break;
+                
+            case Paint:
+                itemList = [NSMutableArray arrayWithArray:@[@"有划痕", @"有钣金修复记录",
+                                                            @"有更换外观件记录", @"有局部喷漆记录", @"有全车喷漆记录"]];
+                break;
+                
+            case Inside:
+                itemList = [NSMutableArray arrayWithArray:@[@"有瑕疵", @"有更换过内饰件记录"]];
+                break;
+                
+            case Facade:
+                itemList = [NSMutableArray arrayWithArray:@[@"较新", @"较旧", @"全新"]];
+                break;
+                
+            default:
+                break;
+        }
+        [userDefaults setObject:itemList forKey:typeStr];
+    }
+    return itemList;
+}
+
+- (void)addMarkedItemIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.markedItemIndexPath) {
+        self.markedItemIndexPath = [[NSMutableArray alloc] init];
+    }
+    [self.markedItemIndexPath addObject:indexPath];
+}
+
+- (void)removeMarkedItemIndexPath:(NSIndexPath *)indexPath
+{
+    [self.markedItemIndexPath removeObject:indexPath];
+}
+
+- (BOOL)isMarkedItemIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.markedItemIndexPath
+        || [self.markedItemIndexPath indexOfObject:indexPath] == NSNotFound) {
+        
+        return NO;
+    }
     return YES;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
-
 @end

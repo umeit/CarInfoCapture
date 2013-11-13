@@ -95,7 +95,7 @@
     }
     
     [carInfoCell setCarName:carInfoEntity.carName
-                    mileage:[NSString stringWithFormat:@"%d", carInfoEntity.mileage]
+                    mileage:[NSString stringWithFormat:@"%lu", (unsigned long)carInfoEntity.mileage]
                firstRegTime:carInfoEntity.firstRegTime
                   salePrice:[NSString stringWithFormat:@"%f", carInfoEntity.salePrice]
                    carImage:carInfoEntity.carImage
