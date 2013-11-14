@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class CICCarInfoEntity;
+
+@protocol CICCarBaseCheckReportDeledate <NSObject>
+
+- (void)carInfoDidChange:(CICCarInfoEntity *)carInfoEntity;
+
+@end
+
 @interface CICCarBaseCheckReportViewController : UITableViewController
+
+@property (weak, nonatomic) id<CICCarBaseCheckReportDeledate> delegate;
+
+@property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
 
 @end

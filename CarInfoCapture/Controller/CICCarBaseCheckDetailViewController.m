@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) NSMutableArray *itemList;
 
-@property (strong, nonatomic) NSMutableArray *markedItemIndexPath;
+//@property (strong, nonatomic) NSMutableArray *markedItemIndexPath;
 
 @end
 
@@ -55,13 +55,16 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSMutableArray *itemNameList = [[NSMutableArray alloc] init];
+    // 当视图弹出时，找出所有被选中的项（的名称），传递给上一级视图
+//    NSMutableArray *itemNameList = [[NSMutableArray alloc] init];
     
-    for (NSIndexPath *indexPath in self.markedItemIndexPath) {
-        [itemNameList addObject:self.itemList[indexPath.row]];
-    }
+//    for (NSIndexPath *indexPath in self.markedItemIndexPath) {
+//        [itemNameList addObject:self.itemList[indexPath.row]];
+//    }
+//    
+//    self.selectCheckItemFinishBlock(itemNameList, self.markedItemIndexPath);
     
-    self.selectCheckItemFinishBlock(itemNameList, self.markedItemIndexPath);
+    self.selectCheckItemFinishBlock(self.selectedItems);
 }
 
 #pragma mark - Table view data source
@@ -81,15 +84,22 @@
     static NSString *CellIdentifier = @"CheckItemCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                             forIndexPath:indexPath];
-    
+    // 填入检查项的名称，如：发动机加速无力
     cell.textLabel.text = self.itemList[indexPath.row];
-    if ([self isMarkedItemIndexPath:indexPath]) {
+    
+    // 标识已经被选则过的项
+//    if ([self isMarkedItemIndexPath:indexPath]) {
+//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    }
+//    else {
+//        cell.accessoryType = UITableViewCellAccessoryNone;
+//    }
+    if ([self isItemMarkedWithItemName:cell.textLabel.text]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
     
     return cell;
 }
@@ -99,13 +109,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *itemName = cell.textLabel.text;
+    
     if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        [self removeMarkedItemIndexPath:indexPath];
+//        [self removeMarkedItemIndexPath:indexPath];
+        [self removeMarkedItemName:itemName];
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self addMarkedItemIndexPath:indexPath];
+        [self addMarkedItemName:itemName];
+        
     }
 //    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
@@ -150,26 +164,45 @@
     return itemList;
 }
 
-- (void)addMarkedItemIndexPath:(NSIndexPath *)indexPath
+//- (void)addMarkedItemIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (!self.markedItemIndexPath) {
+//        self.markedItemIndexPath = [[NSMutableArray alloc] init];
+//    }
+//    [self.markedItemIndexPath addObject:indexPath];
+//}
+
+- (void)addMarkedItemName:(NSString *)itemName
 {
-    if (!self.markedItemIndexPath) {
-        self.markedItemIndexPath = [[NSMutableArray alloc] init];
+    if (!self.selectedItems) {
+        self.selectedItems = [[NSMutableArray alloc] init];
     }
-    [self.markedItemIndexPath addObject:indexPath];
+    [self.selectedItems addObject:itemName];
 }
 
-- (void)removeMarkedItemIndexPath:(NSIndexPath *)indexPath
+//- (void)removeMarkedItemIndexPath:(NSIndexPath *)indexPath
+//{
+//    [self.markedItemIndexPath removeObject:indexPath];
+//}
+
+- (void)removeMarkedItemName:(NSString *)itemName
 {
-    [self.markedItemIndexPath removeObject:indexPath];
+    [self.selectedItems removeObject:itemName];
 }
 
-- (BOOL)isMarkedItemIndexPath:(NSIndexPath *)indexPath
+//- (BOOL)isMarkedItemIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (!self.markedItemIndexPath
+//        || [self.markedItemIndexPath indexOfObject:indexPath] == NSNotFound) {
+//        
+//        return NO;
+//    }
+//    return YES;
+//}
+
+- (BOOL)isItemMarkedWithItemName:(NSString *)itemName
 {
-    if (!self.markedItemIndexPath
-        || [self.markedItemIndexPath indexOfObject:indexPath] == NSNotFound) {
-        
-        return NO;
-    }
-    return YES;
+    return (self.selectedItems) && ([self.selectedItems indexOfObject:itemName] != NSNotFound)
+           ? YES : NO;
 }
 @end

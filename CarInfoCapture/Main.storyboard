@@ -425,6 +425,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="车辆初步检测报告" id="iyi-7i-4vK"/>
+                    <connections>
+                        <outlet property="engineDetailLabel" destination="mPA-Ec-udL" id="q3W-VA-Wj5"/>
+                        <outlet property="facadeDetailLabel" destination="3Qm-dr-7kM" id="z2r-7S-7Fg"/>
+                        <outlet property="insideDetailLabel" destination="bbs-cX-Yqm" id="8hR-Kg-OIq"/>
+                        <outlet property="paintDetailLabel" destination="qxT-0S-lCJ" id="fSC-BW-Jdz"/>
+                        <outlet property="underpanDetailLabel" destination="0yE-LI-Xn5" id="YVh-PV-k7h"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xh8-GI-nKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
