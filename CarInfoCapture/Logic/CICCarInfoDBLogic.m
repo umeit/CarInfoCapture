@@ -21,4 +21,9 @@
     
 }
 
++ (void)saveCarInfo:(CICCarInfoEntity *)carInfo WithBlock:(SaveCarInfoBlock)block
+{
+    
+}
+
 @end

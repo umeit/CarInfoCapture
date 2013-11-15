@@ -11,7 +11,7 @@
 #import "CICCarInfoEntity.h"
 
 #define NeedSaveToNSUserDefaults self.carInfoSaveStatus == FromNSUserDefaults || self.carInfoSaveStatus == NewCarInfo
-#define NeedSaveToDB self.carInfoSaveStatus == FromDB
+#define NeedSaveToDB             self.carInfoSaveStatus == FromDB
 
 typedef enum CarInfoSaveStatus : NSInteger {
     FromDB,
@@ -27,7 +27,6 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 @property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
 
-@property (nonatomic) BOOL needsSaveToDB;
 @property (nonatomic) CarInfoSaveStatus carInfoSaveStatus;
 @end
 
@@ -40,7 +39,6 @@ typedef enum CarInfoSaveStatus : NSInteger {
     // 如果已经有 CarInfoEntity 信息，表示在编辑采集信息，而不是新建的(或上次未保存的)采集信息
     // 所以后续就可以保存到 NSUserDefaults，而不是跟新数据库
     if (self.carInfoEntity) {
-//        self.needsSaveToDB = YES;
         self.carInfoSaveStatus = FromDB;
         
         
@@ -93,6 +91,8 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (IBAction)saveButtonPress:(id)sender
 {
+    // 判断信息完整性
+    
     // 保存到数据库
     
     // 清空暂存在 NSUserDefaults 中的信息

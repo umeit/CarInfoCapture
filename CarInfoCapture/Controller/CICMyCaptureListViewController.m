@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIButton *uploadBtton;
+
 @property (weak, nonatomic) IBOutlet UILabel *captureSum;
 
 @property (weak, nonatomic) IBOutlet UILabel *noUploadNumber;
@@ -49,6 +51,20 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
+        self.captureSum.text = [NSString stringWithFormat:@"%d", sum];
+        self.noUploadNumber.text = [NSString stringWithFormat:@"%d", needUpload];
+        
+        if (needUpload == 0) {
+            self.uploadBtton.hidden = YES;
+        } else {
+            self.uploadBtton.hidden = NO;
+        }
+    }];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -77,23 +93,22 @@
 {
     CICCarInfoCell *carInfoCell = (CICCarInfoCell *)cell;
     CICCarInfoEntity *carInfoEntity = self.carInfoList[indexPath.row];
-    
+
     NSString *infoStatus;
-    
     switch (carInfoEntity.status) {
         case 0:
             infoStatus = @"已上传";
             break;
-            
+
         case 1:
             infoStatus = @"未上传";
             break;
-            
+
         default:
             infoStatus = @"异常状态";
             break;
     }
-    
+
     [carInfoCell setCarName:carInfoEntity.carName
                     mileage:[NSString stringWithFormat:@"%lu", (unsigned long)carInfoEntity.mileage]
                firstRegTime:carInfoEntity.firstRegTime
@@ -102,10 +117,32 @@
                  infoStatus:infoStatus];
 }
 
+- (void)updateView
+{
+    [self.carInfoService uploadCarInfoWithBlock:^(NSError *error) {
+        [self.tableView reloadData];
+    }];
+    
+    [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
+        self.captureSum.text = [NSString stringWithFormat:@"%d", sum];
+        self.noUploadNumber.text = [NSString stringWithFormat:@"%d", needUpload];
+        
+        if (needUpload == 0) {
+            self.uploadBtton.hidden = YES;
+        } else {
+            self.uploadBtton.hidden = NO;
+        }
+    }];
+}
+
 #pragma mark - Action
 
 - (IBAction)uploadButtonPress:(id)sender
 {
-    
+    [self.carInfoService uploadCarInfoWithBlock:^(NSError *error) {
+        if (!error) {
+            [self updateView];
+        }
+    }];
 }
 @end
