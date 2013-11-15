@@ -64,7 +64,9 @@
 //    
 //    self.selectCheckItemFinishBlock(itemNameList, self.markedItemIndexPath);
     
-    self.selectCheckItemFinishBlock(self.selectedItems);
+//    self.selectCheckItemFinishBlock(self.selectedItems, self.checkType);
+    
+    [self.delegate selectedCheckItemList:self.selectedItems fromType:self.checkType];
 }
 
 #pragma mark - Table view data source

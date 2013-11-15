@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 typedef enum CheckType : NSInteger {
     Underpan,
     Engine,
@@ -16,8 +18,14 @@ typedef enum CheckType : NSInteger {
     Facade
 } CheckType;
 
+@protocol CICCarBaseCheckDetailDelegate <NSObject>
+
+- (void)selectedCheckItemList:(NSArray *)itemNameList fromType:(CheckType)checkType;
+                                                          
+@end
+
 //typedef void(^SelectCheckItemFinishBlock)(NSArray *itemNameList, NSMutableArray *markedItemIndexPath);
-typedef void(^SelectCheckItemFinishBlock)(NSArray *itemNameList);
+typedef void(^SelectCheckItemFinishBlock)(NSArray *itemNameList, CheckType checkType);
 
 @interface CICCarBaseCheckDetailViewController : UITableViewController
 
@@ -29,5 +37,7 @@ typedef void(^SelectCheckItemFinishBlock)(NSArray *itemNameList);
 @property (strong, nonatomic) NSMutableArray *selectedItems;
 
 @property (strong, nonatomic) SelectCheckItemFinishBlock selectCheckItemFinishBlock;
+
+@property (weak, nonatomic) id<CICCarBaseCheckDetailDelegate> delegate;
 
 @end

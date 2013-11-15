@@ -27,5 +27,9 @@
 /* 初步检查信息 */
 // 底盘问题
 @property (strong, nonatomic) NSArray *underpanIssueList;
+@property (strong, nonatomic) NSArray *engineIssueList;
+@property (strong, nonatomic) NSArray *paintIssueList;
+@property (strong, nonatomic) NSArray *insideIssueList;
+@property (strong, nonatomic) NSArray *facadeIssueList;
 
 @end

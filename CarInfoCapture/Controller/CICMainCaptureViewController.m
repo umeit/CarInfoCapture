@@ -10,6 +10,15 @@
 #import "CICCarBaseCheckReportViewController.h"
 #import "CICCarInfoEntity.h"
 
+#define NeedSaveToNSUserDefaults self.carInfoSaveStatus == FromNSUserDefaults || self.carInfoSaveStatus == NewCarInfo
+#define NeedSaveToDB self.carInfoSaveStatus == FromDB
+
+typedef enum CarInfoSaveStatus : NSInteger {
+    FromDB,
+    FromNSUserDefaults,
+    NewCarInfo
+}CarInfoSaveStatus;
+
 @interface CICMainCaptureViewController () <CICCarBaseCheckReportDeledate>
 @property (weak, nonatomic) IBOutlet UIImageView *firstCheckCompleteImage;
 @property (weak, nonatomic) IBOutlet UIImageView *secondCheckCompleteImage;
@@ -19,6 +28,7 @@
 @property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
 
 @property (nonatomic) BOOL needsSaveToDB;
+@property (nonatomic) CarInfoSaveStatus carInfoSaveStatus;
 @end
 
 @implementation CICMainCaptureViewController
@@ -30,23 +40,24 @@
     // 如果已经有 CarInfoEntity 信息，表示在编辑采集信息，而不是新建的(或上次未保存的)采集信息
     // 所以后续就可以保存到 NSUserDefaults，而不是跟新数据库
     if (self.carInfoEntity) {
-        self.needsSaveToDB = YES;
+//        self.needsSaveToDB = YES;
+        self.carInfoSaveStatus = FromDB;
         
         
     }
     else {
         // 检查是否有上次未保存的采集信息
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//        self.carInfoEntity = [userDefaults objectForKey:@"UnsaveCarInfoEntity"];
         self.carInfoEntity = [NSKeyedUnarchiver unarchiveObjectWithData:[userDefaults objectForKey:@"UnsaveCarInfoEntity"]];
-        // 有未保存的
+        
+        // 上次未保存的
         if (self.carInfoEntity) {
-            
+            self.carInfoSaveStatus = FromNSUserDefaults;
         }
         // 新建的
         else {
+            self.carInfoSaveStatus = FromNSUserDefaults;
             self.carInfoEntity = [[CICCarInfoEntity alloc] init];
-            NSLog(@"Create a new Car-Info object.");
         }
     }
 }
@@ -59,10 +70,13 @@
     carBaseCheckReportVC.delegate = self;
     carBaseCheckReportVC.carInfoEntity = self.carInfoEntity;
     
-    if (self.needsSaveToDB) {
+    if (self.carInfoSaveStatus == FromDB) {
         
     }
-    else {
+    else if (self.carInfoSaveStatus == FromNSUserDefaults) {
+        
+    }
+    else if (self.carInfoSaveStatus == NewCarInfo) {
         // 第一导航到其他的视图，表示用户开始采集信息
         // 将 self.carInfoEntity 保存到 userDefaults 暂存起来
         // 用于用户在没有「保存」的情况下退出应用后，下次打开时还能看到上次编辑的信息
@@ -71,31 +85,37 @@
         if (!carInfoEntityData) {
             [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.carInfoEntity]
                              forKey:@"UnsaveCarInfoEntity"];
-            NSLog(@"Save the new Car-Info to NSUserDefaults.");
         }
-//        else {
-//            self.carInfoEntity = [NSKeyedUnarchiver unarchiveObjectWithData:carInfoEntityData];
-//        }
     }
-    
 }
 
 #pragma mark - Action
 
 - (IBAction)saveButtonPress:(id)sender
 {
+    // 保存到数据库
     
+    // 清空暂存在 NSUserDefaults 中的信息
 }
 
 - (IBAction)clearButtonPress:(id)sender
 {
+    // 清空暂存在 NSUserDefaults 中的信息
     
+    // 还原界面
 }
 
 #pragma mark - CICCarBaseCheckReportDeledate
 
 - (void)carInfoDidChange:(CICCarInfoEntity *)carInfoEntity
 {
-    
+    if (NeedSaveToDB) {
+        
+    }
+    else if (NeedSaveToNSUserDefaults) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.carInfoEntity]
+                         forKey:@"UnsaveCarInfoEntity"];
+    }
 }
 @end
