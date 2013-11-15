@@ -26,4 +26,8 @@ typedef void(^SaveCarInfoBlock)(NSError *error);
 
 + (void)saveCarInfoList:(NSArray *)carInfoList WithBlock:(SaveCarInfoBlock)block;
 
++ (NSInteger)sumOfCarInfo;
+
++ (NSInteger)sumOfNoUploadCarInfo;
+
 @end

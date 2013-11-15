@@ -10,19 +10,19 @@
 
 @interface CICCarInfoEntity : NSObject <NSCoding>
 
+// 表示：已上传、未上传、
+@property (nonatomic) NSInteger status;
+
 /* 基本信息 */
 @property (strong, nonatomic) NSString *carName;
 
 @property (strong, nonatomic) UIImage *carImage;
 
-@property (nonatomic) double salePrice;
+@property (nonatomic) NSString *salePrice;
 
-@property (nonatomic) NSUInteger mileage;
+@property (nonatomic) NSString *mileage;
 
 @property (strong, nonatomic) NSString *firstRegTime;
-
-// 表示：已上传、未上传、
-@property (nonatomic) NSInteger status;
 
 /* 初步检查信息 */
 // 底盘问题

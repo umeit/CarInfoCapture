@@ -14,4 +14,6 @@
 
 + (void)markUsed;
 
++ (NSString *)documentPath;
+
 @end

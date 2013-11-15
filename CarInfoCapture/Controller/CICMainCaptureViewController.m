@@ -64,9 +64,15 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    CICCarBaseCheckReportViewController *carBaseCheckReportVC = segue.destinationViewController;
-    carBaseCheckReportVC.delegate = self;
-    carBaseCheckReportVC.carInfoEntity = self.carInfoEntity;
+    UIViewController *destinationViewController = segue.destinationViewController;
+    
+    if ([destinationViewController respondsToSelector:@selector(setDelegate:)]) {
+        [destinationViewController performSelector:@selector(setDelegate:) withObject:self];
+    }
+    
+    if ([destinationViewController respondsToSelector:@selector(setCarInfoEntity:)]) {
+        [destinationViewController performSelector:@selector(setCarInfoEntity:) withObject:self.carInfoEntity];
+    }
     
     if (self.carInfoSaveStatus == FromDB) {
         

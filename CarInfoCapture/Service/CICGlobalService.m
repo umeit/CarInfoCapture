@@ -22,4 +22,12 @@
     [userDefaults setBool:YES forKey:@"used"];
 }
 
++ (NSString *)documentPath
+{
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask,
+                                                                 YES);
+    return documentPaths[0];
+}
+
 @end
