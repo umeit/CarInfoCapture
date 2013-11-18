@@ -94,7 +94,7 @@
     
     BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         nil,
-                        carInfo.status, carInfo.carName, carInfo.carImage,
+                        @(carInfo.status), carInfo.carName, carInfo.carImage,
                         carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                         [carInfo.underpanIssueList formatToOneString],
                         [carInfo.engineIssueList formatToOneString],
@@ -132,5 +132,37 @@
 {
     #warning 待实现
     return 0;
+}
+
++ (void)noUploadCarInfoListWithBlock:(CarInfoListBlock)block
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:DBPath];
+    if (![db open]) {
+        NSLog(@"**Error** Open DB error");
+        return;
+    }
+    
+    NSMutableArray *carInfoList = [[NSMutableArray alloc] init];
+    
+    FMResultSet *s = [db executeQuery:@"SELECT * FROM T_CarInfo WHERE status = 1"];
+    while ([s next]) {
+        CICCarInfoEntity *carInfo = [[CICCarInfoEntity alloc] init];
+        
+        carInfo.status = [s intForColumn:@"status"];
+        carInfo.carName = [s stringForColumn:@"carName"];
+        carInfo.carImage = [UIImage imageWithContentsOfFile:[s stringForColumn:@"carImagePath"]];
+        carInfo.salePrice = [s stringForColumn:@"salePrice"];
+        carInfo.mileage = [s stringForColumn:@"mileage"];
+        carInfo.firstRegTime = [s stringForColumn:@"firstRegTime"];
+        carInfo.underpanIssueList = [[s stringForColumn:@"underpanIssueList"] componentsSeparatedByString:@"#"];
+        carInfo.engineIssueList = [[s stringForColumn:@"engineIssueList"] componentsSeparatedByString:@"#"];
+        carInfo.paintIssueList = [[s stringForColumn:@"paintIssueList"] componentsSeparatedByString:@"#"];
+        carInfo.insideIssueList = [[s stringForColumn:@"insideIssueList"] componentsSeparatedByString:@"#"];
+        carInfo.facadeIssueList = [[s stringForColumn:@"facadeIssueList"] componentsSeparatedByString:@"#"];
+        
+        [carInfoList addObject:carInfo];
+    }
+    
+    [db close];
 }
 @end

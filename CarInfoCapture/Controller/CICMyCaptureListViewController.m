@@ -46,6 +46,7 @@
     
     [self.carInfoService carInfoListWithBlock:^(NSArray *list, NSError *error) {
         if (!error && list && [list count] > 0) {
+            self.carInfoList = list;
             [self.tableView reloadData];
         }
     }];
@@ -96,11 +97,11 @@
 
     NSString *infoStatus;
     switch (carInfoEntity.status) {
-        case 0:
+        case Uploaded:
             infoStatus = @"已上传";
             break;
 
-        case 1:
+        case NoUpload:
             infoStatus = @"未上传";
             break;
 
@@ -110,9 +111,9 @@
     }
 
     [carInfoCell setCarName:carInfoEntity.carName
-                    mileage:[NSString stringWithFormat:@"%lu", (unsigned long)carInfoEntity.mileage]
+                    mileage:carInfoEntity.mileage
                firstRegTime:carInfoEntity.firstRegTime
-                  salePrice:[NSString stringWithFormat:@"%f", carInfoEntity.salePrice]
+                  salePrice:carInfoEntity.salePrice
                    carImage:carInfoEntity.carImage
                  infoStatus:infoStatus];
 }

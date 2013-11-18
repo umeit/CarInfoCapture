@@ -110,11 +110,17 @@ typedef enum CarInfoSaveStatus : NSInteger {
 - (IBAction)saveButtonPress:(id)sender
 {
     // 判断信息完整性
-    
-    // 保存到数据库
-    [self.carInfoService saveCarInfo:self.carInfoEntity];
-    
-    [self clearCurrentCapture];
+    if ([self checkDataIntegrity:self.carInfoEntity]) {
+        self.carInfoEntity.status = NoUpload;
+        
+        // 保存到数据库
+        [self.carInfoService saveCarInfo:self.carInfoEntity];
+        
+        [self clearCurrentCapture];
+    }
+    else {
+        #warning 错误提示
+    }
 }
 
 - (IBAction)clearButtonPress:(id)sender
@@ -143,5 +149,10 @@ typedef enum CarInfoSaveStatus : NSInteger {
     // 清空暂存在 NSUserDefaults 中的信息
     
     // 还原界面
+}
+
+- (BOOL)checkDataIntegrity:(CICCarInfoEntity *)carInfo
+{
+    return YES;
 }
 @end

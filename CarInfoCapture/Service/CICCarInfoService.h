@@ -7,6 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CICCarInfoHTTPLogic.h"
+
+@protocol CICCarInfoServiceUploadCarInfoDelegate <CICCarInfoHTTPLogicUploadCarInfoDalegate>
+
+@end
 
 @class CICCarInfoEntity;
 
@@ -15,6 +20,10 @@ typedef void(^NumberOfSumCarInfoAndNumberOfNeedUploadCarInfoBlock)(NSInteger sum
 typedef void(^UploadCarInfoBlock)(NSError *error);
 
 @interface CICCarInfoService : NSObject
+
+@property (weak, nonatomic) id<CICCarInfoServiceUploadCarInfoDelegate> delegate;
+
+@property (strong, nonatomic) CICCarInfoHTTPLogic *carInfoHTTPLogic;
 
 - (void)carInfoListWithBlock:(CarInfoListBlock)block;
 

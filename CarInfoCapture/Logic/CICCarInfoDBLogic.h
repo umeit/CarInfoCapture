@@ -30,4 +30,11 @@ typedef void(^SaveCarInfoBlock)(NSError *error);
 
 + (NSInteger)sumOfNoUploadCarInfo;
 
+/**
+ *  查找所有没有上传过的数据
+ *
+ *  @param block 返回没有上传过的数据
+ */
++ (void)noUploadCarInfoListWithBlock:(CarInfoListBlock)block;
+
 @end

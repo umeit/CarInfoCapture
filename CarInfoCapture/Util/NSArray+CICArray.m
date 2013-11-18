@@ -13,9 +13,18 @@
 - (NSString *)formatToOneString;
 {
     NSMutableString *str = [[NSMutableString alloc] init];
-    for (NSString *s in self) {
-        [str appendString:[NSString stringWithFormat:@"#%@", s]];
-    }
+//    for (NSString *s in self) {
+//        [str appendString:[NSString stringWithFormat:@"#%@", s]];
+//    }
+    
+    [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (idx == 0) {
+            [str appendString:[NSString stringWithFormat:@"%@", obj]];
+        }
+        else {
+            [str appendString:[NSString stringWithFormat:@"#%@", obj]];
+        }
+    }];
     return str;
 }
 

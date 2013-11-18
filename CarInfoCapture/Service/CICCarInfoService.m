@@ -71,6 +71,17 @@
 
 - (void)uploadCarInfoWithBlock:(UploadCarInfoBlock)block
 {
-    
+    // 从数据库中取得未上传的数据
+    [CICCarInfoDBLogic noUploadCarInfoListWithBlock:^(NSArray *noUploadCarInfoList, NSError *error) {
+        // 上传至服务器
+        if (!error && noUploadCarInfoList && [noUploadCarInfoList count] > 0) {
+            if (!self.carInfoHTTPLogic) {
+                self.carInfoHTTPLogic = [[CICCarInfoHTTPLogic alloc] init];
+            }
+            
+            self.carInfoHTTPLogic.delegate = self.delegate;
+            [self.carInfoHTTPLogic uploadCarInfo:noUploadCarInfoList];
+        }
+    }];
 }
 @end

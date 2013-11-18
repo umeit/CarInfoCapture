@@ -15,7 +15,7 @@
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
     
-    [httpManager GET:@"path"
+    [httpManager GET:@"Path"
           parameters:nil
              success:^(AFHTTPRequestOperation *operation, id responseObject) {
                  
@@ -23,6 +23,19 @@
              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                  block(nil, error);
              }];
+}
+
+- (void)uploadCarInfo:(NSArray *)carInfoList
+{
+    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
+    
+    [httpManager POST:@"Path" parameters:@{@"key": @"value"} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 @end
