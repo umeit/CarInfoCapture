@@ -14,11 +14,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    if ([CICGlobalService isFirstOpenThisApp]) {
-        NSLog(@"First open the app, init Car-Info DB.");
-        
-        [CICCarInfoDBLogic initCarInfoDB];
-    }
+//    if ([CICGlobalService isFirstOpenThisApp]) {
+//        NSLog(@"First open the app, init Car-Info DB.");
+//        
+//        [CICCarInfoDBLogic initCarInfoDB];
+//    }
     
     return YES;
 }

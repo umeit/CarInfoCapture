@@ -8,6 +8,7 @@
 
 #import "CICMainCaptureViewController.h"
 #import "CICCarBaseCheckReportViewController.h"
+#import "CICCarInfoService.h"
 #import "CICCarInfoEntity.h"
 
 #define NeedSaveToNSUserDefaults self.carInfoSaveStatus == FromNSUserDefaults || self.carInfoSaveStatus == NewCarInfo
@@ -28,9 +29,20 @@ typedef enum CarInfoSaveStatus : NSInteger {
 @property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
 
 @property (nonatomic) CarInfoSaveStatus carInfoSaveStatus;
+
+@property (strong, nonatomic) CICCarInfoService *carInfoService;
 @end
 
 @implementation CICMainCaptureViewController
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.carInfoService = [[CICCarInfoService alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -100,15 +112,14 @@ typedef enum CarInfoSaveStatus : NSInteger {
     // 判断信息完整性
     
     // 保存到数据库
+    [self.carInfoService saveCarInfo:self.carInfoEntity];
     
-    // 清空暂存在 NSUserDefaults 中的信息
+    [self clearCurrentCapture];
 }
 
 - (IBAction)clearButtonPress:(id)sender
 {
-    // 清空暂存在 NSUserDefaults 中的信息
-    
-    // 还原界面
+    [self clearCurrentCapture];
 }
 
 #pragma mark - CICCarBaseCheckReportDeledate
@@ -123,5 +134,14 @@ typedef enum CarInfoSaveStatus : NSInteger {
         [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.carInfoEntity]
                          forKey:@"UnsaveCarInfoEntity"];
     }
+}
+
+#pragma mark - Private
+
+- (void)clearCurrentCapture
+{
+    // 清空暂存在 NSUserDefaults 中的信息
+    
+    // 还原界面
 }
 @end

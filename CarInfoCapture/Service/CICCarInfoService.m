@@ -44,6 +44,9 @@
             }
             else {
                 block(nil, error);
+                
+                // 即使访问网络失败，也要建立数据库
+                [CICCarInfoDBLogic initCarInfoDB];
             }
         }];
     }

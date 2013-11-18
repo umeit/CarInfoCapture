@@ -26,17 +26,17 @@
     
     NSString *createTableSQL = @"CREATE TABLE IF NOT EXISTS T_CarInfo" \
     "(id INTEGER PRIMARY KEY AUTOINCREMENT," \
-    " status INTEGER," \
-    " carName VARCHAR," \
-    " carImagePath VARCHAR," \
-    " salePrice VARCHAR," \
-    " mileage VARCHAR," \
-    " firstRegTime VARCHAR," \
-    " underpanIssueList VARCHAR," \
-    " engineIssueList VARCHAR" \
-    " paintIssueList VARCHAR" \
-    " insideIssueList VARCHAR" \
-    " facadeIssueList VARCHAR" \
+    " status INTEGER, " \
+    " carName VARCHAR, " \
+    " carImagePath VARCHAR, " \
+    " salePrice VARCHAR, " \
+    " mileage VARCHAR, " \
+    " firstRegTime VARCHAR, " \
+    " underpanIssueList VARCHAR, " \
+    " engineIssueList VARCHAR, " \
+    " paintIssueList VARCHAR, " \
+    " insideIssueList VARCHAR, " \
+    " facadeIssueList VARCHAR " \
     ")";
     
     [db executeUpdate:createTableSQL];
@@ -46,6 +46,7 @@
 
 + (BOOL)isDBExist
 {
+    NSLog(@"%@", DBPath);
     return [[NSFileManager defaultManager] fileExistsAtPath:DBPath];
 }
 
@@ -91,7 +92,8 @@
         return;
     }
     
-    [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        nil,
                         carInfo.status, carInfo.carName, carInfo.carImage,
                         carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                         [carInfo.underpanIssueList formatToOneString],
@@ -100,9 +102,15 @@
                         [carInfo.insideIssueList formatToOneString],
                         [carInfo.facadeIssueList formatToOneString]];
     
-    [db close];
+    if (success) {
+        if (block) block(nil);
+    }
+    else {
+        NSLog(@"%@", db.lastErrorMessage);
+        if (block) block(db.lastError);
+    }
     
-    if (block) block(nil);
+    [db close];
 }
 
 + (void)saveCarInfoList:(NSArray *)carInfoList WithBlock:(SaveCarInfoBlock)block
