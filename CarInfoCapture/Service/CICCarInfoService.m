@@ -10,6 +10,7 @@
 #import "CICCarInfoHTTPLogic.h"
 #import "CICCarInfoDBLogic.h"
 #import "CICGlobalService.h"
+#import "CICCarInfoEntity.h"
 
 @implementation CICCarInfoService
 
@@ -73,15 +74,25 @@
 {
     // 从数据库中取得未上传的数据
     [CICCarInfoDBLogic noUploadCarInfoListWithBlock:^(NSArray *noUploadCarInfoList, NSError *error) {
-        // 上传至服务器
         if (!error && noUploadCarInfoList && [noUploadCarInfoList count] > 0) {
             if (!self.carInfoHTTPLogic) {
                 self.carInfoHTTPLogic = [[CICCarInfoHTTPLogic alloc] init];
             }
-            
             self.carInfoHTTPLogic.delegate = self.delegate;
-            [self.carInfoHTTPLogic uploadCarInfo:noUploadCarInfoList];
+            
+            // 上传至服务器
+            [noUploadCarInfoList enumerateObjectsUsingBlock:^(CICCarInfoEntity *carInfo, NSUInteger idx, BOOL *stop) {
+                // 先上传信息中的车辆图片
+                [self uploadCarImageList:carInfo.carImageList];
+                // 再上传其他信息
+                [self.carInfoHTTPLogic uploadCarInfo:carInfo];
+            }];
         }
     }];
+}
+
+- (void)uploadCarImageList:(NSArray *)imageList
+{
+    
 }
 @end
