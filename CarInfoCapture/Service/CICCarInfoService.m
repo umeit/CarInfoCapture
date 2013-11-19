@@ -82,17 +82,25 @@
             
             // 上传至服务器
             [noUploadCarInfoList enumerateObjectsUsingBlock:^(CICCarInfoEntity *carInfo, NSUInteger idx, BOOL *stop) {
-                // 先上传信息中的车辆图片
-                [self uploadCarImageList:carInfo.carImageList];
-                // 再上传其他信息
+                
+                // 1\先上传信息中的车辆图片
+                [self uploadCarImageList:carInfo];
+                // 2\再上传其他信息
                 [self.carInfoHTTPLogic uploadCarInfo:carInfo];
+                
             }];
         }
     }];
 }
 
-- (void)uploadCarImageList:(NSArray *)imageList
+- (void)uploadCarImageList:(CICCarInfoEntity *)carInfo
 {
-    
+    [carInfo.carImagesLocalPath enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *imagePath, BOOL *stop) {
+        NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
+        
+        [self.carInfoHTTPLogic uploadImage:@"" withBlock:^(NSString *urlStr, NSError *error) {
+            
+        }];
+    }];
 }
 @end

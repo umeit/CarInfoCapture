@@ -18,6 +18,9 @@
 
 @end
 
+@class CICCarInfoEntity;
+
+typedef void(^CICCarInfoHTTPLogicUploadImageBLock)(NSString *urlStr, NSError *error);
 typedef void(^CarInfoHistoryListBlock)(NSArray *list, NSError *error);
 typedef void(^UploadCarInfoListBlock)(NSError *error);
 
@@ -27,6 +30,8 @@ typedef void(^UploadCarInfoListBlock)(NSError *error);
 
 + (void)carInfoHistoryListWithBlock:(CarInfoHistoryListBlock)block;
 
-- (void)uploadCarInfo:(NSArray *)carInfoList;
+- (void)uploadCarInfo:(CICCarInfoEntity *)carInfo;
+
+- (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block;
 
 @end

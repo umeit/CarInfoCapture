@@ -34,6 +34,13 @@ typedef enum SaveStatus : NSInteger {
 @property (strong, nonatomic) NSArray *facadeIssueList;
 
 /* 车辆实拍信息 */
-@property (strong, nonatomic) NSArray *carImageList;
+/**
+ *  车辆图片的本地路径
+ */
+@property (strong, nonatomic) NSMutableDictionary *carImagesLocalPath;
+/**
+ *  车辆图片的服务器路径
+ */
+@property (strong, nonatomic) NSMutableDictionary *carImagesRemotePath;
 
 @end

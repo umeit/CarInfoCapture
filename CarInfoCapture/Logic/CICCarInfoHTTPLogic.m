@@ -8,8 +8,9 @@
 
 #import "CICCarInfoHTTPLogic.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "CICCarInfoEntity.h"
 
-typedef void(^CICCarInfoHTTPLogicUploadImageBLock)(NSString *urlStr, NSError *error);
+
 
 @interface CICCarInfoHTTPLogic ()
 
@@ -33,7 +34,7 @@ typedef void(^CICCarInfoHTTPLogicUploadImageBLock)(NSString *urlStr, NSError *er
              }];
 }
 
-- (void)uploadCarInfo:(NSArray *)carInfoList
+- (void)uploadCarInfo:(CICCarInfoEntity *)carInfo
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
     
@@ -42,10 +43,10 @@ typedef void(^CICCarInfoHTTPLogicUploadImageBLock)(NSString *urlStr, NSError *er
                                             
                                         }
                                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                    
+                                                              
                                                           }
                                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                    
+                                                              
                                                           }];
 }
 
