@@ -30,4 +30,11 @@
     return documentPaths[0];
 }
 
++ (UIImage *)iamgeWithPath:(NSString *)pathStr
+{
+    NSData *imageData = [NSData dataWithContentsOfFile:pathStr];
+    
+    return [UIImage imageWithData:imageData];
+}
+
 @end

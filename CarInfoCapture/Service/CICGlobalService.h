@@ -16,4 +16,6 @@
 
 + (NSString *)documentPath;
 
++ (UIImage *)iamgeWithPath:(NSString *)pathStr;
+
 @end

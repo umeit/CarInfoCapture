@@ -13,6 +13,13 @@ typedef enum SaveStatus : NSInteger {
     NoUpload = 1
 }SaveStatus;
 
+// 车辆各部位图片的 key
+#define kFrontFlankImage    @"frontFlankImage"
+#define kBackFlankImage     @"backFlankImage"
+#define kInsideCentralImage @"insideCentralImage"
+#define kFrontSeatImage     @"frontSeatImage"
+#define kBackSeatImage      @"backSeatImage"
+
 @interface CICCarInfoEntity : NSObject <NSCoding>
 
 // 表示：已上传、未上传、
@@ -38,10 +45,10 @@ typedef enum SaveStatus : NSInteger {
 /**
  *  车辆图片的本地路径
  */
-@property (strong, nonatomic) NSMutableDictionary *carImagesLocalPath;
+@property (strong, nonatomic) NSMutableDictionary *carImagesLocalPathDictionary;
 /**
  *  车辆图片的服务器路径
  */
-@property (strong, nonatomic) NSMutableDictionary *carImagesRemotePath;
+@property (strong, nonatomic) NSMutableDictionary *carImagesRemotePathDictionary;
 
 @end

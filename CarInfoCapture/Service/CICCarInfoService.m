@@ -90,7 +90,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImag
                 [self uploadCarImageList:carInfo withBlock:^(NSMutableDictionary *remoteImagePathDictionary) {
                     // 上传图片成功
                     if (remoteImagePathDictionary) {
-                        carInfo.carImagesRemotePath = remoteImagePathDictionary;
+                        carInfo.carImagesRemotePathDictionary = remoteImagePathDictionary;
                         
                         // 2\再上传其他信息
                         [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
@@ -117,7 +117,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImag
 {
     NSMutableDictionary *remoteImagePathDictionary = [[NSMutableDictionary alloc] init];
     
-    [carInfo.carImagesLocalPath enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *imagePath, BOOL *stop) {
+    [carInfo.carImagesLocalPathDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *imagePath, BOOL *stop) {
         // 上传图片至服务器
         [self.carInfoHTTPLogic uploadImage:imagePath withBlock:^(NSString *remoteImagePathStr, NSError *error) {
             if (!error) {

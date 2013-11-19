@@ -14,8 +14,6 @@
 
 @interface CICCarInfoHTTPLogic ()
 
-- (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block;
-
 @end
 
 @implementation CICCarInfoHTTPLogic
@@ -38,6 +36,44 @@
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
     
+    NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
+    
+    [httpManager POST:@"http://xxx/capture/upload" parameters:carInfoParameters
+                                    constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                        
+                                    }
+                                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                          block(nil);
+                                                      }
+                                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                          block(error);
+                                                      }];
+}
+
+#pragma mark - Private
+
+- (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block
+{
+    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
+    
+    NSDictionary *uploadImageParameters = [self uploadImageParameters:filePathStr];
+    
+    [httpManager POST:(@"http://upload.xxx.com")
+           parameters:uploadImageParameters
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  NSLog(@"%@", responseObject);
+                  
+                  block(responseObject, nil);
+              }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  NSLog(@"%@", error.description);
+                  
+                  block(nil, error);
+              }];
+}
+
+- (NSDictionary *)carInfoParameters:(CICCarInfoEntity *)carInfo
+{
     NSDictionary *carInfoParameters = @{@"location": carInfo.location,
                                         @"carName": carInfo.carName,
                                         @"firstRegTime": carInfo.firstRegTime,
@@ -54,44 +90,19 @@
                                         @"facadeState": carInfo.location,
                                         @"masterName": carInfo.location,
                                         @"pic": carInfo.location,
-                                        @"addTime": carInfo.location
-                                        };
-    
-        [httpManager POST:@"http://xxx/capture/upload" parameters:carInfoParameters
-                                        constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                                            
-                                        }
-                                                          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                              block(nil);
-                                                          }
-                                                          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                              block(error);
-                                                          }];
+                                        @"addTime": carInfo.location};
+    return carInfoParameters;
 }
 
-- (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block
+- (NSDictionary *)uploadImageParameters:(NSString *)filePathStr
 {
-    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
-    
     NSData *imageData = [NSData dataWithContentsOfFile:filePathStr];
     
-    NSDictionary *postParameters = @{@"Filename": @"TuXiang.jpg",
-                                     @"filepath": @"/0/capture/",
-                                     @"filecate": @"picture",
-                                     @"Filedata": imageData};
-    
-    [httpManager POST:(@"http://upload.xxx.com")
-           parameters:postParameters
-              success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                  NSLog(@"%@", responseObject);
-                  
-                  block(responseObject, nil);
-              }
-              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  NSLog(@"%@", error.description);
-                  
-                  block(nil, error);
-              }];
+    NSDictionary *uploadImageParameters = @{@"Filename": @"TuXiang.jpg",
+                                            @"filepath": @"/0/capture/",
+                                            @"filecate": @"picture",
+                                            @"Filedata": imageData};
+    return uploadImageParameters;
 }
 
 @end
