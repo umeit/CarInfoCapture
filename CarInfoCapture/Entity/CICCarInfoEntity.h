@@ -24,6 +24,7 @@ typedef enum SaveStatus : NSInteger {
 @property (nonatomic) NSString *salePrice;
 @property (nonatomic) NSString *mileage;
 @property (strong, nonatomic) NSString *firstRegTime;
+@property (strong, nonatomic) NSString *location;
 
 /* 初步检查信息 */
 // 底盘问题

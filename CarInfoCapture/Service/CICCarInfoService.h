@@ -9,7 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "CICCarInfoHTTPLogic.h"
 
-@protocol CICCarInfoServiceUploadCarInfoDelegate <CICCarInfoHTTPLogicUploadCarInfoDalegate>
+@protocol CICCarInfoServiceUploadCarInfoDelegate <NSObject>
+
+- (void)carInfoUploadDidFailAtIndex:(NSInteger)index;
+
+- (void)carInfoDidUploadAtIndex:(NSInteger)index;
+
+- (void)carInfoDidUploadForAll;
 
 @end
 
@@ -17,6 +23,11 @@
 
 typedef void(^CarInfoListBlock)(NSArray *list, NSError *error);
 typedef void(^NumberOfSumCarInfoAndNumberOfNeedUploadCarInfoBlock)(NSInteger sum, NSInteger needUpload);
+/**
+ *  上传采集信息后的回调
+ *
+ *  @param error 没有错无则为 nil
+ */
 typedef void(^UploadCarInfoBlock)(NSError *error);
 
 @interface CICCarInfoService : NSObject

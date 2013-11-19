@@ -8,29 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol CICCarInfoHTTPLogicUploadCarInfoDalegate <NSObject>
-
-- (void)carInfoUploadDidFailAtIndex:(NSInteger)index;
-
-- (void)carInfoDidUploadAtIndex:(NSInteger)index;
-
-- (void)carInfoDidUploadForAll;
-
-@end
+//@protocol CICCarInfoHTTPLogicUploadCarInfoDalegate <NSObject>
+//
+//- (void)carInfoUploadDidFailAtIndex:(NSInteger)index;
+//
+//- (void)carInfoDidUploadAtIndex:(NSInteger)index;
+//
+//- (void)carInfoDidUploadForAll;
+//
+//@end
 
 @class CICCarInfoEntity;
 
-typedef void(^CICCarInfoHTTPLogicUploadImageBLock)(NSString *urlStr, NSError *error);
+typedef void(^CICCarInfoHTTPLogicUploadImageBLock)(NSString *remoteImagePathStr, NSError *error);
 typedef void(^CarInfoHistoryListBlock)(NSArray *list, NSError *error);
 typedef void(^UploadCarInfoListBlock)(NSError *error);
 
 @interface CICCarInfoHTTPLogic : NSObject
 
-@property (weak, nonatomic) id<CICCarInfoHTTPLogicUploadCarInfoDalegate> delegate;
+//@property (weak, nonatomic) id<CICCarInfoHTTPLogicUploadCarInfoDalegate> delegate;
 
 + (void)carInfoHistoryListWithBlock:(CarInfoHistoryListBlock)block;
 
-- (void)uploadCarInfo:(CICCarInfoEntity *)carInfo;
+- (void)uploadCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UploadCarInfoListBlock)block;
 
 - (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block;
 

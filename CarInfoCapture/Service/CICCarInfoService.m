@@ -12,6 +12,8 @@
 #import "CICGlobalService.h"
 #import "CICCarInfoEntity.h"
 
+typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImagePathDictionary);
+
 @implementation CICCarInfoService
 
 - (void)carInfoListWithBlock:(CarInfoListBlock)block
@@ -74,33 +76,63 @@
 {
     // 从数据库中取得未上传的数据
     [CICCarInfoDBLogic noUploadCarInfoListWithBlock:^(NSArray *noUploadCarInfoList, NSError *error) {
+        // 未上传的信息列表
         if (!error && noUploadCarInfoList && [noUploadCarInfoList count] > 0) {
             if (!self.carInfoHTTPLogic) {
                 self.carInfoHTTPLogic = [[CICCarInfoHTTPLogic alloc] init];
             }
-            self.carInfoHTTPLogic.delegate = self.delegate;
+//            self.carInfoHTTPLogic.delegate = self.delegate;
             
-            // 上传至服务器
+            // 将每个采集信息上传至服务器
             [noUploadCarInfoList enumerateObjectsUsingBlock:^(CICCarInfoEntity *carInfo, NSUInteger idx, BOOL *stop) {
                 
                 // 1\先上传信息中的车辆图片
-                [self uploadCarImageList:carInfo];
-                // 2\再上传其他信息
-                [self.carInfoHTTPLogic uploadCarInfo:carInfo];
-                
+                [self uploadCarImageList:carInfo withBlock:^(NSMutableDictionary *remoteImagePathDictionary) {
+                    // 上传图片成功
+                    if (remoteImagePathDictionary) {
+                        carInfo.carImagesRemotePath = remoteImagePathDictionary;
+                        
+                        // 2\再上传其他信息
+                        [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
+                            if (!error) {
+                                [self.delegate carInfoDidUploadAtIndex:idx];
+                            }
+                            else {
+                                [self.delegate carInfoUploadDidFailAtIndex:idx];
+                            }
+                        }];
+                    }
+                    // 上传图片失败
+                    else {
+                        [self.delegate carInfoUploadDidFailAtIndex:idx];
+                    }
+                }];
             }];
         }
     }];
 }
 
-- (void)uploadCarImageList:(CICCarInfoEntity *)carInfo
+// 上传一次采集中的所有有图片，哪怕只有一个上传失败都认为是全部失败，回调返回 nil
+- (void)uploadCarImageList:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceUploadImageBlock)block
 {
+    NSMutableDictionary *remoteImagePathDictionary = [[NSMutableDictionary alloc] init];
+    
     [carInfo.carImagesLocalPath enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *imagePath, BOOL *stop) {
-        NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
-        
-        [self.carInfoHTTPLogic uploadImage:@"" withBlock:^(NSString *urlStr, NSError *error) {
-            
+        // 上传图片至服务器
+        [self.carInfoHTTPLogic uploadImage:imagePath withBlock:^(NSString *remoteImagePathStr, NSError *error) {
+            if (!error) {
+                // 用本地图片同样的 key 保存图片在服务器的路径
+                [remoteImagePathDictionary setObject:remoteImagePathDictionary forKey:key];
+            }
+            else {
+                // 上传失败
+                block(nil);
+                return;
+            }
         }];
     }];
+    
+    // 所有的图片都上传成功
+    block(remoteImagePathDictionary);
 }
 @end

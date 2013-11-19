@@ -34,19 +34,38 @@
              }];
 }
 
-- (void)uploadCarInfo:(CICCarInfoEntity *)carInfo
+- (void)uploadCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UploadCarInfoListBlock)block
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
     
-        [httpManager POST:@"http://xxx/capture/upload" parameters:@{@"key": @"value"}
+    NSDictionary *carInfoParameters = @{@"location": carInfo.location,
+                                        @"carName": carInfo.carName,
+                                        @"firstRegTime": carInfo.firstRegTime,
+                                        @"insuranceExpire": carInfo.location,
+                                        @"yearExamineExpire": carInfo.location,
+                                        @"carSource": carInfo.location,
+                                        @"dealTime": carInfo.location,
+                                        @"mileage": carInfo.location,
+                                        @"salePrice": carInfo.location,
+                                        @"chassisState": carInfo.location,
+                                        @"engineState": carInfo.location,
+                                        @"paintState": carInfo.location,
+                                        @"insideState": carInfo.location,
+                                        @"facadeState": carInfo.location,
+                                        @"masterName": carInfo.location,
+                                        @"pic": carInfo.location,
+                                        @"addTime": carInfo.location
+                                        };
+    
+        [httpManager POST:@"http://xxx/capture/upload" parameters:carInfoParameters
                                         constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                             
                                         }
                                                           success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                              
+                                                              block(nil);
                                                           }
                                                           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                              
+                                                              block(error);
                                                           }];
 }
 
