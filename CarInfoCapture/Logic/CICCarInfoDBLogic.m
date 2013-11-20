@@ -37,6 +37,7 @@
     " engineIssueList VARCHAR, " \
     " paintIssueList VARCHAR, " \
     " insideIssueList VARCHAR, " \
+    " facadeIssueList VARCHAR, " \
     " carImagesLocalPathDictionary VARCHAR " \
     ")";
     

@@ -128,7 +128,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
     [self clearCurrentCapture];
 }
 
-#pragma mark - CICCarBaseCheckReportDeledate
+#pragma mark - CICCarInfoDidChangeDelegate
 
 - (void)carInfoDidChange:(CICCarInfoEntity *)carInfoEntity
 {

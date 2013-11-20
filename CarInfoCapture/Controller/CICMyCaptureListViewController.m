@@ -55,8 +55,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
-        self.captureSum.text = [NSString stringWithFormat:@"%d", sum];
-        self.noUploadNumber.text = [NSString stringWithFormat:@"%d", needUpload];
+        self.captureSum.text = [NSString stringWithFormat:@"%ld", (long)sum];
+        self.noUploadNumber.text = [NSString stringWithFormat:@"%ld", (long)needUpload];
         
         if (needUpload == 0) {
             self.uploadBtton.hidden = YES;
@@ -125,8 +125,8 @@
     }];
     
     [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
-        self.captureSum.text = [NSString stringWithFormat:@"%d", sum];
-        self.noUploadNumber.text = [NSString stringWithFormat:@"%d", needUpload];
+        self.captureSum.text = [NSString stringWithFormat:@"%ld", (long)sum];
+        self.noUploadNumber.text = [NSString stringWithFormat:@"%ld", (long)needUpload];
         
         if (needUpload == 0) {
             self.uploadBtton.hidden = YES;

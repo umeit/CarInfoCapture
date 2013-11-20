@@ -84,7 +84,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     self.carInfoEntity.carImagesLocalPathDictionary[self.currentTackIamgeKey] = iamgeSavePath ? iamgeSavePath : @"";
     
     [picker dismissViewControllerAnimated:YES completion:^{
-        
+        [self.delegate carInfoDidChange:self.carInfoEntity];
     }];
 }
 

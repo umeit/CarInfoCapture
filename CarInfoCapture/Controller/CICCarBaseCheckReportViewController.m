@@ -109,7 +109,7 @@
 - (NSString *)detailLabelTextWithCarInfoCheckItemList:(NSArray *)itemList
 {
     return (itemList) && ([itemList count] > 0)
-            ? [NSString stringWithFormat:@"发现 %d 个问题", [itemList count]]
+            ? [NSString stringWithFormat:@"发现 %ld 个问题", (long)[itemList count]]
             : @"不填则没问题";
 }
 
