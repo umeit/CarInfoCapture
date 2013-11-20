@@ -10,6 +10,7 @@
 #import "CICGlobalService.h"
 #import "CICCarInfoEntity.h"
 #import "NSArray+CICArray.h"
+#import "NSDictionary+CICDictionary.h"
 #import "FMDatabase.h"
 
 #define DBPath [[CICGlobalService documentPath] stringByAppendingPathComponent:@"CarInfoCapture.db"]
@@ -36,7 +37,7 @@
     " engineIssueList VARCHAR, " \
     " paintIssueList VARCHAR, " \
     " insideIssueList VARCHAR, " \
-    " facadeIssueList VARCHAR " \
+    " carImagesLocalPathDictionary VARCHAR " \
     ")";
     
     [db executeUpdate:createTableSQL];
@@ -92,7 +93,7 @@
         return;
     }
     
-    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         nil,
                         @(carInfo.status), carInfo.carName, carInfo.carImage,
                         carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
@@ -100,7 +101,8 @@
                         [carInfo.engineIssueList formatToOneString],
                         [carInfo.paintIssueList formatToOneString],
                         [carInfo.insideIssueList formatToOneString],
-                        [carInfo.facadeIssueList formatToOneString]];
+                        [carInfo.facadeIssueList formatToOneString],
+                        [carInfo.carImagesLocalPathDictionary jsonStr]];
     
     if (success) {
         if (block) block(nil);

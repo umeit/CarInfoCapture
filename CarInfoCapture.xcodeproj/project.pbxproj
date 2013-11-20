@@ -39,6 +39,7 @@
 		034E6977182C83D400BD5612 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 034E6975182C83D400BD5612 /* InfoPlist.strings */; };
 		034E6979182C83D400BD5612 /* CarInfoCaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */; };
 		034E6983182C842700BD5612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 034E6982182C842700BD5612 /* Main.storyboard */; };
+		0360E023183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0360E022183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m */; };
 		03680CD918322137006A201A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BC019418321DE3000BDAF3 /* libsqlite3.dylib */; };
 		03680CDC18322E9E006A201A /* CICCarBaseCheckDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */; };
 		03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC017E1832134A000BDAF3 /* CICGlobalService.m */; };
@@ -116,6 +117,9 @@
 		034E6976182C83D400BD5612 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		034E6978182C83D400BD5612 /* CarInfoCaptureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarInfoCaptureTests.m; sourceTree = "<group>"; };
 		034E6982182C842700BD5612 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		0360E021183CC8A900E4C1A5 /* NSDictionary+CICDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CICDictionary.h"; sourceTree = "<group>"; };
+		0360E022183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CICDictionary.m"; sourceTree = "<group>"; };
+		0360E024183CCB9800E4C1A5 /* CICCarInfoDidChangeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CICCarInfoDidChangeDelegate.h; sourceTree = "<group>"; };
 		03680CDA18322E9E006A201A /* CICCarBaseCheckDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBaseCheckDetailViewController.h; sourceTree = "<group>"; };
 		03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseCheckDetailViewController.m; sourceTree = "<group>"; };
 		03BC017D1832134A000BDAF3 /* CICGlobalService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICGlobalService.h; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 			children = (
 				032B96141836214000A685D3 /* NSArray+CICArray.h */,
 				032B96151836214000A685D3 /* NSArray+CICArray.m */,
+				0360E021183CC8A900E4C1A5 /* NSDictionary+CICDictionary.h */,
+				0360E022183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -305,6 +311,7 @@
 				034E6965182C83D400BD5612 /* Images.xcassets */,
 				034E695A182C83D400BD5612 /* Supporting Files */,
 				034E6982182C842700BD5612 /* Main.storyboard */,
+				0360E024183CCB9800E4C1A5 /* CICCarInfoDidChangeDelegate.h */,
 			);
 			path = CarInfoCapture;
 			sourceTree = "<group>";
@@ -405,6 +412,11 @@
 				TargetAttributes = {
 					034E694F182C83D400BD5612 = {
 						DevelopmentTeam = ZZAGTE8AU9;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
 					};
 					034E696A182C83D400BD5612 = {
 						TestTargetID = 034E694F182C83D400BD5612;
@@ -458,6 +470,7 @@
 				03089A081833764D006F2E4B /* CICMainCaptureViewController.m in Sources */,
 				0339EF801831FD500082A35E /* AFURLConnectionOperation.m in Sources */,
 				03680CDC18322E9E006A201A /* CICCarBaseCheckDetailViewController.m in Sources */,
+				0360E023183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m in Sources */,
 				0339EF7B1831FD500082A35E /* AFHTTPRequestOperation.m in Sources */,
 				0339EF7E1831FD500082A35E /* AFNetworkReachabilityManager.m in Sources */,
 				0307B30E183B606600C8DB82 /* CICCarImageViewController.m in Sources */,
@@ -602,11 +615,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarInfoCapture/CarInfoCapture-Prefix.pch";
 				INFOPLIST_FILE = "CarInfoCapture/CarInfoCapture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -617,11 +632,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarInfoCapture/CarInfoCapture-Prefix.pch";
 				INFOPLIST_FILE = "CarInfoCapture/CarInfoCapture-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

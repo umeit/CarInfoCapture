@@ -10,6 +10,17 @@
 
 @implementation CICCarInfoEntity
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.carImagesLocalPathDictionary = [[NSMutableDictionary alloc] init];
+        self.carImagesRemotePathDictionary = [[NSMutableDictionary alloc] init];
+    }
+    
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];
@@ -20,6 +31,7 @@
         self.mileage = [aDecoder decodeObjectForKey:@"mileage"];
         self.firstRegTime = [aDecoder decodeObjectForKey:@"firstRegTime"];
         self.underpanIssueList = [aDecoder decodeObjectForKey:@"underpanIssueList"];
+        self.carImagesLocalPathDictionary = [aDecoder decodeObjectForKey:@"carImagesLocalPathDictionary"];
     }
     
     return self;
@@ -33,6 +45,7 @@
     [aCoder encodeObject:self.mileage forKey:@"mileage"];
     [aCoder encodeObject:self.firstRegTime forKey:@"firstRegTime"];
     [aCoder encodeObject:self.underpanIssueList forKey:@"underpanIssueList"];
+    [aCoder encodeObject:self.carImagesLocalPathDictionary forKey:@"carImagesLocalPathDictionary"];
 }
 
 @end

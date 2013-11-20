@@ -18,4 +18,6 @@
 
 + (UIImage *)iamgeWithPath:(NSString *)pathStr;
 
++ (NSString *)saveImageToLocal:(UIImage *)image;
+
 @end

@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CICCarInfoDidChangeDelegate.h"
 
 @class CICCarInfoEntity;
 
 @interface CICCarImageViewController : UITableViewController
 
 @property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
+
+@property (weak, nonatomic) id<CICCarInfoDidChangeDelegate> delegate;
 
 @end

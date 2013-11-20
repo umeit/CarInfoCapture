@@ -20,7 +20,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
     NewCarInfo
 }CarInfoSaveStatus;
 
-@interface CICMainCaptureViewController () <CICCarBaseCheckReportDeledate>
+@interface CICMainCaptureViewController () <CICCarInfoDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *firstCheckCompleteImage;
 @property (weak, nonatomic) IBOutlet UIImageView *secondCheckCompleteImage;
 @property (weak, nonatomic) IBOutlet UIImageView *thirdCheckCompleteImage;
