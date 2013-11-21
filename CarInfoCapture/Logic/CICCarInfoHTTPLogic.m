@@ -10,8 +10,6 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "CICCarInfoEntity.h"
 
-
-
 @interface CICCarInfoHTTPLogic ()
 
 @end
@@ -50,27 +48,34 @@
                                                       }];
 }
 
-#pragma mark - Private
-
 - (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
-    
+    httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"text/json", nil];
     NSDictionary *uploadImageParameters = [self uploadImageParameters:filePathStr];
     
-    [httpManager POST:(@"http://upload.xxx.com")
-           parameters:uploadImageParameters
-              success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                  NSLog(@"%@", responseObject);
-                  
-                  block(responseObject, nil);
-              }
-              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  NSLog(@"%@", error.description);
-                  
-                  block(nil, error);
-              }];
+    NSData *imageData = [NSData dataWithContentsOfFile:filePathStr];
+    
+    [httpManager POST:@"http://upload.darengong.com:8090"
+           parameters:uploadImageParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                                [formData appendPartWithFileData:imageData
+                                                                            name:@"Filedata"
+                                                                        fileName:@"tuxiang.jpg"
+                                                                        mimeType:@"image/jpeg"];
+                                                            } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                                                NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+                                                               
+                                                                block(responseObject, nil);
+                                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                                NSLog(@"%@", error.description);
+                                                                
+                                                                block(nil, error);
+                                                           }];
 }
+
+#pragma mark - Private
 
 - (NSDictionary *)carInfoParameters:(CICCarInfoEntity *)carInfo
 {
@@ -96,12 +101,12 @@
 
 - (NSDictionary *)uploadImageParameters:(NSString *)filePathStr
 {
-    NSData *imageData = [NSData dataWithContentsOfFile:filePathStr];
+//    NSData *imageData = [NSData dataWithContentsOfFile:filePathStr];
     
     NSDictionary *uploadImageParameters = @{@"Filename": @"TuXiang.jpg",
                                             @"filepath": @"/0/capture/",
-                                            @"filecate": @"picture",
-                                            @"Filedata": imageData};
+                                            @"filecate": @"picture"};
+//                                            @"Filedata": imageData};
     return uploadImageParameters;
 }
 

@@ -81,7 +81,6 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImag
             if (!self.carInfoHTTPLogic) {
                 self.carInfoHTTPLogic = [[CICCarInfoHTTPLogic alloc] init];
             }
-//            self.carInfoHTTPLogic.delegate = self.delegate;
             
             // 将每个采集信息上传至服务器
             [noUploadCarInfoList enumerateObjectsUsingBlock:^(CICCarInfoEntity *carInfo, NSUInteger idx, BOOL *stop) {
@@ -89,7 +88,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImag
                 // 1\先上传信息中的车辆图片
                 [self uploadCarImageList:carInfo withBlock:^(NSMutableDictionary *remoteImagePathDictionary) {
                     // 上传图片成功
-                    if (remoteImagePathDictionary) {
+                    if (remoteImagePathDictionary && [remoteImagePathDictionary count] > 0) {
                         carInfo.carImagesRemotePathDictionary = remoteImagePathDictionary;
                         
                         // 2\再上传其他信息
@@ -122,7 +121,11 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImag
         [self.carInfoHTTPLogic uploadImage:imagePath withBlock:^(NSString *remoteImagePathStr, NSError *error) {
             if (!error) {
                 // 用本地图片同样的 key 保存图片在服务器的路径
-                [remoteImagePathDictionary setObject:remoteImagePathDictionary forKey:key];
+                [remoteImagePathDictionary setObject:remoteImagePathStr forKey:key];
+                if ([remoteImagePathDictionary count] == [carInfo.carImagesLocalPathDictionary count]) {
+                    // 所有的图片都上传成功，返回一个字典，包含图片在服务器的地址
+                    block(remoteImagePathDictionary);
+                }
             }
             else {
                 // 上传失败
@@ -131,8 +134,5 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImag
             }
         }];
     }];
-    
-    // 所有的图片都上传成功
-    block(remoteImagePathDictionary);
 }
 @end

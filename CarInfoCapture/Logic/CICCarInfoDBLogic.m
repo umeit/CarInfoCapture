@@ -11,6 +11,7 @@
 #import "CICCarInfoEntity.h"
 #import "NSArray+CICArray.h"
 #import "NSDictionary+CICDictionary.h"
+#import "NSString+CICString.h"
 #import "FMDatabase.h"
 
 #define DBPath [[CICGlobalService documentPath] stringByAppendingPathComponent:@"CarInfoCapture.db"]
@@ -162,10 +163,12 @@
         carInfo.paintIssueList = [[s stringForColumn:@"paintIssueList"] componentsSeparatedByString:@"#"];
         carInfo.insideIssueList = [[s stringForColumn:@"insideIssueList"] componentsSeparatedByString:@"#"];
         carInfo.facadeIssueList = [[s stringForColumn:@"facadeIssueList"] componentsSeparatedByString:@"#"];
+        carInfo.carImagesLocalPathDictionary = [NSMutableDictionary dictionaryWithDictionary:[[s stringForColumn:@"carImagesLocalPathDictionary"] jsonStrToDic]];
         
         [carInfoList addObject:carInfo];
     }
     
     [db close];
+    block(carInfoList, nil);
 }
 @end
