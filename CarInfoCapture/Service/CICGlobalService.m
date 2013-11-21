@@ -54,8 +54,9 @@
         }
     }
     
+    NSString *imageName = [NSString stringWithFormat:@"CarIamge_%f.png", [[NSDate date] timeIntervalSince1970]];
     // 图片路径
-    NSString *iamgeSavePath = [saveImageDir stringByAppendingPathComponent:@"image.png"];
+    NSString *iamgeSavePath = [saveImageDir stringByAppendingPathComponent:imageName];
     
     // 保存
     NSData *imageData = UIImagePNGRepresentation(image);

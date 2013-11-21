@@ -12,7 +12,7 @@
 #import "CICGlobalService.h"
 #import "CICCarInfoEntity.h"
 
-typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImagePathDictionary);
+typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePathList);
 
 @implementation CICCarInfoService
 
@@ -86,10 +86,10 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImag
             [noUploadCarInfoList enumerateObjectsUsingBlock:^(CICCarInfoEntity *carInfo, NSUInteger idx, BOOL *stop) {
                 
                 // 1\先上传信息中的车辆图片
-                [self uploadCarImageList:carInfo withBlock:^(NSMutableDictionary *remoteImagePathDictionary) {
+                [self uploadCarImageList:carInfo withBlock:^(NSMutableArray *remoteImagePathList) {
                     // 上传图片成功
-                    if (remoteImagePathDictionary && [remoteImagePathDictionary count] > 0) {
-                        carInfo.carImagesRemotePathDictionary = remoteImagePathDictionary;
+                    if (remoteImagePathList) {
+                        carInfo.carImagesLocalPathList = remoteImagePathList;
                         
                         // 2\再上传其他信息
                         [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
@@ -114,17 +114,43 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableDictionary *remoteImag
 // 上传一次采集中的所有有图片，哪怕只有一个上传失败都认为是全部失败，回调返回 nil
 - (void)uploadCarImageList:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceUploadImageBlock)block
 {
-    NSMutableDictionary *remoteImagePathDictionary = [[NSMutableDictionary alloc] init];
+//    NSMutableDictionary *remoteImagePathDictionary = [[NSMutableDictionary alloc] init];
     
-    [carInfo.carImagesLocalPathDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *imagePath, BOOL *stop) {
+    NSDictionary *placeholderDic = @{@"k": @(-1), @"v": @""};
+    NSMutableArray *remoteImagePathList = [[NSMutableArray alloc] initWithArray:@[placeholderDic,
+                                                                                  placeholderDic,
+                                                                                  placeholderDic,
+                                                                                  placeholderDic,
+                                                                                  placeholderDic]];
+    
+//    [carInfo.carImagesLocalPathList enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *imagePath, BOOL *stop) {
+//        // 上传图片至服务器
+//        [self.carInfoHTTPLogic uploadImage:imagePath withBlock:^(NSString *remoteImagePathStr, NSError *error) {
+//            if (!error) {
+//                // 用本地图片同样的 key 保存图片在服务器的路径
+//                [remoteImagePathDictionary setObject:remoteImagePathStr forKey:key];
+//                if ([remoteImagePathDictionary count] == [carInfo.carImagesLocalPathDictionary count]) {
+//                    // 所有的图片都上传成功，返回一个字典，包含图片在服务器的地址
+//                    block(remoteImagePathDictionary);
+//                }
+//            }
+//            else {
+//                // 上传失败
+//                block(nil);
+//                return;
+//            }
+//        }];
+//    }];
+    
+    [carInfo.carImagesLocalPathList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         // 上传图片至服务器
-        [self.carInfoHTTPLogic uploadImage:imagePath withBlock:^(NSString *remoteImagePathStr, NSError *error) {
+        [self.carInfoHTTPLogic uploadImage:obj[@"v"] withBlock:^(NSString *remoteImagePathStr, NSError *error) {
             if (!error) {
                 // 用本地图片同样的 key 保存图片在服务器的路径
-                [remoteImagePathDictionary setObject:remoteImagePathStr forKey:key];
-                if ([remoteImagePathDictionary count] == [carInfo.carImagesLocalPathDictionary count]) {
+                remoteImagePathList[idx] = @{@"k": obj[@"k"], @"v": remoteImagePathStr};
+                if (idx == ([carInfo.carImagesLocalPathList count] - 1)) {
                     // 所有的图片都上传成功，返回一个字典，包含图片在服务器的地址
-                    block(remoteImagePathDictionary);
+                    block(remoteImagePathList);
                 }
             }
             else {

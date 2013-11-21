@@ -27,7 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *frontSeatImage;
 @property (weak, nonatomic) IBOutlet UIImageView *backSeatImage;
 
-@property (strong, nonatomic) NSString *currentTackIamgeKey;
+//@property (strong, nonatomic) NSString *currentTackIamgeKey;
+@property (nonatomic) CarImageIndex currentTackIamgeIndex;
 @end
 
 @implementation CICCarImageViewController
@@ -39,7 +40,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.frontFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathDictionary[kFrontFlankImage]];
+//    self.frontFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathDictionary[kFrontFlankImage]];
+//    self.backFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathDictionary[kBackFlankImage]];
+    
+    self.frontFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontFlankImage][@"v"]];
+    self.backFlankImage.image  = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backFlankImage][@"v"]];
 }
 
 #pragma mark - Action
@@ -48,15 +53,30 @@
 {
     switch (((UIButton *)sender).tag) {
         case kFrontFlankImageTag:
+//            self.currentTackIamgeKey = kFrontFlankImage;
+            self.currentTackIamgeIndex = frontFlankImage;
             // 判断是否弹出编辑图片的菜单
             if(self.frontFlankImage.image) {
+                [self showEditImageMenu];
+                return;
+            }
+            else {
+                // 启动相机
+                [self showImagePicker];
+            }
+            break;
+            
+        case kBackFlankImageTag:
+            // 判断是否弹出编辑图片的菜单;
+//            self.currentTackIamgeKey = kBackFlankImage;
+            self.currentTackIamgeIndex = backFlankImage;
+            if(self.backFlankImage.image) {
                 [self showEditImageMenu];
                 
                 return;
             }
             else {
                 // 启动相机
-                self.currentTackIamgeKey = kFrontFlankImage;
                 [self showImagePicker];
             }
             break;
@@ -81,7 +101,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     
     // 将图片路径保存到实体类
     NSString *iamgeSavePath = [CICGlobalService saveImageToLocal:image];
-    self.carInfoEntity.carImagesLocalPathDictionary[self.currentTackIamgeKey] = iamgeSavePath ? iamgeSavePath : @"";
+//    self.carInfoEntity.carImagesLocalPathDictionary[self.currentTackIamgeKey] = iamgeSavePath ? iamgeSavePath : @"";
+    
+    self.carInfoEntity.carImagesLocalPathList[self.currentTackIamgeIndex] =
+        @{@"k": @([self.carInfoEntity imageCodeWithImageIndex:self.currentTackIamgeIndex]),
+          @"v": (iamgeSavePath ? iamgeSavePath : @"")};
+    
+    #warning 删除之前的图片
     
     [picker dismissViewControllerAnimated:YES completion:^{
         [self.delegate carInfoDidChange:self.carInfoEntity];
@@ -101,12 +127,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
-        case kRetakePhoto:
+        case kRetakePhoto:  // 拍照
             // 启动相机
             [self showImagePicker];
             break;
             
-        case kReselectPhoto:
+        case kReselectPhoto:  // 从相册选取
             
             break;
         default:

@@ -10,6 +10,8 @@
 
 @interface NSString (CICString)
 
-- (NSDictionary *)jsonStrToDic;
+- (NSDictionary *)jsonStrToDictionary;
+
+- (NSArray *)jsonStrToArray;
 
 @end

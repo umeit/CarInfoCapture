@@ -120,9 +120,9 @@
 
 - (void)updateView
 {
-    [self.carInfoService uploadCarInfoWithBlock:^(NSError *error) {
+//    [self.carInfoService uploadCarInfoWithBlock:^(NSError *error) {
         [self.tableView reloadData];
-    }];
+//    }];
     
     [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
         self.captureSum.text = [NSString stringWithFormat:@"%ld", (long)sum];

@@ -39,7 +39,7 @@
     " paintIssueList VARCHAR, " \
     " insideIssueList VARCHAR, " \
     " facadeIssueList VARCHAR, " \
-    " carImagesLocalPathDictionary VARCHAR " \
+    " carImagesLocalPathList VARCHAR " \
     ")";
     
     [db executeUpdate:createTableSQL];
@@ -78,6 +78,7 @@
         carInfo.paintIssueList = [[s stringForColumn:@"paintIssueList"] componentsSeparatedByString:@"#"];
         carInfo.insideIssueList = [[s stringForColumn:@"insideIssueList"] componentsSeparatedByString:@"#"];
         carInfo.facadeIssueList = [[s stringForColumn:@"facadeIssueList"] componentsSeparatedByString:@"#"];
+        carInfo.carImagesLocalPathList = [NSMutableArray arrayWithArray:[[s stringForColumn:@"carImagesLocalPathList"] jsonStrToArray]];
         
         [carInfoList addObject:carInfo];
     }
@@ -99,12 +100,12 @@
                         nil,
                         @(carInfo.status), carInfo.carName, carInfo.carImage,
                         carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
-                        [carInfo.underpanIssueList formatToOneString],
-                        [carInfo.engineIssueList formatToOneString],
-                        [carInfo.paintIssueList formatToOneString],
-                        [carInfo.insideIssueList formatToOneString],
-                        [carInfo.facadeIssueList formatToOneString],
-                        [carInfo.carImagesLocalPathDictionary jsonStr]];
+                        [carInfo.underpanIssueList oneStringFormat],
+                        [carInfo.engineIssueList oneStringFormat],
+                        [carInfo.paintIssueList oneStringFormat],
+                        [carInfo.insideIssueList oneStringFormat],
+                        [carInfo.facadeIssueList oneStringFormat],
+                        [carInfo.carImagesLocalPathList jsonStringFormat]];
     
     if (success) {
         if (block) block(nil);
@@ -163,7 +164,7 @@
         carInfo.paintIssueList = [[s stringForColumn:@"paintIssueList"] componentsSeparatedByString:@"#"];
         carInfo.insideIssueList = [[s stringForColumn:@"insideIssueList"] componentsSeparatedByString:@"#"];
         carInfo.facadeIssueList = [[s stringForColumn:@"facadeIssueList"] componentsSeparatedByString:@"#"];
-        carInfo.carImagesLocalPathDictionary = [NSMutableDictionary dictionaryWithDictionary:[[s stringForColumn:@"carImagesLocalPathDictionary"] jsonStrToDic]];
+        carInfo.carImagesLocalPathList = [NSMutableArray arrayWithArray:[[s stringForColumn:@"carImagesLocalPathList"] jsonStrToArray]];
         
         [carInfoList addObject:carInfo];
     }

@@ -10,6 +10,8 @@
 
 @interface NSArray (CICArray)
 
-- (NSString *)formatToOneString;
+- (NSString *)oneStringFormat;
+
+- (NSString *)jsonStringFormat;
 
 @end

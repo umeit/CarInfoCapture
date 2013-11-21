@@ -10,7 +10,7 @@
 
 @implementation NSArray (CICArray)
 
-- (NSString *)formatToOneString;
+- (NSString *)oneStringFormat;
 {
     NSMutableString *str = [[NSMutableString alloc] init];
 //    for (NSString *s in self) {
@@ -26,6 +26,18 @@
         }
     }];
     return str;
+}
+
+- (NSString *)jsonStringFormat
+{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:&error];
+    if (!jsonData) {
+        NSLog(@"jsonStr error: %@", error.description);
+        return nil;
+    } else {
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
 }
 
 @end

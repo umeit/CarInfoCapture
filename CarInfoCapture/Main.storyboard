@@ -486,6 +486,16 @@
                                                     <rect key="frame" x="41" y="18" width="238" height="153"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
+                                                <button opaque="NO" tag="31" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1E-xJ-w45">
+                                                    <rect key="frame" x="137" y="80" width="46" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="takePhotoButtonPress:" destination="fMa-lS-lHq" eventType="touchUpInside" id="Lyd-Mr-vqv"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -521,6 +531,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="车辆实拍" id="23O-d9-aKJ"/>
                     <connections>
+                        <outlet property="backFlankImage" destination="ohn-4i-hyh" id="Yf2-Eu-CNR"/>
                         <outlet property="frontFlankImage" destination="ADe-Su-LwD" id="Edh-Tf-ljK"/>
                     </connections>
                 </tableViewController>

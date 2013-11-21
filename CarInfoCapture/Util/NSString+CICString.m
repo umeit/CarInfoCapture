@@ -10,7 +10,7 @@
 
 @implementation NSString (CICString)
 
-- (NSDictionary *)jsonStrToDic
+- (NSDictionary *)jsonStrToDictionary
 {
     NSError *error;
     NSDictionary *dic;
@@ -22,6 +22,20 @@
         NSLog(@"Convert JSON String to NSDictionary error!");
     }
     return dic;
+}
+
+- (NSArray *)jsonStrToArray
+{
+    NSError *error;
+    NSArray *array;
+    
+    array = [NSJSONSerialization JSONObjectWithData:[self dataUsingEncoding:NSUTF8StringEncoding]
+                                          options:kNilOptions
+                                            error:&error];
+    if (error) {
+        NSLog(@"Convert JSON String to NSArray error!");
+    }
+    return array;
 }
 
 @end
