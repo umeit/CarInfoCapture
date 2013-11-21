@@ -573,6 +573,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="a7v-EQ-ECZ" kind="push" id="1ca-22-Rh8"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="O5L-Ug-UT9" detailTextLabel="VtB-Zn-Nkp" style="IBUITableViewCellStyleValue1" id="FK6-CY-tkO">
                                         <rect key="frame" x="0.0" y="108" width="320" height="44"/>
@@ -789,6 +792,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pel-UZ-o85" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1755" y="-152"/>
+        </scene>
+        <!--Car Local View Controller - 归属地-->
+        <scene sceneID="XGh-Ci-s6y">
+            <objects>
+                <tableViewController id="a7v-EQ-ECZ" customClass="CICCarLocalViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="T3F-Ag-bqu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="que-Di-gUT" style="IBUITableViewCellStyleDefault" id="dBy-OW-L95">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dBy-OW-L95" id="7wa-lK-E8k">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="que-Di-gUT">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="a7v-EQ-ECZ" id="VO6-Do-HmN"/>
+                            <outlet property="delegate" destination="a7v-EQ-ECZ" id="ugM-31-eER"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="归属地" id="GUd-Zf-f7z"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UGe-XB-Smj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2155" y="-153"/>
         </scene>
         <!--Navigation Controller - 开始采集-->
         <scene sceneID="UbT-57-o7U">

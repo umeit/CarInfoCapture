@@ -114,51 +114,47 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
 // 上传一次采集中的所有有图片，哪怕只有一个上传失败都认为是全部失败，回调返回 nil
 - (void)uploadCarImageList:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceUploadImageBlock)block
 {
-//    NSMutableDictionary *remoteImagePathDictionary = [[NSMutableDictionary alloc] init];
-    
     NSDictionary *placeholderDic = @{@"k": @(-1), @"v": @""};
     NSMutableArray *remoteImagePathList = [[NSMutableArray alloc] initWithArray:@[placeholderDic,
-                                                                                  placeholderDic,
-                                                                                  placeholderDic,
-                                                                                  placeholderDic,
                                                                                   placeholderDic]];
     
-//    [carInfo.carImagesLocalPathList enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *imagePath, BOOL *stop) {
-//        // 上传图片至服务器
-//        [self.carInfoHTTPLogic uploadImage:imagePath withBlock:^(NSString *remoteImagePathStr, NSError *error) {
-//            if (!error) {
-//                // 用本地图片同样的 key 保存图片在服务器的路径
-//                [remoteImagePathDictionary setObject:remoteImagePathStr forKey:key];
-//                if ([remoteImagePathDictionary count] == [carInfo.carImagesLocalPathDictionary count]) {
-//                    // 所有的图片都上传成功，返回一个字典，包含图片在服务器的地址
-//                    block(remoteImagePathDictionary);
-//                }
-//            }
-//            else {
-//                // 上传失败
-//                block(nil);
-//                return;
-//            }
-//        }];
-//    }];
-    
     [carInfo.carImagesLocalPathList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        // 上传图片至服务器
-        [self.carInfoHTTPLogic uploadImage:obj[@"v"] withBlock:^(NSString *remoteImagePathStr, NSError *error) {
-            if (!error) {
-                // 用本地图片同样的 key 保存图片在服务器的路径
-                remoteImagePathList[idx] = @{@"k": obj[@"k"], @"v": remoteImagePathStr};
-                if (idx == ([carInfo.carImagesLocalPathList count] - 1)) {
-                    // 所有的图片都上传成功，返回一个字典，包含图片在服务器的地址
-                    block(remoteImagePathList);
+        if (obj[@"v"] && [obj[@"v"] length] > 0) {
+            
+            // 上传图片至服务器
+            [self.carInfoHTTPLogic uploadImage:obj[@"v"] withBlock:^(NSString *remoteImagePathStr, NSError *error) {
+                if (!error) {
+                    // 用本地图片同样的 key 保存图片在服务器的路径
+                    remoteImagePathList[idx] = @{@"k": obj[@"k"], @"v": remoteImagePathStr};
+                    
+                    if ([self allOfUploadForList:remoteImagePathList]) {
+                        // 所有的图片都上传成功，返回一个字典，包含图片在服务器的地址
+                        block(remoteImagePathList);
+                    }
+                    
                 }
-            }
-            else {
-                // 上传失败
-                block(nil);
-                return;
-            }
-        }];
+                else {
+                    // 上传失败
+                    block(nil);
+                    return;
+                }
+            }];
+            
+        }
     }];
 }
+
+#pragma mark - Private
+
+- (BOOL)allOfUploadForList:(NSArray *)remoteImagePathList
+{
+    for (NSDictionary *dic in remoteImagePathList) {
+        if ([dic[@"v"]length] == 0) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 @end

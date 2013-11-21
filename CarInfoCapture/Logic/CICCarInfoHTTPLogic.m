@@ -35,6 +35,8 @@
 - (void)uploadCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UploadCarInfoListBlock)block
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
+    httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
     
