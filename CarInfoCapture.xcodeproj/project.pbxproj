@@ -54,6 +54,9 @@
 		03BC9044183F0934008E8B88 /* CICFinalCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC9043183F0934008E8B88 /* CICFinalCheckViewController.m */; };
 		03BC9047183F10DF008E8B88 /* CICCarBaseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC9046183F10DF008E8B88 /* CICCarBaseInfoViewController.m */; };
 		03BC904A183F2EA3008E8B88 /* CICCarBrandListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC9049183F2EA3008E8B88 /* CICCarBrandListViewController.m */; };
+		03BC90CB183F30ED008E8B88 /* CarBrandJson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03BC90CA183F30ED008E8B88 /* CarBrandJson.txt */; };
+		03BC90CE183F3182008E8B88 /* NSData+CICData.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC90CD183F3182008E8B88 /* NSData+CICData.m */; };
+		03BC90D1183F3CAA008E8B88 /* CICCarInfoDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC90D0183F3CAA008E8B88 /* CICCarInfoDateViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +155,11 @@
 		03BC9046183F10DF008E8B88 /* CICCarBaseInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseInfoViewController.m; sourceTree = "<group>"; };
 		03BC9048183F2EA3008E8B88 /* CICCarBrandListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBrandListViewController.h; sourceTree = "<group>"; };
 		03BC9049183F2EA3008E8B88 /* CICCarBrandListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBrandListViewController.m; sourceTree = "<group>"; };
+		03BC90CA183F30ED008E8B88 /* CarBrandJson.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CarBrandJson.txt; sourceTree = "<group>"; };
+		03BC90CC183F3182008E8B88 /* NSData+CICData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CICData.h"; sourceTree = "<group>"; };
+		03BC90CD183F3182008E8B88 /* NSData+CICData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CICData.m"; sourceTree = "<group>"; };
+		03BC90CF183F3CAA008E8B88 /* CICCarInfoDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoDateViewController.h; sourceTree = "<group>"; };
+		03BC90D0183F3CAA008E8B88 /* CICCarInfoDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarInfoDateViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +196,8 @@
 				0360E022183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m */,
 				033A22AC183DA97E004EE235 /* NSString+CICString.h */,
 				033A22AD183DA97E004EE235 /* NSString+CICString.m */,
+				03BC90CC183F3182008E8B88 /* NSData+CICData.h */,
+				03BC90CD183F3182008E8B88 /* NSData+CICData.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -213,6 +223,8 @@
 				03BC9046183F10DF008E8B88 /* CICCarBaseInfoViewController.m */,
 				03BC9048183F2EA3008E8B88 /* CICCarBrandListViewController.h */,
 				03BC9049183F2EA3008E8B88 /* CICCarBrandListViewController.m */,
+				03BC90CF183F3CAA008E8B88 /* CICCarInfoDateViewController.h */,
+				03BC90D0183F3CAA008E8B88 /* CICCarInfoDateViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -340,6 +352,7 @@
 				034E695A182C83D400BD5612 /* Supporting Files */,
 				034E6982182C842700BD5612 /* Main.storyboard */,
 				033A2322183E2327004EE235 /* ProvincesAndCities.plist */,
+				03BC90CA183F30ED008E8B88 /* CarBrandJson.txt */,
 			);
 			path = CarInfoCapture;
 			sourceTree = "<group>";
@@ -475,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				034E6983182C842700BD5612 /* Main.storyboard in Resources */,
+				03BC90CB183F30ED008E8B88 /* CarBrandJson.txt in Resources */,
 				034E695E182C83D400BD5612 /* InfoPlist.strings in Resources */,
 				034E6966182C83D400BD5612 /* Images.xcassets in Resources */,
 				033A2323183E2327004EE235 /* ProvincesAndCities.plist in Resources */,
@@ -511,6 +525,7 @@
 				0339EF871831FD500082A35E /* CICCarInfoCell.m in Sources */,
 				0339EF811831FD500082A35E /* AFURLRequestSerialization.m in Sources */,
 				0339EF7A1831FD500082A35E /* CICCarInfoEntity.m in Sources */,
+				03BC90CE183F3182008E8B88 /* NSData+CICData.m in Sources */,
 				03BC9044183F0934008E8B88 /* CICFinalCheckViewController.m in Sources */,
 				03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */,
 				03BC9047183F10DF008E8B88 /* CICCarBaseInfoViewController.m in Sources */,
@@ -522,6 +537,7 @@
 				034E6960182C83D400BD5612 /* main.m in Sources */,
 				0339EF7C1831FD500082A35E /* AFHTTPRequestOperationManager.m in Sources */,
 				0339EF7F1831FD500082A35E /* AFSecurityPolicy.m in Sources */,
+				03BC90D1183F3CAA008E8B88 /* CICCarInfoDateViewController.m in Sources */,
 				03BC019118321714000BDAF3 /* FMResultSet.m in Sources */,
 				0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */,
 				033A2326183E23EF004EE235 /* CICCarLocationViewController.m in Sources */,

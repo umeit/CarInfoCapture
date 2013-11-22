@@ -312,7 +312,48 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvf-ED-U5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2210" y="21"/>
+            <point key="canvasLocation" x="2816" y="39"/>
+        </scene>
+        <!--Car Info Date View Controller - 年-->
+        <scene sceneID="FAx-jL-7Jh">
+            <objects>
+                <tableViewController id="Zc4-NT-TbB" customClass="CICCarInfoDateViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="czs-I5-dUL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CICCarInfoDateViewController" textLabel="1BU-Ue-jox" style="IBUITableViewCellStyleDefault" id="Bbc-L7-H9n">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bbc-L7-H9n" id="HaI-6p-uGY">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1BU-Ue-jox">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Zc4-NT-TbB" id="FcP-dM-yDv"/>
+                            <outlet property="delegate" destination="Zc4-NT-TbB" id="34w-XK-YEX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="年" id="HR7-j3-Adj"/>
+                    <connections>
+                        <segue destination="BYr-gr-xdi" kind="push" id="anf-mc-4uX"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MMS-1I-qPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2816" y="721"/>
         </scene>
         <!--Table View Controller - 车型-->
         <scene sceneID="4Y8-Kg-wMJ">
@@ -353,7 +394,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4G-ua-15k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2699" y="21"/>
+            <point key="canvasLocation" x="3305" y="39"/>
         </scene>
         <!--Car Base Check Report View Controller - 车辆初步检测报告-->
         <scene sceneID="vIR-36-dzs">
@@ -621,7 +662,7 @@
             </objects>
             <point key="canvasLocation" x="1188" y="841"/>
         </scene>
-        <!--Car Base Info View Controller - 车辆基本信息-->
+        <!--Car Base Info View Controller - 基本信息-->
         <scene sceneID="X5I-Zj-hp1">
             <objects>
                 <tableViewController id="7Tb-FJ-V9F" customClass="CICCarBaseInfoViewController" sceneMemberID="viewController">
@@ -709,6 +750,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Zc4-NT-TbB" kind="push" id="fJf-kv-hu8"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ZYF-vx-4W0" detailTextLabel="nlL-6c-zzP" style="IBUITableViewCellStyleValue1" id="URG-iL-a5O">
                                         <rect key="frame" x="0.0" y="196" width="320" height="44"/>
@@ -733,6 +777,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Zc4-NT-TbB" kind="push" id="37J-F6-E9N"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="A19-Ae-D5P" detailTextLabel="z05-Ii-OuU" style="IBUITableViewCellStyleValue1" id="vT3-6a-U2F">
                                         <rect key="frame" x="0.0" y="240" width="320" height="44"/>
@@ -757,6 +804,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Zc4-NT-TbB" kind="push" id="Mf2-rV-oWG"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="YHT-As-mA9" detailTextLabel="cEn-Zc-GiM" style="IBUITableViewCellStyleValue1" id="TZC-bI-GaF">
                                         <rect key="frame" x="0.0" y="284" width="320" height="44"/>
@@ -872,11 +922,11 @@
                             <outlet property="delegate" destination="7Tb-FJ-V9F" id="cHb-nI-L7A"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="车辆基本信息" id="YLu-JZ-EQr"/>
+                    <navigationItem key="navigationItem" title="基本信息" id="YLu-JZ-EQr"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pel-UZ-o85" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1755" y="-152"/>
+            <point key="canvasLocation" x="2313" y="39"/>
         </scene>
         <!--Final Check View Controller - 最终视图-->
         <scene sceneID="JuE-L1-XJi">
@@ -914,7 +964,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGu-i7-PUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3144" y="-686"/>
+            <point key="canvasLocation" x="4052" y="39"/>
         </scene>
         <!--Car Location View Controller - 归属地-->
         <scene sceneID="XGh-Ci-s6y">
@@ -955,7 +1005,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UGe-XB-Smj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2210" y="-686"/>
+            <point key="canvasLocation" x="2816" y="-638"/>
         </scene>
         <!--Navigation Controller - 开始采集-->
         <scene sceneID="UbT-57-o7U">
@@ -1318,7 +1368,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TRV-KJ-Psj"/>
         <segue reference="987-5U-MMg"/>
+        <segue reference="37J-F6-E9N"/>
+        <segue reference="anf-mc-4uX"/>
     </inferredMetricsTieBreakers>
 </document>
