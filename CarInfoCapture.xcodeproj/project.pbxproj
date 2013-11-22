@@ -199,6 +199,7 @@
 		03BC91F1183F6575008E8B88 /* 241.png in Resources */ = {isa = PBXBuildFile; fileRef = 03BC9161183F6575008E8B88 /* 241.png */; };
 		03BC91F2183F6575008E8B88 /* CarBrandJson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03BC9162183F6575008E8B88 /* CarBrandJson.txt */; };
 		03BC91F3183F6575008E8B88 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03BC9163183F6575008E8B88 /* ProvincesAndCities.plist */; };
+		03BC91F6183F6AC3008E8B88 /* NSFileHandle+readLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -444,6 +445,8 @@
 		03BC9161183F6575008E8B88 /* 241.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 241.png; sourceTree = "<group>"; };
 		03BC9162183F6575008E8B88 /* CarBrandJson.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CarBrandJson.txt; sourceTree = "<group>"; };
 		03BC9163183F6575008E8B88 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
+		03BC91F4183F6AC3008E8B88 /* NSFileHandle+readLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileHandle+readLine.h"; sourceTree = "<group>"; };
+		03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileHandle+readLine.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -474,6 +477,8 @@
 		032B96131836211900A685D3 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				03BC91F4183F6AC3008E8B88 /* NSFileHandle+readLine.h */,
+				03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */,
 				032B96141836214000A685D3 /* NSArray+CICArray.h */,
 				032B96151836214000A685D3 /* NSArray+CICArray.m */,
 				0360E021183CC8A900E4C1A5 /* NSDictionary+CICDictionary.h */,
@@ -1103,6 +1108,7 @@
 				0339EF7E1831FD500082A35E /* AFNetworkReachabilityManager.m in Sources */,
 				0307B30E183B606600C8DB82 /* CICCarImageViewController.m in Sources */,
 				03BC018C18321714000BDAF3 /* FMDatabase.m in Sources */,
+				03BC91F6183F6AC3008E8B88 /* NSFileHandle+readLine.m in Sources */,
 				0339EF831831FD500082A35E /* AFURLSessionManager.m in Sources */,
 				03BC018E18321714000BDAF3 /* FMDatabasePool.m in Sources */,
 				03BC018D18321714000BDAF3 /* FMDatabaseAdditions.m in Sources */,
