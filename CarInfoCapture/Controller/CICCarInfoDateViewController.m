@@ -7,6 +7,7 @@
 //
 
 #import "CICCarInfoDateViewController.h"
+#import "CICFinalCheckViewController.h"
 
 @interface CICCarInfoDateViewController ()
 
@@ -29,25 +30,8 @@
 {
     [super viewDidLoad];
     
-    NSDate *date = [NSDate date];
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: date];
-    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-    NSLog(@"%@", localeDate);
     
-    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-    
-    NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
-    NSInteger year = comps.year + 1;
-    
-    NSMutableArray *yearList = [[NSMutableArray alloc] init];
-
-    for (NSInteger i = 0; i < 20; i++) {
-        yearList[i] = @(year -= 1);
-    }
-    
-    self.yearList = yearList;
+    self.yearList = [self pastYearList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,7 +57,7 @@
     static NSString *CellIdentifier = @"CICCarInfoDateViewController";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = [self.yearList[indexPath.row] description];
+    cell.textLabel.text = self.yearList[indexPath.row];
     
     return cell;
 }
@@ -117,16 +101,74 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    CICFinalCheckViewController *finalVC = segue.destinationViewController;
+    
+    if ([self.tableView indexPathForSelectedRow].row != 0) {
+        finalVC.dataList = [self monthList];
+    } else {
+        finalVC.dataList = [self pastMonthList];
+    }
+    
+    finalVC.title = @"月";
+    finalVC.popToViewController = self.navigationController.viewControllers[1];
+    finalVC.delegate = self.navigationController.viewControllers[1];
 }
 
- */
+- (NSArray *)pastYearList
+{
+    NSDate *date = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: date];
+    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+    NSLog(@"%@", localeDate);
+    
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
+    NSInteger year = comps.year + 1;
+    
+    NSMutableArray *yearList = [[NSMutableArray alloc] init];
+    
+    for (NSInteger i = 0; i < 20; i++) {
+        yearList[i] = [NSString stringWithFormat:@"%ld", year -= 1] ;
+    }
+    
+    return yearList;
+}
+
+- (NSArray *)pastMonthList
+{
+    NSDate *date = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: date];
+    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+    NSLog(@"%@", localeDate);
+    
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
+    NSInteger month = comps.month;
+    
+    NSMutableArray *monthList = [[NSMutableArray alloc] init];
+    
+    NSInteger surplusMonth = (12 - month) + 1;
+    
+    for (NSInteger i = 0; i < surplusMonth; i++) {
+        monthList[i] = [NSString stringWithFormat:@"%ld", month ++] ;
+    }
+    
+    return monthList;
+}
+
+- (NSArray *)monthList
+{
+    return @[@(1), @(2), @(3), @(4), @(5), @(6), @(7), @(8), @(9), @(10), @(11), @(12)];
+}
 
 @end

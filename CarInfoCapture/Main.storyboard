@@ -339,6 +339,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYr-gr-xdi" kind="push" id="aCe-WQ-nWt"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -347,9 +350,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="年" id="HR7-j3-Adj"/>
-                    <connections>
-                        <segue destination="BYr-gr-xdi" kind="push" id="anf-mc-4uX"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MMS-1I-qPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -964,7 +964,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGu-i7-PUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4052" y="39"/>
+            <point key="canvasLocation" x="3565" y="471"/>
         </scene>
         <!--Car Location View Controller - 归属地-->
         <scene sceneID="XGh-Ci-s6y">
@@ -1370,6 +1370,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="987-5U-MMg"/>
         <segue reference="37J-F6-E9N"/>
-        <segue reference="anf-mc-4uX"/>
+        <segue reference="aCe-WQ-nWt"/>
     </inferredMetricsTieBreakers>
 </document>
