@@ -28,7 +28,7 @@
 		0339EF871831FD500082A35E /* CICCarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF771831FD500082A35E /* CICCarInfoCell.m */; };
 		033A22AE183DA97E004EE235 /* NSString+CICString.m in Sources */ = {isa = PBXBuildFile; fileRef = 033A22AD183DA97E004EE235 /* NSString+CICString.m */; };
 		033A2323183E2327004EE235 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 033A2322183E2327004EE235 /* ProvincesAndCities.plist */; };
-		033A2326183E23EF004EE235 /* CICCarLocalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 033A2325183E23EF004EE235 /* CICCarLocalViewController.m */; };
+		033A2326183E23EF004EE235 /* CICCarLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 033A2325183E23EF004EE235 /* CICCarLocationViewController.m */; };
 		034E6954182C83D400BD5612 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E6953182C83D400BD5612 /* Foundation.framework */; };
 		034E6956182C83D400BD5612 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E6955182C83D400BD5612 /* CoreGraphics.framework */; };
 		034E6958182C83D400BD5612 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034E6957182C83D400BD5612 /* UIKit.framework */; };
@@ -51,6 +51,9 @@
 		03BC018E18321714000BDAF3 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018618321714000BDAF3 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		03BC018F18321714000BDAF3 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018818321714000BDAF3 /* FMDatabaseQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		03BC019118321714000BDAF3 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018B18321714000BDAF3 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		03BC9044183F0934008E8B88 /* CICFinalCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC9043183F0934008E8B88 /* CICFinalCheckViewController.m */; };
+		03BC9047183F10DF008E8B88 /* CICCarBaseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC9046183F10DF008E8B88 /* CICCarBaseInfoViewController.m */; };
+		03BC904A183F2EA3008E8B88 /* CICCarBrandListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC9049183F2EA3008E8B88 /* CICCarBrandListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,8 +109,8 @@
 		033A22AC183DA97E004EE235 /* NSString+CICString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CICString.h"; sourceTree = "<group>"; };
 		033A22AD183DA97E004EE235 /* NSString+CICString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CICString.m"; sourceTree = "<group>"; };
 		033A2322183E2327004EE235 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
-		033A2324183E23EF004EE235 /* CICCarLocalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarLocalViewController.h; sourceTree = "<group>"; };
-		033A2325183E23EF004EE235 /* CICCarLocalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarLocalViewController.m; sourceTree = "<group>"; };
+		033A2324183E23EF004EE235 /* CICCarLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarLocationViewController.h; sourceTree = "<group>"; };
+		033A2325183E23EF004EE235 /* CICCarLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarLocationViewController.m; sourceTree = "<group>"; };
 		034E6950182C83D400BD5612 /* CarInfoCapture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarInfoCapture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		034E6953182C83D400BD5612 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		034E6955182C83D400BD5612 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -143,6 +146,12 @@
 		03BC018A18321714000BDAF3 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		03BC018B18321714000BDAF3 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		03BC019418321DE3000BDAF3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		03BC9042183F0934008E8B88 /* CICFinalCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICFinalCheckViewController.h; sourceTree = "<group>"; };
+		03BC9043183F0934008E8B88 /* CICFinalCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICFinalCheckViewController.m; sourceTree = "<group>"; };
+		03BC9045183F10DF008E8B88 /* CICCarBaseInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBaseInfoViewController.h; sourceTree = "<group>"; };
+		03BC9046183F10DF008E8B88 /* CICCarBaseInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseInfoViewController.m; sourceTree = "<group>"; };
+		03BC9048183F2EA3008E8B88 /* CICCarBrandListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBrandListViewController.h; sourceTree = "<group>"; };
+		03BC9049183F2EA3008E8B88 /* CICCarBrandListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBrandListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,8 +205,14 @@
 				03089A071833764D006F2E4B /* CICMainCaptureViewController.m */,
 				0307B30C183B606600C8DB82 /* CICCarImageViewController.h */,
 				0307B30D183B606600C8DB82 /* CICCarImageViewController.m */,
-				033A2324183E23EF004EE235 /* CICCarLocalViewController.h */,
-				033A2325183E23EF004EE235 /* CICCarLocalViewController.m */,
+				033A2324183E23EF004EE235 /* CICCarLocationViewController.h */,
+				033A2325183E23EF004EE235 /* CICCarLocationViewController.m */,
+				03BC9042183F0934008E8B88 /* CICFinalCheckViewController.h */,
+				03BC9043183F0934008E8B88 /* CICFinalCheckViewController.m */,
+				03BC9045183F10DF008E8B88 /* CICCarBaseInfoViewController.h */,
+				03BC9046183F10DF008E8B88 /* CICCarBaseInfoViewController.m */,
+				03BC9048183F2EA3008E8B88 /* CICCarBrandListViewController.h */,
+				03BC9049183F2EA3008E8B88 /* CICCarBrandListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -482,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03089A081833764D006F2E4B /* CICMainCaptureViewController.m in Sources */,
+				03BC904A183F2EA3008E8B88 /* CICCarBrandListViewController.m in Sources */,
 				0339EF801831FD500082A35E /* AFURLConnectionOperation.m in Sources */,
 				03680CDC18322E9E006A201A /* CICCarBaseCheckDetailViewController.m in Sources */,
 				0360E023183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m in Sources */,
@@ -495,7 +511,9 @@
 				0339EF871831FD500082A35E /* CICCarInfoCell.m in Sources */,
 				0339EF811831FD500082A35E /* AFURLRequestSerialization.m in Sources */,
 				0339EF7A1831FD500082A35E /* CICCarInfoEntity.m in Sources */,
+				03BC9044183F0934008E8B88 /* CICFinalCheckViewController.m in Sources */,
 				03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */,
+				03BC9047183F10DF008E8B88 /* CICCarBaseInfoViewController.m in Sources */,
 				0339EF841831FD500082A35E /* CICCarInfoDBLogic.m in Sources */,
 				032B96161836214000A685D3 /* NSArray+CICArray.m in Sources */,
 				03BC018F18321714000BDAF3 /* FMDatabaseQueue.m in Sources */,
@@ -506,7 +524,7 @@
 				0339EF7F1831FD500082A35E /* AFSecurityPolicy.m in Sources */,
 				03BC019118321714000BDAF3 /* FMResultSet.m in Sources */,
 				0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */,
-				033A2326183E23EF004EE235 /* CICCarLocalViewController.m in Sources */,
+				033A2326183E23EF004EE235 /* CICCarLocationViewController.m in Sources */,
 				0339EF781831FD500082A35E /* CICCarBaseCheckReportViewController.m in Sources */,
 				033A22AE183DA97E004EE235 /* NSString+CICString.m in Sources */,
 				0339EF861831FD500082A35E /* CICCarInfoService.m in Sources */,

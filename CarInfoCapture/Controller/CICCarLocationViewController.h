@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CICCarLocalViewController : UITableViewController
-
+@interface CICCarLocationViewController : UITableViewController
+@property (strong, nonatomic) NSArray *sourceLocationList;
+@property (nonatomic) BOOL isFinalViewController;
 @end

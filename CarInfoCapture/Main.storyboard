@@ -271,7 +271,89 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu9-ct-8Ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2183" y="546"/>
+            <point key="canvasLocation" x="2079" y="1026"/>
+        </scene>
+        <!--Car Brand List View Controller - 品牌-->
+        <scene sceneID="sfm-aa-Skz">
+            <objects>
+                <tableViewController id="wFn-SP-aIb" customClass="CICCarBrandListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b8D-VV-dXF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CICCarBrandListViewControllerCell" textLabel="wSd-qE-4gX" style="IBUITableViewCellStyleDefault" id="oOb-Er-nhg">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oOb-Er-nhg" id="vxw-iN-Z7K">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wSd-qE-4gX">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="q6L-BW-ik3" kind="push" id="Tca-C6-0kS"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wFn-SP-aIb" id="HWZ-Lr-5T5"/>
+                            <outlet property="delegate" destination="wFn-SP-aIb" id="cHe-dS-qui"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="品牌" id="RLF-3l-gIt"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dvf-ED-U5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2210" y="21"/>
+        </scene>
+        <!--Table View Controller - 车型-->
+        <scene sceneID="4Y8-Kg-wMJ">
+            <objects>
+                <tableViewController id="q6L-BW-ik3" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="40m-hv-fbe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="tpp-zr-IZK" style="IBUITableViewCellStyleDefault" id="9ek-cW-6xw">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ek-cW-6xw" id="Czd-3G-LgA">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tpp-zr-IZK">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYr-gr-xdi" kind="push" id="TRV-KJ-Psj"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="q6L-BW-ik3" id="PIv-37-rwC"/>
+                            <outlet property="delegate" destination="q6L-BW-ik3" id="iY6-vC-jTV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="车型" id="Ffc-7k-GTA"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q4G-ua-15k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2699" y="21"/>
         </scene>
         <!--Car Base Check Report View Controller - 车辆初步检测报告-->
         <scene sceneID="vIR-36-dzs">
@@ -438,7 +520,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xh8-GI-nKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1755" y="546"/>
+            <point key="canvasLocation" x="1651" y="1026"/>
         </scene>
         <!--Car Image View Controller - 车辆实拍-->
         <scene sceneID="4YY-O1-MHp">
@@ -539,10 +621,10 @@
             </objects>
             <point key="canvasLocation" x="1188" y="841"/>
         </scene>
-        <!--Table View Controller - 车辆基本信息-->
+        <!--Car Base Info View Controller - 车辆基本信息-->
         <scene sceneID="X5I-Zj-hp1">
             <objects>
-                <tableViewController id="7Tb-FJ-V9F" sceneMemberID="viewController">
+                <tableViewController id="7Tb-FJ-V9F" customClass="CICCarBaseInfoViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4Lt-G0-844">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -600,6 +682,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="wFn-SP-aIb" kind="push" id="RcE-49-lqg"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="FIs-c3-6vQ" detailTextLabel="Zol-1J-52D" style="IBUITableViewCellStyleValue1" id="QiA-1U-g2T">
                                         <rect key="frame" x="0.0" y="152" width="320" height="44"/>
@@ -793,23 +878,23 @@
             </objects>
             <point key="canvasLocation" x="1755" y="-152"/>
         </scene>
-        <!--Car Local View Controller - 归属地-->
-        <scene sceneID="XGh-Ci-s6y">
+        <!--Final Check View Controller - 最终视图-->
+        <scene sceneID="JuE-L1-XJi">
             <objects>
-                <tableViewController id="a7v-EQ-ECZ" customClass="CICCarLocalViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="T3F-Ag-bqu">
+                <tableViewController id="BYr-gr-xdi" customClass="CICFinalCheckViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2Fk-Nj-jCO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="que-Di-gUT" style="IBUITableViewCellStyleDefault" id="dBy-OW-L95">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CICFinalCheckViewControllerCell" textLabel="aKJ-3B-QJM" style="IBUITableViewCellStyleDefault" id="23h-Zd-oSC">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dBy-OW-L95" id="7wa-lK-E8k">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="23h-Zd-oSC" id="es4-0S-N6N">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="que-Di-gUT">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aKJ-3B-QJM">
                                             <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -821,6 +906,47 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
+                            <outlet property="dataSource" destination="BYr-gr-xdi" id="eJN-Uf-Jcb"/>
+                            <outlet property="delegate" destination="BYr-gr-xdi" id="Q4p-qP-PWb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="最终视图" id="Q5K-x4-2aC"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mGu-i7-PUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3144" y="-686"/>
+        </scene>
+        <!--Car Location View Controller - 归属地-->
+        <scene sceneID="XGh-Ci-s6y">
+            <objects>
+                <tableViewController storyboardIdentifier="CICCarLocationViewController" id="a7v-EQ-ECZ" customClass="CICCarLocationViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="T3F-Ag-bqu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="que-Di-gUT" style="IBUITableViewCellStyleDefault" id="dBy-OW-L95">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dBy-OW-L95" id="7wa-lK-E8k">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="que-Di-gUT">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYr-gr-xdi" kind="push" id="YHT-hg-Uv7"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
                             <outlet property="dataSource" destination="a7v-EQ-ECZ" id="VO6-Do-HmN"/>
                             <outlet property="delegate" destination="a7v-EQ-ECZ" id="ugM-31-eER"/>
                         </connections>
@@ -829,7 +955,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UGe-XB-Smj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2155" y="-153"/>
+            <point key="canvasLocation" x="2210" y="-686"/>
         </scene>
         <!--Navigation Controller - 开始采集-->
         <scene sceneID="UbT-57-o7U">
@@ -1192,6 +1318,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="TRV-KJ-Psj"/>
         <segue reference="987-5U-MMg"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,18 +1,18 @@
 //
-//  CICCarLocalViewController.m
+//  CICCarBrandListViewController.m
 //  CarInfoCapture
 //
-//  Created by Liu Feng on 13-11-21.
+//  Created by Liu Feng on 13-11-22.
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
-#import "CICCarLocalViewController.h"
+#import "CICCarBrandListViewController.h"
 
-@interface CICCarLocalViewController ()
+@interface CICCarBrandListViewController ()
 
 @end
 
-@implementation CICCarLocalViewController
+@implementation CICCarBrandListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,9 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"ProvincesAndCities" ofType:@"plist"];
-    NSArray *localList = [NSArray arrayWithContentsOfFile:path];
-    NSLog(@"%@", localList);
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,7 +54,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CICCarBrandListViewControllerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
