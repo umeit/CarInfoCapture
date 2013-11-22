@@ -35,12 +35,12 @@
 - (void)uploadCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UploadCarInfoListBlock)block
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
-    httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
     
     NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
     
-    [httpManager POST:@"http://192.168.100.190/capture/upload" parameters:carInfoParameters
+    [httpManager POST:@"http://capture.youche.com/capture/upload" parameters:carInfoParameters
                                     constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                         
                                     }

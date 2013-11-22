@@ -138,7 +138,7 @@
     NSMutableArray *yearList = [[NSMutableArray alloc] init];
     
     for (NSInteger i = 0; i < 20; i++) {
-        yearList[i] = [NSString stringWithFormat:@"%ld", year -= 1] ;
+        yearList[i] = [NSString stringWithFormat:@"%ld", (long)(year -= 1)] ;
     }
     
     return yearList;
@@ -163,7 +163,7 @@
     NSInteger surplusMonth = (12 - month) + 1;
     
     for (NSInteger i = 0; i < surplusMonth; i++) {
-        monthList[i] = [NSString stringWithFormat:@"%ld", month ++] ;
+        monthList[i] = [NSString stringWithFormat:@"%ld", (long)month ++] ;
     }
     
     return monthList;
@@ -176,7 +176,7 @@
     NSInteger month = 1;
     
     for (NSInteger i = 0; i < 12; i++) {
-        monthList[i] = [NSString stringWithFormat:@"%ld", month ++] ;
+        monthList[i] = [NSString stringWithFormat:@"%ld", (long)month ++] ;
     }
     
     return monthList;
