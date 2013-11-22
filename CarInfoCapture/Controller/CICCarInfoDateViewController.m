@@ -116,7 +116,10 @@
     finalVC.title = @"月";
     finalVC.popToViewController = self.navigationController.viewControllers[1];
     finalVC.delegate = self.navigationController.viewControllers[1];
+    finalVC.itemPrefix = [NSString stringWithFormat:@"%@-", self.yearList[[self.tableView indexPathForSelectedRow].row]];
 }
+
+#pragma mark - Private
 
 - (NSArray *)pastYearList
 {
@@ -168,7 +171,15 @@
 
 - (NSArray *)monthList
 {
-    return @[@(1), @(2), @(3), @(4), @(5), @(6), @(7), @(8), @(9), @(10), @(11), @(12)];
+    NSMutableArray *monthList = [[NSMutableArray alloc] init];
+    
+    NSInteger month = 1;
+    
+    for (NSInteger i = 0; i < 12; i++) {
+        monthList[i] = [NSString stringWithFormat:@"%ld", month ++] ;
+    }
+    
+    return monthList;
 }
 
 @end

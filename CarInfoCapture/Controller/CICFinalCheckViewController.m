@@ -40,7 +40,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate selecatItem:self.dataList[indexPath.row]];
+    if (self.itemPrefix) {
+        [self.delegate selecatItem:[NSString stringWithFormat:@"%@%@", self.itemPrefix, self.dataList[indexPath.row]]];
+    } else {
+        [self.delegate selecatItem:self.dataList[indexPath.row]];
+    }
+    
     
     [self.navigationController popToViewController:self.popToViewController animated:YES];
 }

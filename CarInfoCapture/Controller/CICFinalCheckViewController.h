@@ -22,4 +22,6 @@
 
 @property (weak, nonatomic) id<CICFinalCheckViewControllerDelegate> delegate;
 
+@property (strong, nonatomic) NSString *itemPrefix;
+
 @end
