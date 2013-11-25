@@ -11,12 +11,6 @@
 
 @class CICCarInfoEntity;
 
-//@protocol CICCarBaseCheckReportDeledate <NSObject>
-//
-//- (void)carInfoDidChange:(CICCarInfoEntity *)carInfoEntity;
-//
-//@end
-
 @interface CICCarBaseCheckReportViewController : UITableViewController
 
 @property (weak, nonatomic) id<CICCarInfoDidChangeDelegate> delegate;

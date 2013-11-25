@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CICFinalCheckViewController.h"
+#import "CICCarInfoDidChangeDelegate.h"
 
 @interface CICCarBaseInfoViewController : UITableViewController <CICFinalCheckViewControllerDelegate>
+
+@property (weak, nonatomic) id<CICCarInfoDidChangeDelegate> delegate;
+
+@property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
 
 @end

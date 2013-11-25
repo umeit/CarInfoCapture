@@ -14,9 +14,6 @@
 {
     self = [super init];
     if (self) {
-//        self.carImagesLocalPathDictionary = [[NSMutableDictionary alloc] init];
-//        self.carImagesRemotePathDictionary = [[NSMutableDictionary alloc] init];
-        
         NSDictionary *placeholderDic = @{@"k": @(-1), @"v": @""};
         
         self.carImagesLocalPathList = [[NSMutableArray alloc] initWithArray:@[placeholderDic,
@@ -33,13 +30,21 @@
 {
     self = [super init];
     if (self) {
+        // 基本信息
+        self.modelID = [[aDecoder decodeObjectForKey:@"modelID"] integerValue];
         self.carName = [aDecoder decodeObjectForKey:@"carName"];
         self.carImage = [UIImage imageWithData:[aDecoder decodeObjectForKey:@"carImage"]];
         self.salePrice = [aDecoder decodeObjectForKey:@"salePrice"];
         self.mileage = [aDecoder decodeObjectForKey:@"mileage"];
         self.firstRegTime = [aDecoder decodeObjectForKey:@"firstRegTime"];
+        self.location = [aDecoder decodeObjectForKey:@"location"];
+        self.insuranceExpire = [aDecoder decodeObjectForKey:@"insuranceExpire"];
+        self.yearExamineExpire = [aDecoder decodeObjectForKey:@"yearExamineExpire"];
+        self.carSource = [aDecoder decodeObjectForKey:@"carSource"];
+        self.dealTime = [aDecoder decodeObjectForKey:@"dealTime"];
+        
+        // 初步检查信息
         self.underpanIssueList = [aDecoder decodeObjectForKey:@"underpanIssueList"];
-//        self.carImagesLocalPathDictionary = [aDecoder decodeObjectForKey:@"carImagesLocalPathDictionary"];
         self.carImagesLocalPathList = [aDecoder decodeObjectForKey:@"carImagesLocalPathList"];
     }
     
@@ -48,13 +53,20 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+    // 基本信息
+    [aCoder encodeObject:@(self.modelID) forKey:@"modelID"];
     [aCoder encodeObject:self.carName forKey:@"carName"];
     [aCoder encodeObject:UIImagePNGRepresentation(self.carImage) forKey:@"carImage"];
     [aCoder encodeObject:self.salePrice forKey:@"salePrice"];
     [aCoder encodeObject:self.mileage forKey:@"mileage"];
     [aCoder encodeObject:self.firstRegTime forKey:@"firstRegTime"];
+    [aCoder encodeObject:self.location forKey:@"location"];
+    [aCoder encodeObject:self.insuranceExpire forKey:@"insuranceExpire"];
+    [aCoder encodeObject:self.yearExamineExpire forKey:@"yearExamineExpire"];
+    [aCoder encodeObject:self.carSource forKey:@"carSource"];
+    [aCoder encodeObject:self.dealTime forKey:@"dealTime"];
+    // 初步检查信息
     [aCoder encodeObject:self.underpanIssueList forKey:@"underpanIssueList"];
-//    [aCoder encodeObject:self.carImagesLocalPathDictionary forKey:@"carImagesLocalPathDictionary"];
     [aCoder encodeObject:self.carImagesLocalPathList forKey:@"carImagesLocalPathList"];
 }
 
