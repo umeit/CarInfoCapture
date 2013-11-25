@@ -82,8 +82,7 @@
     
     if ([returnData length] > 0)
     {
-        [returnData retain];
-        return [returnData autorelease];
+        return returnData;
     }
     else
     {

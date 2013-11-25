@@ -200,6 +200,7 @@
 		03BC91F2183F6575008E8B88 /* CarBrandJson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03BC9162183F6575008E8B88 /* CarBrandJson.txt */; };
 		03BC91F3183F6575008E8B88 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03BC9163183F6575008E8B88 /* ProvincesAndCities.plist */; };
 		03BC91F6183F6AC3008E8B88 /* NSFileHandle+readLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */; };
+		03F05FF71842F43200DF976A /* CICCarBrandService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F05FF61842F43200DF976A /* CICCarBrandService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -447,6 +448,8 @@
 		03BC9163183F6575008E8B88 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
 		03BC91F4183F6AC3008E8B88 /* NSFileHandle+readLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileHandle+readLine.h"; sourceTree = "<group>"; };
 		03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileHandle+readLine.m"; sourceTree = "<group>"; };
+		03F05FF51842F43200DF976A /* CICCarBrandService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBrandService.h; sourceTree = "<group>"; };
+		03F05FF61842F43200DF976A /* CICCarBrandService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBrandService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -580,6 +583,8 @@
 				0339EF741831FD500082A35E /* CICCarInfoService.m */,
 				03BC017D1832134A000BDAF3 /* CICGlobalService.h */,
 				03BC017E1832134A000BDAF3 /* CICGlobalService.m */,
+				03F05FF51842F43200DF976A /* CICCarBrandService.h */,
+				03F05FF61842F43200DF976A /* CICCarBrandService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1125,6 +1130,7 @@
 				0339EF821831FD500082A35E /* AFURLResponseSerialization.m in Sources */,
 				034E6964182C83D400BD5612 /* CICAppDelegate.m in Sources */,
 				034E6960182C83D400BD5612 /* main.m in Sources */,
+				03F05FF71842F43200DF976A /* CICCarBrandService.m in Sources */,
 				0339EF7C1831FD500082A35E /* AFHTTPRequestOperationManager.m in Sources */,
 				0339EF7F1831FD500082A35E /* AFSecurityPolicy.m in Sources */,
 				03BC90D1183F3CAA008E8B88 /* CICCarInfoDateViewController.m in Sources */,

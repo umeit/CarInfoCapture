@@ -7,40 +7,50 @@
 //
 
 #import "CICCarBrandListViewController.h"
-#import "NSData+CICData.h"
+#import "CICCarBrandService.h"
 
 @interface CICCarBrandListViewController ()
 
 @property (strong, nonatomic) NSArray *brandList;
 
+@property (strong, nonatomic) CICCarBrandService *carBrandService;
+
 @end
 
 @implementation CICCarBrandListViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.carBrandService = [[CICCarBrandService alloc] init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"CarBrandJson" ofType:@"txt"];
-    self.brandList = [[NSData dataWithContentsOfFile:path] arrayWithJSONData];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+//    self.tableView.tableHeaderView.backgroundColor = [UIColor darkGrayColor];
+//    [self.tableView headerViewForSection:0].backgroundColor = [UIColor blueColor];
+    self.brandList = [self.carBrandService carBrandList];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    // 返回有多少个同类（按首字母）品牌
+    return [self.brandList count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.brandList count];
+    // 返回某一首字母下的品牌个数
+    NSArray *list = self.brandList[section][@"blands"];
+    
+    return [list count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -48,49 +58,24 @@
     static NSString *CellIdentifier = @"CICCarBrandListViewControllerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    cell.textLabel.text = self.brandList[indexPath.section][@"blands"][indexPath.row][@"name"];
+    NSString *imageName = [NSString stringWithFormat:@"%@", self.brandList[indexPath.section][@"blands"][indexPath.row][@"id"]];
+    cell.imageView.image = [UIImage imageNamed:imageName];
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return self.brandList[section][@"letter"];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UILabel *headerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
+//    headerView.text = self.brandList[section][@"letter"];
+//    headerView.backgroundColor = [UIColor lightGrayColor];
+//    return headerView;
+//}
 
 /*
 #pragma mark - Navigation
