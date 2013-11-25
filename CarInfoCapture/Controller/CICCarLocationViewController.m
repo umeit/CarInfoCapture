@@ -68,6 +68,22 @@
 {
     CICFinalCheckViewController *finalVC = segue.destinationViewController;
     
+    
+//    NSMutableArray *dataList = [[NSMutableArray alloc] init];
+//    NSArray *carModelList = [self.carBrandService carModelListAtLineNumber:lineNumberForCarModeListData];
+//    // 填充 section 的值
+//    [carModelList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"sectionName": obj[@"year"],
+//                                                                                   @"cellList": [[NSMutableArray alloc] init]}];
+//        dataList[idx] = dic;
+//        
+//        // 填充 cell 的值
+//        [obj[@"cars"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//            dic[@"cellList"][idx] = obj[@"name"];
+//        }];
+//    }];
+//    
+    
     NSArray *cityDicList = self.sourceLocationList[[self.tableView indexPathForSelectedRow].row][@"Cities"];
     NSMutableArray *cityNameList = [[NSMutableArray alloc] init];
     
@@ -75,7 +91,10 @@
         cityNameList[idx] = obj[@"city"];
     }];
     
-    finalVC.dataList = cityNameList;
+    NSArray *dataList = @[@{@"sectionName": @"",
+                            @"cellList": cityNameList}];
+    
+    finalVC.dataList = dataList;
     finalVC.title = self.locationList[[self.tableView indexPathForSelectedRow].row];
     finalVC.popToViewController = self.navigationController.viewControllers[1];
     finalVC.delegate = self.navigationController.viewControllers[1];

@@ -25,4 +25,18 @@
     return carBrandList;
 }
 
+- (NSArray *)carModelListAtLineNumber:(NSInteger)lineNumber
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"CarBrandJson" ofType:@"txt"];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:path];
+    
+    NSString *carModelStringLine;
+    // 读取到指定的行数
+    for (NSInteger i = 0; i < lineNumber; i ++) {
+        carModelStringLine = [[NSString alloc] initWithData:[fileHandle readLineWithDelimiter:@"\n"] encoding:NSUTF8StringEncoding];
+    }
+    
+    return [carModelStringLine jsonStrToArray];
+}
+
 @end

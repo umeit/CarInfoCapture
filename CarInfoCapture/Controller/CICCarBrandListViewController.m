@@ -8,6 +8,7 @@
 
 #import "CICCarBrandListViewController.h"
 #import "CICCarBrandService.h"
+#import "CICCarModelLIstViewController.h"
 
 @interface CICCarBrandListViewController ()
 
@@ -77,16 +78,15 @@
 //    return headerView;
 //}
 
-/*
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    NSInteger lineNumberForCarModeListData = [self.brandList[indexPath.section][@"blands"][indexPath.row][@"childline"] integerValue];
+    
+    CICCarModelLIstViewController *carModelLIstViewController = (CICCarModelLIstViewController *)segue.destinationViewController;
+    carModelLIstViewController.lineNumberForCarModeListData = lineNumberForCarModeListData;
 }
-
- */
 
 @end

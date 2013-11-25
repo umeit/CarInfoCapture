@@ -11,10 +11,6 @@
 #define CarSourceCellTag  35
 #define DealTimeCellTag   36
 
-@interface CICCarBaseInfoViewController ()
-
-@end
-
 @implementation CICCarBaseInfoViewController
 
 - (void)viewDidLoad
@@ -26,8 +22,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
-    
     UITableViewCell *cell = sender;
     if (cell.tag == CarSourceCellTag) {
         CICFinalCheckViewController *finalVC = segue.destinationViewController;
@@ -60,13 +54,15 @@
 - (NSArray *)carSourceList
 {
     #warning 使用 plist
-    return @[@"亚运村", @"花乡", @"个人"];
+    return @[@{@"sectionName": @"",
+        @"cellList": @[@"亚运村", @"花乡", @"个人"]}];
 }
 
 - (NSArray *)dealTimeList
 {
     #warning 使用 plist
-    return @[@"1 次", @"2 次", @"3 次", @"4 次", @"5 次", @"6 次"];
+    return @[@{@"sectionName": @"",
+               @"cellList": @[@"1 次", @"2 次", @"3 次", @"4 次", @"5 次", @"6 次"]}];
 }
 
 @end

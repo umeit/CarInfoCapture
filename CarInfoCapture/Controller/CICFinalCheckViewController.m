@@ -8,22 +8,18 @@
 
 #import "CICFinalCheckViewController.h"
 
-@interface CICFinalCheckViewController ()
-
-@end
-
 @implementation CICFinalCheckViewController
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [self.dataList count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataList count];
+    return [self.dataList[section][@"cellList"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -31,9 +27,14 @@
     static NSString *CellIdentifier = @"CICFinalCheckViewControllerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = self.dataList[indexPath.row];
+    cell.textLabel.text = self.dataList[indexPath.section][@"cellList"][indexPath.row];
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return self.dataList[section][@"sectionName"];
 }
 
 #pragma mark - UITableViewDelegate
@@ -41,11 +42,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.itemPrefix) {
-        [self.delegate selecatItem:[NSString stringWithFormat:@"%@%@", self.itemPrefix, self.dataList[indexPath.row]]];
+        [self.delegate selecatItem:[NSString stringWithFormat:@"%@%@", self.itemPrefix, self.dataList[indexPath.section][@"cellList"][indexPath.row]]];
     } else {
-        [self.delegate selecatItem:self.dataList[indexPath.row]];
+        [self.delegate selecatItem:self.dataList[indexPath.section][@"cellList"][indexPath.row]];
     }
-    
     
     [self.navigationController popToViewController:self.popToViewController animated:YES];
 }

@@ -201,6 +201,7 @@
 		03BC91F3183F6575008E8B88 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03BC9163183F6575008E8B88 /* ProvincesAndCities.plist */; };
 		03BC91F6183F6AC3008E8B88 /* NSFileHandle+readLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */; };
 		03F05FF71842F43200DF976A /* CICCarBrandService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F05FF61842F43200DF976A /* CICCarBrandService.m */; };
+		03F05FFA1843089C00DF976A /* CICCarModelLIstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F05FF91843089C00DF976A /* CICCarModelLIstViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -450,6 +451,8 @@
 		03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileHandle+readLine.m"; sourceTree = "<group>"; };
 		03F05FF51842F43200DF976A /* CICCarBrandService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBrandService.h; sourceTree = "<group>"; };
 		03F05FF61842F43200DF976A /* CICCarBrandService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBrandService.m; sourceTree = "<group>"; };
+		03F05FF81843089C00DF976A /* CICCarModelLIstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarModelLIstViewController.h; sourceTree = "<group>"; };
+		03F05FF91843089C00DF976A /* CICCarModelLIstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarModelLIstViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -517,6 +520,8 @@
 				03BC9049183F2EA3008E8B88 /* CICCarBrandListViewController.m */,
 				03BC90CF183F3CAA008E8B88 /* CICCarInfoDateViewController.h */,
 				03BC90D0183F3CAA008E8B88 /* CICCarInfoDateViewController.m */,
+				03F05FF81843089C00DF976A /* CICCarModelLIstViewController.h */,
+				03F05FF91843089C00DF976A /* CICCarModelLIstViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1123,6 +1128,7 @@
 				03BC90CE183F3182008E8B88 /* NSData+CICData.m in Sources */,
 				03BC9044183F0934008E8B88 /* CICFinalCheckViewController.m in Sources */,
 				03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */,
+				03F05FFA1843089C00DF976A /* CICCarModelLIstViewController.m in Sources */,
 				03BC9047183F10DF008E8B88 /* CICCarBaseInfoViewController.m in Sources */,
 				0339EF841831FD500082A35E /* CICCarInfoDBLogic.m in Sources */,
 				032B96161836214000A685D3 /* NSArray+CICArray.m in Sources */,

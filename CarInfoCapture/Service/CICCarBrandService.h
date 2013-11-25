@@ -12,4 +12,6 @@
 
 - (NSArray *)carBrandList;
 
+- (NSArray *)carModelListAtLineNumber:(NSInteger)lineNumber;
+
 @end
