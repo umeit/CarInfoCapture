@@ -119,25 +119,6 @@ typedef enum EditItemType : NSInteger{
         default:
             break;
     }
-    
-//    if (cell.tag == CarSourceCellTag) {
-//        self.currentEditItem = carSource;
-//        CICFinalCheckViewController *finalVC = segue.destinationViewController;
-//        
-//        finalVC.title = @"车辆来源";
-//        finalVC.popToViewController = self;
-//        finalVC.delegate = self;
-//        finalVC.dataList = [self carSourceList];
-//    }
-//    else if (cell.tag == DealTimeCellTag) {
-//        self.currentEditItem = dealTime;
-//        CICFinalCheckViewController *finalVC = segue.destinationViewController;
-//        
-//        finalVC.title = @"过户次数";
-//        finalVC.popToViewController = self;
-//        finalVC.delegate = self;
-//        finalVC.dataList = [self dealTimeList];
-//    }
 }
 
 #pragma mark - CICFinalCheckViewControllerDelegate

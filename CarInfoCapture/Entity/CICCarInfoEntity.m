@@ -46,6 +46,10 @@
         // 初步检查信息
         self.underpanIssueList = [aDecoder decodeObjectForKey:@"underpanIssueList"];
         self.carImagesLocalPathList = [aDecoder decodeObjectForKey:@"carImagesLocalPathList"];
+        
+        // 车主信息
+        self.masterName = [aDecoder decodeObjectForKey:@"masterName"];
+        self.masterTel = [aDecoder decodeObjectForKey:@"masterTel"];
     }
     
     return self;
@@ -68,6 +72,9 @@
     // 初步检查信息
     [aCoder encodeObject:self.underpanIssueList forKey:@"underpanIssueList"];
     [aCoder encodeObject:self.carImagesLocalPathList forKey:@"carImagesLocalPathList"];
+    // 车主信息
+    [aCoder encodeObject:self.masterName forKey:@"masterName"];
+    [aCoder encodeObject:self.masterTel forKey:@"masterTel"];
 }
 
 - (NSInteger)imageCodeWithImageIndex:(NSInteger)index

@@ -67,6 +67,10 @@ typedef enum CarImageIndex : NSInteger {
 //@property (strong, nonatomic) NSMutableDictionary *carImagesRemotePathDictionary;
 @property (strong, nonatomic) NSMutableArray *carImagesRemotePathList;
 
+/* 车主信息 */
+@property (strong, nonatomic) NSString *masterName;
+@property (strong, nonatomic) NSString *masterTel;
+
 - (NSInteger)imageCodeWithImageIndex:(NSInteger)index;
 
 @end

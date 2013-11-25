@@ -210,6 +210,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Te5-3r-EEf" kind="push" id="bai-dm-zQ2"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -232,6 +235,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LyI-WT-YzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1293" y="140"/>
+        </scene>
+        <!--Car Master Info View Controller - 车主信息-->
+        <scene sceneID="LI1-iu-rmN">
+            <objects>
+                <tableViewController id="Te5-3r-EEf" customClass="CICCarMasterInfoViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tax-tg-oxz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="9NG-0p-hYP">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="yp0-mP-DdC">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yp0-mP-DdC" id="abM-Lk-GcV">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cwJ-6F-2WA">
+                                                    <rect key="frame" x="166" y="7" width="134" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Te5-3r-EEf" id="aU5-Tj-OiH"/>
+                                                    </connections>
+                                                </textField>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="姓名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqH-YE-crr">
+                                                    <rect key="frame" x="20" y="11" width="34" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ktI-uI-yDY">
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ktI-uI-yDY" id="3bI-pO-QDp">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGE-KX-mLt">
+                                                    <rect key="frame" x="20" y="11" width="51" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CBc-wa-Sa9">
+                                                    <rect key="frame" x="166" y="7" width="134" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Te5-3r-EEf" id="cmh-MF-qSH"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Te5-3r-EEf" id="91M-U3-uOV"/>
+                            <outlet property="delegate" destination="Te5-3r-EEf" id="hty-4N-063"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="车主信息" id="ccM-aI-z9c"/>
+                    <connections>
+                        <outlet property="masterNameTextField" destination="cwJ-6F-2WA" id="Xr3-4e-KaG"/>
+                        <outlet property="masterTelTextField" destination="CBc-wa-Sa9" id="H9M-n8-Fvm"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bbI-2l-sIa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1951" y="1518"/>
         </scene>
         <!--Car Base Check Detail View Controller - *-->
         <scene sceneID="ZP7-Nd-CE7">
@@ -271,7 +354,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu9-ct-8Ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079" y="1026"/>
+            <point key="canvasLocation" x="2379" y="140"/>
         </scene>
         <!--Car Brand List View Controller - 品牌-->
         <scene sceneID="sfm-aa-Skz">
@@ -312,7 +395,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvf-ED-U5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2816" y="39"/>
+            <point key="canvasLocation" x="2454" y="-1221"/>
         </scene>
         <!--Car Info Date View Controller - 年-->
         <scene sceneID="FAx-jL-7Jh">
@@ -353,7 +436,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MMS-1I-qPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2816" y="721"/>
+            <point key="canvasLocation" x="2454" y="-539"/>
         </scene>
         <!--Car ModelL Ist View Controller - 车型-->
         <scene sceneID="4Y8-Kg-wMJ">
@@ -394,7 +477,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4G-ua-15k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3305" y="39"/>
+            <point key="canvasLocation" x="2943" y="-1221"/>
         </scene>
         <!--Car Base Check Report View Controller - 车辆初步检测报告-->
         <scene sceneID="vIR-36-dzs">
@@ -561,7 +644,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xh8-GI-nKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1651" y="1026"/>
+            <point key="canvasLocation" x="1951" y="140"/>
         </scene>
         <!--Car Image View Controller - 车辆实拍-->
         <scene sceneID="4YY-O1-MHp">
@@ -660,7 +743,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tN4-iK-7h8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1188" y="841"/>
+            <point key="canvasLocation" x="1951" y="825"/>
         </scene>
         <!--Car Base Info View Controller - 基本信息-->
         <scene sceneID="X5I-Zj-hp1">
@@ -943,7 +1026,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pel-UZ-o85" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2313" y="39"/>
+            <point key="canvasLocation" x="1951" y="-1221"/>
         </scene>
         <!--Final Check View Controller - 最终视图-->
         <scene sceneID="JuE-L1-XJi">
@@ -981,7 +1064,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGu-i7-PUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3806" y="39"/>
+            <point key="canvasLocation" x="3444" y="-1221"/>
         </scene>
         <!--Car Location View Controller - 归属地-->
         <scene sceneID="XGh-Ci-s6y">
@@ -1022,7 +1105,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UGe-XB-Smj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2816" y="-638"/>
+            <point key="canvasLocation" x="2454" y="-1898"/>
         </scene>
         <!--Navigation Controller - 开始采集-->
         <scene sceneID="UbT-57-o7U">
@@ -1385,8 +1468,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bNx-a4-KP0"/>
-        <segue reference="987-5U-MMg"/>
-        <segue reference="37J-F6-E9N"/>
+        <segue reference="K2j-DT-xSy"/>
+        <segue reference="yOG-vp-kuR"/>
+        <segue reference="Mf2-rV-oWG"/>
     </inferredMetricsTieBreakers>
 </document>
