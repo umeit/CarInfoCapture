@@ -7,6 +7,7 @@
 //
 
 #import "CICGlobalService.h"
+#define TwoDecimal(n) [[NSString stringWithFormat:@"%.2f", n] floatValue]
 
 @implementation CICGlobalService
 
@@ -80,4 +81,58 @@
     }
     NSLog(@"文件是否存在: %@", [fileManager isExecutableFileAtPath:path] ? @"YES" : @"NO");
 }
+
++ (UIImage *)thumbWithImage:(UIImage *)sourceImage
+                  maxHeight:(CGFloat)maxH
+                   maxWidth:(CGFloat)maxW
+{
+    CGFloat sourceH = sourceImage.size.height;
+    CGFloat sourceW = sourceImage.size.width;
+    
+    if (sourceH <= maxH && sourceW <= maxW) {
+        return sourceImage;
+    }
+    
+    // 是否需要缩放
+    CGSize newSize;
+    if (sourceH > sourceW && sourceH > maxH) {
+        CGFloat n = sourceH / maxH;
+        n = TwoDecimal(n);
+        newSize = CGSizeMake(TwoDecimal(sourceW / n), TwoDecimal(sourceH / n));
+        
+    } else if (sourceW > sourceH && sourceW > maxW) {
+        CGFloat n = sourceW / maxW;
+        n = TwoDecimal(n);
+        newSize = CGSizeMake(TwoDecimal(sourceW / n), TwoDecimal(sourceH / n));
+        
+    } else if (sourceH == sourceW && sourceW > maxW) {
+        CGFloat n = sourceW / maxW;
+        n = TwoDecimal(n);
+        newSize = CGSizeMake(TwoDecimal(sourceW / n), TwoDecimal(sourceH / n));
+    } else {
+        return sourceImage;
+    }
+    
+    return [self image:sourceImage scaledToSize:newSize];
+}
+
++ (UIImage *)image:(UIImage *)image scaledToSize:(CGSize)newSize
+{
+    // Create a graphics image context
+    UIGraphicsBeginImageContext(newSize);
+    
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    
+    // Get the new image from the context
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    // Return the new image.
+    return newImage;
+}
+
 @end

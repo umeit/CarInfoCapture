@@ -94,6 +94,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     
     // 压缩图片
+    image = [CICGlobalService thumbWithImage:image maxHeight:1024 maxWidth:1024];
     
     // 将图片保存到本地
     // 将图片路径保存到实体类

@@ -22,4 +22,8 @@
 
 + (void)deleteLocalFileWithPath:(NSString *)path;
 
++ (UIImage *)thumbWithImage:(UIImage *)sourceImage
+                  maxHeight:(CGFloat)maxH
+                   maxWidth:(CGFloat)maxW;
+
 @end
