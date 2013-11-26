@@ -145,7 +145,6 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
                         // 所有的图片都上传成功，返回一个字典，包含图片在服务器的地址
                         block(remoteImagePathList);
                     }
-                    
                 }
                 else {
                     // 上传失败

@@ -80,8 +80,8 @@
     
     finalVC.dataList = dataList;
     finalVC.title = @"月";
-    finalVC.popToViewController = self.navigationController.viewControllers[1];
-    finalVC.delegate = self.navigationController.viewControllers[1];
+    finalVC.popToViewController = self.navigationController.viewControllers[[self.navigationController.viewControllers count] - 2];
+    finalVC.delegate = self.navigationController.viewControllers[[self.navigationController.viewControllers count] - 2];
     finalVC.itemPrefix = [NSString stringWithFormat:@"%@-", self.yearList[[self.tableView indexPathForSelectedRow].row]];
 }
 

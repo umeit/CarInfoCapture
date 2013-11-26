@@ -189,7 +189,7 @@ typedef enum EditItemType : NSInteger{
 {
     #warning 使用 plist
     return @[@{@"sectionName": @"",
-               @"cellList": @[@"1 次", @"2 次", @"3 次", @"4 次", @"5 次", @"6 次"]}];
+               @"cellList": @[@"1", @"2", @"3", @"4", @"5", @"6"]}];
 }
 
 @end

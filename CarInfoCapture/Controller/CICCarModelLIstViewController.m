@@ -93,8 +93,8 @@
     
     finalVC.dataList = dataList;
     finalVC.title = @"具体车型";
-    finalVC.popToViewController = self.navigationController.viewControllers[1];
-    finalVC.delegate = self.navigationController.viewControllers[1];
+    finalVC.popToViewController = self.navigationController.viewControllers[[self.navigationController.viewControllers count] - 3];
+    finalVC.delegate = self.navigationController.viewControllers[[self.navigationController.viewControllers count] - 3];
 }
 
 @end

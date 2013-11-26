@@ -10,6 +10,7 @@
 #import "CICCarBaseCheckReportViewController.h"
 #import "CICCarInfoService.h"
 #import "CICCarInfoEntity.h"
+#import "UIViewController+CICViewController.h"
 
 #define NeedSaveToNSUserDefaults self.carInfoSaveStatus == FromNSUserDefaults || self.carInfoSaveStatus == NewCarInfo
 #define NeedUpdateToDB             self.carInfoSaveStatus == FromDB
@@ -108,6 +109,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 {
     // 判断信息完整性
     if ([self checkDataIntegrity:self.carInfoEntity]) {
+        [self formateDataForUpload:self.carInfoEntity];
         
         if (self.carInfoSaveStatus == FromDB) {
             // 更新到数据库
@@ -124,7 +126,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
         }
     }
     else {
-        #warning 错误提示
+        [self showCustomTextAlert:@"采集信息不完整，请补充必要信息"];
     }
 }
 
@@ -159,6 +161,47 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkDataIntegrity:(CICCarInfoEntity *)carInfo
 {
+    if ([self checkCarBaseInfo:carInfo] && [self checkCarBaseCheckInfo:carInfo]
+        && [self checkCarImageInfo:carInfo] && [self checkCarMasterInfo:carInfo]) {
+        
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)checkCarBaseInfo:(CICCarInfoEntity *)carInfo
+{
+    if (carInfo.modelID != 0 && carInfo.carName && carInfo.location
+        && carInfo.firstRegTime && carInfo.insideIssueList && carInfo.yearExamineExpire
+        && carInfo.carSource && carInfo.dealTime && carInfo.mileage && carInfo.salePrice) {
+        
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)checkCarBaseCheckInfo:(CICCarInfoEntity *)carInfo
+{
+    if (carInfo.facadeIssueList && [carInfo.facadeIssueList count] > 0) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)checkCarImageInfo:(CICCarInfoEntity *)carInfo
+{
     return YES;
+}
+
+- (BOOL)checkCarMasterInfo:(CICCarInfoEntity *)carInfo
+{
+    return YES;
+}
+
+- (void)formateDataForUpload:(CICCarInfoEntity *)carInfo
+{
+    carInfo.firstRegTime = [NSString stringWithFormat:@"%@-01", carInfo.firstRegTime];
+    carInfo.insuranceExpire = [NSString stringWithFormat:@"%@-01", carInfo.insuranceExpire];
+    carInfo.yearExamineExpire = [NSString stringWithFormat:@"%@-01", carInfo.yearExamineExpire];
 }
 @end

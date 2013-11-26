@@ -96,8 +96,8 @@
     
     finalVC.dataList = dataList;
     finalVC.title = self.locationList[[self.tableView indexPathForSelectedRow].row];
-    finalVC.popToViewController = self.navigationController.viewControllers[1];
-    finalVC.delegate = self.navigationController.viewControllers[1];
+    finalVC.popToViewController = self.navigationController.viewControllers[[self.navigationController.viewControllers count] - 2];
+    finalVC.delegate = self.navigationController.viewControllers[[self.navigationController.viewControllers count] - 2];
     finalVC.itemPrefix = self.locationList[[self.tableView indexPathForSelectedRow].row];
 }
 
