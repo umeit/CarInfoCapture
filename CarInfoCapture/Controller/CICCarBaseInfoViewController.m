@@ -32,7 +32,7 @@ typedef enum EditItemType : NSInteger{
     salePrice
 }EditItemType;
 
-@interface CICCarBaseInfoViewController ()
+@interface CICCarBaseInfoViewController () <UITextFieldDelegate>
 
 // 当前正在编辑的信息类型
 @property (nonatomic) EditItemType currentEditItem;
@@ -47,6 +47,8 @@ typedef enum EditItemType : NSInteger{
 @property (weak, nonatomic) IBOutlet UITextField *mileageTextField;
 @property (weak, nonatomic) IBOutlet UITextField *salePriceTextField;
 
+@property (strong, nonatomic) UITextField *currentEditTextField;
+
 @end
 
 @implementation CICCarBaseInfoViewController
@@ -54,6 +56,20 @@ typedef enum EditItemType : NSInteger{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    numberToolbar.barStyle = UIBarStyleDefault;
+    numberToolbar.items = [NSArray arrayWithObjects:
+                           [[UIBarButtonItem alloc]initWithTitle:@"清空" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
+                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                           [[UIBarButtonItem alloc]initWithTitle:@"确定" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+                           nil];
+    [numberToolbar sizeToFit];
+    self.mileageTextField.inputAccessoryView = numberToolbar;
+    self.salePriceTextField.inputAccessoryView = numberToolbar;
+    
+    self.mileageTextField.delegate = self;
+    self.salePriceTextField.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -130,7 +146,42 @@ typedef enum EditItemType : NSInteger{
     [self updateCarInfo:item];
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    self.currentEditTextField = textField;
+    return YES;
+}
+
 #pragma mark - Private
+
+- (void)cancelNumberPad {
+    [self.currentEditTextField resignFirstResponder];
+    self.currentEditTextField.text = @"";
+    
+    if (self.currentEditTextField == self.salePriceTextField) {
+        self.carInfoEntity.salePrice = self.currentEditTextField.text;
+    }
+    else if (self.currentEditTextField == self.mileageTextField) {
+        self.carInfoEntity.mileage = self.currentEditTextField.text;
+    }
+    
+    
+    [self.delegate carInfoDidChange:self.carInfoEntity];
+}
+
+- (void)doneWithNumberPad {
+    if (self.currentEditTextField == self.salePriceTextField) {
+        self.carInfoEntity.salePrice = self.currentEditTextField.text;
+    }
+    else if (self.currentEditTextField == self.mileageTextField) {
+        self.carInfoEntity.mileage = self.currentEditTextField.text;
+    }
+    [self.self.currentEditTextField resignFirstResponder];
+    
+    [self.delegate carInfoDidChange:self.carInfoEntity];
+}
 
 - (void)updateCarInfo:(NSString *)editedItem
 {
