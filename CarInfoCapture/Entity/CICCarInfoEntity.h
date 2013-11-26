@@ -31,6 +31,8 @@ typedef enum CarImageIndex : NSInteger {
 
 @interface CICCarInfoEntity : NSObject <NSCoding>
 
+@property (nonatomic) NSInteger dbID;
+
 // 表示：已上传、未上传、
 @property (nonatomic) NSInteger status;
 
@@ -38,14 +40,14 @@ typedef enum CarImageIndex : NSInteger {
 @property (nonatomic) NSInteger modelID;
 @property (strong, nonatomic) NSString *carName;
 @property (strong, nonatomic) UIImage *carImage;
-@property (strong, nonatomic) NSString *salePrice;
-@property (strong, nonatomic) NSString *mileage;
-@property (strong, nonatomic) NSString *firstRegTime;
 @property (strong, nonatomic) NSString *location;
+@property (strong, nonatomic) NSString *firstRegTime;
 @property (strong, nonatomic) NSString *insuranceExpire;
 @property (strong, nonatomic) NSString *yearExamineExpire;
 @property (strong, nonatomic) NSString *carSource;
 @property (strong, nonatomic) NSString *dealTime;
+@property (strong, nonatomic) NSString *mileage;
+@property (strong, nonatomic) NSString *salePrice;
 
 /* 初步检查信息 */
 // 底盘问题

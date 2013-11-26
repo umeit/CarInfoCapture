@@ -68,4 +68,16 @@
     
     return nil;
 }
+
++ (void)deleteLocalFileWithPath:(NSString *)path
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL res = [fileManager removeItemAtPath:path error:nil];
+    if (res) {
+        NSLog(@"文件删除成功");
+    } else {
+        NSLog(@"文件删除失败");
+    }
+    NSLog(@"文件是否存在: %@", [fileManager isExecutableFileAtPath:path] ? @"YES" : @"NO");
+}
 @end

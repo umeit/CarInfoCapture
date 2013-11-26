@@ -13,6 +13,7 @@
 typedef void(^CarInfoListBlock)(NSArray *list, NSError *error);
 
 typedef void(^SaveCarInfoBlock)(NSError *error);
+typedef void(^UpdateCarInfoBlock)(NSError *error);
 
 @interface CICCarInfoDBLogic : NSObject
 
@@ -37,4 +38,5 @@ typedef void(^SaveCarInfoBlock)(NSError *error);
  */
 + (void)noUploadCarInfoListWithBlock:(CarInfoListBlock)block;
 
++ (void)updateCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UpdateCarInfoBlock)block;
 @end

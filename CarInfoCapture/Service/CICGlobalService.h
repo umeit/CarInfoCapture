@@ -20,4 +20,6 @@
 
 + (NSString *)saveImageToLocal:(UIImage *)image;
 
++ (void)deleteLocalFileWithPath:(NSString *)path;
+
 @end

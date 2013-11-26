@@ -12,7 +12,7 @@
 #import "CICCarInfoEntity.h"
 
 #define NeedSaveToNSUserDefaults self.carInfoSaveStatus == FromNSUserDefaults || self.carInfoSaveStatus == NewCarInfo
-#define NeedSaveToDB             self.carInfoSaveStatus == FromDB
+#define NeedUpdateToDB             self.carInfoSaveStatus == FromDB
 
 typedef enum CarInfoSaveStatus : NSInteger {
     FromDB,
@@ -25,8 +25,6 @@ typedef enum CarInfoSaveStatus : NSInteger {
 @property (weak, nonatomic) IBOutlet UIImageView *secondCheckCompleteImage;
 @property (weak, nonatomic) IBOutlet UIImageView *thirdCheckCompleteImage;
 @property (weak, nonatomic) IBOutlet UIImageView *fourthCheckCompleteImage;
-
-@property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
 
 @property (nonatomic) CarInfoSaveStatus carInfoSaveStatus;
 
@@ -48,12 +46,11 @@ typedef enum CarInfoSaveStatus : NSInteger {
 {
     [super viewDidLoad];
 
-    // 如果已经有 CarInfoEntity 信息，表示在编辑采集信息，而不是新建的(或上次未保存的)采集信息
+    // 如果已经有 CarInfoEntity 信息，表示在编辑/修改采集信息，而不是新建的(或上次未保存的)采集信息
     // 所以后续就可以保存到 NSUserDefaults，而不是跟新数据库
     if (self.carInfoEntity) {
         self.carInfoSaveStatus = FromDB;
-        
-        
+        self.navigationItem.hidesBackButton = YES;
     }
     else {
         // 检查是否有上次未保存的采集信息
@@ -66,7 +63,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
         }
         // 新建的
         else {
-            self.carInfoSaveStatus = FromNSUserDefaults;
+            self.carInfoSaveStatus = NewCarInfo;
             self.carInfoEntity = [[CICCarInfoEntity alloc] init];
         }
     }
@@ -97,11 +94,11 @@ typedef enum CarInfoSaveStatus : NSInteger {
         // 将 self.carInfoEntity 保存到 userDefaults 暂存起来
         // 用于用户在没有「保存」的情况下退出应用后，下次打开时还能看到上次编辑的信息
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSData *carInfoEntityData = [userDefaults objectForKey:@"UnsaveCarInfoEntity"];
-        if (!carInfoEntityData) {
+//        NSData *carInfoEntityData = [userDefaults objectForKey:@"UnsaveCarInfoEntity"];
+//        if (!carInfoEntityData) {
             [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.carInfoEntity]
                              forKey:@"UnsaveCarInfoEntity"];
-        }
+//        }
     }
 }
 
@@ -111,12 +108,18 @@ typedef enum CarInfoSaveStatus : NSInteger {
 {
     // 判断信息完整性
     if ([self checkDataIntegrity:self.carInfoEntity]) {
-        self.carInfoEntity.status = NoUpload;
         
-        // 保存到数据库
-        [self.carInfoService saveCarInfo:self.carInfoEntity];
-        
-        [self clearCurrentCapture];
+        if (self.carInfoSaveStatus == FromDB) {
+            // 更新到数据库
+            [self.carInfoService updateCarInfo:self.carInfoEntity];
+        }
+        else if (self.carInfoSaveStatus == NewCarInfo || self.carInfoSaveStatus == FromNSUserDefaults) {
+            // 保存到数据库
+            self.carInfoEntity.status = NoUpload;
+            [self.carInfoService saveCarInfo:self.carInfoEntity];
+            // 清空界面
+            [self clearCurrentCapture];
+        }
     }
     else {
         #warning 错误提示
@@ -132,8 +135,9 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (void)carInfoDidChange:(CICCarInfoEntity *)carInfoEntity
 {
-    if (NeedSaveToDB) {
-        
+    if (NeedUpdateToDB) {
+        // 更新到数据库
+        // 此处暂时不保存到数据库，因为对于修改的采集信息，必须要点击「保存修改」后再更新数据库
     }
     else if (NeedSaveToNSUserDefaults) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

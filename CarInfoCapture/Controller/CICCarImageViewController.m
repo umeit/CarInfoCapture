@@ -27,8 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *frontSeatImage;
 @property (weak, nonatomic) IBOutlet UIImageView *backSeatImage;
 
-//@property (strong, nonatomic) NSString *currentTackIamgeKey;
 @property (nonatomic) CarImageIndex currentTackIamgeIndex;
+
 @end
 
 @implementation CICCarImageViewController
@@ -40,9 +40,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    self.frontFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathDictionary[kFrontFlankImage]];
-//    self.backFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathDictionary[kBackFlankImage]];
-    
     self.frontFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontFlankImage][@"v"]];
     self.backFlankImage.image  = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backFlankImage][@"v"]];
 }
@@ -53,7 +50,6 @@
 {
     switch (((UIButton *)sender).tag) {
         case kFrontFlankImageTag:
-//            self.currentTackIamgeKey = kFrontFlankImage;
             self.currentTackIamgeIndex = frontFlankImage;
             // 判断是否弹出编辑图片的菜单
             if(self.frontFlankImage.image) {
@@ -68,7 +64,6 @@
             
         case kBackFlankImageTag:
             // 判断是否弹出编辑图片的菜单;
-//            self.currentTackIamgeKey = kBackFlankImage;
             self.currentTackIamgeIndex = backFlankImage;
             if(self.backFlankImage.image) {
                 [self showEditImageMenu];
@@ -84,8 +79,6 @@
         default:
             break;
     }
-    
-    
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -96,18 +89,24 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     // 原图
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
     // 保存到手机相册
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     
+    // 压缩图片
+    
+    // 将图片保存到本地
     // 将图片路径保存到实体类
     NSString *iamgeSavePath = [CICGlobalService saveImageToLocal:image];
-//    self.carInfoEntity.carImagesLocalPathDictionary[self.currentTackIamgeKey] = iamgeSavePath ? iamgeSavePath : @"";
+    
+    // 如果该位置已有照片，则删除
+    if ([self isAlreadySaveThisImageIndex:self.currentTackIamgeIndex]) {
+        [CICGlobalService deleteLocalFileWithPath:self.carInfoEntity.carImagesLocalPathList[self.currentTackIamgeIndex][@"v"]];
+    }
     
     self.carInfoEntity.carImagesLocalPathList[self.currentTackIamgeIndex] =
         @{@"k": @([self.carInfoEntity imageCodeWithImageIndex:self.currentTackIamgeIndex]),
           @"v": (iamgeSavePath ? iamgeSavePath : @"")};
-    
-    #warning 删除之前的图片
     
     [picker dismissViewControllerAnimated:YES completion:^{
         [self.delegate carInfoDidChange:self.carInfoEntity];
@@ -168,4 +167,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         //        [[UIApplication sharedApplication] setStatusBarHidden:YES];
     }];
 }
+
+- (BOOL)isAlreadySaveThisImageIndex:(NSInteger)index
+{
+    NSDictionary *dic = self.carInfoEntity.carImagesLocalPathList[index];
+    if ([dic[@"k"] integerValue] == -1) {
+        return NO;
+    }
+    return YES;
+}
+
 @end

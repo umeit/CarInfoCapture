@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        NSDictionary *placeholderDic = @{@"k": @(-1), @"v": @""};
+        NSDictionary *placeholderDic = @{@"k": @(0), @"v": @""};
         
         self.carImagesLocalPathList = [[NSMutableArray alloc] initWithArray:@[placeholderDic,
                                                                               placeholderDic,

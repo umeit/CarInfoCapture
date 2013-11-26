@@ -29,8 +29,13 @@
     NSString *createTableSQL = @"CREATE TABLE IF NOT EXISTS T_CarInfo" \
     "(id INTEGER PRIMARY KEY AUTOINCREMENT," \
     " status INTEGER, " \
+    " modelID INTEGER, " \
     " carName VARCHAR, " \
-    " carImagePath VARCHAR, " \
+    " location VARCHAR, " \
+    " insuranceExpire VARCHAR, " \
+    " yearExamineExpire VARCHAR, " \
+    " carSource VARCHAR, " \
+    " dealTime VARCHAR, " \
     " salePrice VARCHAR, " \
     " mileage VARCHAR, " \
     " firstRegTime VARCHAR, " \
@@ -39,7 +44,9 @@
     " paintIssueList VARCHAR, " \
     " insideIssueList VARCHAR, " \
     " facadeIssueList VARCHAR, " \
-    " carImagesLocalPathList VARCHAR " \
+    " carImagesLocalPathList VARCHAR, " \
+    " masterName VARCHAR, " \
+    " masterTel VARCHAR " \
     ")";
     
     [db executeUpdate:createTableSQL];
@@ -67,9 +74,14 @@
     while ([s next]) {
         CICCarInfoEntity *carInfo = [[CICCarInfoEntity alloc] init];
         
+        carInfo.dbID = [s intForColumn:@"id"];
         carInfo.status = [s intForColumn:@"status"];
         carInfo.carName = [s stringForColumn:@"carName"];
-        carInfo.carImage = [UIImage imageWithContentsOfFile:[s stringForColumn:@"carImagePath"]];
+        carInfo.location = [s stringForColumn:@"location"];
+        carInfo.insuranceExpire = [s stringForColumn:@"insuranceExpire"];
+        carInfo.yearExamineExpire = [s stringForColumn:@"yearExamineExpire"];
+        carInfo.carSource = [s stringForColumn:@"carSource"];
+        carInfo.dealTime = [s stringForColumn:@"dealTime"];
         carInfo.salePrice = [s stringForColumn:@"salePrice"];
         carInfo.mileage = [s stringForColumn:@"mileage"];
         carInfo.firstRegTime = [s stringForColumn:@"firstRegTime"];
@@ -79,6 +91,8 @@
         carInfo.insideIssueList = [[s stringForColumn:@"insideIssueList"] componentsSeparatedByString:@"#"];
         carInfo.facadeIssueList = [[s stringForColumn:@"facadeIssueList"] componentsSeparatedByString:@"#"];
         carInfo.carImagesLocalPathList = [NSMutableArray arrayWithArray:[[s stringForColumn:@"carImagesLocalPathList"] jsonStrToArray]];
+        carInfo.masterName = [s stringForColumn:@"masterName"];
+        carInfo.masterTel = [s stringForColumn:@"masterTel"];
         
         [carInfoList addObject:carInfo];
     }
@@ -96,16 +110,40 @@
         return;
     }
     
-    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    // 顺序
+//    "(id INTEGER PRIMARY KEY AUTOINCREMENT," \
+//    " status INTEGER, " \
+//    " modelID INTEGER, " \
+//    " carName VARCHAR, " \
+//    " location VARCHAR, " \
+//    " insuranceExpire VARCHAR, " \
+//    " yearExamineExpire VARCHAR, " \
+//    " carSource VARCHAR, " \
+//    " dealTime VARCHAR, " \
+//    " salePrice VARCHAR, " \
+//    " mileage VARCHAR, " \
+//    " firstRegTime VARCHAR, " \
+//    " underpanIssueList VARCHAR, " \
+//    " engineIssueList VARCHAR, " \
+//    " paintIssueList VARCHAR, " \
+//    " insideIssueList VARCHAR, " \
+//    " facadeIssueList VARCHAR, " \
+//    " carImagesLocalPathList VARCHAR " \
+//    " masterName VARCHAR " \
+//    " masterTel VARCHAR " \
+    
+    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         nil,
-                        @(carInfo.status), carInfo.carName, carInfo.carImage,
-                        carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
+                        @(carInfo.status), carInfo.modelID, carInfo.carName, carInfo.location,
+                        carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
+                        carInfo.dealTime, carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                         [carInfo.underpanIssueList oneStringFormat],
                         [carInfo.engineIssueList oneStringFormat],
                         [carInfo.paintIssueList oneStringFormat],
                         [carInfo.insideIssueList oneStringFormat],
                         [carInfo.facadeIssueList oneStringFormat],
-                        [carInfo.carImagesLocalPathList jsonStringFormat]];
+                        [carInfo.carImagesLocalPathList jsonStringFormat],
+                        carInfo.masterName, carInfo.masterTel];
     
     if (success) {
         if (block) block(nil);
@@ -153,9 +191,14 @@
     while ([s next]) {
         CICCarInfoEntity *carInfo = [[CICCarInfoEntity alloc] init];
         
+        carInfo.dbID = [s intForColumn:@"id"];
         carInfo.status = [s intForColumn:@"status"];
         carInfo.carName = [s stringForColumn:@"carName"];
-        carInfo.carImage = [UIImage imageWithContentsOfFile:[s stringForColumn:@"carImagePath"]];
+        carInfo.location = [s stringForColumn:@"location"];
+        carInfo.insuranceExpire = [s stringForColumn:@"insuranceExpire"];
+        carInfo.yearExamineExpire = [s stringForColumn:@"yearExamineExpire"];
+        carInfo.carSource = [s stringForColumn:@"carSource"];
+        carInfo.dealTime = [s stringForColumn:@"dealTime"];
         carInfo.salePrice = [s stringForColumn:@"salePrice"];
         carInfo.mileage = [s stringForColumn:@"mileage"];
         carInfo.firstRegTime = [s stringForColumn:@"firstRegTime"];
@@ -165,11 +208,73 @@
         carInfo.insideIssueList = [[s stringForColumn:@"insideIssueList"] componentsSeparatedByString:@"#"];
         carInfo.facadeIssueList = [[s stringForColumn:@"facadeIssueList"] componentsSeparatedByString:@"#"];
         carInfo.carImagesLocalPathList = [NSMutableArray arrayWithArray:[[s stringForColumn:@"carImagesLocalPathList"] jsonStrToArray]];
+        carInfo.masterName = [s stringForColumn:@"masterName"];
+        carInfo.masterTel = [s stringForColumn:@"masterTel"];
         
         [carInfoList addObject:carInfo];
     }
     
     [db close];
     block(carInfoList, nil);
+}
+
++ (void)updateCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UpdateCarInfoBlock)block
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:DBPath];
+    if (![db open]) {
+        NSLog(@"**Error** Open DB error");
+        return;
+    }
+    
+    // 顺序
+    //    "(id INTEGER PRIMARY KEY AUTOINCREMENT," \
+    //    " status INTEGER, " \
+    //    " modelID INTEGER, " \
+    //    " carName VARCHAR, " \
+    //    " location VARCHAR, " \
+    //    " insuranceExpire VARCHAR, " \
+    //    " yearExamineExpire VARCHAR, " \
+    //    " carSource VARCHAR, " \
+    //    " dealTime VARCHAR, " \
+    //    " salePrice VARCHAR, " \
+    //    " mileage VARCHAR, " \
+    //    " firstRegTime VARCHAR, " \
+    //    " underpanIssueList VARCHAR, " \
+    //    " engineIssueList VARCHAR, " \
+    //    " paintIssueList VARCHAR, " \
+    //    " insideIssueList VARCHAR, " \
+    //    " facadeIssueList VARCHAR, " \
+    //    " carImagesLocalPathList VARCHAR " \
+    //    " masterName VARCHAR " \
+    //    " masterTel VARCHAR " \
+    
+    BOOL success = [db executeUpdate:@"UPDATE T_CarInfo SET status = ?, modelID = ?, carName = ?, "\
+                                      "location = ?, insuranceExpire = ?, yearExamineExpire = ?, "\
+                                      "carSource = ?, dealTime = ?, salePrice = ?, mileage = ?, "\
+                                      "firstRegTime = ?, underpanIssueList = ?, engineIssueList = ?, "\
+                                      "paintIssueList = ?, insideIssueList = ?, facadeIssueList = ?, "\
+                                      "carImagesLocalPathList = ?, masterName = ?, masterTel = ? "\
+                                      "WHERE id = ? ",
+                    @(carInfo.status), carInfo.modelID, carInfo.carName, carInfo.location,
+                    carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
+                    carInfo.dealTime, carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
+                    [carInfo.underpanIssueList oneStringFormat],
+                    [carInfo.engineIssueList oneStringFormat],
+                    [carInfo.paintIssueList oneStringFormat],
+                    [carInfo.insideIssueList oneStringFormat],
+                    [carInfo.facadeIssueList oneStringFormat],
+                    [carInfo.carImagesLocalPathList jsonStringFormat],
+                    carInfo.masterName, carInfo.masterTel,
+                    @(carInfo.dbID)];
+    
+    if (success) {
+        if (block) block(nil);
+    }
+    else {
+        NSLog(@"%@", db.lastErrorMessage);
+        if (block) block(db.lastError);
+    }
+    
+    [db close];
 }
 @end

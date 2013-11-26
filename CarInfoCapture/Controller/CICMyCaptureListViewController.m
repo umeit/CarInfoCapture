@@ -10,6 +10,7 @@
 #import "CICCarInfoService.h"
 #import "CICCarInfoCell.h"
 #import "CICCarInfoEntity.h"
+#import "CICMainCaptureViewController.h"
 
 @interface CICMyCaptureListViewController () <UITableViewDataSource>
 
@@ -86,6 +87,14 @@
     [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    CICMainCaptureViewController *mainCaptureViewController = segue.destinationViewController;
+    mainCaptureViewController.carInfoEntity = self.carInfoList[[self.tableView indexPathForSelectedRow].row];
 }
 
 #pragma mark - Previte

@@ -67,6 +67,13 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     }];
 }
 
+- (void)updateCarInfo:(CICCarInfoEntity *)carInfo
+{
+    [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {
+        
+    }];
+}
+
 - (void)sumOfCarInfoAndNeedUploadCarInfoWithBlock:(NumberOfSumCarInfoAndNumberOfNeedUploadCarInfoBlock)block
 {
     
