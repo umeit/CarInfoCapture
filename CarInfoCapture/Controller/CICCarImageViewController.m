@@ -171,7 +171,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (BOOL)isAlreadySaveThisImageIndex:(NSInteger)index
 {
     NSDictionary *dic = self.carInfoEntity.carImagesLocalPathList[index];
-    if ([dic[@"k"] integerValue] == -1) {
+    if ([dic[@"k"] integerValue] == 0) {
         return NO;
     }
     return YES;

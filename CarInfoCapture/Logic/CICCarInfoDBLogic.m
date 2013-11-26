@@ -167,13 +167,33 @@
 
 + (NSInteger)sumOfCarInfo
 {
-    #warning 待实现
+    FMDatabase *db = [FMDatabase databaseWithPath:DBPath];
+    if (![db open]) {
+        NSLog(@"**Error** Open DB error");
+        return 0;
+    }
+    
+    FMResultSet *s = [db executeQuery:@"SELECT COUNT(*) FROM T_CarInfo"];
+    
+    if ([s next]) {
+        return [s intForColumnIndex:0];
+    }
     return 0;
 }
 
 + (NSInteger)sumOfNoUploadCarInfo
 {
-    #warning 待实现
+    FMDatabase *db = [FMDatabase databaseWithPath:DBPath];
+    if (![db open]) {
+        NSLog(@"**Error** Open DB error");
+        return 0;
+    }
+    
+    FMResultSet *s = [db executeQuery:@"SELECT COUNT(*) FROM T_CarInfo WHERE status = 1"];
+    
+    if ([s next]) {
+        return [s intForColumnIndex:0];
+    }
     return 0;
 }
 

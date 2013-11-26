@@ -76,7 +76,10 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
 
 - (void)sumOfCarInfoAndNeedUploadCarInfoWithBlock:(NumberOfSumCarInfoAndNumberOfNeedUploadCarInfoBlock)block
 {
+    NSInteger sum = [CICCarInfoDBLogic sumOfCarInfo];
+    NSInteger needUploadSum = [CICCarInfoDBLogic sumOfNoUploadCarInfo];
     
+    block(sum, needUploadSum);
 }
 
 - (void)uploadCarInfoWithBlock:(UploadCarInfoBlock)block

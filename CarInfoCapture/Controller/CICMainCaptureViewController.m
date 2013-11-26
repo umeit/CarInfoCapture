@@ -112,6 +112,8 @@ typedef enum CarInfoSaveStatus : NSInteger {
         if (self.carInfoSaveStatus == FromDB) {
             // 更新到数据库
             [self.carInfoService updateCarInfo:self.carInfoEntity];
+            
+            [self.navigationController popViewControllerAnimated:YES];
         }
         else if (self.carInfoSaveStatus == NewCarInfo || self.carInfoSaveStatus == FromNSUserDefaults) {
             // 保存到数据库
