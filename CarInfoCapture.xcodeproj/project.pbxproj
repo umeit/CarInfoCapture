@@ -217,6 +217,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0301461B1845E841004A5366 /* CICCarInfoDidChangeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoDidChangeDelegate.h; sourceTree = "<group>"; };
 		0307B30C183B606600C8DB82 /* CICCarImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarImageViewController.h; sourceTree = "<group>"; };
 		0307B30D183B606600C8DB82 /* CICCarImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarImageViewController.m; sourceTree = "<group>"; };
 		03089A061833764D006F2E4B /* CICMainCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICMainCaptureViewController.h; sourceTree = "<group>"; };
@@ -281,7 +282,6 @@
 		035C5BA8184357A20050BE50 /* CICCarMasterInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarMasterInfoViewController.m; sourceTree = "<group>"; };
 		0360E021183CC8A900E4C1A5 /* NSDictionary+CICDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CICDictionary.h"; sourceTree = "<group>"; };
 		0360E022183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CICDictionary.m"; sourceTree = "<group>"; };
-		0360E024183CCB9800E4C1A5 /* CICCarInfoDidChangeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CICCarInfoDidChangeDelegate.h; sourceTree = "<group>"; };
 		03680CDA18322E9E006A201A /* CICCarBaseCheckDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBaseCheckDetailViewController.h; sourceTree = "<group>"; };
 		03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseCheckDetailViewController.m; sourceTree = "<group>"; };
 		0385A5BD1844AC8200A69310 /* UIViewController+CICViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CICViewController.h"; sourceTree = "<group>"; };
@@ -486,6 +486,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0301461A1845E841004A5366 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				0301461B1845E841004A5366 /* CICCarInfoDidChangeDelegate.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		032B96131836211900A685D3 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +655,7 @@
 		034E6959182C83D400BD5612 /* CarInfoCapture */ = {
 			isa = PBXGroup;
 			children = (
+				0301461A1845E841004A5366 /* Protocol */,
 				032B96131836211900A685D3 /* Util */,
 				0339EF501831FD500082A35E /* Controller */,
 				0339EF551831FD500082A35E /* Entity */,
@@ -656,7 +665,6 @@
 				0339EF751831FD500082A35E /* View */,
 				034E6962182C83D400BD5612 /* CICAppDelegate.h */,
 				034E6963182C83D400BD5612 /* CICAppDelegate.m */,
-				0360E024183CCB9800E4C1A5 /* CICCarInfoDidChangeDelegate.h */,
 				034E6965182C83D400BD5612 /* Images.xcassets */,
 				034E695A182C83D400BD5612 /* Supporting Files */,
 				034E6982182C842700BD5612 /* Main.storyboard */,
