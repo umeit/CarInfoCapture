@@ -87,7 +87,7 @@
         
         // 填充 cell 的值
         [obj[@"cars"] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            dic[@"cellList"][idx] = obj[@"name"];
+            dic[@"cellList"][idx] = @{@"displayName": obj[@"name"], @"value": obj[@"id"]};
         }];
     }];
     

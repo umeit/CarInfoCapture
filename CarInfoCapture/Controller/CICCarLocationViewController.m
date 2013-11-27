@@ -88,7 +88,7 @@
     NSMutableArray *cityNameList = [[NSMutableArray alloc] init];
     
     [cityDicList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        cityNameList[idx] = obj[@"city"];
+        cityNameList[idx] = [NSMutableDictionary dictionaryWithDictionary:@{@"displayName": obj[@"city"]}];
     }];
     
     NSArray *dataList = @[@{@"sectionName": @"",

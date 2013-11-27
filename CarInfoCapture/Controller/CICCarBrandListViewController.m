@@ -33,8 +33,6 @@
 {
     [super viewDidLoad];
     
-//    self.tableView.tableHeaderView.backgroundColor = [UIColor darkGrayColor];
-//    [self.tableView headerViewForSection:0].backgroundColor = [UIColor blueColor];
     self.brandList = [self.carBrandService carBrandList];
 }
 

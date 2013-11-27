@@ -156,9 +156,14 @@ typedef enum EditItemType : NSInteger{
 
 - (void)selecatItem:(id)item
 {
-    [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]].detailTextLabel.text = item;
-    
-    [self updateCarInfo:item];
+    if ([item isKindOfClass:[NSString class]]) {
+        [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]].detailTextLabel.text = item;
+        [self updateCarInfo:item];
+    }
+    else if ([item isKindOfClass:[NSDictionary class]]) {
+        [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]].detailTextLabel.text = item[@"displayName"];
+        [self updateCarInfo:item[@"displayName"]];
+    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -273,14 +278,21 @@ typedef enum EditItemType : NSInteger{
 {
     #warning 使用 plist
     return @[@{@"sectionName": @"",
-        @"cellList": @[@"亚运村", @"花乡", @"个人"]}];
+               @"cellList": @[@{@"displayName": @"亚运村"},
+                              @{@"displayName": @"花乡"},
+                              @{@"displayName": @"个人"}]}];
 }
 
 - (NSArray *)dealTimeList
 {
     #warning 使用 plist
     return @[@{@"sectionName": @"",
-               @"cellList": @[@"1", @"2", @"3", @"4", @"5", @"6"]}];
+               @"cellList": @[@{@"displayName": @"1"},
+                              @{@"displayName": @"2"},
+                              @{@"displayName": @"3"},
+                              @{@"displayName": @"4"},
+                              @{@"displayName": @"5"},
+                              @{@"displayName": @"6"}]}];
 }
 
 @end

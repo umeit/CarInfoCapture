@@ -27,7 +27,13 @@
     static NSString *CellIdentifier = @"CICFinalCheckViewControllerCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = self.dataList[indexPath.section][@"cellList"][indexPath.row];
+    if ([self.dataList[indexPath.section][@"cellList"][indexPath.row] isKindOfClass:[NSString class]]) {
+        cell.textLabel.text = self.dataList[indexPath.section][@"cellList"][indexPath.row];
+    }
+    else if ([self.dataList[indexPath.section][@"cellList"][indexPath.row] isKindOfClass:[NSDictionary class]]) {
+        cell.textLabel.text = self.dataList[indexPath.section][@"cellList"][indexPath.row][@"displayName"];
+    }
+    
     
     return cell;
 }
@@ -42,7 +48,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.itemPrefix) {
-        [self.delegate selecatItem:[NSString stringWithFormat:@"%@%@", self.itemPrefix, self.dataList[indexPath.section][@"cellList"][indexPath.row]]];
+        if ([self.dataList[indexPath.section][@"cellList"][indexPath.row] isKindOfClass:[NSString class]]) {
+            [self.delegate selecatItem:[NSString stringWithFormat:@"%@%@", self.itemPrefix, self.dataList[indexPath.section][@"cellList"][indexPath.row]]];
+
+        }
+         else if ([self.dataList[indexPath.section][@"cellList"][indexPath.row] isKindOfClass:[NSDictionary class]]) {
+             self.dataList[indexPath.section][@"cellList"][indexPath.row][@"displayName"] = [NSString stringWithFormat:@"%@%@", self.itemPrefix, self.dataList[indexPath.section][@"cellList"][indexPath.row][@"displayName"]];
+             [self.delegate selecatItem:self.dataList[indexPath.section][@"cellList"][indexPath.row]];
+         }
     } else {
         [self.delegate selecatItem:self.dataList[indexPath.section][@"cellList"][indexPath.row]];
     }
