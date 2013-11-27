@@ -83,7 +83,7 @@
 
 - (NSDictionary *)carInfoParameters:(CICCarInfoEntity *)carInfo
 {
-    NSDictionary *carInfoParameters = @{@"modelid": [NSString stringWithFormat:@"%d", carInfo.modelID],
+    NSDictionary *carInfoParameters = @{@"modelid": [NSString stringWithFormat:@"%ld", (long)carInfo.modelID],
                                         @"carname": carInfo.carName,
                                         @"location": carInfo.location,
                                         @"firstregtime": carInfo.firstRegTime,

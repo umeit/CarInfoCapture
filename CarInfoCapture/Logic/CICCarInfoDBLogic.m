@@ -28,6 +28,7 @@
     
     NSString *createTableSQL = @"CREATE TABLE IF NOT EXISTS T_CarInfo" \
     "(id INTEGER PRIMARY KEY AUTOINCREMENT," \
+    " addTime VARCHAR, " \
     " status INTEGER, " \
     " modelID INTEGER, " \
     " carName VARCHAR, " \
@@ -70,11 +71,12 @@
     
     NSMutableArray *carInfoList = [[NSMutableArray alloc] init];
     
-    FMResultSet *s = [db executeQuery:@"SELECT * FROM T_CarInfo"];
+    FMResultSet *s = [db executeQuery:@"SELECT * FROM T_CarInfo ORDER BY id DESC"];
     while ([s next]) {
         CICCarInfoEntity *carInfo = [[CICCarInfoEntity alloc] init];
         
         carInfo.dbID = [s intForColumn:@"id"];
+        carInfo.addTime = [s dateForColumn:@"addTime"];
         carInfo.status = [s intForColumn:@"status"];
         carInfo.modelID = [s intForColumn:@"modelID"];
         carInfo.carName = [s stringForColumn:@"carName"];
@@ -113,6 +115,7 @@
     
     // 顺序
 //    "(id INTEGER PRIMARY KEY AUTOINCREMENT," \
+//    " addTime VARCHAR, " \
 //    " status INTEGER, " \
 //    " modelID INTEGER, " \
 //    " carName VARCHAR, " \
@@ -129,13 +132,14 @@
 //    " paintIssueList VARCHAR, " \
 //    " insideIssueList VARCHAR, " \
 //    " facadeIssueList VARCHAR, " \
-//    " carImagesLocalPathList VARCHAR " \
-//    " masterName VARCHAR " \
+//    " carImagesLocalPathList VARCHAR, " \
+//    " masterName VARCHAR, " \
 //    " masterTel VARCHAR " \
+//    ")";
     
-    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         nil,
-                        @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
+                        [NSDate date], @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
                         carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
                         carInfo.dealTime, carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                         [carInfo.underpanIssueList oneStringFormat],
@@ -208,11 +212,12 @@
     
     NSMutableArray *carInfoList = [[NSMutableArray alloc] init];
     
-    FMResultSet *s = [db executeQuery:@"SELECT * FROM T_CarInfo WHERE status = 1"];
+    FMResultSet *s = [db executeQuery:@"SELECT * FROM T_CarInfo WHERE status = 1 ORDER BY id DESC"];
     while ([s next]) {
         CICCarInfoEntity *carInfo = [[CICCarInfoEntity alloc] init];
         
         carInfo.dbID = [s intForColumn:@"id"];
+        carInfo.addTime = [s dateForColumn:@"addTime"];
         carInfo.status = [s intForColumn:@"status"];
         carInfo.modelID = [s intForColumn:@"modelID"];
         carInfo.carName = [s stringForColumn:@"carName"];
@@ -250,6 +255,7 @@
     
     // 顺序
     //    "(id INTEGER PRIMARY KEY AUTOINCREMENT," \
+    //    " addTime VARCHAR, " \
     //    " status INTEGER, " \
     //    " modelID INTEGER, " \
     //    " carName VARCHAR, " \
@@ -266,18 +272,19 @@
     //    " paintIssueList VARCHAR, " \
     //    " insideIssueList VARCHAR, " \
     //    " facadeIssueList VARCHAR, " \
-    //    " carImagesLocalPathList VARCHAR " \
-    //    " masterName VARCHAR " \
+    //    " carImagesLocalPathList VARCHAR, " \
+    //    " masterName VARCHAR, " \
     //    " masterTel VARCHAR " \
+    //    ")";
     
-    BOOL success = [db executeUpdate:@"UPDATE T_CarInfo SET status = ?, modelID = ?, carName = ?, "\
+    BOOL success = [db executeUpdate:@"UPDATE T_CarInfo SET addTime = ?, status = ?, modelID = ?, carName = ?, "\
                                       "location = ?, insuranceExpire = ?, yearExamineExpire = ?, "\
                                       "carSource = ?, dealTime = ?, salePrice = ?, mileage = ?, "\
                                       "firstRegTime = ?, underpanIssueList = ?, engineIssueList = ?, "\
                                       "paintIssueList = ?, insideIssueList = ?, facadeIssueList = ?, "\
                                       "carImagesLocalPathList = ?, masterName = ?, masterTel = ? "\
                                       "WHERE id = ? ",
-                    @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
+                    [NSDate date], @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
                     carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
                     carInfo.dealTime, carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                     [carInfo.underpanIssueList oneStringFormat],

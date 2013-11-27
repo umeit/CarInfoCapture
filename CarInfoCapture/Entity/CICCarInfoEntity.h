@@ -31,7 +31,11 @@ typedef enum CarImageIndex : NSInteger {
 
 @interface CICCarInfoEntity : NSObject <NSCoding>
 
+// 在数据库的ID
 @property (nonatomic) NSInteger dbID;
+
+// 保存到数据库的时间
+@property (nonatomic) NSDate *addTime;
 
 // 表示：已上传、未上传、
 @property (nonatomic) NSInteger status;
