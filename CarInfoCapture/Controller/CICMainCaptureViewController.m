@@ -109,7 +109,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 {
     // 判断信息完整性
     if ([self checkDataIntegrity:self.carInfoEntity]) {
-        [self formateDataForUpload:self.carInfoEntity];
+//        [self formateDataForUpload:self.carInfoEntity];
         
         if (self.carInfoSaveStatus == FromDB) {
             // 更新到数据库
@@ -198,10 +198,10 @@ typedef enum CarInfoSaveStatus : NSInteger {
     return YES;
 }
 
-- (void)formateDataForUpload:(CICCarInfoEntity *)carInfo
-{
-    carInfo.firstRegTime = [NSString stringWithFormat:@"%@-01", carInfo.firstRegTime];
-    carInfo.insuranceExpire = [NSString stringWithFormat:@"%@-01", carInfo.insuranceExpire];
-    carInfo.yearExamineExpire = [NSString stringWithFormat:@"%@-01", carInfo.yearExamineExpire];
-}
+//- (void)formateDataForUpload:(CICCarInfoEntity *)carInfo
+//{
+//    carInfo.firstRegTime = [NSString stringWithFormat:@"%@-01", carInfo.firstRegTime];
+//    carInfo.insuranceExpire = [NSString stringWithFormat:@"%@-01", carInfo.insuranceExpire];
+//    carInfo.yearExamineExpire = [NSString stringWithFormat:@"%@-01", carInfo.yearExamineExpire];
+//}
 @end

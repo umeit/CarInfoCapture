@@ -39,8 +39,8 @@
     httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
     
     NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
-    
-    [httpManager POST:@"http://capture.youche.com/capture/upload" parameters:carInfoParameters
+    //capture.youche.com
+    [httpManager POST:@"http://192.168.100.103/capture/upload" parameters:carInfoParameters
                                     constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                         
                                     }
@@ -71,7 +71,7 @@
                                                             } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                                 NSString *remoteImagePath = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                                                                
-                                                                block(remoteImagePath, nil);
+                                                                block([NSString stringWithFormat:@"/0/capture/%@", remoteImagePath], nil);
                                                             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                                 NSLog(@"%@", error.description);
                                                                 
@@ -83,24 +83,24 @@
 
 - (NSDictionary *)carInfoParameters:(CICCarInfoEntity *)carInfo
 {
-    NSDictionary *carInfoParameters = @{@"location": [carInfo.carImagesLocalPathList jsonStringFormat],
-//                                        @"carName": carInfo.carName,
-//                                        @"firstRegTime": carInfo.firstRegTime,
-//                                        @"insuranceExpire": carInfo.location,
-//                                        @"yearExamineExpire": carInfo.location,
-//                                        @"carSource": carInfo.location,
-//                                        @"dealTime": carInfo.location,
-//                                        @"mileage": carInfo.location,
-//                                        @"salePrice": carInfo.location,
-//                                        @"chassisState": carInfo.location,
-//                                        @"engineState": carInfo.location,
-//                                        @"paintState": carInfo.location,
-//                                        @"insideState": carInfo.location,
-//                                        @"facadeState": carInfo.location,
-//                                        @"masterName": carInfo.location,
-//                                        @"pic": [carInfo.carImagesRemotePathDictionary jsonStringWithArrayFormat]};
-    @"pic": [carInfo.carImagesLocalPathList jsonStringFormat]};
-//                                        @"addTime": carInfo.location};
+    NSDictionary *carInfoParameters = @{@"modelid": [NSString stringWithFormat:@"%d", carInfo.modelID],
+                                        @"carname": carInfo.carName,
+                                        @"location": carInfo.location,
+                                        @"firstregtime": carInfo.firstRegTime,
+                                        @"insuranceexpire": carInfo.insuranceExpire,
+                                        @"yearexamineexpire": carInfo.yearExamineExpire,
+                                        @"carsource": carInfo.carSource,
+                                        @"dealtime": carInfo.dealTime,
+                                        @"mileage": carInfo.mileage,
+                                        @"saleprice": carInfo.salePrice,
+                                        @"chassisstate": carInfo.underpanIssueList ? [carInfo.underpanIssueList oneStringFormat] : @"",
+                                        @"enginestate": carInfo.engineIssueList ? [carInfo.engineIssueList oneStringFormat] : @"",
+                                        @"paintstate": carInfo.paintIssueList ? [carInfo.paintIssueList oneStringFormat] : @"",
+                                        @"insidestate": carInfo.insideIssueList ? [carInfo.insideIssueList oneStringFormat] : @"",
+                                        @"facadestate": carInfo.facadeIssueList ? [carInfo.facadeIssueList oneStringFormat] : @"",
+                                        @"mastername": carInfo.masterName,
+                                        @"mastertel": carInfo.masterTel,
+                                        @"pic": [carInfo.carImagesRemotePathList jsonStringFormat]};
     return carInfoParameters;
 }
 
@@ -114,5 +114,12 @@
 //                                            @"Filedata": imageData};
     return uploadImageParameters;
 }
+
+//- (void)formateDataForUpload:(CICCarInfoEntity *)carInfo
+//{
+//    carInfo.firstRegTime = [NSString stringWithFormat:@"%@-01", carInfo.firstRegTime];
+//    carInfo.insuranceExpire = [NSString stringWithFormat:@"%@-01", carInfo.insuranceExpire];
+//    carInfo.yearExamineExpire = [NSString stringWithFormat:@"%@-01", carInfo.yearExamineExpire];
+//}
 
 @end

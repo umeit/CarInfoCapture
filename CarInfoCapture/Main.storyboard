@@ -239,7 +239,7 @@
         <!--Car Master Info View Controller - 车主信息-->
         <scene sceneID="LI1-iu-rmN">
             <objects>
-                <tableViewController id="Te5-3r-EEf" customClass="CICCarMasterInfoViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="Te5-3r-EEf" customClass="CICCarMasterInfoViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tax-tg-oxz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -482,7 +482,7 @@
         <!--Car Base Check Report View Controller - 车辆初步检测报告-->
         <scene sceneID="vIR-36-dzs">
             <objects>
-                <tableViewController id="3W5-a1-Kta" customClass="CICCarBaseCheckReportViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="3W5-a1-Kta" customClass="CICCarBaseCheckReportViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Xvo-Xb-mmw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -649,7 +649,7 @@
         <!--Car Image View Controller - 车辆实拍-->
         <scene sceneID="4YY-O1-MHp">
             <objects>
-                <tableViewController id="fMa-lS-lHq" customClass="CICCarImageViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="fMa-lS-lHq" customClass="CICCarImageViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="9Wg-75-kli">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -748,7 +748,7 @@
         <!--Car Base Info View Controller - 基本信息-->
         <scene sceneID="X5I-Zj-hp1">
             <objects>
-                <tableViewController id="7Tb-FJ-V9F" customClass="CICCarBaseInfoViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="7Tb-FJ-V9F" customClass="CICCarBaseInfoViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4Lt-G0-844">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1844,12 +1844,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="64s-78-NBN"/>
-        <segue reference="W4X-YN-3T1"/>
-        <segue reference="yxq-0z-Rud"/>
-        <segue reference="8Tt-jS-1Kn"/>
-        <segue reference="fJf-kv-hu8"/>
-        <segue reference="YHT-hg-Uv7"/>
+        <segue reference="LJW-Tb-OK1"/>
+        <segue reference="bai-dm-zQ2"/>
+        <segue reference="ACx-49-rF5"/>
+        <segue reference="xiZ-gu-mj4"/>
         <segue reference="yOG-vp-kuR"/>
+        <segue reference="bNx-a4-KP0"/>
+        <segue reference="fJf-kv-hu8"/>
     </inferredMetricsTieBreakers>
 </document>

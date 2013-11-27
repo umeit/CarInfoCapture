@@ -76,9 +76,9 @@ typedef enum EditItemType : NSInteger{
 {
     self.carNameDetailLabel.text = self.carInfoEntity.carName;
     self.carLocationDetailLabel.text = self.carInfoEntity.location;
-    self.firstRegTimeDetailLabel.text = self.carInfoEntity.firstRegTime;
-    self.insuranceExpireDetailLabel.text = self.carInfoEntity.insuranceExpire;
-    self.yearExamineExpireDetailLabel.text = self.carInfoEntity.yearExamineExpire;
+    self.firstRegTimeDetailLabel.text = [self.carInfoEntity.firstRegTime substringToIndex:7];
+    self.insuranceExpireDetailLabel.text = [self.carInfoEntity.insuranceExpire substringToIndex:7];
+    self.yearExamineExpireDetailLabel.text = [self.carInfoEntity.yearExamineExpire substringToIndex:7];
     self.carSourceDetailLabel.text = self.carInfoEntity.carSource;
     self.dealTimeDetailLabel.text = self.carInfoEntity.dealTime;
     self.mileageTextField.text = self.carInfoEntity.mileage;
@@ -255,15 +255,30 @@ typedef enum EditItemType : NSInteger{
             break;
             
         case firstRegTime:
-            self.carInfoEntity.firstRegTime = editedItem;
+            if ([editedItem length] < 7) {
+                NSString *s1 = [editedItem substringToIndex:5];
+                NSString *s2 = [editedItem substringFromIndex:5];
+                editedItem = [NSString stringWithFormat:@"%@0%@", s1, s2];
+            }
+            self.carInfoEntity.firstRegTime = [NSString stringWithFormat:@"%@-01", editedItem];
             break;
             
         case insuranceExpire:
-            self.carInfoEntity.insuranceExpire = editedItem;
+            if ([editedItem length] < 7) {
+                NSString *s1 = [editedItem substringToIndex:5];
+                NSString *s2 = [editedItem substringFromIndex:5];
+                editedItem = [NSString stringWithFormat:@"%@0%@", s1, s2];
+            }
+            self.carInfoEntity.insuranceExpire = [NSString stringWithFormat:@"%@-01", editedItem];
             break;
             
         case yearExamineExpire:
-            self.carInfoEntity.yearExamineExpire = editedItem;
+            if ([editedItem length] < 7) {
+                NSString *s1 = [editedItem substringToIndex:5];
+                NSString *s2 = [editedItem substringFromIndex:5];
+                editedItem = [NSString stringWithFormat:@"%@0%@", s1, s2];
+            }
+            self.carInfoEntity.yearExamineExpire = [NSString stringWithFormat:@"%@-01", editedItem];
             break;
             
         case carSource:

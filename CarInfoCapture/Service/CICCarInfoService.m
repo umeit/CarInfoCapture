@@ -99,7 +99,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
                 [self uploadCarImageList:carInfo withBlock:^(NSMutableArray *remoteImagePathList) {
                     // 上传图片成功
                     if (remoteImagePathList) {
-                        carInfo.carImagesLocalPathList = remoteImagePathList;
+                        carInfo.carImagesRemotePathList = remoteImagePathList;
                         
                         // 2\再上传其他信息
                         [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
