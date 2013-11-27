@@ -1209,7 +1209,6 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="uploadButtonPress:" destination="4vT-GT-8wQ" eventType="touchUpInside" id="JiU-E9-Qdo"/>
                                             <segue destination="szb-EP-4ze" kind="modal" id="X5l-Rf-LEp"/>
                                         </connections>
                                     </button>
@@ -1350,7 +1349,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="cbf-ob-jyu" customClass="CICUploadCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CICUploadCell" id="cbf-ob-jyu" customClass="CICUploadCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cbf-ob-jyu" id="o3Y-YO-bTz">
@@ -1381,6 +1380,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="szb-EP-4ze" id="UqX-V0-wdU"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cDH-BD-Nea">
                                 <rect key="frame" x="0.0" y="24" width="320" height="44"/>

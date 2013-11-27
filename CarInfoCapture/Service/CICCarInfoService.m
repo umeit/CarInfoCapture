@@ -55,6 +55,13 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     }
 }
 
+- (void)nouploadCarInfoListWithBlock:(CarInfoListBlock)block
+{
+    [CICCarInfoDBLogic noUploadCarInfoListWithBlock:^(NSArray *list, NSError *error) {
+        block(list, nil);
+    }];
+}
+
 - (void)saveCarInfo:(CICCarInfoEntity *)carInfo
 {
     [CICCarInfoDBLogic saveCarInfo:carInfo WithBlock:^(NSError *error) {
@@ -67,6 +74,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     }];
 }
 
+// 更新修改过的采集信息
 - (void)updateCarInfo:(CICCarInfoEntity *)carInfo
 {
     [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {

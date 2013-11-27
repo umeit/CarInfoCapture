@@ -26,7 +26,7 @@
 
 @property (strong, nonatomic) CICCarInfoService *carInfoService;
 
-- (IBAction)uploadButtonPress:(id)sender;
+//- (IBAction)uploadButtonPress:(id)sender;
 
 @end
 
@@ -93,8 +93,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    CICMainCaptureViewController *mainCaptureViewController = segue.destinationViewController;
-    mainCaptureViewController.carInfoEntity = self.carInfoList[[self.tableView indexPathForSelectedRow].row];
+    if ([segue.destinationViewController isKindOfClass:[CICMainCaptureViewController class]]) {
+        CICMainCaptureViewController *mainCaptureViewController = segue.destinationViewController;
+        mainCaptureViewController.carInfoEntity = self.carInfoList[[self.tableView indexPathForSelectedRow].row];
+    }
 }
 
 #pragma mark - Previte
@@ -143,17 +145,6 @@
             self.uploadBtton.hidden = YES;
         } else {
             self.uploadBtton.hidden = NO;
-        }
-    }];
-}
-
-#pragma mark - Action
-
-- (IBAction)uploadButtonPress:(id)sender
-{
-    [self.carInfoService uploadCarInfoWithBlock:^(NSError *error) {
-        if (!error) {
-            [self updateView];
         }
     }];
 }

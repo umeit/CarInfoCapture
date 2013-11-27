@@ -38,6 +38,8 @@ typedef void(^UploadCarInfoBlock)(NSError *error);
 
 - (void)carInfoListWithBlock:(CarInfoListBlock)block;
 
+- (void)nouploadCarInfoListWithBlock:(CarInfoListBlock)block;
+
 - (void)saveCarInfo:(CICCarInfoEntity *)carInfo;
 
 - (void)updateCarInfo:(CICCarInfoEntity *)carInfo;
