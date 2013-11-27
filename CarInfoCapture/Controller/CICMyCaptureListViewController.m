@@ -44,17 +44,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     [self.carInfoService carInfoListWithBlock:^(NSArray *list, NSError *error) {
         if (!error && list && [list count] > 0) {
             self.carInfoList = list;
             [self.tableView reloadData];
         }
     }];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
+    
     [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
         self.captureSum.text = [NSString stringWithFormat:@"%ld", (long)sum];
         self.noUploadNumber.text = [NSString stringWithFormat:@"%ld", (long)needUpload];

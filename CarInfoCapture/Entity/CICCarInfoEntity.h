@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 typedef enum SaveStatus : NSInteger {
-    Uploaded = 0,
-    NoUpload = 1
+    NoUpload = 1,
+    Uploaded = 2
 }SaveStatus;
 
 typedef enum CarImageIndex : NSInteger {

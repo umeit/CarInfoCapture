@@ -14,6 +14,8 @@
 {
     self = [super init];
     if (self) {
+        self.status = NoUpload;
+        
         NSDictionary *placeholderDic = @{@"k": @(0), @"v": @""};
         self.carImagesLocalPathList = [[NSMutableArray alloc] initWithArray:@[placeholderDic,
                                                                               placeholderDic,
@@ -44,6 +46,12 @@
         
         // 初步检查信息
         self.underpanIssueList = [aDecoder decodeObjectForKey:@"underpanIssueList"];
+        self.engineIssueList = [aDecoder decodeObjectForKey:@"engineIssueList"];
+        self.paintIssueList = [aDecoder decodeObjectForKey:@"paintIssueList"];
+        self.insideIssueList = [aDecoder decodeObjectForKey:@"insideIssueList"];
+        self.facadeIssueList = [aDecoder decodeObjectForKey:@"facadeIssueList"];
+        
+        // 车辆实拍信息
         self.carImagesLocalPathList = [aDecoder decodeObjectForKey:@"carImagesLocalPathList"];
         
         // 车主信息
@@ -68,9 +76,17 @@
     [aCoder encodeObject:self.yearExamineExpire forKey:@"yearExamineExpire"];
     [aCoder encodeObject:self.carSource forKey:@"carSource"];
     [aCoder encodeObject:self.dealTime forKey:@"dealTime"];
+    
     // 初步检查信息
     [aCoder encodeObject:self.underpanIssueList forKey:@"underpanIssueList"];
+    [aCoder encodeObject:self.engineIssueList forKey:@"engineIssueList"];
+    [aCoder encodeObject:self.paintIssueList forKey:@"paintIssueList"];
+    [aCoder encodeObject:self.insideIssueList forKey:@"insideIssueList"];
+    [aCoder encodeObject:self.facadeIssueList forKey:@"facadeIssueList"];
+    
+    // 车辆实拍信息
     [aCoder encodeObject:self.carImagesLocalPathList forKey:@"carImagesLocalPathList"];
+    
     // 车主信息
     [aCoder encodeObject:self.masterName forKey:@"masterName"];
     [aCoder encodeObject:self.masterTel forKey:@"masterTel"];
@@ -103,6 +119,12 @@
             break;
     }
     return -1;
+}
+
+- (void)setCarImagesLocalPathList:(NSMutableArray *)carImagesLocalPathList
+{
+    _carImagesLocalPathList = carImagesLocalPathList;
+    self.carImage = [UIImage imageWithData:[NSData dataWithContentsOfFile:_carImagesLocalPathList[0][@"v"]]];
 }
 
 @end

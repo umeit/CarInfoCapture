@@ -105,8 +105,11 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
                         [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
                             if (!error) {
                                 
-                                #warning  3\更新数据库中的信息
-                                
+                                // 3\更新数据库中的信息
+                                carInfo.status = Uploaded;
+                                [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {
+                                    
+                                }];
                                 
                                 [self.delegate carInfoDidUploadAtIndex:idx];
                             }
