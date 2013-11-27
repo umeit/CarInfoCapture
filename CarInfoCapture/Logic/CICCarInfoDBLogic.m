@@ -275,7 +275,7 @@
                                       "paintIssueList = ?, insideIssueList = ?, facadeIssueList = ?, "\
                                       "carImagesLocalPathList = ?, masterName = ?, masterTel = ? "\
                                       "WHERE id = ? ",
-                    @(carInfo.status), carInfo.modelID, carInfo.carName, carInfo.location,
+                    @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
                     carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
                     carInfo.dealTime, carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                     [carInfo.underpanIssueList oneStringFormat],

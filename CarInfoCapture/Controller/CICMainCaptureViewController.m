@@ -171,8 +171,8 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkCarBaseInfo:(CICCarInfoEntity *)carInfo
 {
-    if (carInfo.modelID != 0 && carInfo.carName && carInfo.location
-        && carInfo.firstRegTime && carInfo.insideIssueList && carInfo.yearExamineExpire
+    if ((carInfo.modelID != 0) && carInfo.carName && carInfo.location
+        && carInfo.firstRegTime && carInfo.insuranceExpire && carInfo.yearExamineExpire
         && carInfo.carSource && carInfo.dealTime && carInfo.mileage && carInfo.salePrice) {
         
         return YES;

@@ -162,7 +162,13 @@ typedef enum EditItemType : NSInteger{
     }
     else if ([item isKindOfClass:[NSDictionary class]]) {
         [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]].detailTextLabel.text = item[@"displayName"];
-        [self updateCarInfo:item[@"displayName"]];
+        
+        if (self.currentEditItem == carName) {
+            [self updateCarInfo:item];
+        }
+        else {
+            [self updateCarInfo:item[@"displayName"]];
+        }
     }
 }
 
@@ -236,7 +242,7 @@ typedef enum EditItemType : NSInteger{
     [self.delegate carInfoDidChange:self.carInfoEntity];
 }
 
-- (void)updateCarInfo:(NSString *)editedItem
+- (void)updateCarInfo:(id)editedItem
 {
     switch (self.currentEditItem) {
         case carLocation:
@@ -244,7 +250,8 @@ typedef enum EditItemType : NSInteger{
             break;
             
         case carName:
-            self.carInfoEntity.carName = editedItem;
+            self.carInfoEntity.carName = editedItem[@"displayName"];
+            self.carInfoEntity.modelID = [editedItem[@"value"] integerValue];
             break;
             
         case firstRegTime:
