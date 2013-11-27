@@ -83,6 +83,21 @@ typedef enum EditItemType : NSInteger{
     self.dealTimeDetailLabel.text = self.carInfoEntity.dealTime;
     self.mileageTextField.text = self.carInfoEntity.mileage;
     self.salePriceTextField.text = self.carInfoEntity.salePrice;
+    
+    // 监听键盘弹出/隐藏事件
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Navigation
@@ -148,13 +163,46 @@ typedef enum EditItemType : NSInteger{
 
 #pragma mark - UITextFieldDelegate
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+//{
+//    self.currentEditTextField = textField;
+//    return YES;
+//}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.currentEditTextField = textField;
-    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.currentEditTextField = nil;
 }
 
 #pragma mark - Private
+
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.tableView.contentInset = contentInsets;
+    self.tableView.scrollIndicatorInsets = contentInsets;
+    
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    if (!CGRectContainsPoint(aRect, self.currentEditTextField.frame.origin) ) {
+        [self.tableView scrollRectToVisible:self.currentEditTextField.frame animated:YES];
+    }
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64.f, 0.0, 0.0, 0.0);
+    self.tableView.contentInset = contentInsets;
+    self.tableView.scrollIndicatorInsets = contentInsets;
+}
 
 - (void)cancelNumberPad {
     [self.currentEditTextField resignFirstResponder];
@@ -213,14 +261,6 @@ typedef enum EditItemType : NSInteger{
         case dealTime:
             self.carInfoEntity.dealTime = editedItem;
             break;
-            
-//        case mileage:
-//            self.carInfoEntity.mileage = editedItem;
-//            break;
-//            
-//        case salePrice:
-//            self.carInfoEntity.salePrice = editedItem;
-//            break;
             
         default:
             break;

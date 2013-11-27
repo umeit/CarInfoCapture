@@ -1449,7 +1449,7 @@
         <!--Main Capture View Controller - 修改采集信息-->
         <scene sceneID="5aQ-8E-YG9">
             <objects>
-                <tableViewController id="q8c-Nn-HcC" customClass="CICMainCaptureViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="q8c-Nn-HcC" customClass="CICMainCaptureViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bw5-Ho-W4s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
