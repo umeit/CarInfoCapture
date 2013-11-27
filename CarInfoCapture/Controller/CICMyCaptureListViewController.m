@@ -108,6 +108,8 @@
     switch (carInfoEntity.status) {
         case Uploaded:
             infoStatus = @"已上传";
+            carInfoCell.accessoryType = UITableViewCellAccessoryNone;
+            carInfoCell.userInteractionEnabled = NO;
             break;
 
         case NoUpload:
