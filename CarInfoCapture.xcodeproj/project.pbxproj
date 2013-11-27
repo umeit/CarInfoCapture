@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0301461E1845F525004A5366 /* CICUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0301461D1845F525004A5366 /* CICUploadViewController.m */; };
+		030146211845F53F004A5366 /* CICUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 030146201845F53F004A5366 /* CICUploadCell.m */; };
 		0307B30E183B606600C8DB82 /* CICCarImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0307B30D183B606600C8DB82 /* CICCarImageViewController.m */; };
 		03089A081833764D006F2E4B /* CICMainCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03089A071833764D006F2E4B /* CICMainCaptureViewController.m */; };
 		032B96161836214000A685D3 /* NSArray+CICArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 032B96151836214000A685D3 /* NSArray+CICArray.m */; };
@@ -218,6 +220,10 @@
 
 /* Begin PBXFileReference section */
 		0301461B1845E841004A5366 /* CICCarInfoDidChangeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarInfoDidChangeDelegate.h; sourceTree = "<group>"; };
+		0301461C1845F525004A5366 /* CICUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICUploadViewController.h; sourceTree = "<group>"; };
+		0301461D1845F525004A5366 /* CICUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICUploadViewController.m; sourceTree = "<group>"; };
+		0301461F1845F53F004A5366 /* CICUploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICUploadCell.h; sourceTree = "<group>"; };
+		030146201845F53F004A5366 /* CICUploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICUploadCell.m; sourceTree = "<group>"; };
 		0307B30C183B606600C8DB82 /* CICCarImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarImageViewController.h; sourceTree = "<group>"; };
 		0307B30D183B606600C8DB82 /* CICCarImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarImageViewController.m; sourceTree = "<group>"; };
 		03089A061833764D006F2E4B /* CICMainCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICMainCaptureViewController.h; sourceTree = "<group>"; };
@@ -540,6 +546,8 @@
 				035C5BA8184357A20050BE50 /* CICCarMasterInfoViewController.m */,
 				0385A5BD1844AC8200A69310 /* UIViewController+CICViewController.h */,
 				0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */,
+				0301461C1845F525004A5366 /* CICUploadViewController.h */,
+				0301461D1845F525004A5366 /* CICUploadViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -617,6 +625,8 @@
 			children = (
 				0339EF761831FD500082A35E /* CICCarInfoCell.h */,
 				0339EF771831FD500082A35E /* CICCarInfoCell.m */,
+				0301461F1845F53F004A5366 /* CICUploadCell.h */,
+				030146201845F53F004A5366 /* CICUploadCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1127,6 +1137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				030146211845F53F004A5366 /* CICUploadCell.m in Sources */,
 				03089A081833764D006F2E4B /* CICMainCaptureViewController.m in Sources */,
 				03BC904A183F2EA3008E8B88 /* CICCarBrandListViewController.m in Sources */,
 				0339EF801831FD500082A35E /* AFURLConnectionOperation.m in Sources */,
@@ -1148,6 +1159,7 @@
 				03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */,
 				03F05FFA1843089C00DF976A /* CICCarModelLIstViewController.m in Sources */,
 				03BC9047183F10DF008E8B88 /* CICCarBaseInfoViewController.m in Sources */,
+				0301461E1845F525004A5366 /* CICUploadViewController.m in Sources */,
 				0385A5BF1844AC8200A69310 /* UIViewController+CICViewController.m in Sources */,
 				0339EF841831FD500082A35E /* CICCarInfoDBLogic.m in Sources */,
 				032B96161836214000A685D3 /* NSArray+CICArray.m in Sources */,
