@@ -90,6 +90,8 @@
 {
     self.isUploading = YES;
     
+    self.uploadButton.userInteractionEnabled = NO;
+    
     [[self.tableView visibleCells] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         CICUploadCell *cell = obj;
         
@@ -108,15 +110,21 @@
 - (IBAction)cancelButtonPress:(id)sender
 {
     if (self.isUploading) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                            message:@"正在上传车辆信息，您确定要取消上传吗？"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"继续等待"
+//                                                  otherButtonTitles:@"取消上传", nil];
+        
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"正在上传车辆信息，您确定要取消上传吗？"
+                                                            message:@"正在上传车辆信息，请稍后"
                                                            delegate:self
-                                                  cancelButtonTitle:@"继续等待"
-                                                  otherButtonTitles:@"取消上传", nil];
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
         [alertView show];
     }
     else {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -127,7 +135,8 @@
     if (buttonIndex == 1) {
         // 取消上传
         
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -135,7 +144,11 @@
 
 - (void)carInfoDidUploadAtIndex:(NSInteger)index
 {
-    
+    CICUploadCell *cell = (CICUploadCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index
+                                                                                                    inSection:0]];
+    [cell.uploadActivityView stopAnimating];
+    cell.uploadActivityView.hidden = YES;
+    cell.carImageView.image = [UIImage imageNamed:@"uploadSuccess"];
 }
 
 - (void)carInfoDidUploadForAll
@@ -145,6 +158,10 @@
 
 - (void)carInfoUploadDidFailAtIndex:(NSInteger)index
 {
-    
+    CICUploadCell *cell = (CICUploadCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index
+                                                                                                    inSection:0]];
+    [cell.uploadActivityView stopAnimating];
+    cell.uploadActivityView.hidden = YES;
+    cell.carImageView.image = [UIImage imageNamed:@"uploadFail"];
 }
 @end

@@ -40,7 +40,7 @@
     
     NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
     //capture.youche.com
-    [httpManager POST:@"http://192.168.100.103/capture/upload" parameters:carInfoParameters
+    [httpManager POST:@"http://capture.youche.com/capture/upload" parameters:carInfoParameters
                                     constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                         
                                     }
