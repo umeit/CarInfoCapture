@@ -14,11 +14,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    if ([CICGlobalService isFirstOpenThisApp]) {
-//        NSLog(@"First open the app, init Car-Info DB.");
-//        
-//        [CICCarInfoDBLogic initCarInfoDB];
-//    }
+//    UITabBarController *tabBarContr = (UITabBarController *)self.window.rootViewController;
+//    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tab_select_indicator"]];
+//    
+//    // iOS7 hack: to make selectionIndicatorImage appear on the selected tab on the first app run
+//    [[tabBarContr tabBar] setSelectionIndicatorImage:[UIImage imageNamed:@"tab_select_indicator"]];
     
     return YES;
 }

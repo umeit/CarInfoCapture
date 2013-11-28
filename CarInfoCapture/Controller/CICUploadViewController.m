@@ -41,6 +41,10 @@
 	
     [self.carInfoService nouploadCarInfoListWithBlock:^(NSArray *list, NSError *error) {
         self.carInfoList = list;
+        
+        if (!list && ![list count] > 0) {
+            self.uploadButton.userInteractionEnabled = NO;
+        }
         [self.tableView reloadData];
     }];
 }
@@ -74,7 +78,7 @@
     CICCarInfoEntity *carInfoEntity = self.carInfoList[indexPath.row];
     cell.carNameLabel.text = carInfoEntity.carName;
     
-    if (self.isUploading) {
+    if (self.isUploading && carInfoEntity.status == NoUpload) {
         [cell.uploadActivityView startAnimating];
         cell.uploadActivityView.hidden = NO;
     }
@@ -118,7 +122,7 @@
         
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"正在上传车辆信息，请稍后"
-                                                           delegate:self
+                                                           delegate:nil
                                                   cancelButtonTitle:@"确定"
                                                   otherButtonTitles:nil];
         [alertView show];
@@ -132,29 +136,41 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        // 取消上传
-        
-        
+//    if (buttonIndex == 1) {
         [self dismissViewControllerAnimated:YES completion:nil];
-    }
+//    }
 }
 
 #pragma mark - CICCarInfoServiceUploadCarInfoDelegate
 
 - (void)carInfoDidUploadAtIndex:(NSInteger)index
 {
+    CICCarInfoEntity *carInfo = self.carInfoList[index];
+    carInfo.status = Uploaded;
+    
     CICUploadCell *cell = (CICUploadCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index
                                                                                                     inSection:0]];
     [cell.uploadActivityView stopAnimating];
     cell.uploadActivityView.hidden = YES;
-    cell.carImageView.image = [UIImage imageNamed:@"uploadSuccess"];
+    cell.carImageView.image = [UIImage imageNamed:@"upload_finish"];
+    
+    // 全部上传成功
+    if ([self.carInfoList count] == (index + 1)) {
+        self.isUploading = NO;
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                            message:@"上传完成！"
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
 }
 
-- (void)carInfoDidUploadForAll
-{
-    
-}
+//- (void)carInfoDidUploadForAll
+//{
+//    
+//}
 
 - (void)carInfoUploadDidFailAtIndex:(NSInteger)index
 {
@@ -162,6 +178,6 @@
                                                                                                     inSection:0]];
     [cell.uploadActivityView stopAnimating];
     cell.uploadActivityView.hidden = YES;
-    cell.carImageView.image = [UIImage imageNamed:@"uploadFail"];
+    cell.carImageView.image = [UIImage imageNamed:@"upload_fail"];
 }
 @end
