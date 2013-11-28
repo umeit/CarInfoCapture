@@ -7,12 +7,11 @@
 //
 
 #import "CICCarBaseCheckDetailViewController.h"
+#import "CICAddCustomItemViewController.h"
 
-@interface CICCarBaseCheckDetailViewController ()
+@interface CICCarBaseCheckDetailViewController () <CICAddCustomItemViewControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *itemList;
-
-//@property (strong, nonatomic) NSMutableArray *markedItemIndexPath;
 
 @end
 
@@ -56,16 +55,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     // 当视图弹出时，找出所有被选中的项（的名称），传递给上一级视图
-//    NSMutableArray *itemNameList = [[NSMutableArray alloc] init];
-    
-//    for (NSIndexPath *indexPath in self.markedItemIndexPath) {
-//        [itemNameList addObject:self.itemList[indexPath.row]];
-//    }
-//    
-//    self.selectCheckItemFinishBlock(itemNameList, self.markedItemIndexPath);
-    
-//    self.selectCheckItemFinishBlock(self.selectedItems, self.checkType);
-    
     [self.delegate selectedCheckItemList:self.selectedItems fromType:self.checkType];
 }
 
@@ -90,12 +79,6 @@
     cell.textLabel.text = self.itemList[indexPath.row];
     
     // 标识已经被选则过的项
-//    if ([self isMarkedItemIndexPath:indexPath]) {
-//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//    }
-//    else {
-//        cell.accessoryType = UITableViewCellAccessoryNone;
-//    }
     if ([self isItemMarkedWithItemName:cell.textLabel.text]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -115,7 +98,7 @@
     
     if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
-//        [self removeMarkedItemIndexPath:indexPath];
+
         [self removeMarkedItemName:itemName];
     }
     else {
@@ -123,7 +106,50 @@
         [self addMarkedItemName:itemName];
         
     }
-//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    CICAddCustomItemViewController *addCustomItemViewController = segue.destinationViewController;
+    addCustomItemViewController.delegate = self;
+}
+
+#pragma mark - CICAddCustomItemViewControllerDelegate
+
+- (void)newItemDidadded:(NSString *)item
+{
+    [self.itemList addObject:item];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    #warning typeStr + userID
+    switch (self.checkType) {
+        case Underpan:
+            [userDefaults setObject:self.itemList forKey:@"Underpan"];
+            break;
+            
+        case Engine:
+            [userDefaults setObject:self.itemList forKey:@"Engine"];
+            break;
+            
+        case Paint:
+            [userDefaults setObject:self.itemList forKey:@"Paint"];
+            break;
+            
+        case Inside:
+            [userDefaults setObject:self.itemList forKey:@"Inside"];
+            break;
+            
+        case Facade:
+            [userDefaults setObject:self.itemList forKey:@"Facade"];
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Private
@@ -134,6 +160,7 @@
 #warning typeStr + userID
     NSMutableArray *itemList = (NSMutableArray *)[userDefaults arrayForKey:typeStr];
     if (!itemList) {
+        // 初始的选项
         switch (self.checkType) {
             case Underpan:
                 itemList = [NSMutableArray arrayWithArray:@[@"事故导致底盘变形", @"悬挂系统异常",
@@ -166,14 +193,6 @@
     return itemList;
 }
 
-//- (void)addMarkedItemIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (!self.markedItemIndexPath) {
-//        self.markedItemIndexPath = [[NSMutableArray alloc] init];
-//    }
-//    [self.markedItemIndexPath addObject:indexPath];
-//}
-
 - (void)addMarkedItemName:(NSString *)itemName
 {
     if (!self.selectedItems) {
@@ -182,25 +201,10 @@
     [self.selectedItems addObject:itemName];
 }
 
-//- (void)removeMarkedItemIndexPath:(NSIndexPath *)indexPath
-//{
-//    [self.markedItemIndexPath removeObject:indexPath];
-//}
-
 - (void)removeMarkedItemName:(NSString *)itemName
 {
     [self.selectedItems removeObject:itemName];
 }
-
-//- (BOOL)isMarkedItemIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (!self.markedItemIndexPath
-//        || [self.markedItemIndexPath indexOfObject:indexPath] == NSNotFound) {
-//        
-//        return NO;
-//    }
-//    return YES;
-//}
 
 - (BOOL)isItemMarkedWithItemName:(NSString *)itemName
 {

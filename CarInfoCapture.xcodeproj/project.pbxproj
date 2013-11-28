@@ -48,6 +48,7 @@
 		03680CD918322137006A201A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BC019418321DE3000BDAF3 /* libsqlite3.dylib */; };
 		03680CDC18322E9E006A201A /* CICCarBaseCheckDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */; };
 		0385A5BF1844AC8200A69310 /* UIViewController+CICViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */; };
+		03B7AA9D1846FB8C00D68567 /* CICAddCustomItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */; };
 		03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC017E1832134A000BDAF3 /* CICGlobalService.m */; };
 		03BC018C18321714000BDAF3 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018218321714000BDAF3 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		03BC018D18321714000BDAF3 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC018418321714000BDAF3 /* FMDatabaseAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -292,6 +293,8 @@
 		03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseCheckDetailViewController.m; sourceTree = "<group>"; };
 		0385A5BD1844AC8200A69310 /* UIViewController+CICViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CICViewController.h"; sourceTree = "<group>"; };
 		0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CICViewController.m"; sourceTree = "<group>"; };
+		03B7AA9B1846FB8C00D68567 /* CICAddCustomItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICAddCustomItemViewController.h; sourceTree = "<group>"; };
+		03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICAddCustomItemViewController.m; sourceTree = "<group>"; };
 		03BC017D1832134A000BDAF3 /* CICGlobalService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICGlobalService.h; sourceTree = "<group>"; };
 		03BC017E1832134A000BDAF3 /* CICGlobalService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICGlobalService.m; sourceTree = "<group>"; };
 		03BC018118321714000BDAF3 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -548,6 +551,8 @@
 				0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */,
 				0301461C1845F525004A5366 /* CICUploadViewController.h */,
 				0301461D1845F525004A5366 /* CICUploadViewController.m */,
+				03B7AA9B1846FB8C00D68567 /* CICAddCustomItemViewController.h */,
+				03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1173,6 +1178,7 @@
 				035C5BA9184357A20050BE50 /* CICCarMasterInfoViewController.m in Sources */,
 				03BC90D1183F3CAA008E8B88 /* CICCarInfoDateViewController.m in Sources */,
 				03BC019118321714000BDAF3 /* FMResultSet.m in Sources */,
+				03B7AA9D1846FB8C00D68567 /* CICAddCustomItemViewController.m in Sources */,
 				0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */,
 				033A2326183E23EF004EE235 /* CICCarLocationViewController.m in Sources */,
 				0339EF781831FD500082A35E /* CICCarBaseCheckReportViewController.m in Sources */,

@@ -349,12 +349,63 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="*" id="sra-it-QeQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pW6-VE-syA"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="pW6-VE-syA">
+                            <connections>
+                                <segue destination="8XL-28-aSg" kind="modal" id="uOo-Dd-8tz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bu9-ct-8Ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3314" y="332"/>
+        </scene>
+        <!--Add Custom Item View Controller-->
+        <scene sceneID="VtN-qf-nSd">
+            <objects>
+                <viewController id="8XL-28-aSg" customClass="CICAddCustomItemViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iZ9-tn-99h"/>
+                        <viewControllerLayoutGuide type="bottom" id="O1U-3j-qPA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MJV-Ck-8VM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQe-rM-WlM">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="添加自定义选项" id="uY2-f2-ntQ">
+                                        <barButtonItem key="leftBarButtonItem" title="取消" id="YZM-Wh-qOe">
+                                            <connections>
+                                                <action selector="cancelButtonPress:" destination="8XL-28-aSg" id="zve-tX-dFo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="确定" id="kVK-y4-gYe">
+                                            <connections>
+                                                <action selector="submitButtonPress:" destination="8XL-28-aSg" id="6uB-0o-RKO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gdr-MX-4je">
+                                <rect key="frame" x="20" y="99" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="customItemTextField" destination="Gdr-MX-4je" id="3gh-Zc-gBd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yu0-qG-ADb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3681" y="332"/>
         </scene>
         <!--Car Brand List View Controller - 品牌-->
         <scene sceneID="sfm-aa-Skz">
