@@ -187,7 +187,7 @@ typedef enum EditItemType : NSInteger{
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    self.currentEditTextField = nil;
+//    self.currentEditTextField = nil;
 }
 
 #pragma mark - Private

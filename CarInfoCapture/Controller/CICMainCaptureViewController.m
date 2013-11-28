@@ -139,6 +139,38 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (void)carInfoDidChange:(CICCarInfoEntity *)carInfoEntity
 {
+    // 更新 UI
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    if (selectedIndexPath.row == 0) {
+        if ([self checkCarBaseInfo:carInfoEntity]) {
+            self.firstCheckCompleteImage.image = [UIImage imageNamed:@"cpture_finish"];
+        } else {
+            self.firstCheckCompleteImage.image = [UIImage imageNamed:@"cpture_fail"];
+        }
+    }
+    else if (selectedIndexPath.row == 1) {
+        if ([self checkCarBaseCheckInfo:carInfoEntity]) {
+            self.secondCheckCompleteImage.image = [UIImage imageNamed:@"cpture_finish"];
+        } else {
+            self.secondCheckCompleteImage.image = [UIImage imageNamed:@"cpture_fail"];
+        }
+    }
+    else if (selectedIndexPath.row == 2) {
+        if ([self checkCarImageInfo:carInfoEntity]) {
+            self.thirdCheckCompleteImage.image = [UIImage imageNamed:@"cpture_finish"];
+        } else {
+            self.thirdCheckCompleteImage.image = [UIImage imageNamed:@"cpture_fail"];
+        }
+    }
+    else if (selectedIndexPath.row == 3) {
+        if ([self checkCarImageInfo:carInfoEntity]) {
+            self.fourthCheckCompleteImage.image = [UIImage imageNamed:@"cpture_finish"];
+        } else {
+            self.fourthCheckCompleteImage.image = [UIImage imageNamed:@"cpture_fail"];
+        }
+    }
+    
+    
     if (NeedUpdateToDB) {
         // 更新到数据库
         // 此处暂时不保存到数据库，因为对于修改的采集信息，必须要点击「保存修改」后再更新数据库
@@ -171,9 +203,16 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkCarBaseInfo:(CICCarInfoEntity *)carInfo
 {
-    if ((carInfo.modelID != 0) && carInfo.carName && carInfo.location
-        && carInfo.firstRegTime && carInfo.insuranceExpire && carInfo.yearExamineExpire
-        && carInfo.carSource && carInfo.dealTime && carInfo.mileage && carInfo.salePrice) {
+    if ((carInfo.modelID != 0)
+        && carInfo.carName && [carInfo.carName length] > 0
+        && carInfo.location && [carInfo.location length] > 0
+        && carInfo.firstRegTime && [carInfo.firstRegTime length] > 0
+        && carInfo.insuranceExpire && [carInfo.insuranceExpire length] > 0
+        && carInfo.yearExamineExpire && [carInfo.yearExamineExpire length] > 0
+        && carInfo.carSource && [carInfo.carSource length] > 0
+        && carInfo.dealTime && [carInfo.dealTime length] > 0
+        && carInfo.mileage && [carInfo.mileage length] > 0
+        && carInfo.salePrice && [carInfo.salePrice length] > 0) {
         
         return YES;
     }
@@ -195,13 +234,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkCarMasterInfo:(CICCarInfoEntity *)carInfo
 {
+    
     return YES;
 }
-
-//- (void)formateDataForUpload:(CICCarInfoEntity *)carInfo
-//{
-//    carInfo.firstRegTime = [NSString stringWithFormat:@"%@-01", carInfo.firstRegTime];
-//    carInfo.insuranceExpire = [NSString stringWithFormat:@"%@-01", carInfo.insuranceExpire];
-//    carInfo.yearExamineExpire = [NSString stringWithFormat:@"%@-01", carInfo.yearExamineExpire];
-//}
 @end

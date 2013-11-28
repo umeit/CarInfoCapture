@@ -710,8 +710,8 @@
 				034E6963182C83D400BD5612 /* CICAppDelegate.m */,
 				034E6965182C83D400BD5612 /* Images.xcassets */,
 				034E695A182C83D400BD5612 /* Supporting Files */,
-				034E6982182C842700BD5612 /* Main.storyboard */,
 				03BC90D2183F6574008E8B88 /* Resource */,
+				034E6982182C842700BD5612 /* Main.storyboard */,
 			);
 			path = CarInfoCapture;
 			sourceTree = "<group>";
