@@ -7,12 +7,18 @@
 //
 
 #import "CICUserService.h"
+#import "CICCarInfoHTTPLogic.h"
 
 @implementation CICUserService
 
 - (void)loginWithUserID:(NSString *)userID password:(NSString *)password block:(CICUserServiceLoginBlock)block
 {
-    
+    [CICCarInfoHTTPLogic loginWithUserID:userID password:password block:^(id responseObject, NSError *error) {
+        if (!error) {
+            NSInteger retCode = [[responseObject objectForKey:@"ret"] integerValue];
+            block(retCode);
+        }
+    }];
 }
 
 @end

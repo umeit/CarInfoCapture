@@ -23,7 +23,7 @@
 typedef void(^CICCarInfoHTTPLogicUploadImageBLock)(NSString *remoteImagePathStr, NSError *error);
 typedef void(^CarInfoHistoryListBlock)(NSArray *list, NSError *error);
 typedef void(^UploadCarInfoListBlock)(NSError *error);
-
+typedef void(^LoginBlock)(id responseObject, NSError *error);
 @interface CICCarInfoHTTPLogic : NSObject
 
 //@property (weak, nonatomic) id<CICCarInfoHTTPLogicUploadCarInfoDalegate> delegate;
@@ -33,5 +33,7 @@ typedef void(^UploadCarInfoListBlock)(NSError *error);
 - (void)uploadCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UploadCarInfoListBlock)block;
 
 - (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block;
+
++ (void)loginWithUserID:(NSString *)userID password:(NSString *)password block:(LoginBlock)bloc;
 
 @end

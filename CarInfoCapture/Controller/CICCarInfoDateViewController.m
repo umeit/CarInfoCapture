@@ -90,10 +90,10 @@
 - (NSArray *)pastYearList
 {
     NSDate *date = [NSDate date];
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: date];
-    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-    NSLog(@"%@", localeDate);
+//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+//    NSInteger interval = [zone secondsFromGMTForDate: date];
+//    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+//    NSLog(@"%@", localeDate);
     
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
@@ -113,10 +113,10 @@
 - (NSArray *)pastMonthList
 {
     NSDate *date = [NSDate date];
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate: date];
-    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-    NSLog(@"%@", localeDate);
+//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+//    NSInteger interval = [zone secondsFromGMTForDate: date];
+//    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+//    NSLog(@"%@", localeDate);
     
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
