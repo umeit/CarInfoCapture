@@ -1288,7 +1288,7 @@
         <!--Login View Controller-->
         <scene sceneID="qxq-Y7-HGE">
             <objects>
-                <viewController id="ay4-CQ-5OX" customClass="CICLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CICLoginViewController" id="ay4-CQ-5OX" customClass="CICLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SLL-wx-hiM"/>
                         <viewControllerLayoutGuide type="bottom" id="lsU-4e-cue"/>
@@ -1356,7 +1356,7 @@
                     </view>
                     <connections>
                         <outlet property="PasswordTextField" destination="KDt-0F-dAC" id="N6F-HZ-i02"/>
-                        <outlet property="userNameTextField" destination="krZ-hl-CcS" id="UX3-6K-q3L"/>
+                        <outlet property="userIDTextField" destination="krZ-hl-CcS" id="WUD-7X-cki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XFG-Wf-e6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1382,7 +1382,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Q3B-n5-1Wx">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="dFJ-1N-g7y" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CICTabBarController" definesPresentationContext="YES" id="dFJ-1N-g7y" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="tWU-02-4Dv">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>

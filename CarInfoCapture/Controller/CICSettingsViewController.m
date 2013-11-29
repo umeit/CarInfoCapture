@@ -92,7 +92,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        
+        self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CICLoginViewController"];
     }
 }
 

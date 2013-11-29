@@ -14,4 +14,8 @@
 
 - (void)showCustomText:(NSString *)text;
 
+- (void)showLoading;
+
+- (void)hideLoading;
+
 @end

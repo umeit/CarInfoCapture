@@ -37,4 +37,14 @@
 	[HUD hide:YES afterDelay:2];
 }
 
+- (void)showLoading
+{
+
+}
+
+- (void)hideLoading
+{
+    
+}
+
 @end

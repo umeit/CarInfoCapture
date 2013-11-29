@@ -7,20 +7,23 @@
 //
 
 #import "CICLoginViewController.h"
+#import "CICUserService.h"
+#import "UIViewController+CICViewController.h"
 
 @interface CICLoginViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *userIDTextField;
 @property (weak, nonatomic) IBOutlet UITextField *PasswordTextField;
 
+@property (strong, nonatomic) CICUserService *userService;
 @end
 
 @implementation CICLoginViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Custom initialization
+        self.userService = [[CICUserService alloc] init];
     }
     return self;
 }
@@ -31,16 +34,31 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)loginButtonPress:(id)sender
 {
+    NSString *userID = self.userIDTextField.text;
+    NSString *password = self.PasswordTextField.text;
     
+    if (!userID || [userID length] == 0) {
+        [self showCustomTextAlert:@"请输入用户名"];
+        return;
+    }
+    if (!password || [password length] == 0) {
+        [self showCustomTextAlert:@"请输入密码"];
+        return;
+    }
+    
+    [self showLoading];
+    
+    [self.userService loginWithUserID:userID password:password block:^(NSInteger retCode) {
+        [self hideLoading];
+        
+        if (retCode == 0) {
+            self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CICTabBarController"];
+        }
+    }];
 }
+
 - (IBAction)signInButtonPress:(id)sender
 {
     
