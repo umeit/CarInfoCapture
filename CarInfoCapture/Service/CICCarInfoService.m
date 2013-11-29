@@ -62,23 +62,18 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     }];
 }
 
-- (void)saveCarInfo:(CICCarInfoEntity *)carInfo
+- (void)saveCarInfo:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceGeneralErrorBlock)block
 {
     [CICCarInfoDBLogic saveCarInfo:carInfo WithBlock:^(NSError *error) {
-        if (!error) {
-            
-        }
-        else {
-            
-        }
+        block(error);
     }];
 }
 
 // 更新修改过的采集信息
-- (void)updateCarInfo:(CICCarInfoEntity *)carInfo
+- (void)updateCarInfo:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceGeneralErrorBlock)block
 {
     [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {
-        
+        block(error);
     }];
 }
 
@@ -90,7 +85,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     block(sum, needUploadSum);
 }
 
-- (void)uploadCarInfoWithBlock:(UploadCarInfoBlock)block
+- (void)uploadCarInfoWithBlock:(CICCarInfoServiceGeneralErrorBlock)block
 {
     // 从数据库中取得未上传的数据
     [CICCarInfoDBLogic noUploadCarInfoListWithBlock:^(NSArray *noUploadCarInfoList, NSError *error) {
@@ -141,6 +136,9 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
 {
     NSDictionary *placeholderDic = @{@"k": @(-1), @"v": @""};
     NSMutableArray *remoteImagePathList = [[NSMutableArray alloc] initWithArray:@[placeholderDic,
+                                                                                  placeholderDic,
+                                                                                  placeholderDic,
+                                                                                  placeholderDic,
                                                                                   placeholderDic]];
     
     [carInfo.carImagesLocalPathList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

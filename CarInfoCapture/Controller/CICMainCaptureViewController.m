@@ -48,7 +48,6 @@ typedef enum CarInfoSaveStatus : NSInteger {
     [super viewDidLoad];
 
     // 如果已经有 CarInfoEntity 信息，表示在编辑/修改采集信息，而不是新建的(或上次未保存的)采集信息
-    // 所以后续就可以保存到 NSUserDefaults，而不是跟新数据库
     if (self.carInfoEntity) {
         self.carInfoSaveStatus = FromDB;
         self.navigationItem.hidesBackButton = YES;
@@ -59,7 +58,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         self.carInfoEntity = [NSKeyedUnarchiver unarchiveObjectWithData:[userDefaults objectForKey:@"UnsaveCarInfoEntity"]];
         
-        // 上次未保存的
+        // 有上次未保存的
         if (self.carInfoEntity) {
             self.carInfoSaveStatus = FromNSUserDefaults;
             
@@ -122,12 +121,9 @@ typedef enum CarInfoSaveStatus : NSInteger {
         // 第一导航到其他的视图，表示用户开始采集信息
         // 将 self.carInfoEntity 保存到 userDefaults 暂存起来
         // 用于用户在没有「保存」的情况下退出应用后，下次打开时还能看到上次编辑的信息
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//        NSData *carInfoEntityData = [userDefaults objectForKey:@"UnsaveCarInfoEntity"];
-//        if (!carInfoEntityData) {
-            [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.carInfoEntity]
-                             forKey:@"UnsaveCarInfoEntity"];
-//        }
+//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//        [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.carInfoEntity]
+//                         forKey:@"UnsaveCarInfoEntity"];
     }
 }
 
@@ -137,20 +133,34 @@ typedef enum CarInfoSaveStatus : NSInteger {
 {
     // 判断信息完整性
     if ([self checkDataIntegrity:self.carInfoEntity]) {
-//        [self formateDataForUpload:self.carInfoEntity];
         
         if (self.carInfoSaveStatus == FromDB) {
             // 更新到数据库
-            [self.carInfoService updateCarInfo:self.carInfoEntity];
+            [self.carInfoService updateCarInfo:self.carInfoEntity withBlock:^(NSError *error) {
+                if (error) {
+                    [self showCustomText:@"修改失败"];
+                }
+                else {
+                    [self showCustomText:@"修改成功"];
+                }
+            }];
             
             [self.navigationController popViewControllerAnimated:YES];
         }
         else if (self.carInfoSaveStatus == NewCarInfo || self.carInfoSaveStatus == FromNSUserDefaults) {
             // 保存到数据库
             self.carInfoEntity.status = NoUpload;
-            [self.carInfoService saveCarInfo:self.carInfoEntity];
-            // 清空界面
-            [self clearCurrentCapture];
+            [self.carInfoService saveCarInfo:self.carInfoEntity withBlock:^(NSError *error) {
+                if (error) {
+                    [self showCustomText:@"保存失败"];
+                }
+                else {
+                    [self showCustomText:@"保存成功"];
+                    
+                    // 清空界面
+                    [self clearCurrentCapture];
+                }
+            }];
         }
     }
     else {
@@ -214,8 +224,16 @@ typedef enum CarInfoSaveStatus : NSInteger {
 - (void)clearCurrentCapture
 {
     // 清空暂存在 NSUserDefaults 中的信息
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"UnsaveCarInfoEntity"];
+    self.carInfoSaveStatus = NewCarInfo;
+    self.carInfoEntity = [[CICCarInfoEntity alloc] init];
     
     // 还原界面
+    self.firstCheckCompleteImage.image = [UIImage imageNamed:@"cpture_defaut"];
+    self.secondCheckCompleteImage.image = [UIImage imageNamed:@"cpture_defaut"];
+    self.thirdCheckCompleteImage.image = [UIImage imageNamed:@"cpture_defaut"];
+    self.fourthCheckCompleteImage.image = [UIImage imageNamed:@"cpture_defaut"];
 }
 
 - (BOOL)checkDataIntegrity:(CICCarInfoEntity *)carInfo
@@ -248,12 +266,12 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkCarBaseCheckInfo:(CICCarInfoEntity *)carInfo
 {
-    if (carInfo.facadeIssueList && [carInfo.facadeIssueList count] > 0
-        && carInfo.insideIssueList && [carInfo.insideIssueList count] > 0
-        && carInfo.engineIssueList && [carInfo.engineIssueList count] > 0
-        && carInfo.paintIssueList && [carInfo.paintIssueList count] > 0
-        && carInfo.underpanIssueList && [carInfo.underpanIssueList count] > 0) {
-        
+    if (carInfo.facadeIssueList && [carInfo.facadeIssueList count] > 0)
+//        && carInfo.insideIssueList && [carInfo.insideIssueList count] > 0
+//        && carInfo.engineIssueList && [carInfo.engineIssueList count] > 0
+//        && carInfo.paintIssueList && [carInfo.paintIssueList count] > 0
+//        && carInfo.underpanIssueList && [carInfo.underpanIssueList count] > 0) {
+    {
         return YES;
     }
     return NO;

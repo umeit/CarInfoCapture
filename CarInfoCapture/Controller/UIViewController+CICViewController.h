@@ -12,4 +12,6 @@
 
 - (void)showCustomTextAlert:(NSString *)text;
 
+- (void)showCustomText:(NSString *)text;
+
 @end

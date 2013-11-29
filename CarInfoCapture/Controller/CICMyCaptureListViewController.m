@@ -116,10 +116,14 @@
 
         case NoUpload:
             infoStatus = @"未上传";
+            carInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            carInfoCell.userInteractionEnabled = YES;
             break;
 
         default:
             infoStatus = @"异常状态";
+            carInfoCell.accessoryType = UITableViewCellAccessoryNone;
+            carInfoCell.userInteractionEnabled = NO;
             break;
     }
 

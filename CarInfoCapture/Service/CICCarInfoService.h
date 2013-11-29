@@ -24,11 +24,11 @@
 typedef void(^CarInfoListBlock)(NSArray *list, NSError *error);
 typedef void(^NumberOfSumCarInfoAndNumberOfNeedUploadCarInfoBlock)(NSInteger sum, NSInteger needUpload);
 /**
- *  上传采集信息后的回调
+ *  通用的错误 block
  *
  *  @param error 没有错无则为 nil
  */
-typedef void(^UploadCarInfoBlock)(NSError *error);
+typedef void(^CICCarInfoServiceGeneralErrorBlock)(NSError *error);
 
 @interface CICCarInfoService : NSObject
 
@@ -40,12 +40,12 @@ typedef void(^UploadCarInfoBlock)(NSError *error);
 
 - (void)nouploadCarInfoListWithBlock:(CarInfoListBlock)block;
 
-- (void)saveCarInfo:(CICCarInfoEntity *)carInfo;
+- (void)saveCarInfo:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceGeneralErrorBlock)block;
 
-- (void)updateCarInfo:(CICCarInfoEntity *)carInfo;
+- (void)updateCarInfo:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceGeneralErrorBlock)block;
 
 - (void)sumOfCarInfoAndNeedUploadCarInfoWithBlock:(NumberOfSumCarInfoAndNumberOfNeedUploadCarInfoBlock)block;
 
-- (void)uploadCarInfoWithBlock:(UploadCarInfoBlock)block;
+- (void)uploadCarInfoWithBlock:(CICCarInfoServiceGeneralErrorBlock)block;
 
 @end

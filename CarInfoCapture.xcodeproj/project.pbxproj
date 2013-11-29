@@ -47,12 +47,20 @@
 		0360E023183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 0360E022183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m */; };
 		03680CD918322137006A201A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BC019418321DE3000BDAF3 /* libsqlite3.dylib */; };
 		03680CDC18322E9E006A201A /* CICCarBaseCheckDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */; };
+		0372D30A1848855C00962068 /* carbasecheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 0372D3061848855C00962068 /* carbasecheck.png */; };
+		0372D30B1848855C00962068 /* carbaseinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0372D3071848855C00962068 /* carbaseinfo.png */; };
+		0372D30C1848855C00962068 /* carimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0372D3081848855C00962068 /* carimage.png */; };
+		0372D30D1848855C00962068 /* carmaster.png in Resources */ = {isa = PBXBuildFile; fileRef = 0372D3091848855C00962068 /* carmaster.png */; };
 		0385A5BF1844AC8200A69310 /* UIViewController+CICViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */; };
 		039C125918475363002D87B7 /* car_demo_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125418475363002D87B7 /* car_demo_1.png */; };
 		039C125A18475363002D87B7 /* car_demo_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125518475363002D87B7 /* car_demo_2.png */; };
 		039C125B18475363002D87B7 /* car_demo_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125618475363002D87B7 /* car_demo_3.png */; };
 		039C125C18475363002D87B7 /* car_demo_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125718475363002D87B7 /* car_demo_4.png */; };
 		039C125D18475363002D87B7 /* car_demo_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125818475363002D87B7 /* car_demo_5.png */; };
+		03AD2740184874F800284B91 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 03AD273C184874F800284B91 /* .gitignore */; };
+		03AD2741184874F800284B91 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 03AD273D184874F800284B91 /* .travis.yml */; };
+		03AD2742184874F800284B91 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AD273F184874F800284B91 /* MBProgressHUD.m */; };
+		03AD288E1848784A00284B91 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AD288D1848784A00284B91 /* 37x-Checkmark@2x.png */; };
 		03B7AA9D1846FB8C00D68567 /* CICAddCustomItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */; };
 		03B7AAA31847270200D68567 /* cpture_defaut.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B7AA9E1847270100D68567 /* cpture_defaut.png */; };
 		03B7AAA41847270200D68567 /* cpture_fail.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B7AA9F1847270100D68567 /* cpture_fail.png */; };
@@ -310,6 +318,10 @@
 		0360E022183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CICDictionary.m"; sourceTree = "<group>"; };
 		03680CDA18322E9E006A201A /* CICCarBaseCheckDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBaseCheckDetailViewController.h; sourceTree = "<group>"; };
 		03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseCheckDetailViewController.m; sourceTree = "<group>"; };
+		0372D3061848855C00962068 /* carbasecheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carbasecheck.png; sourceTree = "<group>"; };
+		0372D3071848855C00962068 /* carbaseinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carbaseinfo.png; sourceTree = "<group>"; };
+		0372D3081848855C00962068 /* carimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carimage.png; sourceTree = "<group>"; };
+		0372D3091848855C00962068 /* carmaster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carmaster.png; sourceTree = "<group>"; };
 		0385A5BD1844AC8200A69310 /* UIViewController+CICViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CICViewController.h"; sourceTree = "<group>"; };
 		0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CICViewController.m"; sourceTree = "<group>"; };
 		039C125418475363002D87B7 /* car_demo_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_1.png; sourceTree = "<group>"; };
@@ -317,6 +329,11 @@
 		039C125618475363002D87B7 /* car_demo_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_3.png; sourceTree = "<group>"; };
 		039C125718475363002D87B7 /* car_demo_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_4.png; sourceTree = "<group>"; };
 		039C125818475363002D87B7 /* car_demo_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_5.png; sourceTree = "<group>"; };
+		03AD273C184874F800284B91 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		03AD273D184874F800284B91 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		03AD273E184874F800284B91 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		03AD273F184874F800284B91 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		03AD288D1848784A00284B91 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		03B7AA9B1846FB8C00D68567 /* CICAddCustomItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICAddCustomItemViewController.h; sourceTree = "<group>"; };
 		03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICAddCustomItemViewController.m; sourceTree = "<group>"; };
 		03B7AA9E1847270100D68567 /* cpture_defaut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cpture_defaut.png; sourceTree = "<group>"; };
@@ -607,6 +624,7 @@
 		0339EF581831FD500082A35E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				03AD273B184874F800284B91 /* MBProgressHUD */,
 				03BC018018321714000BDAF3 /* FMDB */,
 				0339EF591831FD500082A35E /* AFNetworking */,
 			);
@@ -755,6 +773,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		03AD273B184874F800284B91 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				03AD273C184874F800284B91 /* .gitignore */,
+				03AD273D184874F800284B91 /* .travis.yml */,
+				03AD273E184874F800284B91 /* MBProgressHUD.h */,
+				03AD273F184874F800284B91 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		03BC018018321714000BDAF3 /* FMDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +804,11 @@
 		03BC90D2183F6574008E8B88 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0372D3061848855C00962068 /* carbasecheck.png */,
+				0372D3071848855C00962068 /* carbaseinfo.png */,
+				0372D3081848855C00962068 /* carimage.png */,
+				0372D3091848855C00962068 /* carmaster.png */,
+				03AD288D1848784A00284B91 /* 37x-Checkmark@2x.png */,
 				039C125418475363002D87B7 /* car_demo_1.png */,
 				039C125518475363002D87B7 /* car_demo_2.png */,
 				039C125618475363002D87B7 /* car_demo_3.png */,
@@ -1043,6 +1077,7 @@
 				03BC91C5183F6575008E8B88 /* 197.png in Resources */,
 				03BC9172183F6575008E8B88 /* 114.png in Resources */,
 				03BC91E5183F6575008E8B88 /* 229.png in Resources */,
+				03AD288E1848784A00284B91 /* 37x-Checkmark@2x.png in Resources */,
 				03BC9190183F6575008E8B88 /* 144.png in Resources */,
 				03BC91A3183F6575008E8B88 /* 163.png in Resources */,
 				03BC91EE183F6575008E8B88 /* 238.png in Resources */,
@@ -1057,9 +1092,11 @@
 				03BC91DE183F6575008E8B88 /* 222.png in Resources */,
 				03BC91E7183F6575008E8B88 /* 231.png in Resources */,
 				03BC9195183F6575008E8B88 /* 149.png in Resources */,
+				03AD2740184874F800284B91 /* .gitignore in Resources */,
 				03BC91B7183F6575008E8B88 /* 183.png in Resources */,
 				03BC9194183F6575008E8B88 /* 148.png in Resources */,
 				03BC91DF183F6575008E8B88 /* 223.png in Resources */,
+				0372D30A1848855C00962068 /* carbasecheck.png in Resources */,
 				03BC9188183F6575008E8B88 /* 136.png in Resources */,
 				03BC91E0183F6575008E8B88 /* 224.png in Resources */,
 				03BC91A6183F6575008E8B88 /* 166.png in Resources */,
@@ -1070,6 +1107,7 @@
 				03BC91A2183F6575008E8B88 /* 162.png in Resources */,
 				03BC91DD183F6575008E8B88 /* 221.png in Resources */,
 				03BC91B5183F6575008E8B88 /* 181.png in Resources */,
+				0372D30B1848855C00962068 /* carbaseinfo.png in Resources */,
 				03BC9189183F6575008E8B88 /* 137.png in Resources */,
 				03BC9173183F6575008E8B88 /* 115.png in Resources */,
 				03BC91BC183F6575008E8B88 /* 188.png in Resources */,
@@ -1098,6 +1136,7 @@
 				03BC91D6183F6575008E8B88 /* 214.png in Resources */,
 				03BC91BD183F6575008E8B88 /* 189.png in Resources */,
 				03B7AAB21847289B00D68567 /* guide_p@2x.png in Resources */,
+				0372D30C1848855C00962068 /* carimage.png in Resources */,
 				03BC9175183F6575008E8B88 /* 117.png in Resources */,
 				03BC91EF183F6575008E8B88 /* 239.png in Resources */,
 				03BC91C1183F6575008E8B88 /* 193.png in Resources */,
@@ -1127,6 +1166,7 @@
 				03BC917F183F6575008E8B88 /* 127.png in Resources */,
 				03BC91E2183F6575008E8B88 /* 226.png in Resources */,
 				03B7AAB41847289B00D68567 /* mycpture_p@2x.png in Resources */,
+				0372D30D1848855C00962068 /* carmaster.png in Resources */,
 				03BC91CC183F6575008E8B88 /* 204.png in Resources */,
 				03BC91F2183F6575008E8B88 /* CarBrandJson.txt in Resources */,
 				039C125D18475363002D87B7 /* car_demo_5.png in Resources */,
@@ -1171,6 +1211,7 @@
 				03BC91CF183F6575008E8B88 /* 207.png in Resources */,
 				03BC91A9183F6575008E8B88 /* 169.png in Resources */,
 				03BC91E9183F6575008E8B88 /* 233.png in Resources */,
+				03AD2741184874F800284B91 /* .travis.yml in Resources */,
 				03BC9170183F6575008E8B88 /* 112.png in Resources */,
 				03B7AAA51847270200D68567 /* cpture_finish.png in Resources */,
 				03BC9187183F6575008E8B88 /* 135.png in Resources */,
@@ -1240,6 +1281,7 @@
 				03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */,
 				03F05FFA1843089C00DF976A /* CICCarModelLIstViewController.m in Sources */,
 				03BC9047183F10DF008E8B88 /* CICCarBaseInfoViewController.m in Sources */,
+				03AD2742184874F800284B91 /* MBProgressHUD.m in Sources */,
 				0301461E1845F525004A5366 /* CICUploadViewController.m in Sources */,
 				0385A5BF1844AC8200A69310 /* UIViewController+CICViewController.m in Sources */,
 				0339EF841831FD500082A35E /* CICCarInfoDBLogic.m in Sources */,
