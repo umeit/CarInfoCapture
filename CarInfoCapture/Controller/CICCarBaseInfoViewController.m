@@ -70,10 +70,14 @@ typedef enum EditItemType : NSInteger{
     
     self.mileageTextField.delegate = self;
     self.salePriceTextField.delegate = self;
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     self.carNameDetailLabel.text = self.carInfoEntity.carName;
     self.carLocationDetailLabel.text = self.carInfoEntity.location;
     self.firstRegTimeDetailLabel.text = [self.carInfoEntity.firstRegTime substringToIndex:7];
@@ -174,20 +178,9 @@ typedef enum EditItemType : NSInteger{
 
 #pragma mark - UITextFieldDelegate
 
-//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-//{
-//    self.currentEditTextField = textField;
-//    return YES;
-//}
-
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.currentEditTextField = textField;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-//    self.currentEditTextField = nil;
 }
 
 #pragma mark - Private
@@ -215,7 +208,8 @@ typedef enum EditItemType : NSInteger{
     self.tableView.scrollIndicatorInsets = contentInsets;
 }
 
-- (void)cancelNumberPad {
+- (void)cancelNumberPad
+{
     [self.currentEditTextField resignFirstResponder];
     self.currentEditTextField.text = @"";
     
@@ -230,7 +224,8 @@ typedef enum EditItemType : NSInteger{
     [self.delegate carInfoDidChange:self.carInfoEntity];
 }
 
-- (void)doneWithNumberPad {
+- (void)doneWithNumberPad
+{
     if (self.currentEditTextField == self.salePriceTextField) {
         self.carInfoEntity.salePrice = self.currentEditTextField.text;
     }

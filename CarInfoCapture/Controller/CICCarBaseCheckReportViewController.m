@@ -24,6 +24,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     // 将已选的问题填入每个分离的 cell 中
     self.underpanDetailLabel.text = [self detailLabelTextWithCarInfoCheckItemList:self.carInfoEntity.underpanIssueList];
     self.engineDetailLabel.text = [self detailLabelTextWithCarInfoCheckItemList:self.carInfoEntity.engineIssueList];
