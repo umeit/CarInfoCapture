@@ -51,6 +51,9 @@
 		0372D30B1848855C00962068 /* carbaseinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0372D3071848855C00962068 /* carbaseinfo.png */; };
 		0372D30C1848855C00962068 /* carimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0372D3081848855C00962068 /* carimage.png */; };
 		0372D30D1848855C00962068 /* carmaster.png in Resources */ = {isa = PBXBuildFile; fileRef = 0372D3091848855C00962068 /* carmaster.png */; };
+		0372D31018488CDD00962068 /* CICSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372D30F18488CDD00962068 /* CICSettingsViewController.m */; };
+		0372D31418488FD500962068 /* CICLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372D31318488FD500962068 /* CICLoginViewController.m */; };
+		0372D316184891A900962068 /* logo60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0372D315184891A900962068 /* logo60@2x.png */; };
 		0385A5BF1844AC8200A69310 /* UIViewController+CICViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */; };
 		039C125918475363002D87B7 /* car_demo_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125418475363002D87B7 /* car_demo_1.png */; };
 		039C125A18475363002D87B7 /* car_demo_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125518475363002D87B7 /* car_demo_2.png */; };
@@ -322,6 +325,11 @@
 		0372D3071848855C00962068 /* carbaseinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carbaseinfo.png; sourceTree = "<group>"; };
 		0372D3081848855C00962068 /* carimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carimage.png; sourceTree = "<group>"; };
 		0372D3091848855C00962068 /* carmaster.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = carmaster.png; sourceTree = "<group>"; };
+		0372D30E18488CDD00962068 /* CICSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICSettingsViewController.h; sourceTree = "<group>"; };
+		0372D30F18488CDD00962068 /* CICSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICSettingsViewController.m; sourceTree = "<group>"; };
+		0372D31218488FD500962068 /* CICLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICLoginViewController.h; sourceTree = "<group>"; };
+		0372D31318488FD500962068 /* CICLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICLoginViewController.m; sourceTree = "<group>"; };
+		0372D315184891A900962068 /* logo60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo60@2x.png"; sourceTree = "<group>"; };
 		0385A5BD1844AC8200A69310 /* UIViewController+CICViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CICViewController.h"; sourceTree = "<group>"; };
 		0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CICViewController.m"; sourceTree = "<group>"; };
 		039C125418475363002D87B7 /* car_demo_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_1.png; sourceTree = "<group>"; };
@@ -608,6 +616,10 @@
 				0301461D1845F525004A5366 /* CICUploadViewController.m */,
 				03B7AA9B1846FB8C00D68567 /* CICAddCustomItemViewController.h */,
 				03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */,
+				0372D30E18488CDD00962068 /* CICSettingsViewController.h */,
+				0372D30F18488CDD00962068 /* CICSettingsViewController.m */,
+				0372D31218488FD500962068 /* CICLoginViewController.h */,
+				0372D31318488FD500962068 /* CICLoginViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -804,6 +816,7 @@
 		03BC90D2183F6574008E8B88 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0372D315184891A900962068 /* logo60@2x.png */,
 				0372D3061848855C00962068 /* carbasecheck.png */,
 				0372D3071848855C00962068 /* carbaseinfo.png */,
 				0372D3081848855C00962068 /* carimage.png */,
@@ -1193,6 +1206,7 @@
 				03BC91B0183F6575008E8B88 /* 176.png in Resources */,
 				03BC9184183F6575008E8B88 /* 132.png in Resources */,
 				03BC91AF183F6575008E8B88 /* 175.png in Resources */,
+				0372D316184891A900962068 /* logo60@2x.png in Resources */,
 				03BC91CA183F6575008E8B88 /* 202.png in Resources */,
 				03BC91BE183F6575008E8B88 /* 190.png in Resources */,
 				03BC91ED183F6575008E8B88 /* 237.png in Resources */,
@@ -1262,6 +1276,7 @@
 				030146211845F53F004A5366 /* CICUploadCell.m in Sources */,
 				03089A081833764D006F2E4B /* CICMainCaptureViewController.m in Sources */,
 				03BC904A183F2EA3008E8B88 /* CICCarBrandListViewController.m in Sources */,
+				0372D31018488CDD00962068 /* CICSettingsViewController.m in Sources */,
 				0339EF801831FD500082A35E /* AFURLConnectionOperation.m in Sources */,
 				03680CDC18322E9E006A201A /* CICCarBaseCheckDetailViewController.m in Sources */,
 				0360E023183CC8A900E4C1A5 /* NSDictionary+CICDictionary.m in Sources */,
@@ -1281,6 +1296,7 @@
 				03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */,
 				03F05FFA1843089C00DF976A /* CICCarModelLIstViewController.m in Sources */,
 				03BC9047183F10DF008E8B88 /* CICCarBaseInfoViewController.m in Sources */,
+				0372D31418488FD500962068 /* CICLoginViewController.m in Sources */,
 				03AD2742184874F800284B91 /* MBProgressHUD.m in Sources */,
 				0301461E1845F525004A5366 /* CICUploadViewController.m in Sources */,
 				0385A5BF1844AC8200A69310 /* UIViewController+CICViewController.m in Sources */,
