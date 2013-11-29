@@ -1352,7 +1352,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.85361459969999998" green="0.98415577170000001" blue="0.82966968399999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.35163450579159883" green="1" blue="0.9734990538819388" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="PasswordTextField" destination="KDt-0F-dAC" id="N6F-HZ-i02"/>
