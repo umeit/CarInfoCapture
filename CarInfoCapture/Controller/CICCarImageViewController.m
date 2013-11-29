@@ -36,48 +36,71 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.frontFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontFlankImage][@"v"]];
-    self.backFlankImage.image  = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backFlankImage][@"v"]];
+    
+    UIImage *frontFlankImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontFlankImageIndex][@"v"]];
+    if (frontFlankImage) {
+        self.frontFlankImage.image = frontFlankImage;
+    }
+    
+    UIImage *backFlankImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backFlankImageIndex][@"v"]];
+    if (backFlankImage) {
+        self.backFlankImage.image = backFlankImage;
+    }
+    
+    UIImage *insideCentralImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[insideCentralImageIndex][@"v"]];
+    if (insideCentralImage) {
+        self.insideCentralImage.image = insideCentralImage;
+    }
+    
+    UIImage *frontSeatImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontSeatImageIndex][@"v"]];
+    if (frontSeatImage) {
+        self.frontSeatImage.image = frontSeatImage;
+    }
+    
+    UIImage *backSeatImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backSeatImageIndex][@"v"]];
+    if (backSeatImage) {
+        self.backSeatImage.image = backSeatImage;
+    }
 }
 
 #pragma mark - Action
 
 - (IBAction)takePhotoButtonPress:(id)sender
 {
+    // 记录当前操作的图片
     switch (((UIButton *)sender).tag) {
         case kFrontFlankImageTag:
-            self.currentTackIamgeIndex = frontFlankImage;
-            // 判断是否弹出编辑图片的菜单
-            if(self.frontFlankImage.image) {
-                [self showEditImageMenu];
-                return;
-            }
-            else {
-                // 启动相机
-                [self showImagePicker];
-            }
+            self.currentTackIamgeIndex = frontFlankImageIndex;
             break;
             
         case kBackFlankImageTag:
-            // 判断是否弹出编辑图片的菜单;
-            self.currentTackIamgeIndex = backFlankImage;
-            if(self.backFlankImage.image) {
-                [self showEditImageMenu];
-                
-                return;
-            }
-            else {
-                // 启动相机
-                [self showImagePicker];
-            }
+            self.currentTackIamgeIndex = backFlankImageIndex;
+            break;
+            
+        case kInsideCentralImageTag:
+            self.currentTackIamgeIndex = insideCentralImageIndex;
+            break;
+            
+        case kFrontSeatImageTag:
+            self.currentTackIamgeIndex = frontSeatImageIndex;
+            break;
+            
+        case kBackSeatImageTag:
+            self.currentTackIamgeIndex = backSeatImageIndex;
             break;
             
         default:
             break;
+    }
+    
+    // 判断是否弹出编辑图片的菜单
+    if([self.carInfoEntity.carImagesLocalPathList[self.currentTackIamgeIndex][@"v"] length] > 0) {
+        [self showEditImageMenu];
+        return;
+    }
+    else {
+        // 启动相机
+        [self showImagePicker];
     }
 }
 
@@ -97,7 +120,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     image = [CICGlobalService thumbWithImage:image maxHeight:1024 maxWidth:1024];
     
     // 将图片保存到本地
-    // 将图片路径保存到实体类
     NSString *iamgeSavePath = [CICGlobalService saveImageToLocal:image];
     
     // 如果该位置已有照片，则删除
@@ -105,11 +127,39 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         [CICGlobalService deleteLocalFileWithPath:self.carInfoEntity.carImagesLocalPathList[self.currentTackIamgeIndex][@"v"]];
     }
     
+    // 将图片路径保存到实体类
     self.carInfoEntity.carImagesLocalPathList[self.currentTackIamgeIndex] =
         @{@"k": @([self.carInfoEntity imageCodeWithImageIndex:self.currentTackIamgeIndex]),
           @"v": (iamgeSavePath ? iamgeSavePath : @"")};
     
     [picker dismissViewControllerAnimated:YES completion:^{
+        // 跟新UI
+        switch (self.currentTackIamgeIndex) {
+            case frontFlankImageIndex:
+                self.frontFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontFlankImageIndex][@"v"]];
+                break;
+                
+            case backFlankImageIndex:
+                self.backFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backFlankImageIndex][@"v"]];
+                break;
+                
+            case insideCentralImageIndex:
+                self.insideCentralImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[insideCentralImageIndex][@"v"]];
+                break;
+                
+            case frontSeatImageIndex:
+                self.frontSeatImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontSeatImageIndex][@"v"]];
+                break;
+                
+            case backSeatImageIndex:
+                self.backSeatImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backSeatImageIndex][@"v"]];
+                break;
+                
+            default:
+                break;
+        }
+        
+        // 通知代理实体类的变化
         [self.delegate carInfoDidChange:self.carInfoEntity];
     }];
 }

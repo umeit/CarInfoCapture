@@ -14,11 +14,11 @@ typedef enum SaveStatus : NSInteger {
 }SaveStatus;
 
 typedef enum CarImageIndex : NSInteger {
-    frontFlankImage    = 0,
-    backFlankImage     = 1,
-    insideCentralImage = 2,
-    frontSeatImage     = 3,
-    backSeatImage      = 4
+    frontFlankImageIndex    = 0,
+    backFlankImageIndex     = 1,
+    insideCentralImageIndex = 2,
+    frontSeatImageIndex     = 3,
+    backSeatImageIndex      = 4
 }CarImageIndex;
 
 

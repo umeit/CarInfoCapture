@@ -95,23 +95,23 @@
 - (NSInteger)imageCodeWithImageIndex:(NSInteger)index
 {
     switch (index) {
-        case frontFlankImage:
+        case frontFlankImageIndex:
             return 1001;
             break;
             
-        case backFlankImage:
+        case backFlankImageIndex:
             return 1002;
             break;
             
-        case insideCentralImage:
+        case insideCentralImageIndex:
             return 3002;
             break;
             
-        case frontSeatImage:
+        case frontSeatImageIndex:
             return 3001;
             break;
             
-        case backSeatImage:
+        case backSeatImageIndex:
             return 3006;
             break;
             

@@ -48,6 +48,11 @@
 		03680CD918322137006A201A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03BC019418321DE3000BDAF3 /* libsqlite3.dylib */; };
 		03680CDC18322E9E006A201A /* CICCarBaseCheckDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */; };
 		0385A5BF1844AC8200A69310 /* UIViewController+CICViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */; };
+		039C125918475363002D87B7 /* car_demo_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125418475363002D87B7 /* car_demo_1.png */; };
+		039C125A18475363002D87B7 /* car_demo_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125518475363002D87B7 /* car_demo_2.png */; };
+		039C125B18475363002D87B7 /* car_demo_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125618475363002D87B7 /* car_demo_3.png */; };
+		039C125C18475363002D87B7 /* car_demo_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125718475363002D87B7 /* car_demo_4.png */; };
+		039C125D18475363002D87B7 /* car_demo_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125818475363002D87B7 /* car_demo_5.png */; };
 		03B7AA9D1846FB8C00D68567 /* CICAddCustomItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */; };
 		03B7AAA31847270200D68567 /* cpture_defaut.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B7AA9E1847270100D68567 /* cpture_defaut.png */; };
 		03B7AAA41847270200D68567 /* cpture_fail.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B7AA9F1847270100D68567 /* cpture_fail.png */; };
@@ -307,6 +312,11 @@
 		03680CDB18322E9E006A201A /* CICCarBaseCheckDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseCheckDetailViewController.m; sourceTree = "<group>"; };
 		0385A5BD1844AC8200A69310 /* UIViewController+CICViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CICViewController.h"; sourceTree = "<group>"; };
 		0385A5BE1844AC8200A69310 /* UIViewController+CICViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CICViewController.m"; sourceTree = "<group>"; };
+		039C125418475363002D87B7 /* car_demo_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_1.png; sourceTree = "<group>"; };
+		039C125518475363002D87B7 /* car_demo_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_2.png; sourceTree = "<group>"; };
+		039C125618475363002D87B7 /* car_demo_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_3.png; sourceTree = "<group>"; };
+		039C125718475363002D87B7 /* car_demo_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_4.png; sourceTree = "<group>"; };
+		039C125818475363002D87B7 /* car_demo_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_5.png; sourceTree = "<group>"; };
 		03B7AA9B1846FB8C00D68567 /* CICAddCustomItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICAddCustomItemViewController.h; sourceTree = "<group>"; };
 		03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICAddCustomItemViewController.m; sourceTree = "<group>"; };
 		03B7AA9E1847270100D68567 /* cpture_defaut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cpture_defaut.png; sourceTree = "<group>"; };
@@ -765,6 +775,11 @@
 		03BC90D2183F6574008E8B88 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				039C125418475363002D87B7 /* car_demo_1.png */,
+				039C125518475363002D87B7 /* car_demo_2.png */,
+				039C125618475363002D87B7 /* car_demo_3.png */,
+				039C125718475363002D87B7 /* car_demo_4.png */,
+				039C125818475363002D87B7 /* car_demo_5.png */,
 				03B7AABC18472D7300D68567 /* tab_select_indicator@2x.png */,
 				03B7AAA81847289B00D68567 /* cpture_p@2x.png */,
 				03B7AAA91847289B00D68567 /* cpture@2x.png */,
@@ -1076,6 +1091,7 @@
 				03BC918A183F6575008E8B88 /* 138.png in Resources */,
 				03BC9182183F6575008E8B88 /* 130.png in Resources */,
 				03BC91EB183F6575008E8B88 /* 235.png in Resources */,
+				039C125B18475363002D87B7 /* car_demo_3.png in Resources */,
 				034E695E182C83D400BD5612 /* InfoPlist.strings in Resources */,
 				03B7AAB51847289B00D68567 /* mycpture@2x.png in Resources */,
 				03BC916C183F6575008E8B88 /* 108.png in Resources */,
@@ -1113,11 +1129,13 @@
 				03B7AAB41847289B00D68567 /* mycpture_p@2x.png in Resources */,
 				03BC91CC183F6575008E8B88 /* 204.png in Resources */,
 				03BC91F2183F6575008E8B88 /* CarBrandJson.txt in Resources */,
+				039C125D18475363002D87B7 /* car_demo_5.png in Resources */,
 				03BC91B9183F6575008E8B88 /* 185.png in Resources */,
 				03BC91C0183F6575008E8B88 /* 192.png in Resources */,
 				03BC916A183F6575008E8B88 /* 106.png in Resources */,
 				03BC9192183F6575008E8B88 /* 146.png in Resources */,
 				03BC9183183F6575008E8B88 /* 131.png in Resources */,
+				039C125918475363002D87B7 /* car_demo_1.png in Resources */,
 				03BC916D183F6575008E8B88 /* 109.png in Resources */,
 				03B7AAA61847270200D68567 /* upload_fail.png in Resources */,
 				03BC91F3183F6575008E8B88 /* ProvincesAndCities.plist in Resources */,
@@ -1142,6 +1160,7 @@
 				03BC91CB183F6575008E8B88 /* 203.png in Resources */,
 				03BC9177183F6575008E8B88 /* 119.png in Resources */,
 				03BC917E183F6575008E8B88 /* 126.png in Resources */,
+				039C125A18475363002D87B7 /* car_demo_2.png in Resources */,
 				03BC9193183F6575008E8B88 /* 147.png in Resources */,
 				03BC9164183F6575008E8B88 /* 100.png in Resources */,
 				03BC917C183F6575008E8B88 /* 124.png in Resources */,
@@ -1172,6 +1191,7 @@
 				03BC91AA183F6575008E8B88 /* 170.png in Resources */,
 				03BC91AE183F6575008E8B88 /* 174.png in Resources */,
 				03BC91B3183F6575008E8B88 /* 179.png in Resources */,
+				039C125C18475363002D87B7 /* car_demo_4.png in Resources */,
 				03BC918C183F6575008E8B88 /* 140.png in Resources */,
 				03BC91E4183F6575008E8B88 /* 228.png in Resources */,
 				03B7AAB31847289B00D68567 /* guide@2x.png in Resources */,

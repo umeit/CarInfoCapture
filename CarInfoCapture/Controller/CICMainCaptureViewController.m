@@ -52,6 +52,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
     if (self.carInfoEntity) {
         self.carInfoSaveStatus = FromDB;
         self.navigationItem.hidesBackButton = YES;
+
     }
     else {
         // 检查是否有上次未保存的采集信息
@@ -61,6 +62,33 @@ typedef enum CarInfoSaveStatus : NSInteger {
         // 上次未保存的
         if (self.carInfoEntity) {
             self.carInfoSaveStatus = FromNSUserDefaults;
+            
+            if ([self checkCarBaseInfo:self.carInfoEntity]) {
+                self.firstCheckCompleteImage.image = [UIImage imageNamed:@"cpture_finish"];
+            } else {
+                self.firstCheckCompleteImage.image = [UIImage imageNamed:@"cpture_fail"];
+            }
+            
+            
+            if ([self checkCarBaseCheckInfo:self.carInfoEntity]) {
+                self.secondCheckCompleteImage.image = [UIImage imageNamed:@"cpture_finish"];
+            } else {
+                self.secondCheckCompleteImage.image = [UIImage imageNamed:@"cpture_fail"];
+            }
+            
+            
+            if ([self checkCarImageInfo:self.carInfoEntity]) {
+                self.thirdCheckCompleteImage.image = [UIImage imageNamed:@"cpture_finish"];
+            } else {
+                self.thirdCheckCompleteImage.image = [UIImage imageNamed:@"cpture_fail"];
+            }
+            
+            
+            if ([self checkCarMasterInfo:self.carInfoEntity]) {
+                self.fourthCheckCompleteImage.image = [UIImage imageNamed:@"cpture_finish"];
+            } else {
+                self.fourthCheckCompleteImage.image = [UIImage imageNamed:@"cpture_fail"];
+            }
         }
         // 新建的
         else {
@@ -163,13 +191,12 @@ typedef enum CarInfoSaveStatus : NSInteger {
         }
     }
     else if (selectedIndexPath.row == 3) {
-        if ([self checkCarImageInfo:carInfoEntity]) {
+        if ([self checkCarMasterInfo:carInfoEntity]) {
             self.fourthCheckCompleteImage.image = [UIImage imageNamed:@"cpture_finish"];
         } else {
             self.fourthCheckCompleteImage.image = [UIImage imageNamed:@"cpture_fail"];
         }
     }
-    
     
     if (NeedUpdateToDB) {
         // 更新到数据库
@@ -221,7 +248,12 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkCarBaseCheckInfo:(CICCarInfoEntity *)carInfo
 {
-    if (carInfo.facadeIssueList && [carInfo.facadeIssueList count] > 0) {
+    if (carInfo.facadeIssueList && [carInfo.facadeIssueList count] > 0
+        && carInfo.insideIssueList && [carInfo.insideIssueList count] > 0
+        && carInfo.engineIssueList && [carInfo.engineIssueList count] > 0
+        && carInfo.paintIssueList && [carInfo.paintIssueList count] > 0
+        && carInfo.underpanIssueList && [carInfo.underpanIssueList count] > 0) {
+        
         return YES;
     }
     return NO;
@@ -229,12 +261,20 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkCarImageInfo:(CICCarInfoEntity *)carInfo
 {
+    for (NSDictionary *dic in carInfo.carImagesLocalPathList) {
+        if ([dic[@"k"] integerValue] == 0 || [dic[@"v"] length] < 1) {
+            return NO;
+        }
+    }
     return YES;
 }
 
 - (BOOL)checkCarMasterInfo:(CICCarInfoEntity *)carInfo
 {
-    
-    return YES;
+    if (carInfo.masterName && [carInfo.masterName length] > 0
+        &&carInfo.masterTel && [carInfo.masterTel length] > 0) {
+        return YES;
+    }
+    return NO;
 }
 @end

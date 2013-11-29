@@ -741,23 +741,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="请按角度要求拍摄，点击图片框添加照片。" id="yA6-VH-AsM">
+                            <tableViewSection id="yA6-VH-AsM">
+                                <string key="headerTitle">1. 请按「下方示例」角度要求拍摄
+2. 点击图片可以添加或修改照片</string>
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="190" id="mY1-Gx-MPA">
-                                        <rect key="frame" x="0.0" y="119" width="320" height="190"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="190" id="mY1-Gx-MPA">
+                                        <rect key="frame" x="0.0" y="136" width="320" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mY1-Gx-MPA" id="GWJ-iQ-WnZ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="189"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ADe-Su-LwD">
-                                                    <rect key="frame" x="41" y="18" width="238" height="153"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="car_demo_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="ADe-Su-LwD">
+                                                    <rect key="frame" x="54" y="15" width="213" height="160"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <button opaque="NO" tag="30" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzA-Sg-om9">
-                                                    <rect key="frame" x="130" y="80" width="60" height="30"/>
+                                                <button opaque="NO" tag="30" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzA-Sg-om9">
+                                                    <rect key="frame" x="54" y="15" width="213" height="160"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="点击拍照">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -767,21 +771,21 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="190" id="qCt-A9-iO7">
-                                        <rect key="frame" x="0.0" y="309" width="320" height="190"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="190" id="qCt-A9-iO7">
+                                        <rect key="frame" x="0.0" y="326" width="320" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qCt-A9-iO7" id="Ls8-Xg-aLt">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="189"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohn-4i-hyh">
-                                                    <rect key="frame" x="41" y="18" width="238" height="153"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="car_demo_2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ohn-4i-hyh">
+                                                    <rect key="frame" x="54" y="15" width="213" height="160"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" tag="31" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1E-xJ-w45">
-                                                    <rect key="frame" x="130" y="80" width="60" height="30"/>
+                                                    <rect key="frame" x="54" y="15" width="207" height="160"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="点击拍照">
+                                                    <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -791,26 +795,76 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="190" id="DAy-ir-YcO">
-                                        <rect key="frame" x="0.0" y="499" width="320" height="190"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="190" id="DAy-ir-YcO">
+                                        <rect key="frame" x="0.0" y="516" width="320" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DAy-ir-YcO" id="WKG-DL-za2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="189"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fLj-Uh-hfc">
-                                                    <rect key="frame" x="41" y="18" width="238" height="153"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="car_demo_3.png" translatesAutoresizingMaskIntoConstraints="NO" id="fLj-Uh-hfc">
+                                                    <rect key="frame" x="54" y="15" width="213" height="160"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
+                                                <button opaque="NO" tag="32" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeu-xU-cyf">
+                                                    <rect key="frame" x="54" y="15" width="213" height="160"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="takePhotoButtonPress:" destination="fMa-lS-lHq" eventType="touchUpInside" id="GhR-fz-WtX"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="190" id="pos-6T-YRA">
-                                        <rect key="frame" x="0.0" y="689" width="320" height="190"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="190" id="bA9-7P-mh2">
+                                        <rect key="frame" x="0.0" y="706" width="320" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pos-6T-YRA" id="rcX-5S-KTG">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bA9-7P-mh2" id="nI4-td-SyF">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="189"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="car_demo_4.png" translatesAutoresizingMaskIntoConstraints="NO" id="X2p-Qd-Jni">
+                                                    <rect key="frame" x="54" y="15" width="213" height="160"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <button opaque="NO" tag="33" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WE6-N5-Ni8">
+                                                    <rect key="frame" x="54" y="15" width="213" height="160"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="takePhotoButtonPress:" destination="fMa-lS-lHq" eventType="touchUpInside" id="vJm-0S-FCZ"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="190" id="hRH-YI-DwG">
+                                        <rect key="frame" x="0.0" y="896" width="320" height="190"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hRH-YI-DwG" id="M1U-90-Aup">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="189"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="car_demo_5.png" translatesAutoresizingMaskIntoConstraints="NO" id="4qj-iz-dfI">
+                                                    <rect key="frame" x="54" y="15" width="213" height="160"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <button opaque="NO" tag="34" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jd0-ta-jRb">
+                                                    <rect key="frame" x="54" y="15" width="213" height="160"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="takePhotoButtonPress:" destination="fMa-lS-lHq" eventType="touchUpInside" id="GH2-SA-VxA"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -824,7 +878,10 @@
                     <navigationItem key="navigationItem" title="车辆实拍" id="23O-d9-aKJ"/>
                     <connections>
                         <outlet property="backFlankImage" destination="ohn-4i-hyh" id="Yf2-Eu-CNR"/>
+                        <outlet property="backSeatImage" destination="4qj-iz-dfI" id="1gj-Xt-8YM"/>
                         <outlet property="frontFlankImage" destination="ADe-Su-LwD" id="Edh-Tf-ljK"/>
+                        <outlet property="frontSeatImage" destination="X2p-Qd-Jni" id="UH8-f5-g6J"/>
+                        <outlet property="insideCentralImage" destination="fLj-Uh-hfc" id="xRR-WV-BdN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tN4-iK-7h8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1872,12 +1929,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="car_demo_1.png" width="400" height="193"/>
+        <image name="car_demo_2.png" width="400" height="193"/>
+        <image name="car_demo_3.png" width="400" height="193"/>
+        <image name="car_demo_4.png" width="400" height="193"/>
+        <image name="car_demo_5.png" width="400" height="193"/>
         <image name="cpture.png" width="32" height="32"/>
         <image name="cpture_defaut.png" width="54" height="46"/>
         <image name="guide.png" width="32" height="32"/>
         <image name="mycpture.png" width="32" height="32"/>
         <image name="settings.png" width="32" height="32"/>
     </resources>
+    <color key="tintColor" red="0.3959513281061357" green="0.89811862244897955" blue="0.45929631779115437" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
