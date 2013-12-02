@@ -15,8 +15,6 @@
 
 - (void)carInfoDidUploadAtIndex:(NSInteger)index;
 
-- (void)carInfoDidUploadForAll;
-
 @end
 
 @class CICCarInfoEntity;
@@ -38,7 +36,7 @@ typedef void(^CICCarInfoServiceGeneralErrorBlock)(NSError *error);
 
 - (void)carInfoListWithBlock:(CarInfoListBlock)block;
 
-- (void)nouploadCarInfoListWithBlock:(CarInfoListBlock)block;
+- (void)noUploadCarInfoListWithBlock:(CarInfoListBlock)block;
 
 - (void)saveCarInfo:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceGeneralErrorBlock)block;
 
@@ -46,6 +44,8 @@ typedef void(^CICCarInfoServiceGeneralErrorBlock)(NSError *error);
 
 - (void)sumOfCarInfoAndNeedUploadCarInfoWithBlock:(NumberOfSumCarInfoAndNumberOfNeedUploadCarInfoBlock)block;
 
-- (void)uploadCarInfoWithBlock:(CICCarInfoServiceGeneralErrorBlock)block;
+//- (void)uploadCarInfoWithBlock:(CICCarInfoServiceGeneralErrorBlock)block;
+
+- (void)uploadCarInfoList:(NSArray *)list;
 
 @end

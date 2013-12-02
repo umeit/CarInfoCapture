@@ -39,7 +39,7 @@
 
 - (void)showLoading
 {
-
+//    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 }
 
 - (void)hideLoading

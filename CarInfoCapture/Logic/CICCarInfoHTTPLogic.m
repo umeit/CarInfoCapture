@@ -21,11 +21,16 @@
 + (void)carInfoHistoryListWithBlock:(CarInfoHistoryListBlock)block
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
+    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
     
-    [httpManager GET:@"Path"
-          parameters:nil
+    [httpManager GET:@"http://capture.youche.com/capture/get_mycapture"
+          parameters:@{@"pi": @(1), @"ps": @(200)}
              success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                 
+                 NSInteger retCode = [[responseObject objectForKey:@"ret"] integerValue];
+                 if (retCode == 0) {
+                     block([responseObject objectForKey:@"capture"], nil);
+                 }
              }
              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                  block(nil, error);
@@ -93,6 +98,22 @@
               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                   block(nil, error);
               }];
+}
+
++ (void)downloadImageWithPath:(NSString *)path withBlock:(CICCarInfoHTTPLogicDownloadImageBlock)block
+{
+    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
+    httpManager.responseSerializer = [AFImageResponseSerializer serializer];
+//    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
+    
+    [httpManager GET:[NSString stringWithFormat:@"http://file.darengong.com%@", path]
+          parameters:nil
+             success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                 block(responseObject);
+             }
+             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                 block(nil);
+             }];
 }
 
 #pragma mark - Private

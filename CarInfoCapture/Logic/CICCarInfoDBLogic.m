@@ -167,7 +167,7 @@
         [CICCarInfoDBLogic saveCarInfo:carInfo WithBlock:nil];
     }
     
-    if (block) block(nil);
+    block(nil);
 }
 
 + (NSInteger)sumOfCarInfo

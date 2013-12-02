@@ -34,7 +34,6 @@
         cell.textLabel.text = self.dataList[indexPath.section][@"cellList"][indexPath.row][@"displayName"];
     }
     
-    
     return cell;
 }
 

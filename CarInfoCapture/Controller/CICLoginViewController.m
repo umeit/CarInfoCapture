@@ -9,6 +9,7 @@
 #import "CICLoginViewController.h"
 #import "CICUserService.h"
 #import "UIViewController+CICViewController.h"
+#import "MBProgressHUD.h"
 
 @interface CICLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userIDTextField;
@@ -48,13 +49,22 @@
         return;
     }
     
-    [self showLoading];
+    [self.userIDTextField resignFirstResponder];
+    [self.PasswordTextField resignFirstResponder];
     
+//    [self showLoading];
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+	[self.view addSubview:HUD];
+    [HUD show:YES];
     [self.userService loginWithUserID:userID password:password block:^(NSInteger retCode) {
-        [self hideLoading];
+//        [self hideLoading];
+        [HUD hide:YES];
         
         if (retCode == 0) {
             self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CICTabBarController"];
+        }
+        else if (retCode == -1) {
+            [self showCustomTextAlert:@"登录失败，请稍后再试"];
         }
     }];
 }

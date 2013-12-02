@@ -18,6 +18,9 @@
             NSInteger retCode = [[responseObject objectForKey:@"ret"] integerValue];
             block(retCode);
         }
+        else {
+            block(-1);
+        }
     }];
 }
 

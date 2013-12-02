@@ -38,7 +38,7 @@ typedef enum CarImageIndex : NSInteger {
 @property (nonatomic) NSDate *addTime;
 
 // 表示：已上传、未上传、
-@property (nonatomic) NSInteger status;
+@property (nonatomic) SaveStatus status;
 
 /* 基本信息 */
 @property (nonatomic) NSInteger modelID;
@@ -65,12 +65,10 @@ typedef enum CarImageIndex : NSInteger {
 /**
  *  车辆图片的本地路径
  */
-//@property (strong, nonatomic) NSMutableDictionary *carImagesLocalPathDictionary;
 @property (strong, nonatomic) NSMutableArray *carImagesLocalPathList;
 /**
  *  车辆图片的服务器路径
  */
-//@property (strong, nonatomic) NSMutableDictionary *carImagesRemotePathDictionary;
 @property (strong, nonatomic) NSMutableArray *carImagesRemotePathList;
 
 /* 车主信息 */

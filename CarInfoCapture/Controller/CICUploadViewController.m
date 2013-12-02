@@ -39,7 +39,7 @@
 {
     [super viewDidLoad];
 	
-    [self.carInfoService nouploadCarInfoListWithBlock:^(NSArray *list, NSError *error) {
+    [self.carInfoService noUploadCarInfoListWithBlock:^(NSArray *list, NSError *error) {
         self.carInfoList = list;
         
         if (!list && ![list count] > 0) {
@@ -76,8 +76,10 @@
 - (void)configureCell:(CICUploadCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     CICCarInfoEntity *carInfoEntity = self.carInfoList[indexPath.row];
+    
     cell.carNameLabel.text = carInfoEntity.carName;
     
+    // 「上传中」动画的显示与隐藏
     if (self.isUploading && carInfoEntity.status == NoUpload) {
         [cell.uploadActivityView startAnimating];
         cell.uploadActivityView.hidden = NO;
@@ -103,23 +105,12 @@
         cell.uploadActivityView.hidden = NO;
     }];
     
-    [self.carInfoService uploadCarInfoWithBlock:^(NSError *error) {
-        if (!error) {
-            
-            
-        }
-    }];
+    [self.carInfoService uploadCarInfoList:self.carInfoList];
 }
 
 - (IBAction)cancelButtonPress:(id)sender
 {
     if (self.isUploading) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-//                                                            message:@"正在上传车辆信息，您确定要取消上传吗？"
-//                                                           delegate:self
-//                                                  cancelButtonTitle:@"继续等待"
-//                                                  otherButtonTitles:@"取消上传", nil];
-        
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"正在上传车辆信息，请稍后"
                                                            delegate:nil
@@ -136,9 +127,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-//    if (buttonIndex == 1) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-//    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - CICCarInfoServiceUploadCarInfoDelegate
@@ -166,11 +155,6 @@
         [alertView show];
     }
 }
-
-//- (void)carInfoDidUploadForAll
-//{
-//    
-//}
 
 - (void)carInfoUploadDidFailAtIndex:(NSInteger)index
 {

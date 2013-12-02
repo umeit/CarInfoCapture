@@ -31,37 +31,42 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
         }];
     }
     else {
+        // 建立数据库
+        [CICCarInfoDBLogic initCarInfoDB];
+        
         // 如果不存在就去服务器上取，然后建立数据库，存入信息
-        [CICCarInfoHTTPLogic carInfoHistoryListWithBlock:^(NSArray *list, NSError *error) {
+        [CICCarInfoHTTPLogic carInfoHistoryListWithBlock:^(id list, NSError *error) {
             if (!error) {
-                block(list, nil);
+                NSArray *carInfoList = [self jsonListToCarInfoEntityList:(NSArray *)list];
                 
-                [CICCarInfoDBLogic initCarInfoDB];
+                if ([carInfoList count] > 0) {
+                    // 将信息存入数据库，以后都从数据库读取
+                    [CICCarInfoDBLogic saveCarInfoList:list WithBlock:^(NSError *error) {
+                        if (error) {
+                            // 错误处理
+                            NSLog(@"初始信息存入数据库失败！");
+                        }
+                    }];
+                }
                 
-                // 将信息存入数据库，以后都从数据库读取
-                [CICCarInfoDBLogic saveCarInfoList:list WithBlock:^(NSError *error) {
-                    if (error) {
-                        // 错误处理
-                    }
-                }];
+                block(carInfoList, nil);
             }
             else {
                 block(nil, error);
-                
-                // 即使访问网络失败，也要建立数据库
-                [CICCarInfoDBLogic initCarInfoDB];
             }
         }];
     }
 }
 
-- (void)nouploadCarInfoListWithBlock:(CarInfoListBlock)block
+// 待上传的采集信息列表
+- (void)noUploadCarInfoListWithBlock:(CarInfoListBlock)block
 {
     [CICCarInfoDBLogic noUploadCarInfoListWithBlock:^(NSArray *list, NSError *error) {
         block(list, nil);
     }];
 }
 
+// 保存采集信息
 - (void)saveCarInfo:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceGeneralErrorBlock)block
 {
     [CICCarInfoDBLogic saveCarInfo:carInfo WithBlock:^(NSError *error) {
@@ -77,6 +82,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     }];
 }
 
+// 待上传的采集信息总数
 - (void)sumOfCarInfoAndNeedUploadCarInfoWithBlock:(NumberOfSumCarInfoAndNumberOfNeedUploadCarInfoBlock)block
 {
     NSInteger sum = [CICCarInfoDBLogic sumOfCarInfo];
@@ -85,50 +91,114 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     block(sum, needUploadSum);
 }
 
-- (void)uploadCarInfoWithBlock:(CICCarInfoServiceGeneralErrorBlock)block
+- (void)uploadCarInfoList:(NSArray *)carInfoList
 {
-    // 从数据库中取得未上传的数据
-    [CICCarInfoDBLogic noUploadCarInfoListWithBlock:^(NSArray *noUploadCarInfoList, NSError *error) {
-        // 未上传的信息列表
-        if (!error && noUploadCarInfoList && [noUploadCarInfoList count] > 0) {
-            if (!self.carInfoHTTPLogic) {
-                self.carInfoHTTPLogic = [[CICCarInfoHTTPLogic alloc] init];
-            }
-            
-            // 将每个采集信息上传至服务器
-            [noUploadCarInfoList enumerateObjectsUsingBlock:^(CICCarInfoEntity *carInfo, NSUInteger idx, BOOL *stop) {
+    if (!self.carInfoHTTPLogic) {
+        self.carInfoHTTPLogic = [[CICCarInfoHTTPLogic alloc] init];
+    }
+    
+    // 将每个采集信息上传至服务器
+    [carInfoList enumerateObjectsUsingBlock:^(CICCarInfoEntity *carInfo, NSUInteger idx, BOOL *stop) {
+        
+        // 1\先上传信息中的车辆图片
+        [self uploadCarImageList:carInfo withBlock:^(NSMutableArray *remoteImagePathList) {
+            // 上传图片成功
+            if (remoteImagePathList) {
+                carInfo.carImagesRemotePathList = remoteImagePathList;
                 
-                // 1\先上传信息中的车辆图片
-                [self uploadCarImageList:carInfo withBlock:^(NSMutableArray *remoteImagePathList) {
-                    // 上传图片成功
-                    if (remoteImagePathList) {
-                        carInfo.carImagesRemotePathList = remoteImagePathList;
+                // 2\再上传其他信息
+                [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
+                    if (!error) {
                         
-                        // 2\再上传其他信息
-                        [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
-                            if (!error) {
-                                
-                                // 3\更新数据库中的信息
-                                carInfo.status = Uploaded;
-                                [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {
-                                    
-                                }];
-                                
-                                [self.delegate carInfoDidUploadAtIndex:idx];
-                            }
-                            else {
-                                [self.delegate carInfoUploadDidFailAtIndex:idx];
-                            }
+                        // 3\更新数据库中的信息
+                        carInfo.status = Uploaded;
+                        [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {
+                            [self.delegate carInfoUploadDidFailAtIndex:idx];
                         }];
+                        
+                        [self.delegate carInfoDidUploadAtIndex:idx];
                     }
-                    // 上传图片失败
                     else {
                         [self.delegate carInfoUploadDidFailAtIndex:idx];
                     }
                 }];
-            }];
-        }
+            }
+            // 上传图片失败
+            else {
+                [self.delegate carInfoUploadDidFailAtIndex:idx];
+            }
+        }];
     }];
+}
+
+#pragma mark - Private
+
+- (NSArray *)jsonListToCarInfoEntityList:(NSArray *)jsonList
+{
+    NSMutableArray *carInfoList = [[NSMutableArray alloc] init];
+    
+    for (id carInfoDic in jsonList) {
+        CICCarInfoEntity *carInfoEntity = [[CICCarInfoEntity alloc] init];
+        
+        carInfoEntity.carName = [carInfoDic objectForKey:@"carName"];
+        carInfoEntity.location = [carInfoDic objectForKey:@"location"];
+        carInfoEntity.firstRegTime = [carInfoDic objectForKey:@"firstRegTime"];
+        carInfoEntity.insuranceExpire = [carInfoDic objectForKey:@"insuranceExpire"];
+        carInfoEntity.yearExamineExpire = [carInfoDic objectForKey:@"yearExamineExpire"];
+        carInfoEntity.carSource = [carInfoDic objectForKey:@"carSource"];
+        carInfoEntity.dealTime = [carInfoDic objectForKey:@"dealTime"];
+        carInfoEntity.mileage = [carInfoDic objectForKey:@"mileage"];
+        carInfoEntity.salePrice = [carInfoDic objectForKey:@"salePrice"];
+        
+        NSString *chassisState = [carInfoDic objectForKey:@"chassisState"];
+        carInfoEntity.underpanIssueList = [chassisState componentsSeparatedByString:@"#"];
+        NSString *engineState = [carInfoDic objectForKey:@"engineState"];
+        carInfoEntity.engineIssueList = [engineState componentsSeparatedByString:@"#"];
+        NSString *paintState = [carInfoDic objectForKey:@"paintState"];
+        carInfoEntity.paintIssueList = [paintState componentsSeparatedByString:@"#"];
+        NSString *insideState = [carInfoDic objectForKey:@"insideState"];
+        carInfoEntity.insideIssueList = [insideState componentsSeparatedByString:@"#"];
+        NSString *facadeState = [carInfoDic objectForKey:@"facadeState"];
+        carInfoEntity.facadeIssueList = [facadeState componentsSeparatedByString:@"#"];
+        
+        carInfoEntity.masterName = [carInfoDic objectForKey:@"masterName"];
+        carInfoEntity.masterTel = [carInfoDic objectForKey:@"masterTel"];
+        
+        carInfoEntity.carImagesRemotePathList = [NSMutableArray arrayWithArray:[carInfoDic objectForKey:@"pic"]];
+        [self downloadImageFromRemotePath:carInfoEntity.carImagesRemotePathList withBlock:^(NSMutableArray *localPathList) {
+            carInfoEntity.carImagesLocalPathList = localPathList;
+        }];
+        
+        carInfoEntity.status = Uploaded;
+        
+        [carInfoList addObject:carInfoEntity];
+    }
+    
+    return carInfoList;
+}
+
+- (void)downloadImageFromRemotePath:(NSMutableArray *)carImagesRemotePathList
+                          withBlock:(void(^)(NSMutableArray *localPathList))block
+{
+    NSMutableArray *localPathList = [[NSMutableArray alloc] init];
+    
+    for (id imagePathDic in carImagesRemotePathList) {
+        NSString *remotePath = [imagePathDic objectForKey:@"v"];
+        
+        // 下载服务器端的图片保存到本地
+        [CICCarInfoHTTPLogic downloadImageWithPath:remotePath
+                                         withBlock:^(UIImage *image) {
+                                             
+            NSString *localPath = [CICGlobalService saveImageToLocal:image];
+            // 记录保存在本地的地址
+            [localPathList addObject:@{@"k": imagePathDic[@"k"], @"v": localPath}];
+            
+            if ([localPathList count] == [carImagesRemotePathList count]) {
+                block(localPathList);
+                return;
+            }
+        }];
+    }
 }
 
 // 上传一次采集中的所有有图片，哪怕只有一个上传失败都认为是全部失败，回调返回 nil
@@ -150,7 +220,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
                     // 用本地图片同样的 key 保存图片在服务器的路径
                     remoteImagePathList[idx] = @{@"k": obj[@"k"], @"v": remoteImagePathStr};
                     
-                    if ([self allOfUploadForList:remoteImagePathList]) {
+                    if ([self allOfImageUploadForList:remoteImagePathList]) {
                         // 所有的图片都上传成功，返回一个字典，包含图片在服务器的地址
                         block(remoteImagePathList);
                     }
@@ -161,14 +231,12 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
                     return;
                 }
             }];
-            
         }
     }];
 }
 
-#pragma mark - Private
-
-- (BOOL)allOfUploadForList:(NSArray *)remoteImagePathList
+// 判断是否所有的图片都上传成功
+- (BOOL)allOfImageUploadForList:(NSArray *)remoteImagePathList
 {
     for (NSDictionary *dic in remoteImagePathList) {
         if ([dic[@"v"]length] == 0) {
