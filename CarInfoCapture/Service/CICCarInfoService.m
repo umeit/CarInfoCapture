@@ -37,19 +37,19 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
         // 如果不存在就去服务器上取，然后建立数据库，存入信息
         [CICCarInfoHTTPLogic carInfoHistoryListWithBlock:^(id list, NSError *error) {
             if (!error) {
-                NSArray *carInfoList = [self jsonListToCarInfoEntityList:(NSArray *)list];
-                
-                if ([carInfoList count] > 0) {
-                    // 将信息存入数据库，以后都从数据库读取
-                    [CICCarInfoDBLogic saveCarInfoList:list WithBlock:^(NSError *error) {
-                        if (error) {
-                            // 错误处理
-                            NSLog(@"初始信息存入数据库失败！");
-                        }
-                    }];
-                }
-                
-                block(carInfoList, nil);
+                [self jsonListToCarInfoEntityList:(NSArray *)list withBlock:^(NSMutableArray *carInfoList) {
+                    if ([carInfoList count] > 0) {
+                        // 将信息存入数据库，以后都从数据库读取
+                        [CICCarInfoDBLogic saveCarInfoList:carInfoList WithBlock:^(NSError *error) {
+                            if (error) {
+                                // 错误处理
+                                NSLog(@"初始信息存入数据库失败！");
+                            }
+                        }];
+                    }
+                    
+                    block(carInfoList, nil);
+                }];
             }
             else {
                 block(nil, error);
@@ -133,12 +133,14 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
 
 #pragma mark - Private
 
-- (NSArray *)jsonListToCarInfoEntityList:(NSArray *)jsonList
+- (void)jsonListToCarInfoEntityList:(NSArray *)jsonList withBlock:(void(^)(NSMutableArray *carInfoList))block
 {
     NSMutableArray *carInfoList = [[NSMutableArray alloc] init];
     
     for (id carInfoDic in jsonList) {
         CICCarInfoEntity *carInfoEntity = [[CICCarInfoEntity alloc] init];
+        
+        carInfoEntity.status = Uploaded;
         
         carInfoEntity.carName = [carInfoDic objectForKey:@"carName"];
         carInfoEntity.location = [carInfoDic objectForKey:@"location"];
@@ -146,9 +148,9 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
         carInfoEntity.insuranceExpire = [carInfoDic objectForKey:@"insuranceExpire"];
         carInfoEntity.yearExamineExpire = [carInfoDic objectForKey:@"yearExamineExpire"];
         carInfoEntity.carSource = [carInfoDic objectForKey:@"carSource"];
-        carInfoEntity.dealTime = [carInfoDic objectForKey:@"dealTime"];
-        carInfoEntity.mileage = [carInfoDic objectForKey:@"mileage"];
-        carInfoEntity.salePrice = [carInfoDic objectForKey:@"salePrice"];
+        carInfoEntity.dealTime = [NSString stringWithFormat:@"%@", [carInfoDic objectForKey:@"dealTime"]];
+        carInfoEntity.mileage = [NSString stringWithFormat:@"%@", [carInfoDic objectForKey:@"mileage"]];
+        carInfoEntity.salePrice = [NSString stringWithFormat:@"%@", [carInfoDic objectForKey:@"salePrice"]];
         
         NSString *chassisState = [carInfoDic objectForKey:@"chassisState"];
         carInfoEntity.underpanIssueList = [chassisState componentsSeparatedByString:@"#"];
@@ -167,14 +169,14 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
         carInfoEntity.carImagesRemotePathList = [NSMutableArray arrayWithArray:[carInfoDic objectForKey:@"pic"]];
         [self downloadImageFromRemotePath:carInfoEntity.carImagesRemotePathList withBlock:^(NSMutableArray *localPathList) {
             carInfoEntity.carImagesLocalPathList = localPathList;
+            
+            [carInfoList addObject:carInfoEntity];
+            
+            if ([carInfoList count] == [jsonList count]) {
+                block(carInfoList);
+            }
         }];
-        
-        carInfoEntity.status = Uploaded;
-        
-        [carInfoList addObject:carInfoEntity];
     }
-    
-    return carInfoList;
 }
 
 - (void)downloadImageFromRemotePath:(NSMutableArray *)carImagesRemotePathList
