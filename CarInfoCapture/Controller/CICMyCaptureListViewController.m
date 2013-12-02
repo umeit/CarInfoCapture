@@ -11,6 +11,7 @@
 #import "CICCarInfoCell.h"
 #import "CICCarInfoEntity.h"
 #import "CICMainCaptureViewController.h"
+#import "MBProgressHUD.h"
 
 @interface CICMyCaptureListViewController () <UITableViewDataSource>
 
@@ -48,7 +49,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
+	[self.view addSubview:HUD];
+    [HUD show:YES];
+    
     [self.carInfoService carInfoListWithBlock:^(NSArray *list, NSError *error) {
+        [HUD hide:YES];
+        
         if (!error && list && [list count] > 0) {
             self.carInfoList = list;
             [self.tableView reloadData];
