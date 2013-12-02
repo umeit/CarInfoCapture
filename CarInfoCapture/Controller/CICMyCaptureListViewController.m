@@ -53,17 +53,17 @@
             self.carInfoList = list;
             [self.tableView reloadData];
         }
-    }];
-    
-    [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
-        self.captureSum.text = [NSString stringWithFormat:@"%ld", (long)sum];
-        self.noUploadNumber.text = [NSString stringWithFormat:@"%ld", (long)needUpload];
         
-        if (needUpload == 0) {
-            self.uploadBtton.hidden = YES;
-        } else {
-            self.uploadBtton.hidden = NO;
-        }
+        [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
+            self.captureSum.text = [NSString stringWithFormat:@"%ld", (long)sum];
+            self.noUploadNumber.text = [NSString stringWithFormat:@"%ld", (long)needUpload];
+            
+            if (needUpload == 0) {
+                self.uploadBtton.hidden = YES;
+            } else {
+                self.uploadBtton.hidden = NO;
+            }
+        }];
     }];
 }
 
