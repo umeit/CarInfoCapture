@@ -69,6 +69,17 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
 // 保存采集信息
 - (void)saveCarInfo:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceGeneralErrorBlock)block
 {
+    NSDate *date = [NSDate date];
+    
+//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+//    NSInteger interval = [zone secondsFromGMTForDate:date];
+//    NSDate *localeDate = [date dateByAddingTimeInterval:interval];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    carInfo.addTime = [dateFormatter stringFromDate:date];
+    
     [CICCarInfoDBLogic saveCarInfo:carInfo WithBlock:^(NSError *error) {
         block(error);
     }];
@@ -141,6 +152,8 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
         CICCarInfoEntity *carInfoEntity = [[CICCarInfoEntity alloc] init];
         
         carInfoEntity.status = Uploaded;
+        
+        carInfoEntity.addTime = [carInfoDic objectForKey:@"addTime"];
         
         carInfoEntity.carName = [carInfoDic objectForKey:@"carName"];
         carInfoEntity.location = [carInfoDic objectForKey:@"location"];

@@ -76,7 +76,7 @@
         CICCarInfoEntity *carInfo = [[CICCarInfoEntity alloc] init];
         
         carInfo.dbID = [s intForColumn:@"id"];
-        carInfo.addTime = [s dateForColumn:@"addTime"];
+        carInfo.addTime = [s stringForColumn:@"addTime"];
         carInfo.status = [s intForColumn:@"status"];
         carInfo.modelID = [s intForColumn:@"modelID"];
         carInfo.carName = [s stringForColumn:@"carName"];
@@ -139,7 +139,7 @@
     
     BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         nil,
-                        [NSDate date], @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
+                        carInfo.addTime, @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
                         carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
                         carInfo.dealTime, carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                         [carInfo.underpanIssueList oneStringFormat],
@@ -217,7 +217,7 @@
         CICCarInfoEntity *carInfo = [[CICCarInfoEntity alloc] init];
         
         carInfo.dbID = [s intForColumn:@"id"];
-        carInfo.addTime = [s dateForColumn:@"addTime"];
+        carInfo.addTime = [s stringForColumn:@"addTime"];
         carInfo.status = [s intForColumn:@"status"];
         carInfo.modelID = [s intForColumn:@"modelID"];
         carInfo.carName = [s stringForColumn:@"carName"];
@@ -284,7 +284,7 @@
                                       "paintIssueList = ?, insideIssueList = ?, facadeIssueList = ?, "\
                                       "carImagesLocalPathList = ?, masterName = ?, masterTel = ? "\
                                       "WHERE id = ? ",
-                    [NSDate date], @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
+                    carInfo.addTime, @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
                     carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
                     carInfo.dealTime, carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                     [carInfo.underpanIssueList oneStringFormat],
@@ -306,4 +306,5 @@
     
     [db close];
 }
+
 @end

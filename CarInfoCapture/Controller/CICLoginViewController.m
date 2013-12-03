@@ -32,7 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (IBAction)loginButtonPress:(id)sender
@@ -52,12 +51,11 @@
     [self.userIDTextField resignFirstResponder];
     [self.PasswordTextField resignFirstResponder];
     
-//    [self showLoading];
     MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
 	[self.view addSubview:HUD];
     [HUD show:YES];
+    
     [self.userService loginWithUserID:userID password:password block:^(NSInteger retCode) {
-//        [self hideLoading];
         [HUD hide:YES];
         
         if (retCode == 0) {

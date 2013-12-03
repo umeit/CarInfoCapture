@@ -35,7 +35,7 @@ typedef enum CarImageIndex : NSInteger {
 @property (nonatomic) NSInteger dbID;
 
 // 保存到数据库的时间
-@property (nonatomic) NSDate *addTime;
+@property (nonatomic) NSString *addTime;
 
 // 表示：已上传、未上传、
 @property (nonatomic) SaveStatus status;

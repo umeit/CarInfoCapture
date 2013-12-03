@@ -104,7 +104,6 @@
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
     httpManager.responseSerializer = [AFImageResponseSerializer serializer];
-//    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
     
     [httpManager GET:[NSString stringWithFormat:@"http://file.darengong.com%@", path]
           parameters:nil
@@ -143,22 +142,9 @@
 
 - (NSDictionary *)uploadImageParameters:(NSString *)filePathStr
 {
-//    NSData *imageData = [NSData dataWithContentsOfFile:filePathStr];
-    
     NSDictionary *uploadImageParameters = @{@"Filename": @"TuXiang.png",
                                             @"filepath": @"/0/capture/",
                                             @"filecate": @"picture"};
-//                                            @"Filedata": imageData};
     return uploadImageParameters;
 }
-
-//- (void)formateDataForUpload:(CICCarInfoEntity *)carInfo
-//{
-//    carInfo.firstRegTime = [NSString stringWithFormat:@"%@-01", carInfo.firstRegTime];
-//    carInfo.insuranceExpire = [NSString stringWithFormat:@"%@-01", carInfo.insuranceExpire];
-//    carInfo.yearExamineExpire = [NSString stringWithFormat:@"%@-01", carInfo.yearExamineExpire];
-//}
-
-
-
 @end
