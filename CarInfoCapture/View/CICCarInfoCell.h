@@ -10,6 +10,10 @@
 
 @interface CICCarInfoCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *MainTime;
+@property (weak, nonatomic) IBOutlet UILabel *subTime;
+
+
 - (void)setCarName:(NSString *)carName mileage:(NSString *)mileage firstRegTime:(NSString *)firstRegTime salePrice:(NSString *)salePrice carImage:(UIImage *)carImage infoStatus:(NSString *)infoStatus;
 
 @end

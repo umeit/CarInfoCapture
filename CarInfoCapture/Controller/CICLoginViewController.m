@@ -8,7 +8,6 @@
 
 #import "CICLoginViewController.h"
 #import "CICUserService.h"
-#import "UIViewController+CICViewController.h"
 #import "MBProgressHUD.h"
 
 @interface CICLoginViewController ()
@@ -51,12 +50,9 @@
     [self.userIDTextField resignFirstResponder];
     [self.PasswordTextField resignFirstResponder];
     
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
-	[self.view addSubview:HUD];
-    [HUD show:YES];
-    
+    [self showLodingView];
     [self.userService loginWithUserID:userID password:password block:^(NSInteger retCode) {
-        [HUD hide:YES];
+        [self hideLodingView];
         
         if (retCode == 0) {
             self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CICTabBarController"];

@@ -10,7 +10,6 @@
 #import "CICCarBaseCheckReportViewController.h"
 #import "CICCarInfoService.h"
 #import "CICCarInfoEntity.h"
-#import "UIViewController+CICViewController.h"
 
 #define NeedSaveToNSUserDefaults self.carInfoSaveStatus == FromNSUserDefaults || self.carInfoSaveStatus == NewCarInfo
 #define NeedUpdateToDB             self.carInfoSaveStatus == FromDB
@@ -138,10 +137,10 @@ typedef enum CarInfoSaveStatus : NSInteger {
             // 更新到数据库
             [self.carInfoService updateCarInfo:self.carInfoEntity withBlock:^(NSError *error) {
                 if (error) {
-                    [self showCustomText:@"修改失败"];
+                    [self showCustomText:@"修改失败" delay:2];
                 }
                 else {
-                    [self showCustomText:@"修改成功"];
+                    [self showCustomText:@"修改成功" delay:2];
                 }
             }];
             
@@ -152,10 +151,10 @@ typedef enum CarInfoSaveStatus : NSInteger {
             self.carInfoEntity.status = NoUpload;
             [self.carInfoService saveCarInfo:self.carInfoEntity withBlock:^(NSError *error) {
                 if (error) {
-                    [self showCustomText:@"保存失败"];
+                    [self showCustomText:@"保存失败" delay:2];
                 }
                 else {
-                    [self showCustomText:@"保存成功"];
+                    [self showCustomText:@"保存成功" delay:2];
                     
                     // 清空界面
                     [self clearCurrentCapture];

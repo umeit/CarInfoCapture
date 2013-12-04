@@ -27,8 +27,8 @@
 
 @property (strong, nonatomic) CICCarInfoService *carInfoService;
 
-//- (IBAction)uploadButtonPress:(id)sender;
-
+@property (strong, nonatomic) NSString *currentShowMainDate;
+@property (strong, nonatomic) NSString *currentShowSubDate;
 @end
 
 @implementation CICMyCaptureListViewController
@@ -133,6 +133,41 @@
             carInfoCell.userInteractionEnabled = NO;
             break;
     }
+    
+    NSString *showMainDate;
+    NSString *showSubDate;
+    
+    // 处理「今天」的
+    if ([self isToday:carInfoEntity.addTime]) {
+        showMainDate = @"今天";
+        
+        if ([self.currentShowMainDate isEqualToString:showMainDate]) {
+            carInfoCell.MainTime.text = @"";
+            carInfoCell.subTime.text = @"";
+        }
+        else {
+            carInfoCell.MainTime.text = showMainDate;
+            carInfoCell.subTime.text = @"";
+            
+            self.currentShowMainDate = showMainDate;
+        }
+        
+    // 处理本月的
+    } else if ([self isThisMonth:carInfoEntity.addTime]) {
+        showMainDate = [self getDay:carInfoEntity.addTime];
+        showSubDate = [self getMonth:carInfoEntity.addTime];
+        
+        if ([self.currentShowMainDate isEqualToString:showMainDate]) {
+            carInfoCell.MainTime.text = @"";
+            carInfoCell.subTime.text = @"";
+        }
+        else {
+            carInfoCell.MainTime.text = showMainDate;
+            carInfoCell.subTime.text = showSubDate;
+            
+            self.currentShowMainDate = showMainDate;
+        }
+    }
 
     [carInfoCell setCarName:carInfoEntity.carName
                     mileage:carInfoEntity.mileage
@@ -142,6 +177,51 @@
                  infoStatus:infoStatus];
 }
 
+- (BOOL)isToday:(NSString *)dateStr
+{
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:[NSDate date]];
+    NSInteger today = comps.day;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    comps = [calendar components:unitFlags fromDate:date];
+    NSInteger addDay = comps.day;
+    
+    return (today == addDay);
+}
+
+- (BOOL)isThisMonth:(NSString *)dateStr
+{
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:[NSDate date]];
+    NSInteger thisMonth = comps.month;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    comps = [calendar components:unitFlags fromDate:date];
+    NSInteger addMonth = comps.month;
+    
+    return (thisMonth == addMonth);
+}
+
+- (NSString *)getDay:(NSString *)dateStr
+{
+    NSString *str = [dateStr componentsSeparatedByString:@" "][0];
+    return [str componentsSeparatedByString:@"-"][2];
+}
+
+- (NSString *)getMonth:(NSString *)dateStr
+{
+    NSString *str = [dateStr componentsSeparatedByString:@" "][0];
+    return [str componentsSeparatedByString:@"-"][1];
+}
 - (void)updateView
 {
     [self.tableView reloadData];
