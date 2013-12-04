@@ -42,11 +42,18 @@
 
 - (void)showLodingView
 {
+    [self showLodingViewWithText:nil];
+}
+
+- (void)showLodingViewWithText:(NSString *)text
+{
     if (!self.HUD) {
         self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     }
     
     [self.view addSubview:self.HUD];
+    
+    self.HUD.labelText = text;
     
     [self.HUD show:YES];
 }

@@ -39,18 +39,22 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
             if (!error) {
                 [self jsonListToCarInfoEntityList:(NSArray *)list withBlock:^(NSMutableArray *carInfoList) {
                     if ([carInfoList count] > 0) {
+                        
                         // 将信息存入数据库，以后都从数据库读取
                         [CICCarInfoDBLogic saveCarInfoList:carInfoList WithBlock:^(NSError *error) {
                             if (error) {
                                 // 错误处理
                                 NSLog(@"初始信息存入数据库失败！");
+                                block(nil, error);
+                            }
+                            else {
+                                block(carInfoList, nil);
                             }
                         }];
                     }
-                    
-                    block(carInfoList, nil);
                 }];
             }
+            // 访问网络失败
             else {
                 block(nil, error);
             }

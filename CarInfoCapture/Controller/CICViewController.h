@@ -16,6 +16,8 @@
 
 - (void)showLodingView;
 
+- (void)showLodingViewWithText:(NSString *)text;
+
 - (void)hideLodingView;
 
 @end

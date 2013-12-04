@@ -11,7 +11,6 @@
 #import "CICCarInfoCell.h"
 #import "CICCarInfoEntity.h"
 #import "CICMainCaptureViewController.h"
-#import "MBProgressHUD.h"
 
 @interface CICMyCaptureListViewController () <UITableViewDataSource>
 
@@ -43,19 +42,11 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
-    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.view];
-	[self.view addSubview:HUD];
-    [HUD show:YES];
-    
+    [self showLodingViewWithText:@"正在获取您的历史采集记录"];
     [self.carInfoService carInfoListWithBlock:^(NSArray *list, NSError *error) {
-        [HUD hide:YES];
+        [self hideLodingView];
         
         if (!error && list && [list count] > 0) {
             self.carInfoList = list;
