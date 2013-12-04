@@ -29,6 +29,7 @@
 
 @property (strong, nonatomic) NSString *currentShowMainDate;
 @property (strong, nonatomic) NSString *currentShowSubDate;
+
 @end
 
 @implementation CICMyCaptureListViewController
@@ -58,6 +59,9 @@
         
         if (!error && list && [list count] > 0) {
             self.carInfoList = list;
+            
+            self.currentShowMainDate = @"";
+            self.currentShowSubDate = @"";
             [self.tableView reloadData];
         }
         
@@ -113,25 +117,49 @@
     CICCarInfoCell *carInfoCell = (CICCarInfoCell *)cell;
     CICCarInfoEntity *carInfoEntity = self.carInfoList[indexPath.row];
 
-    NSString *infoStatus;
+    [self configureCarInfoStatusWithCell:carInfoCell carInfoEntity:carInfoEntity];
+    [self configureCarInfoDateWithCell:carInfoCell carInfoEntity:carInfoEntity atIndexPath:indexPath];
+    
+    [carInfoCell setCarName:carInfoEntity.carName
+                    mileage:carInfoEntity.mileage
+               firstRegTime:carInfoEntity.firstRegTime
+                  salePrice:carInfoEntity.salePrice
+                   carImage:carInfoEntity.carImage];
+}
+
+- (void)configureCarInfoStatusWithCell:(CICCarInfoCell *)carInfoCell carInfoEntity:(CICCarInfoEntity *)carInfoEntity
+{
     switch (carInfoEntity.status) {
         case Uploaded:
-            infoStatus = @"已上传";
+            carInfoCell.infoStatus.text = @"已上传";
+            carInfoCell.infoStatus.textColor = [UIColor greenColor];
             carInfoCell.accessoryType = UITableViewCellAccessoryNone;
             carInfoCell.userInteractionEnabled = NO;
             break;
-
+            
         case NoUpload:
-            infoStatus = @"未上传";
+            carInfoCell.infoStatus.text = @"未上传";
+            carInfoCell.infoStatus.textColor = [UIColor redColor];
             carInfoCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             carInfoCell.userInteractionEnabled = YES;
             break;
-
+            
         default:
-            infoStatus = @"异常状态";
+            carInfoCell.infoStatus.text = @"异常状态";
             carInfoCell.accessoryType = UITableViewCellAccessoryNone;
             carInfoCell.userInteractionEnabled = NO;
             break;
+    }
+}
+
+- (void)configureCarInfoDateWithCell:(CICCarInfoCell *)carInfoCell
+                       carInfoEntity:(CICCarInfoEntity *)carInfoEntity
+                         atIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row = indexPath.row;
+    if (row == 0
+        || row == ([self.carInfoList count]-1)) {
+        self.currentShowMainDate = @"";
     }
     
     NSString *showMainDate;
@@ -152,7 +180,7 @@
             self.currentShowMainDate = showMainDate;
         }
         
-    // 处理本月的
+        // 处理本年本月的
     } else if ([self isThisMonth:carInfoEntity.addTime]) {
         showMainDate = [self getDay:carInfoEntity.addTime];
         showSubDate = [self getMonth:carInfoEntity.addTime];
@@ -163,18 +191,12 @@
         }
         else {
             carInfoCell.MainTime.text = showMainDate;
-            carInfoCell.subTime.text = showSubDate;
+            carInfoCell.subTime.text = [NSString stringWithFormat:@"%@月", showSubDate];
             
             self.currentShowMainDate = showMainDate;
         }
     }
 
-    [carInfoCell setCarName:carInfoEntity.carName
-                    mileage:carInfoEntity.mileage
-               firstRegTime:carInfoEntity.firstRegTime
-                  salePrice:carInfoEntity.salePrice
-                   carImage:carInfoEntity.carImage
-                 infoStatus:infoStatus];
 }
 
 - (BOOL)isToday:(NSString *)dateStr
@@ -224,6 +246,9 @@
 }
 - (void)updateView
 {
+    self.currentShowMainDate = @"";
+    self.currentShowSubDate = @"";
+    
     [self.tableView reloadData];
     
     [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {

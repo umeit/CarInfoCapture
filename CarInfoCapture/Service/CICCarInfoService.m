@@ -88,6 +88,16 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
 // 更新修改过的采集信息
 - (void)updateCarInfo:(CICCarInfoEntity *)carInfo withBlock:(CICCarInfoServiceGeneralErrorBlock)block
 {
+    NSDate *date = [NSDate date];
+    
+    //    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    //    NSInteger interval = [zone secondsFromGMTForDate:date];
+    //    NSDate *localeDate = [date dateByAddingTimeInterval:interval];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    carInfo.addTime = [dateFormatter stringFromDate:date];
     [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {
         block(error);
     }];

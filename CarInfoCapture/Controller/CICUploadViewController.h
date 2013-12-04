@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CICViewController.h"
 
-@interface CICUploadViewController : UIViewController
+@interface CICUploadViewController : CICViewController
 
 @end

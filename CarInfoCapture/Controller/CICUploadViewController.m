@@ -95,7 +95,6 @@
 - (IBAction)uploadButtonPress:(id)sender
 {
     self.isUploading = YES;
-    
     self.uploadButton.userInteractionEnabled = NO;
     
     [[self.tableView visibleCells] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -111,12 +110,7 @@
 - (IBAction)cancelButtonPress:(id)sender
 {
     if (self.isUploading) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"正在上传车辆信息，请稍后"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"确定"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+        [self showCustomTextAlert:@"正在上传车辆信息，请稍后"];
     }
     else {
         [self dismissViewControllerAnimated:YES completion:nil];
