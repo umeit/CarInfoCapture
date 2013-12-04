@@ -9,11 +9,16 @@
 #import "CICViewController.h"
 
 @interface CICTableViewController : UITableViewController
+
+- (void)showCustomTextAlert:(NSString *)text withOKButtonPressed:(void(^)())block;
+
 - (void)showCustomTextAlert:(NSString *)text;
 
 - (void)showCustomText:(NSString *)text delay:(NSInteger)delay;
 
 - (void)showLodingView;
+
+- (void)showLodingViewWithText:(NSString *)text;
 
 - (void)hideLodingView;
 @end

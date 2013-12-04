@@ -10,6 +10,8 @@
 
 @interface CICViewController : UIViewController
 
+- (void)showCustomTextAlert:(NSString *)text withOKButtonPressed:(void(^)())block;
+
 - (void)showCustomTextAlert:(NSString *)text;
 
 - (void)showCustomText:(NSString *)text delay:(NSInteger)delay;

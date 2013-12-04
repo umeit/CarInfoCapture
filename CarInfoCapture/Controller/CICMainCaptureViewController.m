@@ -21,6 +21,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 }CarInfoSaveStatus;
 
 @interface CICMainCaptureViewController () <CICCarInfoDidChangeDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *firstCheckCompleteImage;
 @property (weak, nonatomic) IBOutlet UIImageView *secondCheckCompleteImage;
 @property (weak, nonatomic) IBOutlet UIImageView *thirdCheckCompleteImage;
@@ -29,6 +30,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 @property (nonatomic) CarInfoSaveStatus carInfoSaveStatus;
 
 @property (strong, nonatomic) CICCarInfoService *carInfoService;
+
 @end
 
 @implementation CICMainCaptureViewController
@@ -110,20 +112,15 @@ typedef enum CarInfoSaveStatus : NSInteger {
         [destinationViewController performSelector:@selector(setCarInfoEntity:) withObject:self.carInfoEntity];
     }
     
-    if (self.carInfoSaveStatus == FromDB) {
-        
-    }
-    else if (self.carInfoSaveStatus == FromNSUserDefaults) {
-        
-    }
-    else if (self.carInfoSaveStatus == NewCarInfo) {
-        // 第一导航到其他的视图，表示用户开始采集信息
-        // 将 self.carInfoEntity 保存到 userDefaults 暂存起来
-        // 用于用户在没有「保存」的情况下退出应用后，下次打开时还能看到上次编辑的信息
-//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//        [userDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.carInfoEntity]
-//                         forKey:@"UnsaveCarInfoEntity"];
-    }
+//    if (self.carInfoSaveStatus == FromDB) {
+//        
+//    }
+//    else if (self.carInfoSaveStatus == FromNSUserDefaults) {
+//        
+//    }
+//    else if (self.carInfoSaveStatus == NewCarInfo) {
+//
+//    }
 }
 
 #pragma mark - Action
@@ -169,7 +166,9 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (IBAction)clearButtonPress:(id)sender
 {
-    [self clearCurrentCapture];
+    [self showCustomTextAlert:@"清空正在采集信息？" withOKButtonPressed:^{
+        [self clearCurrentCapture];
+    }];
 }
 
 #pragma mark - CICCarInfoDidChangeDelegate

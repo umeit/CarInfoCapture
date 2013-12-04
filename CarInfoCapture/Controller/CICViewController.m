@@ -9,13 +9,36 @@
 #import "CICViewController.h"
 #import "MBProgressHUD.h"
 
-@interface CICViewController ()
+@interface CICViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) MBProgressHUD *HUD;
+
+@property (strong, nonatomic) NSMutableArray *blockList;
+
+@property (nonatomic) NSInteger alertBlockIndex;
 
 @end
 
 @implementation CICViewController
+
+- (void)showCustomTextAlert:(NSString *)text withOKButtonPressed:(void (^)())block
+{
+    if (!self.blockList) {
+        self.blockList = [[NSMutableArray alloc] init];
+    }
+    
+    [self.blockList setObject:block atIndexedSubscript:self.alertBlockIndex];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:text
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          otherButtonTitles:@"确定", nil];
+    alert.tag = self.alertBlockIndex;
+    [alert show];
+    
+    self.alertBlockIndex ++;
+}
 
 - (void)showCustomTextAlert:(NSString *)text
 {
@@ -61,6 +84,16 @@
 - (void)hideLodingView
 {
     [self.HUD hide:YES];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        void (^block)(void) = self.blockList[alertView.tag];
+        block();
+    }
 }
 
 @end

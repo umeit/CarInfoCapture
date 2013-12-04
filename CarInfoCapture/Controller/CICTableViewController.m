@@ -10,10 +10,35 @@
 #import "MBProgressHUD.h"
 
 @interface CICTableViewController ()
+
 @property (strong, nonatomic) MBProgressHUD *HUD;
+
+@property (strong, nonatomic) NSMutableArray *blockList;
+
+@property (nonatomic) NSInteger alertBlockIndex;
+
 @end
 
 @implementation CICTableViewController
+
+- (void)showCustomTextAlert:(NSString *)text withOKButtonPressed:(void (^)())block
+{
+    if (!self.blockList) {
+        self.blockList = [[NSMutableArray alloc] init];
+    }
+    
+    [self.blockList setObject:block atIndexedSubscript:self.alertBlockIndex];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:text
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          otherButtonTitles:@"确定", nil];
+    alert.tag = self.alertBlockIndex;
+    [alert show];
+    
+    self.alertBlockIndex ++;
+}
 
 - (void)showCustomTextAlert:(NSString *)text
 {
@@ -40,11 +65,18 @@
 
 - (void)showLodingView
 {
+    [self showLodingViewWithText:nil];
+}
+
+- (void)showLodingViewWithText:(NSString *)text
+{
     if (!self.HUD) {
         self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     }
     
     [self.view addSubview:self.HUD];
+    
+    self.HUD.labelText = text;
     
     [self.HUD show:YES];
 }
@@ -52,6 +84,16 @@
 - (void)hideLodingView
 {
     [self.HUD hide:YES];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        void (^block)(void) = self.blockList[alertView.tag];
+        block();
+    }
 }
 
 @end
