@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CICTableViewController.h"
 
 @class CICCarInfoEntity;
 
-@interface CICMainCaptureViewController : CICTableViewController
+@interface CICMainCaptureViewController : UITableViewController
 
 @property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
 

@@ -64,8 +64,6 @@
 		03AD2741184874F800284B91 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 03AD273D184874F800284B91 /* .travis.yml */; };
 		03AD2742184874F800284B91 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AD273F184874F800284B91 /* MBProgressHUD.m */; };
 		03AD288E1848784A00284B91 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03AD288D1848784A00284B91 /* 37x-Checkmark@2x.png */; };
-		03AD4643184ED1CF008F02BB /* CICViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AD4642184ED1CF008F02BB /* CICViewController.m */; };
-		03AD4646184ED467008F02BB /* CICTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AD4645184ED467008F02BB /* CICTableViewController.m */; };
 		03B7AA9D1846FB8C00D68567 /* CICAddCustomItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */; };
 		03B7AAA31847270200D68567 /* cpture_defaut.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B7AA9E1847270100D68567 /* cpture_defaut.png */; };
 		03B7AAA41847270200D68567 /* cpture_fail.png in Resources */ = {isa = PBXBuildFile; fileRef = 03B7AA9F1847270100D68567 /* cpture_fail.png */; };
@@ -345,10 +343,6 @@
 		03AD273E184874F800284B91 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		03AD273F184874F800284B91 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		03AD288D1848784A00284B91 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
-		03AD4641184ED1CF008F02BB /* CICViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICViewController.h; sourceTree = "<group>"; };
-		03AD4642184ED1CF008F02BB /* CICViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICViewController.m; sourceTree = "<group>"; };
-		03AD4644184ED467008F02BB /* CICTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICTableViewController.h; sourceTree = "<group>"; };
-		03AD4645184ED467008F02BB /* CICTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICTableViewController.m; sourceTree = "<group>"; };
 		03B7AA9B1846FB8C00D68567 /* CICAddCustomItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICAddCustomItemViewController.h; sourceTree = "<group>"; };
 		03B7AA9C1846FB8C00D68567 /* CICAddCustomItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICAddCustomItemViewController.m; sourceTree = "<group>"; };
 		03B7AA9E1847270100D68567 /* cpture_defaut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cpture_defaut.png; sourceTree = "<group>"; };
@@ -627,10 +621,6 @@
 				0372D30F18488CDD00962068 /* CICSettingsViewController.m */,
 				0372D31218488FD500962068 /* CICLoginViewController.h */,
 				0372D31318488FD500962068 /* CICLoginViewController.m */,
-				03AD4641184ED1CF008F02BB /* CICViewController.h */,
-				03AD4642184ED1CF008F02BB /* CICViewController.m */,
-				03AD4644184ED467008F02BB /* CICTableViewController.h */,
-				03AD4645184ED467008F02BB /* CICTableViewController.m */,
 				03F7EA26184F362F0099F7CE /* UIViewController+Prompt.h */,
 				03F7EA27184F362F0099F7CE /* UIViewController+Prompt.m */,
 			);
@@ -1309,7 +1299,6 @@
 				0339EF7A1831FD500082A35E /* CICCarInfoEntity.m in Sources */,
 				03BC90CE183F3182008E8B88 /* NSData+CICData.m in Sources */,
 				03BC9044183F0934008E8B88 /* CICFinalCheckViewController.m in Sources */,
-				03AD4643184ED1CF008F02BB /* CICViewController.m in Sources */,
 				03BC017F1832134A000BDAF3 /* CICGlobalService.m in Sources */,
 				03F05FFA1843089C00DF976A /* CICCarModelLIstViewController.m in Sources */,
 				03BC9047183F10DF008E8B88 /* CICCarBaseInfoViewController.m in Sources */,
@@ -1331,7 +1320,6 @@
 				03BC019118321714000BDAF3 /* FMResultSet.m in Sources */,
 				03B7AA9D1846FB8C00D68567 /* CICAddCustomItemViewController.m in Sources */,
 				0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */,
-				03AD4646184ED467008F02BB /* CICTableViewController.m in Sources */,
 				033A2326183E23EF004EE235 /* CICCarLocationViewController.m in Sources */,
 				0339EF781831FD500082A35E /* CICCarBaseCheckReportViewController.m in Sources */,
 				033A22AE183DA97E004EE235 /* NSString+CICString.m in Sources */,

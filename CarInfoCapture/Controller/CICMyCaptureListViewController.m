@@ -11,6 +11,7 @@
 #import "CICCarInfoCell.h"
 #import "CICCarInfoEntity.h"
 #import "CICMainCaptureViewController.h"
+#import "UIViewController+Prompt.h"
 
 @interface CICMyCaptureListViewController () <UITableViewDataSource>
 

@@ -8,7 +8,7 @@
 
 #import "CICLoginViewController.h"
 #import "CICUserService.h"
-#import "MBProgressHUD.h"
+#import "UIViewController+Prompt.h"
 
 @interface CICLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userIDTextField;

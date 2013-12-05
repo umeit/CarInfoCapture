@@ -103,7 +103,8 @@ static char kAlertBlockIndex;
 
 - (void)setHUD:(MBProgressHUD *)HUD
 {
-    objc_setAssociatedObject(self, &kHUD, HUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kHUD, HUD,
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSMutableArray *)blockList
@@ -113,17 +114,21 @@ static char kAlertBlockIndex;
 
 - (void)setBlockList:(NSMutableArray *)blockList
 {
-    objc_setAssociatedObject(self, &kBLockList, blockList, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kBLockList,
+                             blockList, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSInteger)alertBlockIndex
 {
-    return [objc_getAssociatedObject(self, &kAlertBlockIndex) integerValue];
+    return [objc_getAssociatedObject(self,
+                                     &kAlertBlockIndex) integerValue];
 }
 
 - (void)setAlertBlockIndex:(NSInteger)alertBlockIndex
 {
-    objc_setAssociatedObject(self, &kAlertBlockIndex, @(alertBlockIndex), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kAlertBlockIndex,
+                             @(alertBlockIndex),
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

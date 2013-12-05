@@ -10,6 +10,7 @@
 #import "CICCarBaseCheckReportViewController.h"
 #import "CICCarInfoService.h"
 #import "CICCarInfoEntity.h"
+#import "UIViewController+Prompt.h"
 
 #define NeedSaveToNSUserDefaults self.carInfoSaveStatus == FromNSUserDefaults || self.carInfoSaveStatus == NewCarInfo
 #define NeedUpdateToDB           self.carInfoSaveStatus == FromDB

@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CICViewController.h"
 
-@interface CICMyCaptureListViewController : CICViewController
+@interface CICMyCaptureListViewController : UIViewController
 
 @end
