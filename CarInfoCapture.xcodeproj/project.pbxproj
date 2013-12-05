@@ -239,6 +239,7 @@
 		03BC91F6183F6AC3008E8B88 /* NSFileHandle+readLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */; };
 		03F05FF71842F43200DF976A /* CICCarBrandService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F05FF61842F43200DF976A /* CICCarBrandService.m */; };
 		03F05FFA1843089C00DF976A /* CICCarModelLIstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F05FF91843089C00DF976A /* CICCarModelLIstViewController.m */; };
+		03F7EA28184F362F0099F7CE /* UIViewController+Prompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F7EA27184F362F0099F7CE /* UIViewController+Prompt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -537,6 +538,8 @@
 		03F05FF61842F43200DF976A /* CICCarBrandService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBrandService.m; sourceTree = "<group>"; };
 		03F05FF81843089C00DF976A /* CICCarModelLIstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarModelLIstViewController.h; sourceTree = "<group>"; };
 		03F05FF91843089C00DF976A /* CICCarModelLIstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarModelLIstViewController.m; sourceTree = "<group>"; };
+		03F7EA26184F362F0099F7CE /* UIViewController+Prompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Prompt.h"; sourceTree = "<group>"; };
+		03F7EA27184F362F0099F7CE /* UIViewController+Prompt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Prompt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,6 +631,8 @@
 				03AD4642184ED1CF008F02BB /* CICViewController.m */,
 				03AD4644184ED467008F02BB /* CICTableViewController.h */,
 				03AD4645184ED467008F02BB /* CICTableViewController.m */,
+				03F7EA26184F362F0099F7CE /* UIViewController+Prompt.h */,
+				03F7EA27184F362F0099F7CE /* UIViewController+Prompt.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1297,6 +1302,7 @@
 				03BC91F6183F6AC3008E8B88 /* NSFileHandle+readLine.m in Sources */,
 				0339EF831831FD500082A35E /* AFURLSessionManager.m in Sources */,
 				03BC018E18321714000BDAF3 /* FMDatabasePool.m in Sources */,
+				03F7EA28184F362F0099F7CE /* UIViewController+Prompt.m in Sources */,
 				03BC018D18321714000BDAF3 /* FMDatabaseAdditions.m in Sources */,
 				0339EF871831FD500082A35E /* CICCarInfoCell.m in Sources */,
 				0339EF811831FD500082A35E /* AFURLRequestSerialization.m in Sources */,

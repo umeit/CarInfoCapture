@@ -12,7 +12,7 @@
 #import "CICCarInfoEntity.h"
 
 #define NeedSaveToNSUserDefaults self.carInfoSaveStatus == FromNSUserDefaults || self.carInfoSaveStatus == NewCarInfo
-#define NeedUpdateToDB             self.carInfoSaveStatus == FromDB
+#define NeedUpdateToDB           self.carInfoSaveStatus == FromDB
 
 typedef enum CarInfoSaveStatus : NSInteger {
     FromDB,
