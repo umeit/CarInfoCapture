@@ -8,10 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^CICUserServiceLoginBlock)(NSInteger retCode);
+typedef enum CICUserServiceRetCode : NSInteger{
+    CICUserServiceLoginSuccess,
+    CICUserServiceUserIDError,
+    CICUserServicePasswordError,
+    CICUserServiceNetworkingError,
+    CICUserServiceServerError
+}CICUserServiceRetCode;
+
+typedef void(^CICUserServiceLoginBlock)(CICUserServiceRetCode retCode);
 
 @interface CICUserService : NSObject
 
-- (void)loginWithUserID:(NSString *)userID password:(NSString *)password block:(CICUserServiceLoginBlock)block;
+- (void)loginWithUserID:(NSString *)userID
+               password:(NSString *)password
+                  block:(CICUserServiceLoginBlock)block;
 
 @end

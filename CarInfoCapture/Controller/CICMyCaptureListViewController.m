@@ -51,17 +51,36 @@
     [super viewDidLoad];
     
     if (self.userID && self.password) {
-        [self.userService loginWithUserID:self.userID password:self.password block:^(NSInteger retCode) {
-            
-            [self showLodingView];
-            if (retCode == 0) {
-                [self hideLodingView];
-            }
-            else if (retCode == -1) {
-                [self hideLodingView];
-                [self showCustomTextAlert:@"登录失败，您目前只能采集信息，不能上传信息"];
-            }
-        }];
+        
+        [self showLodingView];
+        
+        [self.userService loginWithUserID:self.userID
+                                 password:self.password
+                                    block:^(CICUserServiceRetCode retCode) {
+                                        
+                                        [self hideLodingView];
+              
+                                        switch (retCode) {
+                                            case CICUserServiceNetworkingError:
+                                                [self showCustomTextAlert:@"登录失败，您目前只能采集信息，不能上传信息"];
+                                                break;
+                                                
+                                            case CICUserServiceServerError:
+                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
+                                                break;
+                                                
+                                            case CICUserServiceLoginSuccess:
+                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
+                                                break;
+                                                
+                                            case CICUserServicePasswordError:
+                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
+                                                break;
+                                                
+                                            default:
+                                                break;
+                                        }
+                                    }];
     }
 }
 

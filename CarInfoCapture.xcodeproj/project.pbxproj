@@ -11,6 +11,7 @@
 		030146211845F53F004A5366 /* CICUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 030146201845F53F004A5366 /* CICUploadCell.m */; };
 		0307B30E183B606600C8DB82 /* CICCarImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0307B30D183B606600C8DB82 /* CICCarImageViewController.m */; };
 		03089A081833764D006F2E4B /* CICMainCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03089A071833764D006F2E4B /* CICMainCaptureViewController.m */; };
+		0323EAD2185183CC00752172 /* CICUserHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 0323EAD1185183CC00752172 /* CICUserHTTPLogic.m */; };
 		032B96161836214000A685D3 /* NSArray+CICArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 032B96151836214000A685D3 /* NSArray+CICArray.m */; };
 		0339EF781831FD500082A35E /* CICCarBaseCheckReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF521831FD500082A35E /* CICCarBaseCheckReportViewController.m */; };
 		0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF541831FD500082A35E /* CICMyCaptureListViewController.m */; };
@@ -260,6 +261,8 @@
 		0307B30D183B606600C8DB82 /* CICCarImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarImageViewController.m; sourceTree = "<group>"; };
 		03089A061833764D006F2E4B /* CICMainCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICMainCaptureViewController.h; sourceTree = "<group>"; };
 		03089A071833764D006F2E4B /* CICMainCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICMainCaptureViewController.m; sourceTree = "<group>"; };
+		0323EAD0185183CC00752172 /* CICUserHTTPLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICUserHTTPLogic.h; sourceTree = "<group>"; };
+		0323EAD1185183CC00752172 /* CICUserHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICUserHTTPLogic.m; sourceTree = "<group>"; };
 		032B96141836214000A685D3 /* NSArray+CICArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CICArray.h"; sourceTree = "<group>"; };
 		032B96151836214000A685D3 /* NSArray+CICArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CICArray.m"; sourceTree = "<group>"; };
 		0339EF511831FD500082A35E /* CICCarBaseCheckReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBaseCheckReportViewController.h; sourceTree = "<group>"; };
@@ -679,6 +682,8 @@
 				0339EF6F1831FD500082A35E /* CICCarInfoDBLogic.m */,
 				0339EF701831FD500082A35E /* CICCarInfoHTTPLogic.h */,
 				0339EF711831FD500082A35E /* CICCarInfoHTTPLogic.m */,
+				0323EAD0185183CC00752172 /* CICUserHTTPLogic.h */,
+				0323EAD1185183CC00752172 /* CICUserHTTPLogic.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -1324,6 +1329,7 @@
 				0339EF781831FD500082A35E /* CICCarBaseCheckReportViewController.m in Sources */,
 				033A22AE183DA97E004EE235 /* NSString+CICString.m in Sources */,
 				0339EF861831FD500082A35E /* CICCarInfoService.m in Sources */,
+				0323EAD2185183CC00752172 /* CICUserHTTPLogic.m in Sources */,
 				0339EF7D1831FD500082A35E /* AFHTTPSessionManager.m in Sources */,
 				0339EF851831FD500082A35E /* CICCarInfoHTTPLogic.m in Sources */,
 			);

@@ -7,19 +7,47 @@
 //
 
 #import "CICUserService.h"
-#import "CICCarInfoHTTPLogic.h"
+#import "CICUserHTTPLogic.h"
 
 @implementation CICUserService
 
-- (void)loginWithUserID:(NSString *)userID password:(NSString *)password block:(CICUserServiceLoginBlock)block
+- (void)loginWithUserID:(NSString *)userID
+               password:(NSString *)password
+                  block:(CICUserServiceLoginBlock)block
 {
-    [CICCarInfoHTTPLogic loginWithUserID:userID password:password block:^(id responseObject, NSError *error) {
+    [CICUserHTTPLogic loginWithUserID:userID
+                             password:password
+                                block:^(id responseObject, NSError *error) {
         if (!error) {
-            NSInteger retCode = [[responseObject objectForKey:@"ret"] integerValue];
-            block(retCode);
+            id retObject = [responseObject objectForKey:@"ret"];
+            
+            if (retObject) {
+                
+                NSInteger code = [retObject integerValue];
+                switch (code) {
+                    case 0:
+                        block(CICUserServiceLoginSuccess);
+                        break;
+                    
+                    case 1001:
+                        block(CICUserServiceUserIDError);
+                        break;
+                        
+                    case 1002:
+                        block(CICUserServicePasswordError);
+                        break;
+                        
+                    default:
+                        block(CICUserServiceServerError);
+                        break;
+                }
+            }
+            else {
+                block(CICUserServiceServerError);
+            }
         }
         else {
-            block(-1);
+            block(CICUserServiceNetworkingError);
         }
     }];
 }

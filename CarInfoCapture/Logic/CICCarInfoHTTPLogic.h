@@ -13,14 +13,12 @@
 typedef void(^CICCarInfoHTTPLogicUploadImageBLock)(NSString *remoteImagePathStr, NSError *error);
 typedef void(^CarInfoHistoryListBlock)(id list, NSError *error);
 typedef void(^UploadCarInfoListBlock)(NSError *error);
-typedef void(^LoginBlock)(id responseObject, NSError *error);
+
 typedef void(^CICCarInfoHTTPLogicDownloadImageBlock)(UIImage *image);
 
 @interface CICCarInfoHTTPLogic : NSObject
 
 + (void)carInfoHistoryListWithBlock:(CarInfoHistoryListBlock)block;
-
-+ (void)loginWithUserID:(NSString *)userID password:(NSString *)password block:(LoginBlock)bloc;
 
 + (void)downloadImageWithPath:(NSString *)path withBlock:(CICCarInfoHTTPLogicDownloadImageBlock)block;
 

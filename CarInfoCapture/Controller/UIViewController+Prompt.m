@@ -38,6 +38,25 @@ static char kAlertBlockIndex;
     self.alertBlockIndex ++;
 }
 
+- (void)showCustomTextAlert:(NSString *)text withBlock:(void (^)())block
+{
+    if (!self.blockList) {
+        self.blockList = [[NSMutableArray alloc] init];
+    }
+    
+    [self.blockList setObject:block atIndexedSubscript:self.alertBlockIndex];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:text
+                                                   delegate:self
+                                          cancelButtonTitle:@"确定"
+                                          otherButtonTitles:nil];
+    alert.tag = self.alertBlockIndex;
+    [alert show];
+    
+    self.alertBlockIndex ++;
+}
+
 - (void)showCustomTextAlert:(NSString *)text
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
@@ -88,7 +107,13 @@ static char kAlertBlockIndex;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
+    // 只有「确定」
+    if (alertView.numberOfButtons < 2) {
+        void (^block)(void) = self.blockList[alertView.tag];
+        block();
+        
+    // 点击「确定」
+    } else if (buttonIndex == 1) {
         void (^block)(void) = self.blockList[alertView.tag];
         block();
     }
