@@ -20,7 +20,8 @@
 - (void)showCustomTextAlert:(NSString *)text
         withOKButtonPressed:(void(^)())block;
 
-- (void)showCustomTextAlert:(NSString *)text withBlock:(void (^)())block;
+- (void)showCustomTextAlert:(NSString *)text
+                  withBlock:(void (^)())block;
 
 - (void)showCustomTextAlert:(NSString *)text;
 

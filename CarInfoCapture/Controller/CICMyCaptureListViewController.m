@@ -50,38 +50,7 @@
 {
     [super viewDidLoad];
     
-    if (self.userID && self.password) {
-        
-        [self showLodingView];
-        
-        [self.userService loginWithUserID:self.userID
-                                 password:self.password
-                                    block:^(CICUserServiceRetCode retCode) {
-                                        
-                                        [self hideLodingView];
-              
-                                        switch (retCode) {
-                                            case CICUserServiceNetworkingError:
-                                                [self showCustomTextAlert:@"登录失败，您目前只能采集信息，不能上传信息"];
-                                                break;
-                                                
-                                            case CICUserServiceServerError:
-                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
-                                                break;
-                                                
-                                            case CICUserServiceLoginSuccess:
-                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
-                                                break;
-                                                
-                                            case CICUserServicePasswordError:
-                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
-                                                break;
-                                                
-                                            default:
-                                                break;
-                                        }
-                                    }];
-    }
+    [self autoLogin];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -143,13 +112,22 @@
     }
 }
 
-#pragma mark - Previte
+- (void)toLoginView
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"currentLoginedUserID"];
+    [userDefaults removeObjectForKey:@"currentLoginedPassword"];
+    
+    self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CICLoginViewController"];
+}
+
+#pragma mark - Configure Cell
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     CICCarInfoCell *carInfoCell = (CICCarInfoCell *)cell;
     CICCarInfoEntity *carInfoEntity = self.carInfoList[indexPath.row];
-
+    
     [self configureCarInfoStatusWithCell:carInfoCell carInfoEntity:carInfoEntity];
     [self configureCarInfoDateWithCell:carInfoCell carInfoEntity:carInfoEntity atIndexPath:indexPath];
     
@@ -229,8 +207,57 @@
             self.currentShowMainDate = showMainDate;
         }
     }
-
+    
 }
+
+#pragma mark - Login
+
+- (void)autoLogin
+{
+    if (self.userID && self.password) {
+        
+        [self showLodingView];
+        
+        [self.userService loginWithUserID:self.userID
+                                 password:self.password
+                                    block:^(CICUserServiceRetCode retCode) {
+                                        
+                                        [self hideLodingView];
+                                        
+                                        switch (retCode) {
+                                            case CICUserServiceNetworkingError:
+                                                [self showCustomTextAlert:@"登录失败，您目前只能采集信息，不能上传信息"];
+                                                break;
+                                                
+                                            case CICUserServiceServerError:
+                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
+                                                break;
+                                                
+                                            case CICUserServiceLoginSuccess:
+                                            {
+                                                [self showCustomTextAlert:@"请重新登录" withBlock:^{
+                                                    [self toLoginView];
+                                                }];
+                                            }
+                                                break;
+                                                
+                                            case CICUserServicePasswordError:
+                                            {
+                                                [self showCustomTextAlert:@"请重新登录" withBlock:^{
+                                                    [self toLoginView];
+                                                }];
+                                            }
+                                                break;
+                                                
+                                            default:
+                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
+                                                break;
+                                        }
+                                    }];
+    }
+}
+
+#pragma mark - Previte
 
 - (BOOL)isToday:(NSString *)dateStr
 {
