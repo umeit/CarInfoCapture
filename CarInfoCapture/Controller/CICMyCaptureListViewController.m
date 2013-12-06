@@ -226,14 +226,14 @@
                                         
                                         switch (retCode) {
                                             case CICUserServiceNetworkingError:
-                                                [self showCustomTextAlert:@"登录失败，您目前只能采集信息，不能上传信息"];
+                                                [self showCustomTextAlert:@"登录失败，您暂时只能采集信息，不能上传信息"];
                                                 break;
                                                 
                                             case CICUserServiceServerError:
-                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
+                                                [self showCustomTextAlert:@"登录出错，您暂时只能采集信息，不能上传信息"];
                                                 break;
                                                 
-                                            case CICUserServiceLoginSuccess:
+                                            case CICUserServiceUserIDError:
                                             {
                                                 [self showCustomTextAlert:@"请重新登录" withBlock:^{
                                                     [self toLoginView];
@@ -250,7 +250,7 @@
                                                 break;
                                                 
                                             default:
-                                                [self showCustomTextAlert:@"登录出错，您目前只能采集信息，不能上传信息"];
+                                                [self showCustomTextAlert:@"登录出错，您暂时只能采集信息，不能上传信息"];
                                                 break;
                                         }
                                     }];

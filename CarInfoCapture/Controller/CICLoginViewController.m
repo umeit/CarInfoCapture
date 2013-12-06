@@ -49,25 +49,46 @@
     
     [self showLodingView];
     
-    [self.userService loginWithUserID:userID password:password block:^(NSInteger retCode) {
+    [self.userService loginWithUserID:userID password:password block:^(CICUserServiceRetCode retCode) {
         
         [self hideLodingView];
         
-        if (retCode == 0) {
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:userID forKey:@"currentLoginedUserID"];
-            [userDefaults setObject:password forKey:@"currentLoginedPassword"];
-            
-            self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CICTabBarController"];
-        }
-        else if (retCode == -1) {
-            [self showCustomTextAlert:@"登录失败，请稍后再试"];
+        switch (retCode) {
+            case CICUserServiceLoginSuccess:
+            {
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setObject:userID forKey:@"currentLoginedUserID"];
+                [userDefaults setObject:password forKey:@"currentLoginedPassword"];
+                
+                self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CICTabBarController"];
+            }
+                break;
+                
+            case CICUserServiceNetworkingError:
+                [self showCustomTextAlert:@"网络不给力，请稍后再试"];
+                break;
+                
+            case CICUserServiceServerError:
+                [self showCustomTextAlert:@"登录出错，请稍后再试"];
+                break;
+                
+            case CICUserServiceUserIDError:
+                [self showCustomTextAlert:@"用户名错误"];
+                break;
+                
+            case CICUserServicePasswordError:
+                [self showCustomTextAlert:@"密码错误"];
+                break;
+                
+            default:
+                [self showCustomTextAlert:@"登录出错，请稍后再试"];
+                break;
         }
     }];
 }
 
 - (IBAction)signInButtonPress:(id)sender
 {
-    
+    [self showCustomTextAlert:@"请联系公司系统管理员"];
 }
 @end
