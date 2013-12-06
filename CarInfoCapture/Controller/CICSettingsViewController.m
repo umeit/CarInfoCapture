@@ -9,7 +9,6 @@
 #import "CICSettingsViewController.h"
 
 @interface CICSettingsViewController () <UIActionSheetDelegate>
-
 @end
 
 @implementation CICSettingsViewController
@@ -46,6 +45,10 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults removeObjectForKey:@"currentLoginedUserID"];
+        [userDefaults removeObjectForKey:@"currentLoginedPassword"];
+        
         self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CICLoginViewController"];
     }
 }

@@ -12,6 +12,7 @@
 #import "CICCarInfoEntity.h"
 #import "CICMainCaptureViewController.h"
 #import "UIViewController+Prompt.h"
+#import "CICUserService.h"
 
 @interface CICMyCaptureListViewController () <UITableViewDataSource>
 
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) NSArray *carInfoList;
 
 @property (strong, nonatomic) CICCarInfoService *carInfoService;
+@property (strong, nonatomic) CICUserService *userService;
 
 @property (strong, nonatomic) NSString *currentShowMainDate;
 @property (strong, nonatomic) NSString *currentShowSubDate;
@@ -38,9 +40,29 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        self.userService = [[CICUserService alloc] init];
         self.carInfoService = [[CICCarInfoService alloc] init];
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    if (self.userID && self.password) {
+        [self.userService loginWithUserID:self.userID password:self.password block:^(NSInteger retCode) {
+            
+            [self showLodingView];
+            if (retCode == 0) {
+                [self hideLodingView];
+            }
+            else if (retCode == -1) {
+                [self hideLodingView];
+                [self showCustomTextAlert:@"登录失败，您目前只能采集信息，不能上传信息"];
+            }
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -10,4 +10,7 @@
 
 @interface CICMyCaptureListViewController : UIViewController
 
+@property (strong, nonatomic) NSString *userID;
+@property (strong, nonatomic) NSString *password;
+
 @end

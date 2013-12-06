@@ -11,10 +11,12 @@
 #import "UIViewController+Prompt.h"
 
 @interface CICLoginViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *userIDTextField;
 @property (weak, nonatomic) IBOutlet UITextField *PasswordTextField;
 
 @property (strong, nonatomic) CICUserService *userService;
+
 @end
 
 @implementation CICLoginViewController
@@ -26,11 +28,6 @@
         self.userService = [[CICUserService alloc] init];
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
 }
 
 - (IBAction)loginButtonPress:(id)sender
@@ -51,10 +48,16 @@
     [self.PasswordTextField resignFirstResponder];
     
     [self showLodingView];
+    
     [self.userService loginWithUserID:userID password:password block:^(NSInteger retCode) {
+        
         [self hideLodingView];
         
         if (retCode == 0) {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:userID forKey:@"currentLoginedUserID"];
+            [userDefaults setObject:password forKey:@"currentLoginedPassword"];
+            
             self.view.window.rootViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CICTabBarController"];
         }
         else if (retCode == -1) {
