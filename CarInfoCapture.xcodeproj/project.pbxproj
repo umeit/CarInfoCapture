@@ -585,6 +585,7 @@
 				033A22AD183DA97E004EE235 /* NSString+CICString.m */,
 				03BC90CC183F3182008E8B88 /* NSData+CICData.h */,
 				03BC90CD183F3182008E8B88 /* NSData+CICData.m */,
+				0339EF551831FD500082A35E /* Entity */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -636,7 +637,8 @@
 				0339EF561831FD500082A35E /* CICCarInfoEntity.h */,
 				0339EF571831FD500082A35E /* CICCarInfoEntity.m */,
 			);
-			path = Entity;
+			name = Entity;
+			path = ../Entity;
 			sourceTree = "<group>";
 		};
 		0339EF581831FD500082A35E /* Lib */ = {
@@ -751,7 +753,6 @@
 				0301461A1845E841004A5366 /* Protocol */,
 				032B96131836211900A685D3 /* Util */,
 				0339EF501831FD500082A35E /* Controller */,
-				0339EF551831FD500082A35E /* Entity */,
 				0339EF581831FD500082A35E /* Lib */,
 				0339EF6D1831FD500082A35E /* Logic */,
 				0339EF721831FD500082A35E /* Service */,
