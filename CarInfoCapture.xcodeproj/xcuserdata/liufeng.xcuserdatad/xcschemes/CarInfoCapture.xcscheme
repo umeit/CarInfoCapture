@@ -90,7 +90,8 @@
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "AdHoc"
+      customArchiveName = "CarInfoCapture"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
