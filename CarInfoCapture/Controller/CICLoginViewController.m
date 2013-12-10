@@ -30,6 +30,16 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+#ifdef GDEBUG
+    self.userIDTextField.text = @"123";
+    self.PasswordTextField.text = @"123456";
+#endif
+}
+
 - (IBAction)loginButtonPress:(id)sender
 {
     NSString *userID = self.userIDTextField.text;
