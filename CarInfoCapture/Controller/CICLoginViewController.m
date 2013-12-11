@@ -66,6 +66,7 @@
         switch (retCode) {
             case CICUserServiceLoginSuccess:
             {
+                // 保存用户名和密码
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                 [userDefaults setObject:userID forKey:@"currentLoginedUserID"];
                 [userDefaults setObject:password forKey:@"currentLoginedPassword"];

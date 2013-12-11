@@ -31,6 +31,10 @@
                  if (retCode == 0) {
                      block([responseObject objectForKey:@"capture"], nil);
                  }
+                 else {
+                     #warning 错误处理
+                     block(nil, nil);
+                 }
              }
              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                  block(nil, error);

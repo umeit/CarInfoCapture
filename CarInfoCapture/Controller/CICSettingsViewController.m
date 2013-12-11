@@ -45,6 +45,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
+        // 删除保存的用户名密码
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults removeObjectForKey:@"currentLoginedUserID"];
         [userDefaults removeObjectForKey:@"currentLoginedPassword"];

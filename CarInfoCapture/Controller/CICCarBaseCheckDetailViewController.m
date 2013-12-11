@@ -96,15 +96,30 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString *itemName = cell.textLabel.text;
     
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-
-        [self removeMarkedItemName:itemName];
+    if (self.checkType == Facade) {
+        // 单选
+        if (cell.accessoryType != UITableViewCellAccessoryCheckmark) {
+            
+//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+            [self removeAllMarkedItems];
+            
+            [self addMarkedItemName:itemName];
+            
+            [self.tableView reloadData];
+        }
     }
     else {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self addMarkedItemName:itemName];
-        
+        // 多选
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+            [self removeMarkedItemName:itemName];
+        }
+        else {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [self addMarkedItemName:itemName];
+        }
     }
 }
 
@@ -123,26 +138,30 @@
     [self.itemList addObject:item];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    #warning typeStr + userID
     switch (self.checkType) {
         case Underpan:
-            [userDefaults setObject:self.itemList forKey:@"Underpan"];
+            [userDefaults setObject:self.itemList
+                             forKey:[NSString stringWithFormat:@"%@%@", @"Underpan", [userDefaults stringForKey:@"currentLoginedUserID"]]];
             break;
             
         case Engine:
-            [userDefaults setObject:self.itemList forKey:@"Engine"];
+            [userDefaults setObject:self.itemList
+                             forKey:[NSString stringWithFormat:@"%@%@", @"Engine", [userDefaults stringForKey:@"currentLoginedUserID"]]];
             break;
             
         case Paint:
-            [userDefaults setObject:self.itemList forKey:@"Paint"];
+            [userDefaults setObject:self.itemList
+                             forKey:[NSString stringWithFormat:@"%@%@", @"Paint", [userDefaults stringForKey:@"currentLoginedUserID"]]];
             break;
             
         case Inside:
-            [userDefaults setObject:self.itemList forKey:@"Inside"];
+            [userDefaults setObject:self.itemList
+                             forKey:[NSString stringWithFormat:@"%@%@", @"Inside", [userDefaults stringForKey:@"currentLoginedUserID"]]];
             break;
             
         case Facade:
-            [userDefaults setObject:self.itemList forKey:@"Facade"];
+            [userDefaults setObject:self.itemList
+                             forKey:[NSString stringWithFormat:@"%@%@", @"Facade", [userDefaults stringForKey:@"currentLoginedUserID"]]];
             break;
             
         default:
@@ -157,8 +176,9 @@
 - (NSMutableArray *)checkItemWithType:(NSString *)typeStr
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-#warning typeStr + userID
-    NSMutableArray *itemList = (NSMutableArray *)[userDefaults arrayForKey:typeStr];
+    NSString *key = [NSString stringWithFormat:@"%@%@", typeStr, [userDefaults stringForKey:@"currentLoginedUserID"]];
+    
+    NSMutableArray *itemList = (NSMutableArray *)[userDefaults arrayForKey:key];
     if (!itemList) {
         // 初始的选项
         switch (self.checkType) {
@@ -204,6 +224,11 @@
 - (void)removeMarkedItemName:(NSString *)itemName
 {
     [self.selectedItems removeObject:itemName];
+}
+
+- (void)removeAllMarkedItems
+{
+    [self.selectedItems removeAllObjects];
 }
 
 - (BOOL)isItemMarkedWithItemName:(NSString *)itemName
