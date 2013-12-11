@@ -31,7 +31,7 @@
     self.engineDetailLabel.text = [self detailLabelTextWithCarInfoCheckItemList:self.carInfoEntity.engineIssueList];
     self.paintDetailLabel.text = [self detailLabelTextWithCarInfoCheckItemList:self.carInfoEntity.paintIssueList];
     self.insideDetailLabel.text = [self detailLabelTextWithCarInfoCheckItemList:self.carInfoEntity.insideIssueList];
-    self.facadeDetailLabel.text = [self detailLabelTextWithCarInfoCheckItemList:self.carInfoEntity.facadeIssueList];
+    self.facadeDetailLabel.text = [self.carInfoEntity.facadeIssueList firstObject];
 }
 
 #pragma mark - Navigation
