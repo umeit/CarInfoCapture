@@ -24,7 +24,7 @@
     httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
     httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
     
-    [httpManager GET:@"http://capture.youche.com/capture/get_mycapture"
+    [httpManager GET:@"http://capture.yicheyi.com/capture/get_mycapture"
           parameters:@{@"pi": @(1), @"ps": @(200)}
              success:^(AFHTTPRequestOperation *operation, id responseObject) {
                  NSInteger retCode = [[responseObject objectForKey:@"ret"] integerValue];
@@ -45,7 +45,7 @@
     
     NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
     //capture.youche.com
-    [httpManager POST:@"http://capture.youche.com/capture/upload" parameters:carInfoParameters
+    [httpManager POST:@"http://capture.yicheyi.com/capture/upload" parameters:carInfoParameters
                                     constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                         
                                     }

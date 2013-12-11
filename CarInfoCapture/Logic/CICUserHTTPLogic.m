@@ -16,7 +16,7 @@
     httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
     httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
     
-    [httpManager POST:@"http://capture.youche.com/login" parameters:@{@"username": userID, @"password": password}
+    [httpManager POST:@"http://capture.yicheyi.com/login" parameters:@{@"username": userID, @"password": password}
 constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {}
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   block(responseObject, nil);
