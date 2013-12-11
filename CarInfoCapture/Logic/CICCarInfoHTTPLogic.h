@@ -10,11 +10,15 @@
 
 @class CICCarInfoEntity;
 
+
 typedef void(^CICCarInfoHTTPLogicUploadImageBLock)(NSString *remoteImagePathStr, NSError *error);
-typedef void(^CarInfoHistoryListBlock)(id list, NSError *error);
+
+typedef void(^CarInfoHistoryListBlock)(id responseObject, NSError *error);
+
 typedef void(^UploadCarInfoListBlock)(NSError *error);
 
 typedef void(^CICCarInfoHTTPLogicDownloadImageBlock)(UIImage *image);
+
 
 @interface CICCarInfoHTTPLogic : NSObject
 
@@ -25,6 +29,5 @@ typedef void(^CICCarInfoHTTPLogicDownloadImageBlock)(UIImage *image);
 - (void)uploadCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UploadCarInfoListBlock)block;
 
 - (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block;
-
 
 @end

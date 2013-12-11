@@ -27,14 +27,7 @@
     [httpManager GET:@"http://capture.yicheyi.com/capture/get_mycapture"
           parameters:@{@"pi": @(1), @"ps": @(200)}
              success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                 NSInteger retCode = [[responseObject objectForKey:@"ret"] integerValue];
-                 if (retCode == 0) {
-                     block([responseObject objectForKey:@"capture"], nil);
-                 }
-                 else {
-                     #warning 错误处理
-                     block(nil, nil);
-                 }
+                 block(responseObject, nil);
              }
              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                  block(nil, error);

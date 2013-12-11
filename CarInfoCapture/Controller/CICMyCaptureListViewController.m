@@ -249,6 +249,10 @@
                                             }
                                                 break;
                                                 
+                                            case CICUserServiceLoginSuccess:
+                                                
+                                                break;
+                                                
                                             default:
                                                 [self showCustomTextAlert:@"登录出错，您暂时只能采集信息，不能上传信息"];
                                                 break;

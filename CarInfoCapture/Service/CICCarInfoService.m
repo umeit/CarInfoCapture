@@ -16,7 +16,8 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
 
 @implementation CICCarInfoService
 
-- (void)carInfoListWithBlock:(CarInfoListBlock)block
+// 获取采集历史记录
+- (void)carInfoListWithBlock:(CICCarInfoServiceCarInfoListBlock)block
 {
     // 判断是否存在数据库
     if ([CICCarInfoDBLogic isDBExist]) {
@@ -35,24 +36,42 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
         [CICCarInfoDBLogic initCarInfoDB];
         
         // 如果不存在就去服务器上取，然后建立数据库，存入信息
-        [CICCarInfoHTTPLogic carInfoHistoryListWithBlock:^(id list, NSError *error) {
+        [CICCarInfoHTTPLogic carInfoHistoryListWithBlock:^(id responseObject, NSError *error) {
             if (!error) {
-                [self jsonListToCarInfoEntityList:(NSArray *)list withBlock:^(NSMutableArray *carInfoList) {
-                    if ([carInfoList count] > 0) {
-                        
-                        // 将信息存入数据库，以后都从数据库读取
-                        [CICCarInfoDBLogic saveCarInfoList:carInfoList WithBlock:^(NSError *error) {
-                            if (error) {
-                                // 错误处理
-                                NSLog(@"初始信息存入数据库失败！");
-                                block(nil, error);
-                            }
-                            else {
-                                block(carInfoList, nil);
-                            }
-                        }];
+                id retObject = [responseObject objectForKey:@"ret"];
+                
+                if (retObject) {
+                    NSInteger code = [retObject integerValue];
+                    // 获取成功
+                    if (code == 0) {
+                        // 解析数据
+                        [self jsonListToCarInfoEntityList:[responseObject objectForKey:@"capture"]
+                                                withBlock:^(NSMutableArray *carInfoList) {
+                                                    if ([carInfoList count] > 0) {
+                                                        // 将信息存入数据库，以后都从数据库读取
+                                                        [CICCarInfoDBLogic saveCarInfoList:carInfoList
+                                                                                 WithBlock:^(NSError *error) {
+                                                                                     if (!error) {
+                                                                                         block(carInfoList, nil);
+                                                                                     }
+                                                                                     else {
+                                                                                         // 错误处理
+                                                                                         NSLog(@"初始信息存入数据库失败！");
+                                                                                         block(nil, error);
+                                                                                     }
+                                                                                 }];
+                                                    }
+                                                }];
                     }
-                }];
+                    // 获取出错
+                    else {
+                        block(nil, nil);
+                    }
+                }
+                // 获取出错
+                else {
+                    block(nil, nil);
+                }
             }
             // 访问网络失败
             else {
