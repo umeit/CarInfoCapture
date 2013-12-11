@@ -65,7 +65,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
                     }
                     // 获取出错
                     else {
-                        NSLog(@"从服务器获取采集信息失败返回码: %ld", code);
+                        NSLog(@"从服务器获取采集信息失败，返回码: %ld", code);
                         block(nil, nil);
                     }
                 }
@@ -76,7 +76,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
             }
             // 访问网络失败
             else {
-                NSLog(@"从服务器获取采集信息失败返回数据: %@", responseObject);
+                NSLog(@"从服务器获取采集信息失败，返回无法解析的数据: %@", responseObject);
                 block(nil, error);
             }
         }];
