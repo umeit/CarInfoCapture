@@ -10,5 +10,5 @@
 
 @interface CICCarLocationViewController : UITableViewController
 @property (strong, nonatomic) NSArray *sourceLocationList;
-@property (nonatomic) BOOL isFinalViewController;
+//@property (nonatomic) BOOL isFinalViewController;
 @end

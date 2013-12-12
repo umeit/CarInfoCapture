@@ -2123,12 +2123,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="W4X-YN-3T1"/>
+        <segue reference="YHT-hg-Uv7"/>
         <segue reference="64s-78-NBN"/>
+        <segue reference="W4X-YN-3T1"/>
         <segue reference="yxq-0z-Rud"/>
         <segue reference="8Tt-jS-1Kn"/>
-        <segue reference="fJf-kv-hu8"/>
-        <segue reference="bNx-a4-KP0"/>
         <segue reference="yOG-vp-kuR"/>
+        <segue reference="fJf-kv-hu8"/>
     </inferredMetricsTieBreakers>
 </document>
