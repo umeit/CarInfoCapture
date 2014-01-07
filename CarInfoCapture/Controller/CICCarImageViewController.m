@@ -117,7 +117,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     
     // 压缩图片
-    image = [CICGlobalService thumbWithImage:image maxHeight:1024 maxWidth:1024];
+    image = [CICGlobalService thumbWithImage:image maxHeight:800 maxWidth:800];
     
     // 将图片保存到本地
     NSString *iamgeSavePath = [CICGlobalService saveImageToLocal:image];
@@ -136,23 +136,28 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         // 跟新UI
         switch (self.currentTackIamgeIndex) {
             case frontFlankImageIndex:
-                self.frontFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontFlankImageIndex][@"v"]];
+//                self.frontFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontFlankImageIndex][@"v"]];
+                self.frontFlankImage.image = image;
                 break;
                 
             case backFlankImageIndex:
-                self.backFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backFlankImageIndex][@"v"]];
+//                self.backFlankImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backFlankImageIndex][@"v"]];
+                self.backFlankImage.image = image;
                 break;
                 
             case insideCentralImageIndex:
-                self.insideCentralImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[insideCentralImageIndex][@"v"]];
+//                self.insideCentralImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[insideCentralImageIndex][@"v"]];
+                self.insideCentralImage.image = image;
                 break;
                 
             case frontSeatImageIndex:
-                self.frontSeatImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontSeatImageIndex][@"v"]];
+//                self.frontSeatImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[frontSeatImageIndex][@"v"]];
+                self.frontSeatImage.image = image;
                 break;
                 
             case backSeatImageIndex:
-                self.backSeatImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backSeatImageIndex][@"v"]];
+//                self.backSeatImage.image = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPathList[backSeatImageIndex][@"v"]];
+                self.backSeatImage.image = image;
                 break;
                 
             default:

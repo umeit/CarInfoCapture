@@ -62,7 +62,10 @@
     
     NSDictionary *uploadImageParameters = [self uploadImageParameters:filePathStr];
     
-    NSData *imageData = [NSData dataWithContentsOfFile:filePathStr];
+    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask,
+                                                                 YES)[0];
+    NSData *imageData = [NSData dataWithContentsOfFile:[documentPath stringByAppendingPathComponent:filePathStr]];
     
     [httpManager POST:@"http://upload.darengong.com:8090"
            parameters:uploadImageParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
