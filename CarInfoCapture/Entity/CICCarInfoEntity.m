@@ -124,7 +124,12 @@
 - (void)setCarImagesLocalPathList:(NSMutableArray *)carImagesLocalPathList
 {
     _carImagesLocalPathList = carImagesLocalPathList;
-    self.carImage = [UIImage imageWithData:[NSData dataWithContentsOfFile:_carImagesLocalPathList[0][@"v"]]];
+    
+    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask,
+                                                                 YES)[0];
+    
+    self.carImage = [UIImage imageWithData:[NSData dataWithContentsOfFile:[documentPath stringByAppendingPathComponent:_carImagesLocalPathList[0][@"v"]]]];
 }
 
 @end

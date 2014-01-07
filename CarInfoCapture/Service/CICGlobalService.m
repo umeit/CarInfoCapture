@@ -7,7 +7,9 @@
 //
 
 #import "CICGlobalService.h"
+
 #define TwoDecimal(n) [[NSString stringWithFormat:@"%.2f", n] floatValue]
+#define ImageFileDirName @"carImages"
 
 @implementation CICGlobalService
 
@@ -33,7 +35,7 @@
 
 + (UIImage *)iamgeWithPath:(NSString *)pathStr
 {
-    NSData *imageData = [NSData dataWithContentsOfFile:pathStr];
+    NSData *imageData = [NSData dataWithContentsOfFile:[[self documentPath] stringByAppendingPathComponent:pathStr]];
     
     return [UIImage imageWithData:imageData];
 }
@@ -41,7 +43,7 @@
 + (NSString *)saveImageToLocal:(UIImage *)image
 {
     // 保存图片的目录
-    NSString *saveImageDir = [[self documentPath] stringByAppendingPathComponent:@"carImages"];
+    NSString *saveImageDir = [[self documentPath] stringByAppendingPathComponent:ImageFileDirName];
     
     BOOL isDir;
     BOOL isDirExist = [[NSFileManager defaultManager] fileExistsAtPath:saveImageDir isDirectory:&isDir];
@@ -63,7 +65,9 @@
     NSData *imageData = UIImagePNGRepresentation(image);
     if (imageData) {
         if ([imageData writeToFile:iamgeSavePath atomically:YES]) {
-            return iamgeSavePath;
+            
+            // 返回保存图片目录的相对路径
+            return [ImageFileDirName stringByAppendingPathComponent:imageName];
         }
     }
     
@@ -73,7 +77,7 @@
 + (void)deleteLocalFileWithPath:(NSString *)path
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL res = [fileManager removeItemAtPath:path error:nil];
+    BOOL res = [fileManager removeItemAtPath:[[self documentPath] stringByAppendingPathComponent:path] error:nil];
     if (res) {
         NSLog(@"文件删除成功");
     } else {

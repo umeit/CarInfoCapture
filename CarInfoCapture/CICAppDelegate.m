@@ -33,6 +33,8 @@
         self.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CICLoginViewController"];
     }
     
+    [UIImage imageWithData:[NSData dataWithContentsOfFile:@"/var/mobile/Applications/1DD532EB-246A-48EF-BC10-7761BDDD3825/Documents/carImages/CarIamge_1389086996.301579.png"]];
+    
     return YES;
 }
 

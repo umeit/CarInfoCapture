@@ -56,6 +56,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self showLodingViewWithText:@"正在获取您的历史采集记录"];
+    
     [self.carInfoService carInfoListWithBlock:^(NSArray *list, NSError *error) {
         [self hideLodingView];
         
