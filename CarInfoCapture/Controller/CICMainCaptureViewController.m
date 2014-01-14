@@ -10,7 +10,7 @@
 #import "CICCarBaseCheckReportViewController.h"
 #import "CICCarInfoService.h"
 #import "CICCarInfoEntity.h"
-#import "UIViewController+Prompt.h"
+#import "UIViewController+GViewController.h"
 
 #define NeedSaveToNSUserDefaults self.carInfoSaveStatus == FromNSUserDefaults || self.carInfoSaveStatus == NewCarInfo
 #define NeedUpdateToDB           self.carInfoSaveStatus == FromDB
@@ -278,12 +278,20 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkCarImageInfo:(CICCarInfoEntity *)carInfo
 {
-    for (NSDictionary *dic in carInfo.carImagesLocalPathList) {
-        if ([dic[@"k"] integerValue] == 0 || [dic[@"v"] length] < 1) {
-            return NO;
-        }
+//    for (NSDictionary *dic in carInfo.carImagesLocalPathList) {
+//        if ([dic[@"k"] integerValue] == 0 || [dic[@"v"] length] < 1) {
+//            return NO;
+//        }
+//    }
+//    
+    if (carInfo.carImagesLocalPaths.count == 5) {
+        return YES;
     }
-    return YES;
+    else {
+        return NO;
+    }
+    
+//    return YES;
 }
 
 - (BOOL)checkCarMasterInfo:(CICCarInfoEntity *)carInfo

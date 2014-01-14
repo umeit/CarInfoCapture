@@ -1,19 +1,22 @@
 //
-//  UIViewController+Prompt.m
-//  CarInfoCapture
+//  UIViewController+GViewController.m
+//  GViewController
 //
-//  Created by Liu Feng on 13-12-4.
+//  Created by Liu Feng on 13-12-10.
 //  Copyright (c) 2013年 Liu Feng. All rights reserved.
 //
 
-#import "UIViewController+Prompt.h"
+#import "UIViewController+GViewController.h"
 #import <objc/runtime.h>
+
+#define IS_IOS7_AND_LATER (DeviceSystemMajorVersion() >= 7)
+#define IS_IOS6_AND_EARLIER (DeviceSystemMajorVersion() <= 6)
 
 static char kHUD;
 static char kBLockList;
 static char kAlertBlockIndex;
 
-@implementation UIViewController (Prompt)
+@implementation UIViewController (GViewController)
 @dynamic HUD;
 @dynamic blockList;
 @dynamic alertBlockIndex;
@@ -103,6 +106,33 @@ static char kAlertBlockIndex;
     [self.HUD hide:YES];
 }
 
+- (void)showNetworkingErrorAlert
+{
+    [self showCustomTextAlert:@"网络异常，请检查您的网络设置或稍后再试"];
+}
+
+- (NSString *)documentPathAppendingComponent:(NSString *)component
+{
+    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+                                                                 NSUserDomainMask,
+                                                                 YES)[0];
+    if (component) {
+        return [documentPath stringByAppendingPathComponent:component];
+    }
+    return documentPath;
+}
+
+NSUInteger DeviceSystemMajorVersion()
+{
+    static NSUInteger _deviceSystemMajorVersion = -1;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _deviceSystemMajorVersion = [[[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."] objectAtIndex:0] intValue];
+    });
+    return _deviceSystemMajorVersion;
+}
+
+
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -112,7 +142,7 @@ static char kAlertBlockIndex;
         void (^block)(void) = self.blockList[alertView.tag];
         block();
         
-    // 点击「确定」
+        // 点击「确定」
     } else if (buttonIndex == 1) {
         void (^block)(void) = self.blockList[alertView.tag];
         block();

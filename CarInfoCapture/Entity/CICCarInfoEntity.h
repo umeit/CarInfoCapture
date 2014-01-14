@@ -13,21 +13,21 @@ typedef enum SaveStatus : NSInteger {
     Uploaded = 2
 }SaveStatus;
 
-typedef enum CarImageIndex : NSInteger {
-    frontFlankImageIndex    = 0,
-    backFlankImageIndex     = 1,
-    insideCentralImageIndex = 2,
-    frontSeatImageIndex     = 3,
-    backSeatImageIndex      = 4
-}CarImageIndex;
+//typedef enum CarImageIndex : NSInteger {
+//    frontFlankImageIndex    = 0,
+//    backFlankImageIndex     = 1,
+//    insideCentralImageIndex = 2,
+//    frontSeatImageIndex     = 3,
+//    backSeatImageIndex      = 4
+//}CarImageIndex;
 
 
 // 车辆各部位图片的 key
-#define kFrontFlankImage    @"frontFlankImage"
-#define kBackFlankImage     @"backFlankImage"
-#define kInsideCentralImage @"insideCentralImage"
-#define kFrontSeatImage     @"frontSeatImage"
-#define kBackSeatImage      @"backSeatImage"
+#define kFrontFlankImage    @"1001"
+#define kBackFlankImage     @"1002"
+#define kInsideCentralImage @"3002"
+#define kFrontSeatImage     @"3001"
+#define kBackSeatImage      @"3006"
 
 @interface CICCarInfoEntity : NSObject <NSCoding>
 
@@ -65,16 +65,18 @@ typedef enum CarImageIndex : NSInteger {
 /**
  *  车辆图片的本地路径
  */
-@property (strong, nonatomic) NSMutableArray *carImagesLocalPathList;
+//@property (strong, nonatomic) NSMutableArray *carImagesLocalPathList;
+@property (strong, nonatomic) NSMutableDictionary *carImagesLocalPaths;
 /**
  *  车辆图片的服务器路径
  */
-@property (strong, nonatomic) NSMutableArray *carImagesRemotePathList;
+//@property (strong, nonatomic) NSMutableArray *carImagesRemotePathList;
+@property (strong, nonatomic) NSMutableDictionary *carImagesRemotePaths;
 
 /* 车主信息 */
 @property (strong, nonatomic) NSString *masterName;
 @property (strong, nonatomic) NSString *masterTel;
 
-- (NSInteger)imageCodeWithImageIndex:(NSInteger)index;
+//- (NSInteger)imageCodeWithImageIndex:(NSInteger)index;
 
 @end

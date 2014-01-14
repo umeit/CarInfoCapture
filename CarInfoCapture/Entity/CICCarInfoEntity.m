@@ -16,12 +16,12 @@
     if (self) {
         self.status = NoUpload;
         
-        NSDictionary *placeholderDic = @{@"k": @(0), @"v": @""};
-        self.carImagesLocalPathList = [[NSMutableArray alloc] initWithArray:@[placeholderDic,
-                                                                              placeholderDic,
-                                                                              placeholderDic,
-                                                                              placeholderDic,
-                                                                              placeholderDic]];
+//        NSDictionary *placeholderDic = @{@"k": @(0), @"v": @""};
+//        self.carImagesLocalPathList = [[NSMutableArray alloc] initWithArray:@[placeholderDic,
+//                                                                              placeholderDic,
+//                                                                              placeholderDic,
+//                                                                              placeholderDic,
+//                                                                              placeholderDic]];
     }
     
     return self;
@@ -52,7 +52,8 @@
         self.facadeIssueList = [aDecoder decodeObjectForKey:@"facadeIssueList"];
         
         // 车辆实拍信息
-        self.carImagesLocalPathList = [aDecoder decodeObjectForKey:@"carImagesLocalPathList"];
+//        self.carImagesLocalPathList = [aDecoder decodeObjectForKey:@"carImagesLocalPathList"];
+        self.carImagesLocalPaths = [aDecoder decodeObjectForKey:@"carImagesLocalPaths"];
         
         // 车主信息
         self.masterName = [aDecoder decodeObjectForKey:@"masterName"];
@@ -85,51 +86,52 @@
     [aCoder encodeObject:self.facadeIssueList forKey:@"facadeIssueList"];
     
     // 车辆实拍信息
-    [aCoder encodeObject:self.carImagesLocalPathList forKey:@"carImagesLocalPathList"];
+//    [aCoder encodeObject:self.carImagesLocalPathList forKey:@"carImagesLocalPathList"];
+    [aCoder encodeObject:self.carImagesLocalPaths forKey:@"carImagesLocalPaths"];
     
     // 车主信息
     [aCoder encodeObject:self.masterName forKey:@"masterName"];
     [aCoder encodeObject:self.masterTel forKey:@"masterTel"];
 }
 
-- (NSInteger)imageCodeWithImageIndex:(NSInteger)index
-{
-    switch (index) {
-        case frontFlankImageIndex:
-            return 1001;
-            break;
-            
-        case backFlankImageIndex:
-            return 1002;
-            break;
-            
-        case insideCentralImageIndex:
-            return 3002;
-            break;
-            
-        case frontSeatImageIndex:
-            return 3001;
-            break;
-            
-        case backSeatImageIndex:
-            return 3006;
-            break;
-            
-        default:
-            break;
-    }
-    return -1;
-}
+//- (NSInteger)imageCodeWithImageIndex:(NSInteger)index
+//{
+//    switch (index) {
+//        case frontFlankImageIndex:
+//            return 1001;
+//            break;
+//            
+//        case backFlankImageIndex:
+//            return 1002;
+//            break;
+//            
+//        case insideCentralImageIndex:
+//            return 3002;
+//            break;
+//            
+//        case frontSeatImageIndex:
+//            return 3001;
+//            break;
+//            
+//        case backSeatImageIndex:
+//            return 3006;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    return -1;
+//}
 
-- (void)setCarImagesLocalPathList:(NSMutableArray *)carImagesLocalPathList
-{
-    _carImagesLocalPathList = carImagesLocalPathList;
-    
-    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                                 NSUserDomainMask,
-                                                                 YES)[0];
-    
-    self.carImage = [UIImage imageWithData:[NSData dataWithContentsOfFile:[documentPath stringByAppendingPathComponent:_carImagesLocalPathList[0][@"v"]]]];
-}
+//- (void)setCarImagesLocalPathList:(NSMutableArray *)carImagesLocalPathList
+//{
+//    _carImagesLocalPathList = carImagesLocalPathList;
+//    
+//    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+//                                                                 NSUserDomainMask,
+//                                                                 YES)[0];
+//    
+//    self.carImage = [UIImage imageWithData:[NSData dataWithContentsOfFile:[documentPath stringByAppendingPathComponent:_carImagesLocalPathList[0][@"v"]]]];
+//}
 
 @end

@@ -52,4 +52,6 @@ typedef void(^CICCarInfoServiceGeneralErrorBlock)(NSError *error);
 
 - (void)uploadCarInfoList:(NSArray *)list;
 
+- (void)downloadImageFromRemotePath:(NSString *)remotePath
+                          withBlock:(void(^)(UIImage *image, NSString *localPath))block;
 @end

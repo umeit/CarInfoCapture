@@ -54,7 +54,7 @@
                                                       }];
 }
 
-- (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block
+- (void)uploadImageWithLocalPath:(NSString *)filePathStr block:(CICCarInfoHTTPLogicUploadImageBLock)block
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
     httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -122,7 +122,7 @@
                                         @"facadestate": carInfo.facadeIssueList ? [carInfo.facadeIssueList oneStringFormat] : @"",
                                         @"mastername": carInfo.masterName,
                                         @"mastertel": carInfo.masterTel,
-                                        @"pic": [carInfo.carImagesRemotePathList jsonStringFormat]};
+                                        @"pic": [carInfo.carImagesRemotePaths jsonString]};
     return carInfoParameters;
 }
 

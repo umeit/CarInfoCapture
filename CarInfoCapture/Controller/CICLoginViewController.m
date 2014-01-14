@@ -8,7 +8,7 @@
 
 #import "CICLoginViewController.h"
 #import "CICUserService.h"
-#import "UIViewController+Prompt.h"
+#import "UIViewController+GViewController.h"
 
 @interface CICLoginViewController ()
 

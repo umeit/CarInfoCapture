@@ -11,7 +11,7 @@
 #import "CICCarInfoCell.h"
 #import "CICCarInfoEntity.h"
 #import "CICMainCaptureViewController.h"
-#import "UIViewController+Prompt.h"
+#import "UIViewController+GViewController.h"
 #import "CICUserService.h"
 
 @interface CICMyCaptureListViewController () <UITableViewDataSource>
@@ -58,6 +58,7 @@
     [self showLodingViewWithText:@"正在获取您的历史采集记录"];
     
     [self.carInfoService carInfoListWithBlock:^(NSArray *list, NSError *error) {
+        
         [self hideLodingView];
         
         if (!error && list && [list count] > 0) {
@@ -137,6 +138,32 @@
                firstRegTime:carInfoEntity.firstRegTime
                   salePrice:carInfoEntity.salePrice
                    carImage:carInfoEntity.carImage];
+    
+    if (!carInfoEntity.carImagesLocalPaths[kFrontFlankImage]) {
+        [self.carInfoService downloadImageFromRemotePath:carInfoEntity.carImagesRemotePaths[kFrontFlankImage] withBlock:^(UIImage *image, NSString *localPath) {
+            
+            carInfoEntity.carImagesLocalPaths[kFrontFlankImage] = localPath;
+            carInfoEntity.carImage = image;
+            
+            [carInfoCell setCarName:carInfoEntity.carName
+                            mileage:carInfoEntity.mileage
+                       firstRegTime:carInfoEntity.firstRegTime
+                          salePrice:carInfoEntity.salePrice
+                           carImage:carInfoEntity.carImage];
+            
+            [self.carInfoService updateCarInfo:carInfoEntity withBlock:^(NSError *error) {
+            }];
+        }];
+    }
+    else {
+        carInfoEntity.carImage = [UIImage imageWithData:[NSData dataWithContentsOfFile:[self documentPathAppendingComponent:carInfoEntity.carImagesLocalPaths[kFrontFlankImage]]]];
+        
+        [carInfoCell setCarName:carInfoEntity.carName
+                        mileage:carInfoEntity.mileage
+                   firstRegTime:carInfoEntity.firstRegTime
+                      salePrice:carInfoEntity.salePrice
+                       carImage:carInfoEntity.carImage];
+    }
 }
 
 - (void)configureCarInfoStatusWithCell:(CICCarInfoCell *)carInfoCell carInfoEntity:(CICCarInfoEntity *)carInfoEntity

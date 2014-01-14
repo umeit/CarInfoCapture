@@ -28,6 +28,6 @@ typedef void(^CICCarInfoHTTPLogicDownloadImageBlock)(UIImage *image);
 
 - (void)uploadCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UploadCarInfoListBlock)block;
 
-- (void)uploadImage:(NSString *)filePathStr withBlock:(CICCarInfoHTTPLogicUploadImageBLock)block;
+- (void)uploadImageWithLocalPath:(NSString *)filePathStr block:(CICCarInfoHTTPLogicUploadImageBLock)block;
 
 @end

@@ -10,7 +10,7 @@
 #import "CICCarInfoService.h"
 #import "CICUploadCell.h"
 #import "CICCarInfoEntity.h"
-#import "UIViewController+Prompt.h"
+#import "UIViewController+GViewController.h"
 
 @interface CICUploadViewController () <UITableViewDataSource, UIAlertViewDelegate, CICCarInfoServiceUploadCarInfoDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

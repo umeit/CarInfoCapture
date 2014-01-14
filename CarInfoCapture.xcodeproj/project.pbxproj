@@ -56,6 +56,7 @@
 		0372D31418488FD500962068 /* CICLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372D31318488FD500962068 /* CICLoginViewController.m */; };
 		0372D316184891A900962068 /* logo60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0372D315184891A900962068 /* logo60@2x.png */; };
 		0372D319184895ED00962068 /* CICUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372D318184895ED00962068 /* CICUserService.m */; };
+		038E7DCE18851E7900B316BD /* UIViewController+GViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 038E7DCD18851E7900B316BD /* UIViewController+GViewController.m */; };
 		039C125918475363002D87B7 /* car_demo_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125418475363002D87B7 /* car_demo_1.png */; };
 		039C125A18475363002D87B7 /* car_demo_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125518475363002D87B7 /* car_demo_2.png */; };
 		039C125B18475363002D87B7 /* car_demo_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 039C125618475363002D87B7 /* car_demo_3.png */; };
@@ -293,7 +294,6 @@
 		03D9D9B01856FE5F00E5838A /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03D9D9AF1856FE5F00E5838A /* Entitlements.plist */; };
 		03F05FF71842F43200DF976A /* CICCarBrandService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F05FF61842F43200DF976A /* CICCarBrandService.m */; };
 		03F05FFA1843089C00DF976A /* CICCarModelLIstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F05FF91843089C00DF976A /* CICCarModelLIstViewController.m */; };
-		03F7EA28184F362F0099F7CE /* UIViewController+Prompt.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F7EA27184F362F0099F7CE /* UIViewController+Prompt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -391,6 +391,8 @@
 		0372D315184891A900962068 /* logo60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo60@2x.png"; sourceTree = "<group>"; };
 		0372D317184895ED00962068 /* CICUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICUserService.h; sourceTree = "<group>"; };
 		0372D318184895ED00962068 /* CICUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICUserService.m; sourceTree = "<group>"; };
+		038E7DCC18851E7900B316BD /* UIViewController+GViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GViewController.h"; sourceTree = "<group>"; };
+		038E7DCD18851E7900B316BD /* UIViewController+GViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GViewController.m"; sourceTree = "<group>"; };
 		039C125418475363002D87B7 /* car_demo_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_1.png; sourceTree = "<group>"; };
 		039C125518475363002D87B7 /* car_demo_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_2.png; sourceTree = "<group>"; };
 		039C125618475363002D87B7 /* car_demo_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_3.png; sourceTree = "<group>"; };
@@ -645,8 +647,6 @@
 		03F05FF61842F43200DF976A /* CICCarBrandService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBrandService.m; sourceTree = "<group>"; };
 		03F05FF81843089C00DF976A /* CICCarModelLIstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarModelLIstViewController.h; sourceTree = "<group>"; };
 		03F05FF91843089C00DF976A /* CICCarModelLIstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarModelLIstViewController.m; sourceTree = "<group>"; };
-		03F7EA26184F362F0099F7CE /* UIViewController+Prompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Prompt.h"; sourceTree = "<group>"; };
-		03F7EA27184F362F0099F7CE /* UIViewController+Prompt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Prompt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -734,8 +734,6 @@
 				0372D30F18488CDD00962068 /* CICSettingsViewController.m */,
 				0372D31218488FD500962068 /* CICLoginViewController.h */,
 				0372D31318488FD500962068 /* CICLoginViewController.m */,
-				03F7EA26184F362F0099F7CE /* UIViewController+Prompt.h */,
-				03F7EA27184F362F0099F7CE /* UIViewController+Prompt.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -752,6 +750,7 @@
 		0339EF581831FD500082A35E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				038E7DCB18851E7900B316BD /* GViewController */,
 				03AD273B184874F800284B91 /* MBProgressHUD */,
 				03BC018018321714000BDAF3 /* FMDB */,
 				0339EF591831FD500082A35E /* AFNetworking */,
@@ -904,6 +903,15 @@
 				034E6975182C83D400BD5612 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		038E7DCB18851E7900B316BD /* GViewController */ = {
+			isa = PBXGroup;
+			children = (
+				038E7DCC18851E7900B316BD /* UIViewController+GViewController.h */,
+				038E7DCD18851E7900B316BD /* UIViewController+GViewController.m */,
+			);
+			path = GViewController;
 			sourceTree = "<group>";
 		};
 		03AD273B184874F800284B91 /* MBProgressHUD */ = {
@@ -1517,7 +1525,6 @@
 				03BC91F6183F6AC3008E8B88 /* NSFileHandle+readLine.m in Sources */,
 				0339EF831831FD500082A35E /* AFURLSessionManager.m in Sources */,
 				03BC018E18321714000BDAF3 /* FMDatabasePool.m in Sources */,
-				03F7EA28184F362F0099F7CE /* UIViewController+Prompt.m in Sources */,
 				03BC018D18321714000BDAF3 /* FMDatabaseAdditions.m in Sources */,
 				0339EF871831FD500082A35E /* CICCarInfoCell.m in Sources */,
 				0339EF811831FD500082A35E /* AFURLRequestSerialization.m in Sources */,
@@ -1549,6 +1556,7 @@
 				0339EF781831FD500082A35E /* CICCarBaseCheckReportViewController.m in Sources */,
 				033A22AE183DA97E004EE235 /* NSString+CICString.m in Sources */,
 				0339EF861831FD500082A35E /* CICCarInfoService.m in Sources */,
+				038E7DCE18851E7900B316BD /* UIViewController+GViewController.m in Sources */,
 				0323EAD2185183CC00752172 /* CICUserHTTPLogic.m in Sources */,
 				0339EF7D1831FD500082A35E /* AFHTTPSessionManager.m in Sources */,
 				0339EF851831FD500082A35E /* CICCarInfoHTTPLogic.m in Sources */,
