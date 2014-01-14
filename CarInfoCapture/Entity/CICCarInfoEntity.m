@@ -22,6 +22,7 @@
 //                                                                              placeholderDic,
 //                                                                              placeholderDic,
 //                                                                              placeholderDic]];
+        self.carImagesLocalPaths = [[NSMutableDictionary alloc] init];
     }
     
     return self;

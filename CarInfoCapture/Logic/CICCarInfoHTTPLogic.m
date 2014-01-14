@@ -11,6 +11,7 @@
 #import "CICCarInfoEntity.h"
 #import "NSDictionary+CICDictionary.h"
 #import "NSArray+CICArray.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface CICCarInfoHTTPLogic ()
 
@@ -105,7 +106,11 @@
 
 - (NSDictionary *)carInfoParameters:(CICCarInfoEntity *)carInfo
 {
-    NSDictionary *carInfoParameters = @{@"modelid": [NSString stringWithFormat:@"%ld", (long)carInfo.modelID],
+    NSString *userID = [[NSUserDefaults standardUserDefaults] stringForKey:@"currentLoginedUserID"];
+    NSString *captureUniqID = [self md532:[NSString stringWithFormat:@"%@%@", userID, [NSDate date]]];
+    NSDictionary *carInfoParameters = @{@"addtime": carInfo.addTime,
+                                        @"captureuniqid": captureUniqID,
+                                        @"modelid": [NSString stringWithFormat:@"%ld", (long)carInfo.modelID],
                                         @"carname": carInfo.carName,
                                         @"location": carInfo.location,
                                         @"firstregtime": carInfo.firstRegTime,
@@ -122,7 +127,7 @@
                                         @"facadestate": carInfo.facadeIssueList ? [carInfo.facadeIssueList oneStringFormat] : @"",
                                         @"mastername": carInfo.masterName,
                                         @"mastertel": carInfo.masterTel,
-                                        @"pic": [carInfo.carImagesRemotePaths jsonString]};
+                                        @"pic": [carInfo.carImagesRemotePaths jsonStringRemoteFormat]};
     return carInfoParameters;
 }
 
@@ -132,5 +137,20 @@
                                             @"filepath": @"/0/capture/",
                                             @"filecate": @"picture"};
     return uploadImageParameters;
+}
+
+- (NSString *)md532:(NSString*)input
+{
+    const char* str = [input UTF8String];
+    unsigned char result[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(str, strlen(str), result);
+    NSMutableString *ret = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH];
+    
+    for(int i = 0; i<CC_MD5_DIGEST_LENGTH; i++) {
+        [ret appendFormat:@"%02x",result[i]];
+    }
+    
+    //NSLog(@"%@",ret);
+    return ret;
 }
 @end

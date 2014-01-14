@@ -10,6 +10,7 @@
 
 @interface NSDictionary (CICDictionary)
 
-- (NSString *)jsonString;
+- (NSString *)jsonStringLocalFormat;
 
+- (NSString *)jsonStringRemoteFormat;
 @end

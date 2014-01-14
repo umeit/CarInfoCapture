@@ -13,6 +13,7 @@
 #import "CICMainCaptureViewController.h"
 #import "UIViewController+GViewController.h"
 #import "CICUserService.h"
+#import "CICGlobalService.h"
 
 @interface CICMyCaptureListViewController () <UITableViewDataSource>
 
@@ -143,7 +144,8 @@
         [self.carInfoService downloadImageFromRemotePath:carInfoEntity.carImagesRemotePaths[kFrontFlankImage] withBlock:^(UIImage *image, NSString *localPath) {
             
             carInfoEntity.carImagesLocalPaths[kFrontFlankImage] = localPath;
-            carInfoEntity.carImage = image;
+            
+            carInfoEntity.carImage = [CICGlobalService thumbWithImage:image maxHeight:60 maxWidth:80];
             
             [carInfoCell setCarName:carInfoEntity.carName
                             mileage:carInfoEntity.mileage
@@ -156,8 +158,8 @@
         }];
     }
     else {
-        carInfoEntity.carImage = [UIImage imageWithData:[NSData dataWithContentsOfFile:[self documentPathAppendingComponent:carInfoEntity.carImagesLocalPaths[kFrontFlankImage]]]];
-        
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfFile:[self documentPathAppendingComponent:carInfoEntity.carImagesLocalPaths[kFrontFlankImage]]]];
+        carInfoEntity.carImage = [CICGlobalService thumbWithImage:image maxHeight:60 maxWidth:80];
         [carInfoCell setCarName:carInfoEntity.carName
                         mileage:carInfoEntity.mileage
                    firstRegTime:carInfoEntity.firstRegTime

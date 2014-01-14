@@ -150,9 +150,11 @@
                         [carInfo.paintIssueList oneStringFormat],
                         [carInfo.insideIssueList oneStringFormat],
                         [carInfo.facadeIssueList oneStringFormat],
-                        [carInfo.carImagesLocalPaths jsonString],
-                        [carInfo.carImagesRemotePaths jsonString],
+                        [carInfo.carImagesLocalPaths jsonStringLocalFormat],
+                        [carInfo.carImagesRemotePaths jsonStringLocalFormat],
                         carInfo.masterName, carInfo.masterTel];
+    
+    [db close];
     
     if (success) {
         if (block) block(nil);
@@ -162,7 +164,7 @@
         if (block) block(db.lastError);
     }
     
-    [db close];
+    
 }
 
 + (void)saveCarInfoList:(NSArray *)carInfoList WithBlock:(SaveCarInfoBlock)block
@@ -187,6 +189,8 @@
     if ([s next]) {
         return [s intForColumnIndex:0];
     }
+    
+    [db close];
     return 0;
 }
 
@@ -203,6 +207,8 @@
     if ([s next]) {
         return [s intForColumnIndex:0];
     }
+    
+    [db close];
     return 0;
 }
 
@@ -274,10 +280,12 @@
                     [carInfo.paintIssueList oneStringFormat],
                     [carInfo.insideIssueList oneStringFormat],
                     [carInfo.facadeIssueList oneStringFormat],
-                    [carInfo.carImagesLocalPaths jsonString],
-                    [carInfo.carImagesRemotePaths jsonString],
+                    [carInfo.carImagesLocalPaths jsonStringLocalFormat],
+                    [carInfo.carImagesRemotePaths jsonStringLocalFormat],
                     carInfo.masterName, carInfo.masterTel,
                     @(carInfo.dbID)];
+    
+    [db close];
     
     if (success) {
         if (block) block(nil);
@@ -287,7 +295,7 @@
         if (block) block(db.lastError);
     }
     
-    [db close];
+    
 }
 
 @end

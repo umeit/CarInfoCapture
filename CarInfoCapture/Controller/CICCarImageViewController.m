@@ -86,30 +86,34 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    // 原图
-    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    
-    // 保存到手机相册
-    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    
-    // 压缩图片
-    image = [CICGlobalService thumbWithImage:image maxHeight:800 maxWidth:800];
-    
-    // 将图片保存到本地
-    NSString *iamgeSavePath = [CICGlobalService saveImageToLocal:image];
-    
-    // 如果该位置已有照片，则删除
-    [CICGlobalService deleteLocalFileWithPath:self.carInfoEntity.carImagesLocalPaths[self.currentTackIamgeKey]];
-    
-    self.carInfoEntity.carImagesLocalPaths[self.currentTackIamgeKey] = iamgeSavePath;
-    
-    [picker dismissViewControllerAnimated:YES completion:^{
-        // 跟新UI
-        [self updateUI];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 原图
+        UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         
-        // 通知代理实体类的变化
-        [self.delegate carInfoDidChange:self.carInfoEntity];
-    }];
+        // 保存到手机相册
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        
+        // 压缩图片
+        image = [CICGlobalService thumbWithImage:image maxHeight:800 maxWidth:800];
+        
+        // 将图片保存到本地***
+        NSString *iamgeSavePath = [CICGlobalService saveImageToLocal:image];
+        
+        // 如果该位置已有照片，则删除
+        [CICGlobalService deleteLocalFileWithPath:self.carInfoEntity.carImagesLocalPaths[self.currentTackIamgeKey]];
+        
+        self.carInfoEntity.carImagesLocalPaths[self.currentTackIamgeKey] = iamgeSavePath;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [picker dismissViewControllerAnimated:YES completion:^{
+                // 跟新UI
+                [self updateUI];
+                
+                // 通知代理实体类的变化
+                [self.delegate carInfoDidChange:self.carInfoEntity];
+            }];
+        });
+    });
 }
 
 // 拍照取消
@@ -144,27 +148,27 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *frontFlankImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kFrontFlankImage]];
     if (frontFlankImage) {
-        self.frontFlankImage.image = frontFlankImage;
+        self.frontFlankImage.image = [CICGlobalService thumbWithImage:frontFlankImage maxHeight:160 maxWidth:213];
     }
     
     UIImage *backFlankImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kBackFlankImage]];
     if (backFlankImage) {
-        self.backFlankImage.image = backFlankImage;
+        self.backFlankImage.image = [CICGlobalService thumbWithImage:backFlankImage maxHeight:160 maxWidth:213];
     }
     
     UIImage *insideCentralImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kInsideCentralImage]];
     if (insideCentralImage) {
-        self.insideCentralImage.image = insideCentralImage;
+        self.insideCentralImage.image = [CICGlobalService thumbWithImage:insideCentralImage maxHeight:160 maxWidth:213];
     }
     
     UIImage *frontSeatImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kFrontSeatImage]];
     if (frontSeatImage) {
-        self.frontSeatImage.image = frontSeatImage;
+        self.frontSeatImage.image = [CICGlobalService thumbWithImage:frontSeatImage maxHeight:160 maxWidth:213];
     }
     
     UIImage *backSeatImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kBackSeatImage]];
     if (backSeatImage) {
-        self.backSeatImage.image = backSeatImage;
+        self.backSeatImage.image = [CICGlobalService thumbWithImage:backSeatImage maxHeight:160 maxWidth:213];
     }
 }
 

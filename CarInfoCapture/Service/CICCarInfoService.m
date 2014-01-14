@@ -140,12 +140,13 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(uploadImageStatus:)
                                                      name:@"UploadImageStatus"
-                                                   object:carInfo];
+                                                   object:nil];
         
         // 先上传信息中的车辆图片
         [carInfo.carImagesLocalPaths enumerateKeysAndObjectsUsingBlock:^(id imageKey, id imageLocalPath, BOOL *stop) {
             [self.carInfoHTTPLogic uploadImageWithLocalPath:imageLocalPath block:^(NSString *remoteImagePathStr, NSError *error) {
                 if (error) {
+                    // 发送上传失败通知
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadImageStatus"
                                                                         object:nil
                                                                       userInfo:@{@"Status": @NO,
@@ -157,6 +158,8 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
                     
                     // 全部上传成功
                     if (carInfo.carImagesRemotePaths.count == carInfo.carImagesLocalPaths.count) {
+                        
+                        // 发送上传图片成功通知
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadImageStatus"
                                                                             object:nil
                                                                           userInfo:@{@"Status": @YES,
@@ -237,6 +240,9 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     carInfoEntity.status = Uploaded;
     
     carInfoEntity.addTime = [carInfoDic objectForKey:@"addTime"];
+    if ([carInfoEntity.addTime isEqualToString:@"null"]) {
+        carInfoEntity.addTime = nil;
+    }
     carInfoEntity.modelID = [carInfoDic objectForKey:@"modelid"];
     carInfoEntity.carName = [carInfoDic objectForKey:@"carName"];
     carInfoEntity.location = [carInfoDic objectForKey:@"location"];
