@@ -1500,8 +1500,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.85361459969999998" green="0.98415577170000001" blue="0.82966968399999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6kL-uk-cXr">
-                                <rect key="frame" x="0.0" y="98" width="320" height="470"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6kL-uk-cXr">
+                                <rect key="frame" x="0.0" y="98" width="320" height="420"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1619,6 +1619,10 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="6kL-uk-cXr" secondAttribute="bottom" constant="50" id="ZoE-tM-y1e"/>
+                            <constraint firstItem="6kL-uk-cXr" firstAttribute="top" secondItem="CDS-5j-tKj" secondAttribute="top" constant="98" id="ayR-xX-zVG"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="我的采集" id="bAG-el-gmY"/>
                     <connections>
