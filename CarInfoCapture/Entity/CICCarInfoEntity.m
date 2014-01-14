@@ -32,7 +32,7 @@
     self = [super init];
     if (self) {
         // 基本信息
-        self.modelID = [[aDecoder decodeObjectForKey:@"modelID"] integerValue];
+        self.modelID = [aDecoder decodeObjectForKey:@"modelID"];
         self.carName = [aDecoder decodeObjectForKey:@"carName"];
         self.carImage = [UIImage imageWithData:[aDecoder decodeObjectForKey:@"carImage"]];
         self.salePrice = [aDecoder decodeObjectForKey:@"salePrice"];
@@ -66,7 +66,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     // 基本信息
-    [aCoder encodeObject:@(self.modelID) forKey:@"modelID"];
+    [aCoder encodeObject:self.modelID forKey:@"modelID"];
     [aCoder encodeObject:self.carName forKey:@"carName"];
     [aCoder encodeObject:UIImagePNGRepresentation(self.carImage) forKey:@"carImage"];
     [aCoder encodeObject:self.salePrice forKey:@"salePrice"];

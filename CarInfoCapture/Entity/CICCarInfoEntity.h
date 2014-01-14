@@ -41,7 +41,7 @@ typedef enum SaveStatus : NSInteger {
 @property (nonatomic) SaveStatus status;
 
 /* 基本信息 */
-@property (nonatomic) NSInteger modelID;
+@property (strong, nonatomic) NSString *modelID;
 @property (strong, nonatomic) NSString *carName;
 @property (strong, nonatomic) UIImage *carImage;
 @property (strong, nonatomic) NSString *location;

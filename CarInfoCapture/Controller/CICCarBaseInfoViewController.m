@@ -246,7 +246,7 @@ typedef enum EditItemType : NSInteger{
             
         case carName:
             self.carInfoEntity.carName = editedItem[@"displayName"];
-            self.carInfoEntity.modelID = [editedItem[@"value"] integerValue];
+            self.carInfoEntity.modelID = editedItem[@"value"];
             break;
             
         case firstRegTime:

@@ -47,7 +47,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
                           withBlock:^(NSMutableArray *carInfoList) {
                               
                               // 将信息存入数据库，以后都从数据库读取
-                              [CICCarInfoDBLogic saveCarInfoList:carInfoList
+                              [CICCarInfoDBLogic saveCarInfoList:[[carInfoList reverseObjectEnumerator] allObjects]
                               WithBlock:^(NSError *error) {
                                   if (!error) {
                                       // 再从数据库中读出来，就带有 id 信息了
@@ -316,6 +316,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     carInfoEntity.status = Uploaded;
     
     carInfoEntity.addTime = [carInfoDic objectForKey:@"addTime"];
+    carInfoEntity.modelID = [carInfoDic objectForKey:@"modelid"];
     carInfoEntity.carName = [carInfoDic objectForKey:@"carName"];
     carInfoEntity.location = [carInfoDic objectForKey:@"location"];
     carInfoEntity.firstRegTime = [carInfoDic objectForKey:@"firstRegTime"];

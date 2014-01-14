@@ -79,7 +79,7 @@
         carInfo.dbID = [s intForColumn:@"id"];
         carInfo.addTime = [s stringForColumn:@"addTime"];
         carInfo.status = [s intForColumn:@"status"];
-        carInfo.modelID = [s intForColumn:@"modelID"];
+        carInfo.modelID = [s stringForColumn:@"modelID"];
         carInfo.carName = [s stringForColumn:@"carName"];
         carInfo.location = [s stringForColumn:@"location"];
         carInfo.insuranceExpire = [s stringForColumn:@"insuranceExpire"];
@@ -142,7 +142,7 @@
     
     BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         nil,
-                        carInfo.addTime, @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
+                        carInfo.addTime, @(carInfo.status), carInfo.modelID, carInfo.carName, carInfo.location,
                         carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
                         carInfo.dealTime, carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                         [carInfo.underpanIssueList oneStringFormat],
@@ -223,7 +223,7 @@
         carInfo.dbID = [s intForColumn:@"id"];
         carInfo.addTime = [s stringForColumn:@"addTime"];
         carInfo.status = [s intForColumn:@"status"];
-        carInfo.modelID = [s intForColumn:@"modelID"];
+        carInfo.modelID = [s stringForColumn:@"modelID"];
         carInfo.carName = [s stringForColumn:@"carName"];
         carInfo.location = [s stringForColumn:@"location"];
         carInfo.insuranceExpire = [s stringForColumn:@"insuranceExpire"];
@@ -266,7 +266,7 @@
                                       "paintIssueList = ?, insideIssueList = ?, facadeIssueList = ?, "\
                                       "carImagesLocalPaths = ?, carImagesRemotePaths = ?, masterName = ?, masterTel = ? "\
                                       "WHERE id = ? ",
-                    carInfo.addTime, @(carInfo.status), @(carInfo.modelID), carInfo.carName, carInfo.location,
+                    carInfo.addTime, @(carInfo.status), carInfo.modelID, carInfo.carName, carInfo.location,
                     carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
                     carInfo.dealTime, carInfo.salePrice, carInfo.mileage, carInfo.firstRegTime,
                     [carInfo.underpanIssueList oneStringFormat],
