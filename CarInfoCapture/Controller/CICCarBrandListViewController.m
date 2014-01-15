@@ -58,7 +58,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     cell.textLabel.text = self.brandList[indexPath.section][@"blands"][indexPath.row][@"name"];
-    NSString *imageName = [NSString stringWithFormat:@"%@", self.brandList[indexPath.section][@"blands"][indexPath.row][@"id"]];
+    NSString *imageName = [NSString stringWithFormat:@"%@.%@", self.brandList[indexPath.section][@"blands"][indexPath.row][@"id"], @"jpg"];
     cell.imageView.image = [UIImage imageNamed:imageName];
     return cell;
 }
