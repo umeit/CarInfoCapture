@@ -55,6 +55,12 @@
                                                       }];
 }
 
+- (void)cancelAllUploadTask
+{
+    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
+    [[httpManager operationQueue] cancelAllOperations];
+}
+
 - (void)uploadImageWithLocalPath:(NSString *)filePathStr block:(CICCarInfoHTTPLogicUploadImageBLock)block
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];

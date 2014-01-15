@@ -30,4 +30,5 @@ typedef void(^CICCarInfoHTTPLogicDownloadImageBlock)(UIImage *image);
 
 - (void)uploadImageWithLocalPath:(NSString *)filePathStr block:(CICCarInfoHTTPLogicUploadImageBLock)block;
 
+- (void)cancelAllUploadTask;
 @end

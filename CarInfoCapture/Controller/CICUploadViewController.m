@@ -139,6 +139,7 @@
     cell.carImageView.image = [UIImage imageNamed:@"upload_finish"];
     
     // 全部上传成功
+#warning 这种判断有问题
     if ([self.carInfoList count] == (index + 1)) {
         self.isUploading = NO;
         
