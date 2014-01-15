@@ -136,13 +136,13 @@ typedef enum CarInfoSaveStatus : NSInteger {
             [self.carInfoService updateCarInfo:self.carInfoEntity withBlock:^(NSError *error) {
                 if (error) {
                     [self showCustomText:@"修改失败" delay:2];
+                    [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@YES afterDelay:2];
                 }
                 else {
-                    [self showCustomText:@"修改成功" delay:2];
+                    [self showCustomText:@"修改成功" delay:1.5];
+                    [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@YES afterDelay:0.8];
                 }
             }];
-            
-            [self.navigationController popViewControllerAnimated:YES];
         }
         else if (self.carInfoSaveStatus == NewCarInfo || self.carInfoSaveStatus == FromNSUserDefaults) {
             // 保存到数据库
@@ -247,7 +247,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkCarBaseInfo:(CICCarInfoEntity *)carInfo
 {
-    if ((carInfo.modelID != 0)
+    if (carInfo.modelID
         && carInfo.carName && [carInfo.carName length] > 0
         && carInfo.location && [carInfo.location length] > 0
         && carInfo.firstRegTime && [carInfo.firstRegTime length] > 0

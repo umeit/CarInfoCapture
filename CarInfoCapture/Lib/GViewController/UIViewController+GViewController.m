@@ -88,13 +88,23 @@ static char kAlertBlockIndex;
     [self showLodingViewWithText:nil];
 }
 
+- (void)showLodingViewOn:(UIView *)view
+{
+    [self showLodingViewWithText:nil on:view];
+}
+
 - (void)showLodingViewWithText:(NSString *)text
+{
+    [self showLodingViewWithText:text on:self.view];
+}
+
+- (void)showLodingViewWithText:(NSString *)text on:(UIView *)view
 {
     if (!self.HUD) {
         self.HUD = [[MBProgressHUD alloc] initWithView:self.view];
     }
     
-    [self.view addSubview:self.HUD];
+    [view addSubview:self.HUD];
     
     self.HUD.labelText = text;
     

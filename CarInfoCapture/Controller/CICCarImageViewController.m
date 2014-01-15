@@ -9,6 +9,7 @@
 #import "CICCarImageViewController.h"
 #import "CICGlobalService.h"
 #import "CICCarInfoEntity.h"
+#import "UIViewController+GViewController.h"
 
 #define kFrontFlankImageTag     30
 #define kBackFlankImageTag      31
@@ -86,6 +87,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [self showLodingViewOn:picker.view];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 原图
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
@@ -105,6 +108,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         self.carInfoEntity.carImagesLocalPaths[self.currentTackIamgeKey] = iamgeSavePath;
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideLodingView];
+            
             [picker dismissViewControllerAnimated:YES completion:^{
                 // 跟新UI
                 [self updateUI];
@@ -146,6 +151,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)updateUI
 {
+    [self showLodingView];
+    
     UIImage *frontFlankImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kFrontFlankImage]];
     if (frontFlankImage) {
         self.frontFlankImage.image = [CICGlobalService thumbWithImage:frontFlankImage maxHeight:160 maxWidth:213];
@@ -170,6 +177,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     if (backSeatImage) {
         self.backSeatImage.image = [CICGlobalService thumbWithImage:backSeatImage maxHeight:160 maxWidth:213];
     }
+    
+    [self hideLodingView];
 }
 
 - (void)showEditImageMenu

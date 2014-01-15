@@ -27,7 +27,11 @@
 
 - (void)showLodingView;
 
+- (void)showLodingViewOn:(UIView *)view;
+
 - (void)showLodingViewWithText:(NSString *)text;
+
+- (void)showLodingViewWithText:(NSString *)text on:(UIView *)view;
 
 - (void)hideLodingView;
 

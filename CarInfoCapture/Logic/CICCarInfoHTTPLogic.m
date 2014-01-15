@@ -110,7 +110,7 @@
     NSString *captureUniqID = [self md532:[NSString stringWithFormat:@"%@%@", userID, [NSDate date]]];
     NSDictionary *carInfoParameters = @{@"addtime": carInfo.addTime,
                                         @"captureuniqid": captureUniqID,
-                                        @"modelid": [NSString stringWithFormat:@"%ld", (long)carInfo.modelID],
+                                        @"modelid": carInfo.modelID,
                                         @"carname": carInfo.carName,
                                         @"location": carInfo.location,
                                         @"firstregtime": carInfo.firstRegTime,
