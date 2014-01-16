@@ -68,13 +68,15 @@
     return self.brandList[section][@"letter"];
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UILabel *headerView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
-//    headerView.text = self.brandList[section][@"letter"];
-//    headerView.backgroundColor = [UIColor lightGrayColor];
-//    return headerView;
-//}
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (NSDictionary *dic in self.brandList) {
+        [array addObject:dic[@"letter"]];
+    }
+    
+    return array;
+}
 
 #pragma mark - Navigation
 
