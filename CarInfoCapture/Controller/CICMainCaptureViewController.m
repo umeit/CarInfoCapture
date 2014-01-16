@@ -237,7 +237,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 - (BOOL)checkDataIntegrity:(CICCarInfoEntity *)carInfo
 {
-    if ([self checkCarBaseInfo:carInfo] && [self checkCarBaseCheckInfo:carInfo]
+    if ([self checkCarBaseCheckInfo:carInfo]
         && [self checkCarImageInfo:carInfo] && [self checkCarMasterInfo:carInfo]) {
         
         return YES;
