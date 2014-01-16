@@ -139,76 +139,50 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
         // 将每个采集信息上传至服务器
         [carInfoList enumerateObjectsUsingBlock:^(CICCarInfoEntity *carInfo, NSUInteger idx, BOOL *stop) {
-            
-            self.condition = [[NSCondition alloc] init];
-            
-            // 监听上传图片的状态
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UploadImageStatus" object:nil];
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(uploadImageStatus:)
-                                                         name:@"UploadImageStatus"
-                                                       object:nil];
-            
-//            self.currentUploadImageFailCarInfoID = -1;
             
             // 先上传信息中的车辆图片
             [carInfo.carImagesLocalPaths enumerateKeysAndObjectsUsingBlock:^(id imageKey, id imageLocalPath, BOOL *stop) {
                 
-                [self.carInfoHTTPLogic uploadImageWithLocalPath:imageLocalPath block:^(NSString *remoteImagePathStr, NSError *error) {
-                    
-                    if (error) {
-                        [self.carInfoHTTPLogic cancelAllUploadTask];
-                        
-//                        if (self.currentUploadImageFailCarInfoID == -1) {
-//                            self.currentUploadImageFailCarInfoID = carInfo.dbID;
-//                        }
-//                        else if (self.currentUploadImageFailCarInfoID == carInfo.dbID) {
-//                            return;
-//                        }
-//                        else {
-                        // 发送上传失败通知
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadImageStatus"
-                                                                            object:nil
-                                                                          userInfo:@{@"Status": @NO,
-                                                                                     @"CarInfoEntity": carInfo,
-                                                                                     @"Index": @(idx)}];
-//                        }
-                        
-//                        // 发出信号，使线程继续
-//                        [self.condition lock];
-//                        [self.condition signal];
-//                        [self.condition unlock];
-                    }
-                    else {
-                        carInfo.carImagesRemotePaths[imageKey] = remoteImagePathStr;
-                        
-                        // 全部上传成功
-                        if (carInfo.carImagesRemotePaths.count == carInfo.carImagesLocalPaths.count) {
-                            
-                            // 发送上传图片成功通知
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadImageStatus"
-                                                                                object:nil
-                                                                              userInfo:@{@"Status": @YES,
-                                                                                         @"CarInfoEntity": carInfo,
-                                                                                         @"Index": @(idx)}];
-                            
-//                            // 发出信号，使线程继续
-//                            [self.condition lock];
-//                            [self.condition signal];
-//                            [self.condition unlock];
-                        }
-                    }
-                }];
+                NSString *imageRemotePath = [self.carInfoHTTPLogic uploadImageWithLocalPath:imageLocalPath];
                 
-                
+                if (!imageRemotePath) {
+                    *stop = YES;
+                }
+                else {
+                    carInfo.carImagesRemotePaths[imageKey] = imageRemotePath;
+                }
             }];
             
-            // 线程等待请求完成
-            [self.condition lock];
-            [self.condition wait];
-            [self.condition unlock];
+            // 图片全部上传成功
+            if (carInfo.carImagesRemotePaths.count == carInfo.carImagesLocalPaths.count) {
+                
+                // 上传其他信息
+                NSError *error = [self.carInfoHTTPLogic uploadCarInfo:carInfo];
+                if (error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.delegate carInfoUploadDidFailAtIndex:idx];
+                    });
+                    
+                }
+                else {
+                    // 更新数据库中的信息
+                    carInfo.status = Uploaded;
+                    [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {}];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // 返回上传信息成功
+                        [self.delegate carInfoDidUploadAtIndex:idx];
+                    });
+                }
+            }
+            // 图片未上传成功
+            else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate carInfoUploadDidFailAtIndex:idx];
+                });
+            }
         }];
     });
 }
@@ -227,54 +201,54 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
 
 #pragma mark - Private
 
-- (void)uploadImageStatus:(NSNotification *)notification
-{
-    NSDictionary *userInfo = [notification userInfo];
-    NSUInteger index = [userInfo[@"Index"] integerValue];
-    CICCarInfoEntity *carInfo = userInfo[@"CarInfoEntity"];
-    
-    // 上传图片成功
-    if ([userInfo[@"Status"] boolValue]) {
-        
-        // 上传其他信息
-        [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
-            
-            // 发出信号，使线程继续
-            [self.condition lock];
-            [self.condition signal];
-            [self.condition unlock];
-            
-            if (!error) {
-                
-                // 更新数据库中的信息
-                carInfo.status = Uploaded;
-                [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {}];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // 返回上传信息成功
-                    [self.delegate carInfoDidUploadAtIndex:index];
-                });
-            }
-            else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // 返回上传失败
-                    [self.delegate carInfoUploadDidFailAtIndex:index];
-                });
-            }
-        }];
-    }
-    // 上传图片失败
-    else {
-        // 发出信号，使线程继续
-        [self.condition lock];
-        [self.condition signal];
-        [self.condition unlock];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // 返回上传失败
-            [self.delegate carInfoUploadDidFailAtIndex:index];
-        });
-    }
-}
+//- (void)uploadImageStatus:(NSNotification *)notification
+//{
+//    NSDictionary *userInfo = [notification userInfo];
+//    NSUInteger index = [userInfo[@"Index"] integerValue];
+//    CICCarInfoEntity *carInfo = userInfo[@"CarInfoEntity"];
+//    
+//    // 上传图片成功
+//    if ([userInfo[@"Status"] boolValue]) {
+//        
+//        // 上传其他信息
+//        [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
+//            
+//            // 发出信号，使线程继续
+//            [self.condition lock];
+//            [self.condition signal];
+//            [self.condition unlock];
+//            
+//            if (!error) {
+//                
+//                // 更新数据库中的信息
+//                carInfo.status = Uploaded;
+//                [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {}];
+//                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    // 返回上传信息成功
+//                    [self.delegate carInfoDidUploadAtIndex:index];
+//                });
+//            }
+//            else {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    // 返回上传失败
+//                    [self.delegate carInfoUploadDidFailAtIndex:index];
+//                });
+//            }
+//        }];
+//    }
+//    // 上传图片失败
+//    else {
+//        // 发出信号，使线程继续
+//        [self.condition lock];
+//        [self.condition signal];
+//        [self.condition unlock];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            // 返回上传失败
+//            [self.delegate carInfoUploadDidFailAtIndex:index];
+//        });
+//    }
+//}
 
 - (void)jsonListToCarInfoEntityList:(NSArray *)jsonList withBlock:(void(^)(NSMutableArray *carInfoList))block
 {

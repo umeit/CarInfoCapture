@@ -130,6 +130,7 @@
 - (void)carInfoDidUploadAtIndex:(NSInteger)index
 {
     CICCarInfoEntity *carInfo = self.carInfoList[index];
+#warning 下面这行待删除
     carInfo.status = Uploaded;
     
     CICUploadCell *cell = (CICUploadCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index
@@ -139,7 +140,6 @@
     cell.carImageView.image = [UIImage imageNamed:@"upload_finish"];
     
     // 全部上传成功
-#warning 这种判断有问题
     if ([self.carInfoList count] == (index + 1)) {
         self.isUploading = NO;
         
@@ -159,5 +159,9 @@
     [cell.uploadActivityView stopAnimating];
     cell.uploadActivityView.hidden = YES;
     cell.carImageView.image = [UIImage imageNamed:@"upload_fail"];
+    
+    if ([self.carInfoList count] == (index + 1)) {
+        self.isUploading = NO;
+    }
 }
 @end

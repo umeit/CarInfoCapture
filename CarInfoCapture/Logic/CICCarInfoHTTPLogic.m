@@ -55,14 +55,55 @@
                                                       }];
 }
 
+- (NSError *)uploadCarInfo:(CICCarInfoEntity *)carInfo
+{
+    NSCondition *condition = [[NSCondition alloc] init];
+    __block NSError *result = nil;
+    
+    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
+    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
+    
+    NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
+    //capture.youche.com
+    [httpManager POST:@"http://capture.yicheyi.com/capture/upload" parameters:carInfoParameters
+constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    
+}
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  // 发出信号，使线程继续
+                  [condition lock];
+                  [condition signal];
+                  [condition unlock];
+              }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  result = error;
+                  
+                  // 发出信号，使线程继续
+                  [condition lock];
+                  [condition signal];
+                  [condition unlock];
+              }];
+    
+    // 线程等待请求完成
+    [condition lock];
+    [condition wait];
+    [condition unlock];
+    
+    return result;
+}
+
 - (void)cancelAllUploadTask
 {
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
     [[httpManager operationQueue] cancelAllOperations];
 }
 
-- (void)uploadImageWithLocalPath:(NSString *)filePathStr block:(CICCarInfoHTTPLogicUploadImageBLock)block
+//- (NSString *)uploadImageWithLocalPath:(NSString *)filePathStr block:(CICCarInfoHTTPLogicUploadImageBLock)block
+- (NSString *)uploadImageWithLocalPath:(NSString *)filePathStr
 {
+    NSCondition *condition = [[NSCondition alloc] init];
+    
     AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
     httpManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -74,6 +115,8 @@
                                                                  YES)[0];
     NSData *imageData = [NSData dataWithContentsOfFile:[documentPath stringByAppendingPathComponent:filePathStr]];
     
+    __block NSString *remoteIamgePath = nil;
+    
     [httpManager POST:@"http://upload.darengong.com:8090"
            parameters:uploadImageParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                                 [formData appendPartWithFileData:imageData
@@ -82,13 +125,25 @@
                                                                         mimeType:@"image/jpeg"];
                                                             } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                                                 NSString *remoteImagePath = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                                                               
-                                                                block([NSString stringWithFormat:@"/0/capture/%@", remoteImagePath], nil);
+                                                                remoteIamgePath = [NSString stringWithFormat:@"/0/capture/%@", remoteImagePath];
+                                                                // 发出信号，使线程继续
+                                                                [condition lock];
+                                                                [condition signal];
+                                                                [condition unlock];
+//                                                                block([NSString stringWithFormat:@"/0/capture/%@", remoteImagePath], nil);
                                                             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                                 NSLog(@"%@", error.description);
                                                                 
-                                                                block(nil, error);
+                                                                [condition lock];
+                                                                [condition signal];
+                                                                [condition unlock];
                                                            }];
+    // 线程等待请求完成
+    [condition lock];
+    [condition wait];
+    [condition unlock];
+    
+    return remoteIamgePath;
 }
 
 
