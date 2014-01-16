@@ -14,11 +14,6 @@
 
 typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePathList);
 
-@interface CICCarInfoService ()
-@property (strong, nonatomic) NSCondition *condition;
-@property (nonatomic) NSInteger currentUploadImageFailCarInfoID;
-@end
-
 @implementation CICCarInfoService
 
 // 获取采集历史记录
@@ -199,56 +194,8 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     }];
 }
 
-#pragma mark - Private
 
-//- (void)uploadImageStatus:(NSNotification *)notification
-//{
-//    NSDictionary *userInfo = [notification userInfo];
-//    NSUInteger index = [userInfo[@"Index"] integerValue];
-//    CICCarInfoEntity *carInfo = userInfo[@"CarInfoEntity"];
-//    
-//    // 上传图片成功
-//    if ([userInfo[@"Status"] boolValue]) {
-//        
-//        // 上传其他信息
-//        [self.carInfoHTTPLogic uploadCarInfo:carInfo withBlock:^(NSError *error) {
-//            
-//            // 发出信号，使线程继续
-//            [self.condition lock];
-//            [self.condition signal];
-//            [self.condition unlock];
-//            
-//            if (!error) {
-//                
-//                // 更新数据库中的信息
-//                carInfo.status = Uploaded;
-//                [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {}];
-//                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    // 返回上传信息成功
-//                    [self.delegate carInfoDidUploadAtIndex:index];
-//                });
-//            }
-//            else {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    // 返回上传失败
-//                    [self.delegate carInfoUploadDidFailAtIndex:index];
-//                });
-//            }
-//        }];
-//    }
-//    // 上传图片失败
-//    else {
-//        // 发出信号，使线程继续
-//        [self.condition lock];
-//        [self.condition signal];
-//        [self.condition unlock];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            // 返回上传失败
-//            [self.delegate carInfoUploadDidFailAtIndex:index];
-//        });
-//    }
-//}
+#pragma mark - Private
 
 - (void)jsonListToCarInfoEntityList:(NSArray *)jsonList withBlock:(void(^)(NSMutableArray *carInfoList))block
 {

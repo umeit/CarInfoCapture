@@ -244,7 +244,6 @@
         carInfo.paintIssueList = [[s stringForColumn:@"paintIssueList"] componentsSeparatedByString:@"#"];
         carInfo.insideIssueList = [[s stringForColumn:@"insideIssueList"] componentsSeparatedByString:@"#"];
         carInfo.facadeIssueList = [[s stringForColumn:@"facadeIssueList"] componentsSeparatedByString:@"#"];
-//        carInfo.carImagesLocalPaths = [NSMutableArray arrayWithArray:[[s stringForColumn:@"carImagesLocalPathList"] jsonStrToDictionary]];
         carInfo.carImagesLocalPaths = [NSMutableDictionary dictionaryWithDictionary:[[s stringForColumn:@"carImagesLocalPaths"] jsonStrToDictionary]];
         carInfo.carImagesRemotePaths = [NSMutableDictionary dictionaryWithDictionary:[[s stringForColumn:@"carImagesRemotePaths"] jsonStrToDictionary]];
         carInfo.masterName = [s stringForColumn:@"masterName"];

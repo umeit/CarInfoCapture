@@ -35,26 +35,6 @@
              }];
 }
 
-- (void)uploadCarInfo:(CICCarInfoEntity *)carInfo withBlock:(UploadCarInfoListBlock)block
-{
-    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
-    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
-    
-    NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
-    //capture.youche.com
-    [httpManager POST:@"http://capture.yicheyi.com/capture/upload" parameters:carInfoParameters
-                                    constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                                        
-                                    }
-                                                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                          block(nil);
-                                                      }
-                                                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                          block(error);
-                                                      }];
-}
-
 - (NSError *)uploadCarInfo:(CICCarInfoEntity *)carInfo
 {
     NSCondition *condition = [[NSCondition alloc] init];
@@ -99,7 +79,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
     [[httpManager operationQueue] cancelAllOperations];
 }
 
-//- (NSString *)uploadImageWithLocalPath:(NSString *)filePathStr block:(CICCarInfoHTTPLogicUploadImageBLock)block
 - (NSString *)uploadImageWithLocalPath:(NSString *)filePathStr
 {
     NSCondition *condition = [[NSCondition alloc] init];
@@ -130,7 +109,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                                                 [condition lock];
                                                                 [condition signal];
                                                                 [condition unlock];
-//                                                                block([NSString stringWithFormat:@"/0/capture/%@", remoteImagePath], nil);
                                                             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                                                 NSLog(@"%@", error.description);
                                                                 
