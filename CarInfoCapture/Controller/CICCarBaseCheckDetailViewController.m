@@ -55,7 +55,12 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     // 当视图弹出时，找出所有被选中的项（的名称），传递给上一级视图
-    [self.delegate selectedCheckItemList:self.selectedItems fromType:self.checkType];
+    if (self.selectedItems && [self.selectedItems count] > 0) {
+        [self.delegate selectedCheckItemList:self.selectedItems fromType:self.checkType];
+    }
+    else {
+        [self.delegate selectedCheckItemList:nil fromType:self.checkType];
+    }
 }
 
 #pragma mark - Table view data source

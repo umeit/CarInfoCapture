@@ -109,10 +109,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self hideLodingView];
-            
+            // 跟新UI
+            [self updateUI];
             [picker dismissViewControllerAnimated:YES completion:^{
                 // 跟新UI
-                [self updateUI];
+//                [self updateUI];
                 
                 // 通知代理实体类的变化
                 [self.delegate carInfoDidChange:self.carInfoEntity];
@@ -151,7 +152,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)updateUI
 {
-    [self showLodingView];
+//    [self showLodingView];
     
     UIImage *frontFlankImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kFrontFlankImage]];
     if (frontFlankImage) {
@@ -178,7 +179,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         self.backSeatImage.image = [CICGlobalService thumbWithImage:backSeatImage maxHeight:160 maxWidth:213];
     }
     
-    [self hideLodingView];
+//    [self hideLodingView];
 }
 
 - (void)showEditImageMenu
