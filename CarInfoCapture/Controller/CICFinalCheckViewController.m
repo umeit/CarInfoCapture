@@ -52,7 +52,7 @@
 
         }
          else if ([self.dataList[indexPath.section][@"cellList"][indexPath.row] isKindOfClass:[NSDictionary class]]) {
-             self.dataList[indexPath.section][@"cellList"][indexPath.row][@"displayName"] = [NSString stringWithFormat:@"%@%@", self.itemPrefix, self.dataList[indexPath.section][@"cellList"][indexPath.row][@"displayName"]];
+             self.dataList[indexPath.section][@"cellList"][indexPath.row][@"displayName"] = [NSString stringWithFormat:@"%@ %@", self.itemPrefix, self.dataList[indexPath.section][@"cellList"][indexPath.row][@"displayName"]];
              [self.delegate selecatItem:self.dataList[indexPath.section][@"cellList"][indexPath.row]];
          }
     } else {

@@ -108,15 +108,17 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         self.carInfoEntity.carImagesLocalPaths[self.currentTackIamgeKey] = iamgeSavePath;
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             [self hideLodingView];
+            
             // 跟新UI
             [self updateUI];
+            
             [picker dismissViewControllerAnimated:YES completion:^{
-                // 跟新UI
-//                [self updateUI];
                 
                 // 通知代理实体类的变化
                 [self.delegate carInfoDidChange:self.carInfoEntity];
+                
             }];
         });
     });

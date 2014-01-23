@@ -16,8 +16,7 @@
 #define YearExamineExpireCellTag 34
 #define CarSourceCellTag         35
 #define DealTimeCellTag          36
-#define MileageCellTag           37
-#define SalePriceCellTag         38
+#define CarColorCellTag          37
 
 // 当前正在编辑的信息类型
 typedef enum EditItemType : NSInteger{
@@ -29,7 +28,8 @@ typedef enum EditItemType : NSInteger{
     carSource,
     dealTime,
     mileage,
-    salePrice
+    salePrice,
+    carColor
 }EditItemType;
 
 @interface CICCarBaseInfoViewController () <UITextFieldDelegate>
@@ -46,6 +46,7 @@ typedef enum EditItemType : NSInteger{
 @property (weak, nonatomic) IBOutlet UILabel *dealTimeDetailLabel;
 @property (weak, nonatomic) IBOutlet UITextField *mileageTextField;
 @property (weak, nonatomic) IBOutlet UITextField *salePriceTextField;
+@property (weak, nonatomic) IBOutlet UILabel *carColorDetailLabel;
 
 @property (strong, nonatomic) UITextField *currentEditTextField;
 
@@ -56,6 +57,11 @@ typedef enum EditItemType : NSInteger{
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(itemDidSelect:)
+                                                 name:@"BaseInfoItemDidSelect"
+                                               object:nil];
     
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     numberToolbar.barStyle = UIBarStyleDefault;
@@ -87,6 +93,7 @@ typedef enum EditItemType : NSInteger{
     self.dealTimeDetailLabel.text = self.carInfoEntity.dealTime;
     self.mileageTextField.text = self.carInfoEntity.mileage;
     self.salePriceTextField.text = self.carInfoEntity.salePrice;
+    self.carColorDetailLabel.text = self.carInfoEntity.carColor;
     
     // 监听键盘弹出/隐藏事件
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -151,6 +158,16 @@ typedef enum EditItemType : NSInteger{
             finalVC.dataList = [self dealTimeList];
             break;
             
+        case CarColorCellTag:
+            self.currentEditItem = carColor;
+            finalVC = segue.destinationViewController;
+            
+            finalVC.title = @"车身颜色";
+            finalVC.popToViewController = self;
+            finalVC.delegate = self;
+            finalVC.dataList = [self carColorList];
+            break;
+            
         default:
             break;
     }
@@ -182,6 +199,41 @@ typedef enum EditItemType : NSInteger{
 {
     self.currentEditTextField = textField;
 }
+
+
+#pragma mark - NSNotification
+
+- (void)itemDidSelect:(NSNotification *)notification
+{
+    NSInteger index = [[notification userInfo][@"SelectIndex"] integerValue];
+    
+    switch (self.currentEditItem) {
+        case carLocation:
+            break;
+            
+        case carName:
+            break;
+            
+        case firstRegTime:
+            break;
+            
+        case insuranceExpire:
+            break;
+            
+        case yearExamineExpire:
+            break;
+            
+        case carSource:
+            break;
+            
+        case dealTime:
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 #pragma mark - Private
 
@@ -284,6 +336,10 @@ typedef enum EditItemType : NSInteger{
             self.carInfoEntity.dealTime = editedItem;
             break;
             
+        case carColor:
+            self.carInfoEntity.carColor = editedItem;
+            break;
+            
         default:
             break;
     }
@@ -298,6 +354,14 @@ typedef enum EditItemType : NSInteger{
                @"cellList": @[@{@"displayName": @"亚运村"},
                               @{@"displayName": @"花乡"},
                               @{@"displayName": @"个人"}]}];
+}
+
+- (NSArray *)carColorList
+{
+    return @[@{@"sectionName": @"",
+               @"cellList": @[@{@"displayName": @"黑色"},
+                              @{@"displayName": @"白色"},
+                              @{@"displayName": @"红色"}]}];
 }
 
 - (NSArray *)dealTimeList
