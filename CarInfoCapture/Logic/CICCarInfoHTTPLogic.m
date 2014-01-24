@@ -166,6 +166,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                         @"facadestate": carInfo.facadeIssueList ? [carInfo.facadeIssueList oneStringFormat] : @"",
                                         @"mastername": carInfo.masterName,
                                         @"mastertel": carInfo.masterTel,
+                                        @"carcolor": carInfo.carColor,
                                         @"pic": [carInfo.carImagesRemotePaths jsonStringRemoteFormat]};
     return carInfoParameters;
 }
