@@ -19,38 +19,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CarInfoCapture/Controller/CICCarBaseCheckReportViewController.m"
-            timestampString = "411649782.25592"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "-viewWillAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CarInfoCapture/Controller/CICCarBaseCheckReportViewController.m"
-            timestampString = "411649823.417313"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-detailLabelTextWithCarInfoCheckItemList:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CarInfoCapture/Controller/CICCarBaseCheckDetailViewController.m"
             timestampString = "411658197.871945"
             startingColumnNumber = "9223372036854775807"
@@ -67,29 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CarInfoCapture/Controller/CICCarBaseCheckReportViewController.m"
-            timestampString = "411650027.152768"
+            filePath = "CarInfoCapture/Controller/CICCarBaseInfoViewController.m"
+            timestampString = "412245431.744653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-selectedCheckItemList:fromType:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CarInfoCapture/Util/NSArray+CICArray.m"
-            timestampString = "411650227.438241"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "-oneStringFormat"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
+            landmarkName = "-updateCarInfo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -100,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarInfoCapture/Logic/CICCarInfoDBLogic.m"
-            timestampString = "411650234.458477"
+            timestampString = "412245563.515244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "+saveCarInfo:WithBlock:"
             landmarkType = "5">
          </BreakpointContent>
@@ -116,28 +68,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CarInfoCapture/Logic/CICCarInfoDBLogic.m"
-            timestampString = "411650239.536129"
+            timestampString = "412245573.995183"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "+updateCarInfo:withBlock:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CarInfoCapture/Logic/CICCarInfoDBLogic.m"
-            timestampString = "411650300.776435"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "+noUploadCarInfoListWithBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

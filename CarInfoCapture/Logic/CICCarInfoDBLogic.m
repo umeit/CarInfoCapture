@@ -48,7 +48,8 @@
     " carImagesLocalPaths VARCHAR, " \
     " carImagesRemotePaths VARCHAR, " \
     " masterName VARCHAR, " \
-    " masterTel VARCHAR " \
+    " masterTel VARCHAR, " \
+    " carColor VARCHAR" \
     ")";
     
     [db executeUpdate:createTableSQL];
@@ -58,7 +59,6 @@
 
 + (BOOL)isDBExist
 {
-    NSLog(@"%@", DBPath);
     return [[NSFileManager defaultManager] fileExistsAtPath:DBPath];
 }
 
@@ -99,7 +99,7 @@
         carInfo.carImagesRemotePaths = [NSMutableDictionary dictionaryWithDictionary:[[s stringForColumn:@"carImagesRemotePaths"] jsonStrToDictionary]];
         carInfo.masterName = [s stringForColumn:@"masterName"];
         carInfo.masterTel = [s stringForColumn:@"masterTel"];
-        
+        carInfo.carColor = [s stringForColumn:@"carColor"];
         [carInfoList addObject:carInfo];
     }
     
@@ -140,7 +140,7 @@
 //    " masterTel VARCHAR " \
 //    ")";
     
-    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         nil,
                         carInfo.addTime, @(carInfo.status), carInfo.modelID, carInfo.carName, carInfo.location,
                         carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
@@ -152,7 +152,7 @@
                         [carInfo.facadeIssueList oneStringFormat],
                         [carInfo.carImagesLocalPaths jsonStringLocalFormat],
                         [carInfo.carImagesRemotePaths jsonStringLocalFormat],
-                        carInfo.masterName, carInfo.masterTel];
+                        carInfo.masterName, carInfo.masterTel, carInfo.carColor];
     
     [db close];
     
@@ -248,6 +248,7 @@
         carInfo.carImagesRemotePaths = [NSMutableDictionary dictionaryWithDictionary:[[s stringForColumn:@"carImagesRemotePaths"] jsonStrToDictionary]];
         carInfo.masterName = [s stringForColumn:@"masterName"];
         carInfo.masterTel = [s stringForColumn:@"masterTel"];
+        carInfo.carColor = [s stringForColumn:@"carColor"];
         
         [carInfoList addObject:carInfo];
     }
@@ -269,7 +270,7 @@
                                       "carSource = ?, dealTime = ?, salePrice = ?, mileage = ?, "\
                                       "firstRegTime = ?, underpanIssueList = ?, engineIssueList = ?, "\
                                       "paintIssueList = ?, insideIssueList = ?, facadeIssueList = ?, "\
-                                      "carImagesLocalPaths = ?, carImagesRemotePaths = ?, masterName = ?, masterTel = ? "\
+                                      "carImagesLocalPaths = ?, carImagesRemotePaths = ?, masterName = ?, masterTel = ?, carColor = ? "\
                                       "WHERE id = ? ",
                     carInfo.addTime, @(carInfo.status), carInfo.modelID, carInfo.carName, carInfo.location,
                     carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
@@ -281,7 +282,7 @@
                     [carInfo.facadeIssueList oneStringFormat],
                     [carInfo.carImagesLocalPaths jsonStringLocalFormat],
                     [carInfo.carImagesRemotePaths jsonStringLocalFormat],
-                    carInfo.masterName, carInfo.masterTel,
+                    carInfo.masterName, carInfo.masterTel, carInfo.carColor,
                     @(carInfo.dbID)];
     
     [db close];
