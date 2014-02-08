@@ -79,6 +79,7 @@ typedef enum SaveStatus : NSInteger {
 /* 车主信息 */
 @property (strong, nonatomic) NSString *masterName;
 @property (strong, nonatomic) NSString *masterTel;
+@property (strong, nonatomic) NSString *company;
 
 //- (NSInteger)imageCodeWithImageIndex:(NSInteger)index;
 

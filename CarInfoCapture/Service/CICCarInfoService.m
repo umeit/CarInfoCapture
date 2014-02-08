@@ -246,6 +246,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     carInfoEntity.masterName = [carInfoDic objectForKey:@"masterName"];
     carInfoEntity.masterTel = [carInfoDic objectForKey:@"masterTel"];
     carInfoEntity.carColor = [carInfoDic objectForKey:@"carcolor"];
+    carInfoEntity.company = [carInfoDic objectForKey:@"company"];
     
     NSArray *array = [carInfoDic objectForKey:@"pic"];
     carInfoEntity.carImagesRemotePaths = [NSMutableDictionary dictionary];

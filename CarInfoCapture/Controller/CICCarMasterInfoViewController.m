@@ -12,6 +12,7 @@
 @interface CICCarMasterInfoViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *masterNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *masterTelTextField;
+@property (weak, nonatomic) IBOutlet UITextField *companyTextField;
 @end
 
 @implementation CICCarMasterInfoViewController
@@ -39,6 +40,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     self.carInfoEntity.masterName = self.masterNameTextField.text;
+    self.carInfoEntity.company = self.companyTextField.text;
     
     [self.delegate carInfoDidChange:self.carInfoEntity];
     
@@ -58,6 +60,7 @@
 {
     self.carInfoEntity.masterName = self.masterNameTextField.text;
     self.carInfoEntity.masterTel = self.masterTelTextField.text;
+    self.carInfoEntity.company = self.companyTextField.text;
     
     [self.delegate carInfoDidChange:self.carInfoEntity];
 }
@@ -81,6 +84,7 @@
 {
     self.masterNameTextField.text = self.carInfoEntity.masterName;
     self.masterTelTextField.text = self.carInfoEntity.masterTel;
+    self.companyTextField.text = self.carInfoEntity.company;
 }
 
 @end

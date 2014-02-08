@@ -44,6 +44,7 @@
         self.yearExamineExpire = [aDecoder decodeObjectForKey:@"yearExamineExpire"];
         self.carSource = [aDecoder decodeObjectForKey:@"carSource"];
         self.dealTime = [aDecoder decodeObjectForKey:@"dealTime"];
+        self.carColor = [aDecoder decodeObjectForKey:@"carColor"];
         
         // 初步检查信息
         self.underpanIssueList = [aDecoder decodeObjectForKey:@"underpanIssueList"];
@@ -53,12 +54,12 @@
         self.facadeIssueList = [aDecoder decodeObjectForKey:@"facadeIssueList"];
         
         // 车辆实拍信息
-//        self.carImagesLocalPathList = [aDecoder decodeObjectForKey:@"carImagesLocalPathList"];
         self.carImagesLocalPaths = [aDecoder decodeObjectForKey:@"carImagesLocalPaths"];
         
         // 车主信息
         self.masterName = [aDecoder decodeObjectForKey:@"masterName"];
         self.masterTel = [aDecoder decodeObjectForKey:@"masterTel"];
+        self.company = [aDecoder decodeObjectForKey:@"company"];
     }
     
     return self;
@@ -78,6 +79,7 @@
     [aCoder encodeObject:self.yearExamineExpire forKey:@"yearExamineExpire"];
     [aCoder encodeObject:self.carSource forKey:@"carSource"];
     [aCoder encodeObject:self.dealTime forKey:@"dealTime"];
+    [aCoder encodeObject:self.carColor forKey:@"carColor"];
     
     // 初步检查信息
     [aCoder encodeObject:self.underpanIssueList forKey:@"underpanIssueList"];
@@ -87,12 +89,12 @@
     [aCoder encodeObject:self.facadeIssueList forKey:@"facadeIssueList"];
     
     // 车辆实拍信息
-//    [aCoder encodeObject:self.carImagesLocalPathList forKey:@"carImagesLocalPathList"];
     [aCoder encodeObject:self.carImagesLocalPaths forKey:@"carImagesLocalPaths"];
     
     // 车主信息
     [aCoder encodeObject:self.masterName forKey:@"masterName"];
     [aCoder encodeObject:self.masterTel forKey:@"masterTel"];
+    [aCoder encodeObject:self.company forKey:@"company"];
 }
 
 //- (NSInteger)imageCodeWithImageIndex:(NSInteger)index

@@ -167,6 +167,7 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                         @"mastername": carInfo.masterName,
                                         @"mastertel": carInfo.masterTel,
                                         @"carcolor": carInfo.carColor ? carInfo.carColor : @"",
+                                        @"company" : carInfo.company ? carInfo.company : @"",
                                         @"pic": [carInfo.carImagesRemotePaths jsonStringRemoteFormat]};
     return carInfoParameters;
 }
