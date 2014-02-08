@@ -297,8 +297,14 @@ typedef enum EditItemType : NSInteger{
             break;
             
         case carName:
-            self.carInfoEntity.carName = editedItem[@"displayName"];
+        {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            self.carInfoEntity.carName = [NSString stringWithFormat:@"%@ %@ %@",
+                                          [userDefaults stringForKey:@"CurrentSelecteBrandName"],
+                                          [userDefaults stringForKey:@"CurrentSelecteModelName"],
+                                          editedItem[@"displayName"]];
             self.carInfoEntity.modelID = editedItem[@"value"];
+        }
             break;
             
         case firstRegTime:

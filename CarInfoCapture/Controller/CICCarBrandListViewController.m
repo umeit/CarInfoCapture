@@ -84,6 +84,9 @@
 {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSInteger lineNumberForCarModeListData = [self.brandList[indexPath.section][@"blands"][indexPath.row][@"childline"] integerValue];
+    NSString *brandName = self.brandList[indexPath.section][@"blands"][indexPath.row][@"name"];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:brandName forKey:@"CurrentSelecteBrandName"];
     
     CICCarModelLIstViewController *carModelLIstViewController = (CICCarModelLIstViewController *)segue.destinationViewController;
     carModelLIstViewController.lineNumberForCarModeListData = lineNumberForCarModeListData;

@@ -74,6 +74,8 @@
     CICFinalCheckViewController *finalVC = segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     NSInteger lineNumberForCarModeListData = [self.carModelList[indexPath.section][@"series"][indexPath.row][@"childline"] integerValue];
+    NSString *modelName = self.carModelList[indexPath.section][@"series"][indexPath.row][@"name"];
+    [[NSUserDefaults standardUserDefaults] setObject:modelName forKey:@"CurrentSelecteModelName"];
     
     NSMutableArray *dataList = [[NSMutableArray alloc] init];
     
