@@ -361,7 +361,18 @@ typedef enum EditItemType : NSInteger{
     return @[@{@"sectionName": @"",
                @"cellList": @[@{@"displayName": @"黑色"},
                               @{@"displayName": @"白色"},
-                              @{@"displayName": @"红色"}]}];
+                              @{@"displayName": @"银色"},
+                              @{@"displayName": @"灰色"},
+                              @{@"displayName": @"栗色"},
+                              @{@"displayName": @"红色"},
+                              @{@"displayName": @"蓝色"},
+                              @{@"displayName": @"绿色"},
+                              @{@"displayName": @"黄色"},
+                              @{@"displayName": @"橙色"},
+                              @{@"displayName": @"棕色"},
+                              @{@"displayName": @"紫色"},
+                              @{@"displayName": @"金色"},
+                              @{@"displayName": @"其它"}]}];
 }
 
 - (NSArray *)dealTimeList

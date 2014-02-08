@@ -294,8 +294,6 @@
         NSLog(@"%@", db.lastErrorMessage);
         if (block) block(db.lastError);
     }
-    
-    
 }
 
 @end
