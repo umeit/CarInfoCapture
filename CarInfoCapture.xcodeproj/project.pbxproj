@@ -291,6 +291,7 @@
 		03BC91F2183F6575008E8B88 /* CarBrandJson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 03BC9162183F6575008E8B88 /* CarBrandJson.txt */; };
 		03BC91F3183F6575008E8B88 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03BC9163183F6575008E8B88 /* ProvincesAndCities.plist */; };
 		03BC91F6183F6AC3008E8B88 /* NSFileHandle+readLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */; };
+		03D352B718AA2EA1004F3A2D /* CICHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D352B618AA2EA1004F3A2D /* CICHTTPClient.m */; };
 		03D9D9B01856FE5F00E5838A /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03D9D9AF1856FE5F00E5838A /* Entitlements.plist */; };
 		03F05FF71842F43200DF976A /* CICCarBrandService.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F05FF61842F43200DF976A /* CICCarBrandService.m */; };
 		03F05FFA1843089C00DF976A /* CICCarModelLIstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F05FF91843089C00DF976A /* CICCarModelLIstViewController.m */; };
@@ -642,6 +643,8 @@
 		03BC9163183F6575008E8B88 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
 		03BC91F4183F6AC3008E8B88 /* NSFileHandle+readLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileHandle+readLine.h"; sourceTree = "<group>"; };
 		03BC91F5183F6AC3008E8B88 /* NSFileHandle+readLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileHandle+readLine.m"; sourceTree = "<group>"; };
+		03D352B518AA2EA1004F3A2D /* CICHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICHTTPClient.h; sourceTree = "<group>"; };
+		03D352B618AA2EA1004F3A2D /* CICHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICHTTPClient.m; sourceTree = "<group>"; };
 		03D9D9AF1856FE5F00E5838A /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		03F05FF51842F43200DF976A /* CICCarBrandService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBrandService.h; sourceTree = "<group>"; };
 		03F05FF61842F43200DF976A /* CICCarBrandService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBrandService.m; sourceTree = "<group>"; };
@@ -695,6 +698,8 @@
 				033A22AD183DA97E004EE235 /* NSString+CICString.m */,
 				03BC90CC183F3182008E8B88 /* NSData+CICData.h */,
 				03BC90CD183F3182008E8B88 /* NSData+CICData.m */,
+				03D352B518AA2EA1004F3A2D /* CICHTTPClient.h */,
+				03D352B618AA2EA1004F3A2D /* CICHTTPClient.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1541,6 +1546,7 @@
 				0339EF841831FD500082A35E /* CICCarInfoDBLogic.m in Sources */,
 				032B96161836214000A685D3 /* NSArray+CICArray.m in Sources */,
 				03BC018F18321714000BDAF3 /* FMDatabaseQueue.m in Sources */,
+				03D352B718AA2EA1004F3A2D /* CICHTTPClient.m in Sources */,
 				0339EF821831FD500082A35E /* AFURLResponseSerialization.m in Sources */,
 				034E6964182C83D400BD5612 /* CICAppDelegate.m in Sources */,
 				034E6960182C83D400BD5612 /* main.m in Sources */,

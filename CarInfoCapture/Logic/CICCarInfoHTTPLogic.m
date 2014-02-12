@@ -7,7 +7,7 @@
 //
 
 #import "CICCarInfoHTTPLogic.h"
-#import "AFHTTPRequestOperationManager.h"
+#import "CICHTTPClient.h"
 #import "CICCarInfoEntity.h"
 #import "NSDictionary+CICDictionary.h"
 #import "NSArray+CICArray.h"
@@ -21,18 +21,14 @@
 
 + (void)carInfoHistoryListWithBlock:(CarInfoHistoryListBlock)block
 {
-    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
-    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
-    
-    [httpManager GET:@"http://capture.yicheyi.com/capture/get_mycapture"
-          parameters:@{@"pi": @(1), @"ps": @(200)}
-             success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                 block(responseObject, nil);
-             }
-             failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                 block(nil, error);
-             }];
+    [[CICHTTPClient sharedClient] GET:@"capture/get_mycapture"
+                           parameters:@{@"pi": @(1), @"ps": @(200)}
+                              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                  block(responseObject, nil);
+                              }
+                              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                  block(nil, error);
+                              }];
 }
 
 - (NSError *)uploadCarInfo:(CICCarInfoEntity *)carInfo
@@ -40,30 +36,24 @@
     NSCondition *condition = [[NSCondition alloc] init];
     __block NSError *result = nil;
     
-    AFHTTPRequestOperationManager *httpManager = [AFHTTPRequestOperationManager manager];
-    httpManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    httpManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/json"];
-    
     NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
     //capture.youche.com
-    [httpManager POST:@"http://capture.yicheyi.com/capture/upload" parameters:carInfoParameters
-constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-    
-}
-              success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                  // 发出信号，使线程继续
-                  [condition lock];
-                  [condition signal];
-                  [condition unlock];
-              }
-              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  result = error;
+    [[CICHTTPClient sharedClient] POST:@"capture/upload"
+                            parameters:carInfoParameters
+                               success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                   // 发出信号，使线程继续
+                                   [condition lock];
+                                   [condition signal];
+                                   [condition unlock];
+                               }
+                               failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                   result = error;
                   
-                  // 发出信号，使线程继续
-                  [condition lock];
-                  [condition signal];
-                  [condition unlock];
-              }];
+                                   // 发出信号，使线程继续
+                                   [condition lock];
+                                   [condition signal];
+                                   [condition unlock];
+                               }];
     
     // 线程等待请求完成
     [condition lock];
