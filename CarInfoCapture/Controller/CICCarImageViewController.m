@@ -17,10 +17,9 @@
 #define kFrontSeatImageTag      33
 #define kBackSeatImageTag       34
 
-#define kRetakePhoto    0
-#define kReselectPhoto  1
-
-@interface CICCarImageViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
+@interface CICCarImageViewController () <UINavigationControllerDelegate,
+                                         UIImagePickerControllerDelegate,
+                                         UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *frontFlankImage;
 @property (weak, nonatomic) IBOutlet UIImageView *backFlankImage;
@@ -40,6 +39,7 @@
     
     [self updateUI];
 }
+
 
 #pragma mark - Action
 
@@ -72,14 +72,22 @@
     }
     
     // 判断是否弹出编辑图片的菜单
-    if (self.carInfoEntity.carImagesLocalPaths[self.currentTackIamgeKey]) {
-        [self showEditImageMenu];
-    }
-    else {
-        // 启动相机
-        [self showImagePicker];
-    }
+//    if (self.carInfoEntity.carImagesLocalPaths[self.currentTackIamgeKey]) {
+//        [self showEditImageMenu];
+//    }
+//    else {
+//        // 启动相机
+//        [self showImagePicker];
+//    }
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"拍照", @"从相册选择", nil];
+    [actionSheet showInView:self.view];
 }
+
 
 #pragma mark - UIImagePickerControllerDelegate
 
@@ -94,7 +102,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         
         // 保存到手机相册
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        }
         
         // 压缩图片
         image = [CICGlobalService thumbWithImage:image maxHeight:800 maxWidth:800];
@@ -132,30 +142,29 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     }];
 }
 
+
 #pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
-        case kRetakePhoto:  // 拍照
-            // 启动相机
-            [self showImagePicker];
+        case 0:  // 拍照
+            [self startCamera];
             break;
             
-        case kReselectPhoto:  // 从相册选取
-            
+        case 1:  // 从相册选取
+            [self showPhotoBrowser];
             break;
         default:
             break;
     }
 }
 
+
 #pragma mark - Private
 
 - (void)updateUI
 {
-//    [self showLodingView];
-    
     UIImage *frontFlankImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kFrontFlankImage]];
     if (frontFlankImage) {
         self.frontFlankImage.image = [CICGlobalService thumbWithImage:frontFlankImage maxHeight:160 maxWidth:213];
@@ -180,44 +189,27 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     if (backSeatImage) {
         self.backSeatImage.image = [CICGlobalService thumbWithImage:backSeatImage maxHeight:160 maxWidth:213];
     }
-    
-//    [self hideLodingView];
 }
 
-- (void)showEditImageMenu
+- (void)startCamera
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:@"重新拍照"
-                                                    otherButtonTitles:nil];
-    [actionSheet showInView:self.view];
+    [self showImagePicker:UIImagePickerControllerSourceTypeCamera];
 }
 
-- (void)showImagePicker
+- (void)showPhotoBrowser
+{
+    [self showImagePicker:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+}
+
+- (void)showImagePicker:(UIImagePickerControllerSourceType)sourceType
 {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
-    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePicker.sourceType = sourceType;
     imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     imagePicker.allowsEditing = NO;
     
-    
-    [self presentViewController:imagePicker animated:YES completion:^{
-        // iOS 7
-        
-        // iOS 6
-        //        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    }];
+    [self presentViewController:imagePicker animated:YES completion:^{}];
 }
-
-//- (BOOL)isAlreadySaveThisImageIndex:(NSInteger)index
-//{
-//    NSDictionary *dic = self.carInfoEntity.carImagesLocalPathList[index];
-//    if ([dic[@"k"] integerValue] == 0) {
-//        return NO;
-//    }
-//    return YES;
-//}
 
 @end
