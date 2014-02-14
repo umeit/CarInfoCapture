@@ -71,15 +71,6 @@
             break;
     }
     
-    // 判断是否弹出编辑图片的菜单
-//    if (self.carInfoEntity.carImagesLocalPaths[self.currentTackIamgeKey]) {
-//        [self showEditImageMenu];
-//    }
-//    else {
-//        // 启动相机
-//        [self showImagePicker];
-//    }
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:self
                                                     cancelButtonTitle:@"取消"
