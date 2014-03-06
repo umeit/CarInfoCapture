@@ -54,13 +54,13 @@
     
     NSArray *dataList;
     
-    if ([self.tableView indexPathForSelectedRow].row != 0) {
+//    if ([self.tableView indexPathForSelectedRow].row != 0) {
         dataList = @[@{@"sectionName": @"",
                                 @"cellList": [self monthList]}];
-    } else {
-        dataList = @[@{@"sectionName": @"",
-                                @"cellList": [self pastMonthList]}];
-    }
+//    } else {
+//        dataList = @[@{@"sectionName": @"",
+//                                @"cellList": [self pastMonthList]}];
+//    }
     
     finalVC.dataList = dataList;
     finalVC.title = @"月";
@@ -74,16 +74,12 @@
 - (NSArray *)pastYearList
 {
     NSDate *date = [NSDate date];
-//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-//    NSInteger interval = [zone secondsFromGMTForDate: date];
-//    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-//    NSLog(@"%@", localeDate);
     
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
     
     NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
-    NSInteger year = comps.year + 1;
+    NSInteger year = comps.year + 2;
     
     NSMutableArray *yearList = [[NSMutableArray alloc] init];
     
@@ -97,10 +93,6 @@
 - (NSArray *)pastMonthList
 {
     NSDate *date = [NSDate date];
-//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-//    NSInteger interval = [zone secondsFromGMTForDate: date];
-//    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-//    NSLog(@"%@", localeDate);
     
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
