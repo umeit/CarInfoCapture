@@ -205,7 +205,7 @@ typedef enum EditItemType : NSInteger{
 
 - (void)itemDidSelect:(NSNotification *)notification
 {
-    NSInteger index = [[notification userInfo][@"SelectIndex"] integerValue];
+//    NSInteger index = [[notification userInfo][@"SelectIndex"] integerValue];
     
     switch (self.currentEditItem) {
         case carLocation:
@@ -239,25 +239,25 @@ typedef enum EditItemType : NSInteger{
 
 - (void)keyboardWillShow:(NSNotification *)aNotification
 {
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//    NSDictionary* info = [aNotification userInfo];
+//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//    
+//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+//    self.tableView.contentInset = contentInsets;
+//    self.tableView.scrollIndicatorInsets = contentInsets;
     
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    self.tableView.contentInset = contentInsets;
-    self.tableView.scrollIndicatorInsets = contentInsets;
-    
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    if (!CGRectContainsPoint(aRect, self.currentEditTextField.frame.origin) ) {
-        [self.tableView scrollRectToVisible:self.currentEditTextField.frame animated:YES];
-    }
+//    CGRect aRect = self.view.frame;
+//    aRect.size.height -= kbSize.height;
+//    if (!CGRectContainsPoint(aRect, self.currentEditTextField.frame.origin) ) {
+//        [self.tableView scrollRectToVisible:self.currentEditTextField.frame animated:YES];
+//    }
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64.f, 0.0, 0.0, 0.0);
-    self.tableView.contentInset = contentInsets;
-    self.tableView.scrollIndicatorInsets = contentInsets;
+//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(64.f, 0.0, 260.f, 0.0);
+//    self.tableView.contentInset = contentInsets;
+//    self.tableView.scrollIndicatorInsets = contentInsets;
 }
 
 - (void)cancelNumberPad

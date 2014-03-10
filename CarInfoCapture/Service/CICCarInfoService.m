@@ -129,10 +129,14 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
 // 待上传的采集信息总数
 - (void)sumOfCarInfoAndNeedUploadCarInfoWithBlock:(NumberOfSumCarInfoAndNumberOfNeedUploadCarInfoBlock)block
 {
-    NSInteger sum = [CICCarInfoDBLogic sumOfCarInfo];
-    NSInteger needUploadSum = [CICCarInfoDBLogic sumOfNoUploadCarInfo];
-    
-    block(sum, needUploadSum);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSInteger sum = [CICCarInfoDBLogic sumOfCarInfo];
+        NSInteger needUploadSum = [CICCarInfoDBLogic sumOfNoUploadCarInfo];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block(sum, needUploadSum);
+        });
+    });
 }
 
 - (void)uploadCarInfoList:(NSArray *)carInfoList
