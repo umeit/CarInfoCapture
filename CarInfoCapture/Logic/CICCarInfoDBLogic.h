@@ -31,6 +31,8 @@ typedef void(^UpdateCarInfoBlock)(NSError *error);
 
 + (NSInteger)sumOfNoUploadCarInfo;
 
++ (void)deleteCarInfoWithID:(NSInteger)dbID;
+
 /**
  *  查找所有没有上传过的数据
  *

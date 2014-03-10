@@ -12,6 +12,9 @@
 #import "CICGlobalService.h"
 #import "CICCarInfoEntity.h"
 
+// 不在第一次打开 app 时下载历史记录
+//#define DownloadHistoryCarCaptureInfo
+
 typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePathList);
 
 @implementation CICCarInfoService
@@ -35,51 +38,56 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
         // 建立数据库
         [CICCarInfoDBLogic initCarInfoDB];
         
-        // 如果不存在就去服务器上取，然后建立数据库，存入信息
-        [CICCarInfoHTTPLogic carInfoHistoryListWithBlock:^(id responseObject, NSError *error) {
-            if (!error) {
-                id retObject = [responseObject objectForKey:@"ret"];
-                
-                if (retObject && [retObject integerValue] == 0) {
+        
+        #ifdef DownloadHistoryCarCaptureInfo
+            // 如果不存在就去服务器上取，然后存入信息
+            [CICCarInfoHTTPLogic carInfoHistoryListWithBlock:^(id responseObject, NSError *error) {
+                if (!error) {
+                    id retObject = [responseObject objectForKey:@"ret"];
                     
-                    // 解析数据
-                    [self jsonListToCarInfoEntityList:[responseObject objectForKey:@"capture"]
-                          withBlock:^(NSMutableArray *carInfoList) {
-                              
-                              // 将信息存入数据库，以后都从数据库读取
-                              [CICCarInfoDBLogic saveCarInfoList:[[carInfoList reverseObjectEnumerator] allObjects]
-                              WithBlock:^(NSError *error) {
-                                  if (!error) {
-                                      // 再从数据库中读出来，就带有 id 信息了
-                                      [CICCarInfoDBLogic carInfoListWithBlock:^(NSArray *list, NSError *error) {
-                                          if (!error) {
-                                              block(list, nil);
-                                          }
-                                          else {
-                                              // 错误处理
-                                              NSLog(@"查询数据库失败！");
-                                              block(nil, error);
-                                          }
-                                      }];
-                                  }
-                                  else {
-                                      // 错误处理
-                                      NSLog(@"历史采集信息存入数据库失败！");
-                                      block(nil, error);
-                                  }
-                              }];
-                    }];
+                    if (retObject && [retObject integerValue] == 0) {
+                        
+                        // 解析数据
+                        [self jsonListToCarInfoEntityList:[responseObject objectForKey:@"capture"]
+                              withBlock:^(NSMutableArray *carInfoList) {
+                                  
+                                  // 将信息存入数据库，以后都从数据库读取
+                                  [CICCarInfoDBLogic saveCarInfoList:[[carInfoList reverseObjectEnumerator] allObjects]
+                                  WithBlock:^(NSError *error) {
+                                      if (!error) {
+                                          // 再从数据库中读出来，就带有 id 信息了
+                                          [CICCarInfoDBLogic carInfoListWithBlock:^(NSArray *list, NSError *error) {
+                                              if (!error) {
+                                                  block(list, nil);
+                                              }
+                                              else {
+                                                  // 错误处理
+                                                  NSLog(@"查询数据库失败！");
+                                                  block(nil, error);
+                                              }
+                                          }];
+                                      }
+                                      else {
+                                          // 错误处理
+                                          NSLog(@"历史采集信息存入数据库失败！");
+                                          block(nil, error);
+                                      }
+                                  }];
+                        }];
+                    }
+                    // 获取出错
+                    else {
+                        block(nil, nil);
+                    }
                 }
-                // 获取出错
+                // 访问网络失败
                 else {
-                    block(nil, nil);
+                    block(nil, error);
                 }
-            }
-            // 访问网络失败
-            else {
-                block(nil, error);
-            }
-        }];
+            }];
+        #else
+            block(nil, nil);
+        #endif
     }
 }
 
@@ -194,6 +202,10 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
     }];
 }
 
+- (void)deleteCarInfo:(CICCarInfoEntity *)carInfoEntity
+{
+    [CICCarInfoDBLogic deleteCarInfoWithID:carInfoEntity.dbID];
+}
 
 #pragma mark - Private
 

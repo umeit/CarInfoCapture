@@ -299,4 +299,15 @@
     }
 }
 
++ (void)deleteCarInfoWithID:(NSInteger)dbID
+{
+    FMDatabase *db = [FMDatabase databaseWithPath:DBPath];
+    if (![db open]) {
+        NSLog(@"**Error** Open DB error");
+    }
+    
+    NSString *sqlString = [NSString stringWithFormat:@"DELETE FROM T_CarInfo WHERE id = %d", dbID];
+    
+    [db executeUpdate:sqlString];
+}
 @end

@@ -16,23 +16,16 @@
 #import "CICGlobalService.h"
 
 @interface CICMyCaptureListViewController () <UITableViewDataSource>
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @property (weak, nonatomic) IBOutlet UIButton *uploadBtton;
-
 @property (weak, nonatomic) IBOutlet UILabel *captureSum;
-
 @property (weak, nonatomic) IBOutlet UILabel *noUploadNumber;
 
-@property (strong, nonatomic) NSArray *carInfoList;
-
+@property (strong, nonatomic) NSMutableArray *carInfoList;
 @property (strong, nonatomic) CICCarInfoService *carInfoService;
 @property (strong, nonatomic) CICUserService *userService;
-
 @property (strong, nonatomic) NSString *currentShowMainDate;
 @property (strong, nonatomic) NSString *currentShowSubDate;
-
 @end
 
 @implementation CICMyCaptureListViewController
@@ -63,23 +56,14 @@
         [self hideLodingView];
         
         if (!error && list && [list count] > 0) {
-            self.carInfoList = list;
+            self.carInfoList = [list mutableCopy];
             
             self.currentShowMainDate = @"";
             self.currentShowSubDate = @"";
             [self.tableView reloadData];
         }
         
-        [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
-            self.captureSum.text = [NSString stringWithFormat:@"%ld", (long)sum];
-            self.noUploadNumber.text = [NSString stringWithFormat:@"%ld", (long)needUpload];
-            
-            if (needUpload == 0) {
-                self.uploadBtton.hidden = YES;
-            } else {
-                self.uploadBtton.hidden = NO;
-            }
-        }];
+        [self updateStatisticsInfo];
     }];
 }
 
@@ -105,13 +89,40 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        CICCarInfoEntity *carInfoEntity = self.carInfoList[indexPath.row];
+        [self.carInfoService deleteCarInfo:carInfoEntity];
+        
+        [self.carInfoList removeObjectAtIndex:indexPath.row];
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        
+        [self updateStatisticsInfo];
+    }
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.destinationViewController isKindOfClass:[CICMainCaptureViewController class]]) {
-        CICMainCaptureViewController *mainCaptureViewController = segue.destinationViewController;
-        mainCaptureViewController.carInfoEntity = self.carInfoList[[self.tableView indexPathForSelectedRow].row];
+    UIViewController *vc = segue.destinationViewController;
+    CICCarInfoEntity *carInfoEntity = self.carInfoList[[self.tableView indexPathForSelectedRow].row];
+    
+    if ([vc respondsToSelector:@selector(setCarInfoEntity:)]) {
+        [vc performSelector:@selector(setCarInfoEntity:) withObject:carInfoEntity];
+    }
+    
+    if (carInfoEntity.status == Uploaded) {
+        if ([vc respondsToSelector:@selector(setReviewModel:)]) {
+            [vc performSelector:@selector(setReviewModel:) withObject:@YES];
+        }
     }
 }
 
@@ -175,7 +186,7 @@
             carInfoCell.infoStatus.text = @"已上传";
             carInfoCell.infoStatus.textColor = [UIColor greenColor];
             carInfoCell.accessoryType = UITableViewCellAccessoryNone;
-            carInfoCell.userInteractionEnabled = NO;
+            carInfoCell.userInteractionEnabled = YES;
             break;
             
         case NoUpload:
@@ -292,6 +303,20 @@
 }
 
 #pragma mark - Previte
+
+- (void)updateStatisticsInfo
+{
+    [self.carInfoService sumOfCarInfoAndNeedUploadCarInfoWithBlock:^(NSInteger sum, NSInteger needUpload) {
+        self.captureSum.text = [NSString stringWithFormat:@"%ld", (long)sum];
+        self.noUploadNumber.text = [NSString stringWithFormat:@"%ld", (long)needUpload];
+        
+        if (needUpload == 0) {
+            self.uploadBtton.hidden = YES;
+        } else {
+            self.uploadBtton.hidden = NO;
+        }
+    }];
+}
 
 - (BOOL)isToday:(NSString *)dateStr
 {

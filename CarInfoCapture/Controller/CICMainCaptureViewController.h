@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) CICCarInfoEntity *carInfoEntity;
 
+@property (nonatomic, getter = isReviewModel) BOOL reviewModel;
+
 @end

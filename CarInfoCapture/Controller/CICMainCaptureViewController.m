@@ -32,6 +32,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 
 @property (strong, nonatomic) CICCarInfoService *carInfoService;
 
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @end
 
 @implementation CICMainCaptureViewController
@@ -52,7 +53,16 @@ typedef enum CarInfoSaveStatus : NSInteger {
     // 如果已经有 CarInfoEntity 信息，表示在编辑/修改采集信息，而不是新建的(或上次未保存的)采集信息
     if (self.carInfoEntity) {
         self.carInfoSaveStatus = FromDB;
-        self.navigationItem.hidesBackButton = YES;
+        
+        if (self.isReviewModel) {
+            self.navigationItem.hidesBackButton = NO;
+            self.saveButton.hidden = YES;
+        }
+        else {
+            self.navigationItem.hidesBackButton = YES;
+            self.saveButton.hidden = NO;
+        }
+        
 
     }
     else {

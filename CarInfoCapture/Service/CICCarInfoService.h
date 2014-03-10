@@ -54,4 +54,6 @@ typedef void(^CICCarInfoServiceGeneralErrorBlock)(NSError *error);
 
 - (void)downloadImageFromRemotePath:(NSString *)remotePath
                           withBlock:(void(^)(UIImage *image, NSString *localPath))block;
+
+- (void)deleteCarInfo:(CICCarInfoEntity *)carInfoEntity;
 @end
