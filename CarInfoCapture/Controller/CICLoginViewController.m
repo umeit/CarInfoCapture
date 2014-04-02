@@ -35,8 +35,8 @@
     [super viewDidLoad];
     
 #ifdef GDEBUG
-    self.userIDTextField.text = @"111";
-    self.PasswordTextField.text = @"123456";
+//    self.userIDTextField.text = @"111";
+//    self.PasswordTextField.text = @"123456";
 #endif
 }
 
