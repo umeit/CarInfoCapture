@@ -143,7 +143,7 @@
     CICCarInfoEntity *carInfoEntity = self.carInfoList[indexPath.row];
     
     [self configureCarInfoStatusWithCell:carInfoCell carInfoEntity:carInfoEntity];
-    [self configureCarInfoDateWithCell:carInfoCell carInfoEntity:carInfoEntity atIndexPath:indexPath];
+//    [self configureCarInfoDateWithCell:carInfoCell carInfoEntity:carInfoEntity atIndexPath:indexPath];
     
     [carInfoCell setCarName:carInfoEntity.carName
                     mileage:carInfoEntity.mileage
