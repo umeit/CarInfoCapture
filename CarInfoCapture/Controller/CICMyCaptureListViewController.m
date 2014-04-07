@@ -149,7 +149,8 @@
                     mileage:carInfoEntity.mileage
                firstRegTime:carInfoEntity.firstRegTime
                   salePrice:carInfoEntity.salePrice
-                   carImage:carInfoEntity.carImage];
+                   carImage:carInfoEntity.carImage
+                      carID:carInfoEntity.carIDInServer];
     
     if (!carInfoEntity.carImagesLocalPaths[kFrontFlankImage]) {
         [self.carInfoService downloadImageFromRemotePath:carInfoEntity.carImagesRemotePaths[kFrontFlankImage] withBlock:^(UIImage *image, NSString *localPath) {
@@ -162,7 +163,8 @@
                             mileage:carInfoEntity.mileage
                        firstRegTime:carInfoEntity.firstRegTime
                           salePrice:carInfoEntity.salePrice
-                           carImage:carInfoEntity.carImage];
+                           carImage:carInfoEntity.carImage
+                              carID:carInfoEntity.carIDInServer];
             
             [self.carInfoService updateCarInfo:carInfoEntity withBlock:^(NSError *error) {
             }];
@@ -175,7 +177,8 @@
                         mileage:carInfoEntity.mileage
                    firstRegTime:carInfoEntity.firstRegTime
                       salePrice:carInfoEntity.salePrice
-                       carImage:carInfoEntity.carImage];
+                       carImage:carInfoEntity.carImage
+                          carID:carInfoEntity.carIDInServer];
     }
 }
 

@@ -14,6 +14,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *subTime;
 @property (weak, nonatomic) IBOutlet UILabel *infoStatus;
 
-- (void)setCarName:(NSString *)carName mileage:(NSString *)mileage firstRegTime:(NSString *)firstRegTime salePrice:(NSString *)salePrice carImage:(UIImage *)carImage;
+- (void)setCarName:(NSString *)carName
+           mileage:(NSString *)mileage
+      firstRegTime:(NSString *)firstRegTime
+         salePrice:(NSString *)salePrice
+          carImage:(UIImage *)carImage
+             carID:(NSString *)carID;
 
 @end

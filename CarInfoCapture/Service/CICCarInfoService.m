@@ -167,8 +167,8 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
             if (carInfo.carImagesRemotePaths.count == carInfo.carImagesLocalPaths.count) {
                 
                 // 上传其他信息
-                NSError *error = [self.carInfoHTTPLogic uploadCarInfo:carInfo];
-                if (error) {
+                id response = [self.carInfoHTTPLogic uploadCarInfo:carInfo];
+                if (!response) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.delegate carInfoUploadDidFailAtIndex:idx];
                     });
@@ -176,6 +176,7 @@ typedef void(^CICCarInfoServiceUploadImageBlock)(NSMutableArray *remoteImagePath
                 }
                 else {
                     // 更新数据库中的信息
+                    carInfo.carIDInServer = [response objectForKey:@"carid"];
                     carInfo.status = Uploaded;
                     [CICCarInfoDBLogic updateCarInfo:carInfo withBlock:^(NSError *error) {}];
                     dispatch_async(dispatch_get_main_queue(), ^{

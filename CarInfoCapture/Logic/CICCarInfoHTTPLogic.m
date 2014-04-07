@@ -31,23 +31,25 @@
                               }];
 }
 
-- (NSError *)uploadCarInfo:(CICCarInfoEntity *)carInfo
+- (id)uploadCarInfo:(CICCarInfoEntity *)carInfo
 {
     NSCondition *condition = [[NSCondition alloc] init];
-    __block NSError *result = nil;
+    __block id response = nil;
     
     NSDictionary *carInfoParameters = [self carInfoParameters:carInfo];
     //capture.youche.com
     [[CICHTTPClient sharedClient] POST:@"capture/upload"
                             parameters:carInfoParameters
                                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                   response = responseObject;
+                                   
                                    // 发出信号，使线程继续
                                    [condition lock];
                                    [condition signal];
                                    [condition unlock];
                                }
                                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                   result = error;
+                                   response = nil;
                   
                                    // 发出信号，使线程继续
                                    [condition lock];
@@ -60,7 +62,7 @@
     [condition wait];
     [condition unlock];
     
-    return result;
+    return response;
 }
 
 - (void)cancelAllUploadTask

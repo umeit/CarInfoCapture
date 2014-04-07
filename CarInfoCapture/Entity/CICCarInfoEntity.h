@@ -83,4 +83,6 @@ typedef enum SaveStatus : NSInteger {
 
 //- (NSInteger)imageCodeWithImageIndex:(NSInteger)index;
 
+/* 保存在服务器的ID */
+@property (strong, nonatomic) NSString *carIDInServer;
 @end

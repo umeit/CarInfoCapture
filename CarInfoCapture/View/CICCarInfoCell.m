@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *firstRegTime;
 @property (weak, nonatomic) IBOutlet UILabel *salePrice;
 @property (weak, nonatomic) IBOutlet UIImageView *carImage;
-
+@property (weak, nonatomic) IBOutlet UILabel *carID;
 @end
 
 @implementation CICCarInfoCell
@@ -24,12 +24,14 @@
       firstRegTime:(NSString *)firstRegTime
          salePrice:(NSString *)salePrice
           carImage:(UIImage *)carImage
+             carID:(NSString *)carID
 {
     self.carName.text = carName;
     self.mileage.text = mileage;
     self.firstRegTime.text = firstRegTime;
     self.salePrice.text = salePrice;
     self.carImage.image = carImage;
+    self.carID.text = carID;
 }
 
 @end
