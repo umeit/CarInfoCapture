@@ -286,22 +286,27 @@ typedef enum CarInfoSaveStatus : NSInteger {
     return NO;
 }
 
+// 判断实拍图片是否满足需求
 - (BOOL)checkCarImageInfo:(CICCarInfoEntity *)carInfo
 {
-//    for (NSDictionary *dic in carInfo.carImagesLocalPathList) {
-//        if ([dic[@"k"] integerValue] == 0 || [dic[@"v"] length] < 1) {
-//            return NO;
-//        }
-//    }
-//    
-    if (carInfo.carImagesLocalPaths.count == 6) {
-        return YES;
+    if (carInfo.carImagesLocalPaths.count >= 6) {
+        NSArray *allKyes = carInfo.carImagesLocalPaths.allKeys;
+        if ([allKyes indexOfObject:kFrontFlankImage] == NSNotFound
+            || [allKyes indexOfObject:kBackFlankImage] == NSNotFound
+            || [allKyes indexOfObject:kInsideCentralImage] == NSNotFound
+            || [allKyes indexOfObject:kFrontSeatImage] == NSNotFound
+            || [allKyes indexOfObject:kBackSeatImage] == NSNotFound
+            || [allKyes indexOfObject:kBackImage] == NSNotFound) {
+            
+            return NO;
+        }
+        else {
+            return YES;
+        }
     }
     else {
         return NO;
     }
-    
-//    return YES;
 }
 
 - (BOOL)checkCarMasterInfo:(CICCarInfoEntity *)carInfo
