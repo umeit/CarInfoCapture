@@ -32,6 +32,18 @@ typedef enum SaveStatus : NSInteger {
 #define kBackSeatImage      @"3006"
 #define kBackImage          @"3007"
 
+// 车辆其他图片
+#define kCarOtherImage0          @"9000"
+#define kCarOtherImage1          @"9001"
+#define kCarOtherImage2          @"9002"
+#define kCarOtherImage3          @"9003"
+#define kCarOtherImage4          @"9004"
+#define kCarOtherImage5          @"9005"
+#define kCarOtherImage6          @"9006"
+#define kCarOtherImage7          @"9007"
+#define kCarOtherImage8          @"9008"
+#define kCarOtherImage9          @"9009"
+
 @interface CICCarInfoEntity : NSObject <NSCoding>
 
 // 在数据库的ID
