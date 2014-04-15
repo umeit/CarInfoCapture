@@ -13,6 +13,7 @@
 		03089A081833764D006F2E4B /* CICMainCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03089A071833764D006F2E4B /* CICMainCaptureViewController.m */; };
 		0323EAD2185183CC00752172 /* CICUserHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 0323EAD1185183CC00752172 /* CICUserHTTPLogic.m */; };
 		032B96161836214000A685D3 /* NSArray+CICArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 032B96151836214000A685D3 /* NSArray+CICArray.m */; };
+		0335D52E18FD33BC00092756 /* car_demo_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 0335D52D18FD33BC00092756 /* car_demo_6.png */; };
 		0339EF781831FD500082A35E /* CICCarBaseCheckReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF521831FD500082A35E /* CICCarBaseCheckReportViewController.m */; };
 		0339EF791831FD500082A35E /* CICMyCaptureListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF541831FD500082A35E /* CICMyCaptureListViewController.m */; };
 		0339EF7A1831FD500082A35E /* CICCarInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0339EF571831FD500082A35E /* CICCarInfoEntity.m */; };
@@ -320,6 +321,7 @@
 		0323EAD1185183CC00752172 /* CICUserHTTPLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICUserHTTPLogic.m; sourceTree = "<group>"; };
 		032B96141836214000A685D3 /* NSArray+CICArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+CICArray.h"; sourceTree = "<group>"; };
 		032B96151836214000A685D3 /* NSArray+CICArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CICArray.m"; sourceTree = "<group>"; };
+		0335D52D18FD33BC00092756 /* car_demo_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car_demo_6.png; sourceTree = "<group>"; };
 		0339EF511831FD500082A35E /* CICCarBaseCheckReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICCarBaseCheckReportViewController.h; sourceTree = "<group>"; };
 		0339EF521831FD500082A35E /* CICCarBaseCheckReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CICCarBaseCheckReportViewController.m; sourceTree = "<group>"; };
 		0339EF531831FD500082A35E /* CICMyCaptureListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CICMyCaptureListViewController.h; sourceTree = "<group>"; };
@@ -947,6 +949,7 @@
 		03BC90D2183F6574008E8B88 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0335D52D18FD33BC00092756 /* car_demo_6.png */,
 				0372D315184891A900962068 /* logo60@2x.png */,
 				0372D3061848855C00962068 /* carbasecheck.png */,
 				0372D3071848855C00962068 /* carbaseinfo.png */,
@@ -1272,6 +1275,7 @@
 				03BB1E0E18571AC000B64848 /* 195.jpg in Resources */,
 				03BB1DE518571AC000B64848 /* 154.jpg in Resources */,
 				03BB1E0118571AC000B64848 /* 182.jpg in Resources */,
+				0335D52E18FD33BC00092756 /* car_demo_6.png in Resources */,
 				03BB1DE318571AC000B64848 /* 152.jpg in Resources */,
 				03BB1DB818571AC000B64848 /* 109.jpg in Resources */,
 				03BB1DF418571AC000B64848 /* 169.jpg in Resources */,

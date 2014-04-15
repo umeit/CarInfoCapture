@@ -30,6 +30,7 @@ typedef enum SaveStatus : NSInteger {
 #define kInsideCentralImage @"3002"
 #define kFrontSeatImage     @"3001"
 #define kBackSeatImage      @"3006"
+#define kBackImage          @"3007"
 
 @interface CICCarInfoEntity : NSObject <NSCoding>
 

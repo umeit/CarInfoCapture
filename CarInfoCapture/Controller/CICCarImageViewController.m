@@ -16,6 +16,7 @@
 #define kInsideCentralImageTag  32
 #define kFrontSeatImageTag      33
 #define kBackSeatImageTag       34
+#define kBackImageTag           35
 
 @interface CICCarImageViewController () <UINavigationControllerDelegate,
                                          UIImagePickerControllerDelegate,
@@ -26,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *insideCentralImage;
 @property (weak, nonatomic) IBOutlet UIImageView *frontSeatImage;
 @property (weak, nonatomic) IBOutlet UIImageView *backSeatImage;
+@property (weak, nonatomic) IBOutlet UIImageView *backImage;
 
 @property (nonatomic) NSString *currentTackIamgeKey;
 
@@ -65,6 +67,10 @@
             
         case kBackSeatImageTag:
             self.currentTackIamgeKey = kBackSeatImage;
+            break;
+            
+        case kBackImageTag:
+            self.currentTackIamgeKey = kBackImage;
             break;
             
         default:
@@ -179,6 +185,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImage *backSeatImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kBackSeatImage]];
     if (backSeatImage) {
         self.backSeatImage.image = [CICGlobalService thumbWithImage:backSeatImage maxHeight:160 maxWidth:213];
+    }
+    
+    UIImage *backImage = [CICGlobalService iamgeWithPath:self.carInfoEntity.carImagesLocalPaths[kBackImage]];
+    if (backImage) {
+        self.backImage.image = [CICGlobalService thumbWithImage:backImage maxHeight:160 maxWidth:213];
     }
 }
 
