@@ -294,7 +294,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 //        }
 //    }
 //    
-    if (carInfo.carImagesLocalPaths.count == 5) {
+    if (carInfo.carImagesLocalPaths.count == 6) {
         return YES;
     }
     else {
