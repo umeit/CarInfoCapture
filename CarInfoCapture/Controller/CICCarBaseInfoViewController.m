@@ -17,6 +17,8 @@
 #define CarSourceCellTag         35
 #define DealTimeCellTag          36
 #define CarColorCellTag          37
+//#define VINCellTag               38
+//#define LicencePlateCellTag      39
 
 // 当前正在编辑的信息类型
 typedef enum EditItemType : NSInteger{
@@ -29,7 +31,9 @@ typedef enum EditItemType : NSInteger{
     dealTime,
     mileage,
     salePrice,
-    carColor
+    carColor,
+    vin,
+    licencePlate
 }EditItemType;
 
 @interface CICCarBaseInfoViewController () <UITextFieldDelegate>
@@ -46,6 +50,8 @@ typedef enum EditItemType : NSInteger{
 @property (weak, nonatomic) IBOutlet UILabel *dealTimeDetailLabel;
 @property (weak, nonatomic) IBOutlet UITextField *mileageTextField;
 @property (weak, nonatomic) IBOutlet UITextField *salePriceTextField;
+@property (weak, nonatomic) IBOutlet UITextField *vinTextField;
+@property (weak, nonatomic) IBOutlet UITextField *licencePlateTextField;
 @property (weak, nonatomic) IBOutlet UILabel *carColorDetailLabel;
 
 @property (strong, nonatomic) UITextField *currentEditTextField;
@@ -73,11 +79,13 @@ typedef enum EditItemType : NSInteger{
     [numberToolbar sizeToFit];
     self.mileageTextField.inputAccessoryView = numberToolbar;
     self.salePriceTextField.inputAccessoryView = numberToolbar;
+    self.vinTextField.inputAccessoryView = numberToolbar;
+    self.licencePlateTextField.inputAccessoryView = numberToolbar;
     
     self.mileageTextField.delegate = self;
     self.salePriceTextField.delegate = self;
-    
-    
+    self.vinTextField.delegate = self;
+    self.licencePlateTextField.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -94,6 +102,8 @@ typedef enum EditItemType : NSInteger{
     self.mileageTextField.text = self.carInfoEntity.mileage;
     self.salePriceTextField.text = self.carInfoEntity.salePrice;
     self.carColorDetailLabel.text = self.carInfoEntity.carColor;
+    self.vinTextField.text = self.carInfoEntity.vin;
+    self.licencePlateTextField.text = self.carInfoEntity.licencePlate;
     
     // 监听键盘弹出/隐藏事件
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -200,6 +210,24 @@ typedef enum EditItemType : NSInteger{
     self.currentEditTextField = textField;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (self.currentEditTextField == self.salePriceTextField) {
+        self.carInfoEntity.salePrice = self.currentEditTextField.text;
+    }
+    else if (self.currentEditTextField == self.mileageTextField) {
+        self.carInfoEntity.mileage = self.currentEditTextField.text;
+    }
+    else if (self.currentEditTextField == self.vinTextField) {
+        self.carInfoEntity.vin = self.currentEditTextField.text;
+    }
+    else if (self.currentEditTextField == self.licencePlateTextField) {
+        self.carInfoEntity.licencePlate = self.currentEditTextField.text;
+    }
+    
+    [self.delegate carInfoDidChange:self.carInfoEntity];
+}
+
 
 #pragma mark - NSNotification
 
@@ -271,6 +299,12 @@ typedef enum EditItemType : NSInteger{
     else if (self.currentEditTextField == self.mileageTextField) {
         self.carInfoEntity.mileage = self.currentEditTextField.text;
     }
+    else if (self.currentEditTextField == self.vinTextField) {
+        self.carInfoEntity.vin = self.vinTextField.text;
+    }
+    else if (self.currentEditTextField == self.licencePlateTextField) {
+        self.carInfoEntity.licencePlate = self.licencePlateTextField.text;
+    }
     
     
     [self.delegate carInfoDidChange:self.carInfoEntity];
@@ -284,6 +318,13 @@ typedef enum EditItemType : NSInteger{
     else if (self.currentEditTextField == self.mileageTextField) {
         self.carInfoEntity.mileage = self.currentEditTextField.text;
     }
+    else if (self.currentEditTextField == self.vinTextField) {
+        self.carInfoEntity.vin = self.currentEditTextField.text;
+    }
+    else if (self.currentEditTextField == self.licencePlateTextField) {
+        self.carInfoEntity.licencePlate = self.currentEditTextField.text;
+    }
+    
     [self.self.currentEditTextField resignFirstResponder];
     
     [self.delegate carInfoDidChange:self.carInfoEntity];

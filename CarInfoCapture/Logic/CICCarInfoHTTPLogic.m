@@ -160,7 +160,9 @@
                                         @"mastertel": carInfo.masterTel,
                                         @"carcolor": carInfo.carColor ? carInfo.carColor : @"",
                                         @"company" : carInfo.company ? carInfo.company : @"",
-                                        @"pic": [carInfo.carImagesRemotePaths jsonStringRemoteFormat]};
+                                        @"pic": [carInfo.carImagesRemotePaths jsonStringRemoteFormat],
+                                        @"vin": carInfo.vin,
+                                        @"licencePlate": carInfo.licencePlate};
     return carInfoParameters;
 }
 

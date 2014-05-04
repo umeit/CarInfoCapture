@@ -52,7 +52,9 @@
     " masterTel VARCHAR, " \
     " carColor VARCHAR, " \
     " company VARCHAR, " \
-    " carIDInServer VARCHAR" \
+    " carIDInServer VARCHAR," \
+    " vin VARCHAR," \
+    " licencePlate VARCHAR" \
     ")";
     
     [db executeUpdate:createTableSQL];
@@ -105,6 +107,8 @@
         carInfo.carColor = [s stringForColumn:@"carColor"];
         carInfo.company = [s stringForColumn:@"company"];
         carInfo.carIDInServer = [s stringForColumn:@"carIDInServer"];
+        carInfo.vin = [s stringForColumn:@"vin"];
+        carInfo.licencePlate = [s stringForColumn:@"licencePlate"];
         
         [carInfoList addObject:carInfo];
     }
@@ -122,31 +126,7 @@
         return;
     }
     
-    // 顺序
-//    "(id INTEGER PRIMARY KEY AUTOINCREMENT," \
-//    " addTime VARCHAR, " \
-//    " status INTEGER, " \
-//    " modelID INTEGER, " \
-//    " carName VARCHAR, " \
-//    " location VARCHAR, " \
-//    " insuranceExpire VARCHAR, " \
-//    " yearExamineExpire VARCHAR, " \
-//    " carSource VARCHAR, " \
-//    " dealTime VARCHAR, " \
-//    " salePrice VARCHAR, " \
-//    " mileage VARCHAR, " \
-//    " firstRegTime VARCHAR, " \
-//    " underpanIssueList VARCHAR, " \
-//    " engineIssueList VARCHAR, " \
-//    " paintIssueList VARCHAR, " \
-//    " insideIssueList VARCHAR, " \
-//    " facadeIssueList VARCHAR, " \
-//    " carImagesLocalPathList VARCHAR, " \
-//    " masterName VARCHAR, " \
-//    " masterTel VARCHAR " \
-//    ")";
-    
-    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+    BOOL success = [db executeUpdate:@"INSERT INTO T_CarInfo VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         nil,
                         carInfo.addTime, @(carInfo.status), carInfo.modelID, carInfo.carName, carInfo.location,
                         carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
@@ -158,7 +138,7 @@
                         [carInfo.facadeIssueList oneStringFormat],
                         [carInfo.carImagesLocalPaths jsonStringLocalFormat],
                         [carInfo.carImagesRemotePaths jsonStringLocalFormat],
-                        carInfo.masterName, carInfo.masterTel, carInfo.carColor, carInfo.company, carInfo.carIDInServer];
+                        carInfo.masterName, carInfo.masterTel, carInfo.carColor, carInfo.company, carInfo.carIDInServer, carInfo.vin, carInfo.licencePlate];
     
     [db close];
     
@@ -256,6 +236,8 @@
         carInfo.masterTel = [s stringForColumn:@"masterTel"];
         carInfo.carColor = [s stringForColumn:@"carColor"];
         carInfo.company = [s stringForColumn:@"company"];
+        carInfo.vin = [s stringForColumn:@"vin"];
+        carInfo.licencePlate = [s stringForColumn:@"licencePlate"];
         
         [carInfoList addObject:carInfo];
     }
@@ -277,7 +259,7 @@
                                       "carSource = ?, dealTime = ?, salePrice = ?, mileage = ?, "\
                                       "firstRegTime = ?, underpanIssueList = ?, engineIssueList = ?, "\
                                       "paintIssueList = ?, insideIssueList = ?, facadeIssueList = ?, "\
-                                      "carImagesLocalPaths = ?, carImagesRemotePaths = ?, masterName = ?, masterTel = ?, carColor = ?, company = ?, carIDInServer = ? "\
+                                      "carImagesLocalPaths = ?, carImagesRemotePaths = ?, masterName = ?, masterTel = ?, carColor = ?, company = ?, carIDInServer = ?, vin = ?, licencePlate = ? "\
                                       "WHERE id = ? ",
                     carInfo.addTime, @(carInfo.status), carInfo.modelID, carInfo.carName, carInfo.location,
                     carInfo.insuranceExpire, carInfo.yearExamineExpire, carInfo.carSource,
@@ -289,7 +271,7 @@
                     [carInfo.facadeIssueList oneStringFormat],
                     [carInfo.carImagesLocalPaths jsonStringLocalFormat],
                     [carInfo.carImagesRemotePaths jsonStringLocalFormat],
-                    carInfo.masterName, carInfo.masterTel, carInfo.carColor, carInfo.company, carInfo.carIDInServer,
+                    carInfo.masterName, carInfo.masterTel, carInfo.carColor, carInfo.company, carInfo.carIDInServer, carInfo.vin, carInfo.licencePlate,
                     @(carInfo.dbID)];
     
     [db close];

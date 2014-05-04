@@ -67,6 +67,8 @@ typedef enum SaveStatus : NSInteger {
 @property (strong, nonatomic) NSString *dealTime;
 @property (strong, nonatomic) NSString *mileage;
 @property (strong, nonatomic) NSString *salePrice;
+@property (strong, nonatomic) NSString *vin;
+@property (strong, nonatomic) NSString *licencePlate;
 @property (strong, nonatomic) NSString *carColor;
 
 /* 初步检查信息 */

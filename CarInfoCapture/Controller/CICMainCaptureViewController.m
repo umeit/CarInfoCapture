@@ -248,8 +248,7 @@ typedef enum CarInfoSaveStatus : NSInteger {
 - (BOOL)checkDataIntegrity:(CICCarInfoEntity *)carInfo
 {
     if ([self checkCarBaseCheckInfo:carInfo]
-        && [self checkCarImageInfo:carInfo] && [self checkCarMasterInfo:carInfo]) {
-        
+        && [self checkCarImageInfo:carInfo] && [self checkCarMasterInfo:carInfo] && [self checkCarBaseInfo:carInfo]) {
         return YES;
     }
     return NO;
@@ -259,14 +258,16 @@ typedef enum CarInfoSaveStatus : NSInteger {
 {
     if (carInfo.modelID
         && carInfo.carName && [carInfo.carName length] > 0
-        && carInfo.location && [carInfo.location length] > 0
-        && carInfo.firstRegTime && [carInfo.firstRegTime length] > 0
-        && carInfo.insuranceExpire && [carInfo.insuranceExpire length] > 0
-        && carInfo.yearExamineExpire && [carInfo.yearExamineExpire length] > 0
-        && carInfo.carSource && [carInfo.carSource length] > 0
-        && carInfo.dealTime && [carInfo.dealTime length] > 0
-        && carInfo.mileage && [carInfo.mileage length] > 0
-        && carInfo.salePrice && [carInfo.salePrice length] > 0) {
+//        && carInfo.location && [carInfo.location length] > 0
+//        && carInfo.firstRegTime && [carInfo.firstRegTime length] > 0
+//        && carInfo.insuranceExpire && [carInfo.insuranceExpire length] > 0
+//        && carInfo.yearExamineExpire && [carInfo.yearExamineExpire length] > 0
+//        && carInfo.carSource && [carInfo.carSource length] > 0
+//        && carInfo.dealTime && [carInfo.dealTime length] > 0
+//        && carInfo.mileage && [carInfo.mileage length] > 0
+//        && carInfo.salePrice && [carInfo.salePrice length] > 0
+        && carInfo.vin && [carInfo.vin length] > 0
+        && carInfo.licencePlate && [carInfo.licencePlate length] > 0) {
         
         return YES;
     }
@@ -317,4 +318,5 @@ typedef enum CarInfoSaveStatus : NSInteger {
     }
     return NO;
 }
+
 @end
